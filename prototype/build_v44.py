@@ -333,7 +333,7 @@ HTML = f'''<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
 <section class="hero">{HERO_WAVES}
   <div class="wrap in">
     <h1>Семена, удобрения<br>и <span class="accent">защита растений</span><br>для сельхозпроизводителей</h1>
-    <p class="sub">Подбираем решения под культуру, регион и задачи хозяйства. Организуем поставку, хранение, диагностику и агрономическое сопровождение.</p>
+    <p class="sub">Подбираем решения под культуру, регион и задачи хозяйства.</p>
     <div class="cta-row">
       <a class="btn g" href="#dirs">Подобрать решение</a>
       <a class="btn ghost-w" href="#catalog">Перейти в каталог</a>
@@ -344,13 +344,13 @@ HTML = f'''<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
 <!-- 2. ПЯТЬ НАПРАВЛЕНИЙ (светлый) -->
 <section class="sec sec--light" id="dirs"><div class="wrap">
   <h2 class="sec-h">Пять направлений — один поставщик</h2>
-  <p class="sec-lead">От диагностики поля и подбора схемы до поставки, хранения и сопровождения применения. Всё в одном месте.</p>
+  <p class="sec-lead">Полный цикл — от диагностики поля до сопровождения применения.</p>
   <div class="dirs">
     <div class="dir dir--min">{icon('udobreniya',40)}<h3>Удобрения</h3></div>
     <div class="dir dir--min">{icon('szr',40)}<h3>СЗР</h3></div>
     <div class="dir dir--min">{icon('semena',40)}<h3>Семена</h3></div>
-    <div class="dir accent">{icon('diagnostika',40)}<h3>Диагностика</h3><p>Выявление дефицитов питания и мониторинг состояния посевов.</p><span class="more">Подробнее →</span></div>
-    <div class="dir accent">{icon('agro',40)}<h3>Агросопровождение</h3><p>Подбор схем, нормы применения и консультации специалистов.</p><span class="more">Подробнее →</span></div>
+    <div class="dir dir--min">{icon('diagnostika',40)}<h3>Диагностика</h3></div>
+    <div class="dir dir--min">{icon('agro',40)}<h3>Агросопровождение</h3></div>
   </div>
 </div></section>
 
@@ -386,9 +386,8 @@ HTML = f'''<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
 
 <!-- 5. СЕРВИС В 4 ЭТАПА + ДИАГНОСТИКА/АГРОСОПРОВОЖДЕНИЕ (светлый) -->
 <section class="sec sec--light" id="service"><div class="wrap">
-  <p class="sec-lead">«Сатурн» — не просто продажа продукции. Мы ведём хозяйство на всех этапах сезона.</p>
   <div class="steps">
-    <div class="step"><div class="n">1</div><h3>Подбор</h3><p>Продукция под культуру и регион.</p></div>
+    <div class="step"><div class="n">1</div><h3>Подбор</h3><p>Продукция под задачу поля.</p></div>
     <div class="step"><div class="n">2</div><h3>Диагностика</h3><p>Листовая диагностика посевов.</p></div>
     <div class="step"><div class="n">3</div><h3>Поставка</h3><p>Доставка и хранение оптом.</p></div>
     <div class="step"><div class="n">4</div><h3>Сопровождение</h3><p>Контроль в течение сезона.</p></div>
@@ -427,7 +426,7 @@ HTML = f'''<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
   <div class="about">
     <div>
       <h2 class="sec-h">«Сатурн» — поставщик решений для растениеводства</h2>
-      <p class="sec-lead">Обеспечиваем сельхозпроизводителей семенами, удобрениями и средствами защиты растений. Подбираем продукцию под культуру и регион, организуем поставку и сопровождаем применение.</p>
+      <p class="sec-lead">Обеспечиваем сельхозпроизводителей семенами, удобрениями и СЗР — с подбором, поставкой и сопровождением.</p>
       <div class="about-btns"><a class="btn ghost">Подробнее о компании</a><a class="btn ghost">Скачать реквизиты (PDF)</a></div>
     </div>
     <div class="about-photo">фото компании / поля / склада</div>
@@ -448,8 +447,8 @@ HTML = f'''<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
 <section class="sec sec--light" id="cases"><div class="wrap">
   <h2 class="sec-h">Результаты производственных испытаний</h2>
   <div class="cases cases--light">
-    <div class="case"><div class="big">до +15%</div><h3>Пшеница</h3><p>Результат производственного испытания препаратов в конкретных условиях хозяйства.</p><div class="who">Хозяйство: АО «СибАгро»</div></div>
-    <div class="case"><div class="big">+4%</div><h3>Соя</h3><p>Результат испытания продукции в конкретном хозяйстве.</p><div class="who">Хозяйство: АО «СибАгро»</div></div>
+    <div class="case"><div class="big">до +15%</div><h3>Пшеница</h3><div class="who">Хозяйство: АО «СибАгро»</div></div>
+    <div class="case"><div class="big">+4%</div><h3>Соя</h3><div class="who">Хозяйство: АО «СибАгро»</div></div>
     <div class="case"><div class="big">🌾</div><h3>Ваше поле?</h3><p>Проведём диагностику, подберём схему и покажем результат в вашем хозяйстве.</p><div class="who">оставьте заявку →</div></div>
   </div>
 </div></section>
