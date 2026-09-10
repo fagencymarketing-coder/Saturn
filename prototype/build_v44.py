@@ -277,9 +277,12 @@ footer .copy{color:var(--muted-d2);font-size:13px;margin-top:32px;padding-top:18
 .cat-note--strong{margin-top:22px;font-size:15px;font-weight:600;color:var(--text-d);background:rgba(46,139,87,.14);border:1px solid rgba(46,139,87,.4);border-radius:12px;padding:14px 18px}
 /* о компании: фото вместо панели */
 .about-photo{background:#EFE9E1;border:1px solid #E0D8CB;border-radius:16px;min-height:240px;display:flex;align-items:center;justify-content:center;color:#8A8078;font-size:14px;text-align:center}
-/* производители: логотипы */
-.plogo-box{width:100%;height:70px;background:var(--paper-2);border:1px solid var(--line-l);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted-l);font-size:12px;font-family:"IBM Plex Mono";margin-bottom:12px}
-.partner b{margin-top:0}
+/* партнёры-производители: компактная строка логотипов */
+.pstrip{margin-top:34px;padding-top:24px;border-top:1px solid var(--line-l);display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.pstrip-label{font-family:"IBM Plex Mono";font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-l);white-space:nowrap}
+.pstrip-logos{display:flex;align-items:center;gap:20px;flex-wrap:wrap;flex:1}
+.pstrip-logo{height:44px;min-width:150px;padding:0 18px;display:flex;align-items:center;justify-content:center;color:var(--muted-l);font-size:13px;font-family:"IBM Plex Mono";background:var(--white);border:1px solid var(--line-l);border-radius:10px}
+.pstrip-logo img{max-height:30px;width:auto;display:block}
 /* контакты + форма */
 .contact{display:grid;grid-template-columns:1fr 1.15fr;gap:24px;margin-top:28px;align-items:start}
 .contact-people{display:grid;gap:16px}
@@ -352,15 +355,13 @@ HTML = f'''<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
     <div class="dir dir--min">{icon('diagnostika',40)}<h3>Диагностика</h3></div>
     <div class="dir dir--min">{icon('agro',40)}<h3>Агросопровождение</h3></div>
   </div>
-</div></section>
-
-<!-- 3. ПРОИЗВОДИТЕЛИ (светлый тёплый) -->
-<section class="sec sec--paper3" id="partners"><div class="wrap">
-  <h2 class="sec-h">Поставляем продукцию</h2>
-  <div class="partners partners-3">
-    <div class="partner"><div class="plogo-box">логотип</div><b>Фертика</b><span>минеральные удобрения</span></div>
-    <div class="partner"><div class="plogo-box">логотип</div><b>Волски Биохим</b><span>питание растений</span></div>
-    <div class="partner"><div class="plogo-box">логотип</div><b>Relict Organics</b><span>удобрения и СЗР</span></div>
+  <div class="pstrip" id="partners">
+    <span class="pstrip-label">Партнёры производителей</span>
+    <div class="pstrip-logos">
+      <div class="pstrip-logo">Фертика</div>
+      <div class="pstrip-logo">Волски Биохим</div>
+      <div class="pstrip-logo">Relict Organics</div>
+    </div>
   </div>
 </div></section>
 
