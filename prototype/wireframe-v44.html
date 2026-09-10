@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Saturn — блочная схема (wireframe) V4.4</title>
+<style>
+:root{
+  --page:#ffffff; --sec:#f4f4f5; --dark:#e2e2e4;
+  --card:#ffffff; --box:#e9e9ec; --box2:#dedee1;
+  --bar:#d3d3d7; --bar-h:#bfbfc4; --line:#cccccf; --edge:#c4c4c9;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#dcdcde;font-family:system-ui,sans-serif;color:#999}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+section,header,footer{border-bottom:1px dashed #d6d6d9}
+.sec{background:var(--page);padding:40px 0}
+.sec--alt{background:var(--sec)}
+.sec--dark{background:var(--dark)}
+/* примитивы */
+.bar{height:12px;border-radius:3px;background:var(--bar)}
+.bar.h{height:22px;background:var(--bar-h)}       /* заголовок */
+.bar.h2{height:16px;background:var(--bar-h)}      /* подзаголовок */
+.bar.sm{height:9px}
+.stack>*{margin-top:8px}
+.stack>*:first-child{margin-top:0}
+.circle{width:44px;height:44px;border-radius:50%;background:var(--box2);border:1px solid var(--edge)}
+.dot{width:26px;height:26px;border-radius:50%;background:var(--box2);border:1px solid var(--edge)}
+.btn{height:40px;border-radius:8px;border:1.5px solid var(--edge);background:transparent;min-width:150px}
+.btn.solid{background:var(--box2)}
+.card{background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:18px}
+.imgph{background:var(--box);border:1px solid var(--edge);border-radius:12px;position:relative;min-height:120px}
+.imgph::before,.imgph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - 1px),var(--edge),transparent calc(50% + 1px))}
+.imgph::after{background:linear-gradient(to top left,transparent calc(50% - 1px),var(--edge),transparent calc(50% + 1px))}
+.row{display:flex;gap:16px}
+.grid{display:grid;gap:16px}
+.between{display:flex;justify-content:space-between;align-items:center}
+.w40{width:40%}.w50{width:50%}.w60{width:60%}.w70{width:70%}.w30{width:30%}.w80{width:80%}
+.tag{width:14px;height:8px;visibility:hidden}
+/* подпись-номер блока слева (это разметка схемы, не контент страницы) */
+.mark{position:absolute;left:6px;top:6px;font:600 11px/1 ui-monospace,monospace;color:#b3b3b8;letter-spacing:.05em}
+.sec,.sec--dark{position:relative}
+.pill{height:26px;min-width:66px;border-radius:14px;border:1px solid var(--edge);background:var(--box)}
+.chip{height:34px;min-width:110px;border-radius:8px;border:1px solid var(--edge);background:var(--box)}
+</style></head>
+<body>
+
+<!-- 0 ШАПКА -->
+<header class="sec"><span class="mark">01 · header</span><div class="wrap between">
+  <div class="box2" style="width:120px;height:34px;background:var(--box2);border:1px solid var(--edge);border-radius:6px"></div>
+  <div class="row" style="align-items:center">
+    <div class="bar sm" style="width:70px"></div>
+    <div class="bar sm" style="width:110px"></div>
+    <div class="bar sm" style="width:80px"></div>
+    <div class="bar sm" style="width:80px"></div>
+  </div>
+  <div class="row" style="align-items:center">
+    <div class="bar sm" style="width:120px"></div>
+    <div class="bar sm" style="width:120px"></div>
+  </div>
+</div></header>
+
+<!-- 1 HERO -->
+<section class="sec--dark" style="padding:70px 0"><span class="mark">02 · hero</span><div class="wrap">
+  <div class="stack" style="max-width:640px">
+    <div class="bar h w80"></div>
+    <div class="bar h w70"></div>
+    <div class="bar h w40"></div>
+    <div style="height:10px"></div>
+    <div class="bar h2 w70"></div>
+    <div class="bar h2 w50"></div>
+    <div style="height:16px"></div>
+    <div class="row"><div class="btn solid"></div><div class="btn"></div></div>
+  </div>
+</div></section>
+
+<!-- 2 ПЯТЬ НАПРАВЛЕНИЙ + ПАРТНЁРЫ -->
+<section class="sec"><span class="mark">03 · направления + партнёры</span><div class="wrap stack">
+  <div class="bar h w40"></div>
+  <div class="bar h2 w60"></div>
+  <div class="grid" style="grid-template-columns:repeat(5,1fr);margin-top:10px">
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle"></div><div class="bar sm" style="width:70%"></div></div>
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle"></div><div class="bar sm" style="width:50%"></div></div>
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle"></div><div class="bar sm" style="width:60%"></div></div>
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle"></div><div class="bar sm" style="width:75%"></div></div>
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle"></div><div class="bar sm" style="width:80%"></div></div>
+  </div>
+  <!-- строка партнёров -->
+  <div class="row" style="align-items:center;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)">
+    <div class="bar sm" style="width:150px"></div>
+    <div class="chip"></div><div class="chip"></div><div class="chip"></div>
+  </div>
+</div></section>
+
+<!-- 3 ПОПУЛЯРНЫЕ ПОЗИЦИИ (каталог-превью) -->
+<section class="sec--dark"><span class="mark">04 · популярные позиции</span><div class="wrap stack">
+  <div class="between"><div class="bar h" style="width:30%"></div><div class="btn" style="min-width:140px"></div></div>
+  <div class="row" style="margin-top:6px"><div class="pill"></div><div class="pill"></div><div class="pill"></div><div class="pill"></div></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:10px">
+    <div class="card stack"><div class="imgph" style="min-height:120px"></div><div class="bar" style="width:80%"></div><div class="bar sm" style="width:60%"></div><div class="bar sm" style="width:45%"></div><div class="row" style="margin-top:6px"><div class="btn" style="min-width:auto;flex:1"></div><div class="btn solid" style="min-width:auto;flex:1"></div></div></div>
+    <div class="card stack"><div class="imgph" style="min-height:120px"></div><div class="bar" style="width:70%"></div><div class="bar sm" style="width:55%"></div><div class="bar sm" style="width:45%"></div><div class="row" style="margin-top:6px"><div class="btn" style="min-width:auto;flex:1"></div><div class="btn solid" style="min-width:auto;flex:1"></div></div></div>
+    <div class="card stack"><div class="imgph" style="min-height:120px"></div><div class="bar" style="width:75%"></div><div class="bar sm" style="width:50%"></div><div class="bar sm" style="width:45%"></div><div class="row" style="margin-top:6px"><div class="btn" style="min-width:auto;flex:1"></div><div class="btn solid" style="min-width:auto;flex:1"></div></div></div>
+  </div>
+  <div class="box" style="height:44px;border-radius:10px;background:var(--box);border:1px solid var(--edge);margin-top:12px"></div>
+</div></section>
+
+<!-- 4 СЕРВИС: 4 ШАГА + 2 КОЛОНКИ -->
+<section class="sec"><span class="mark">05 · сервис</span><div class="wrap stack">
+  <div class="grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card stack"><div class="dot"></div><div class="bar" style="width:60%"></div><div class="bar sm" style="width:90%"></div></div>
+    <div class="card stack"><div class="dot"></div><div class="bar" style="width:70%"></div><div class="bar sm" style="width:85%"></div></div>
+    <div class="card stack"><div class="dot"></div><div class="bar" style="width:55%"></div><div class="bar sm" style="width:90%"></div></div>
+    <div class="card stack"><div class="dot"></div><div class="bar" style="width:75%"></div><div class="bar sm" style="width:80%"></div></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:8px">
+    <div class="card stack"><div class="bar h2" style="width:50%"></div><div class="bar sm w80"></div><div class="bar sm w70"></div><div class="bar sm w80"></div><div class="bar sm w60"></div><div class="btn" style="margin-top:8px"></div></div>
+    <div class="card stack"><div class="bar h2" style="width:55%"></div><div class="bar sm w80"></div><div class="bar sm w70"></div><div class="bar sm w80"></div><div class="bar sm w60"></div><div class="btn" style="margin-top:8px"></div></div>
+  </div>
+</div></section>
+
+<!-- 5 О КОМПАНИИ -->
+<section class="sec--dark"><span class="mark">06 · о компании</span><div class="wrap row" style="gap:32px">
+  <div class="stack w60"><div class="bar h w70"></div><div class="bar sm w80"></div><div class="bar sm w80"></div><div class="bar sm w60"></div><div class="row" style="margin-top:10px"><div class="btn"></div><div class="btn"></div></div></div>
+  <div class="imgph w40" style="min-height:200px"></div>
+</div></section>
+
+<!-- 6 ГЕОГРАФИЯ -->
+<section class="sec"><span class="mark">07 · география</span><div class="wrap stack">
+  <div class="bar h w30"></div>
+  <div class="bar h2 w60"></div>
+  <div class="row" style="gap:32px;margin-top:8px">
+    <div class="stack w40"><div class="row" style="flex-wrap:wrap;gap:8px"><div class="pill"></div><div class="pill"></div><div class="pill"></div><div class="pill"></div><div class="pill"></div><div class="pill"></div><div class="pill"></div><div class="pill"></div></div></div>
+    <div class="imgph w60" style="min-height:200px"></div>
+  </div>
+</div></section>
+
+<!-- 7 РЕЗУЛЬТАТЫ ИСПЫТАНИЙ -->
+<section class="sec"><span class="mark">08 · результаты испытаний</span><div class="wrap stack">
+  <div class="bar h w40"></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:8px">
+    <div class="card stack"><div class="bar h" style="width:50%"></div><div class="bar" style="width:40%"></div><div class="bar sm" style="width:70%"></div></div>
+    <div class="card stack"><div class="bar h" style="width:45%"></div><div class="bar" style="width:35%"></div><div class="bar sm" style="width:70%"></div></div>
+    <div class="card stack"><div class="bar h" style="width:55%"></div><div class="bar sm" style="width:80%"></div><div class="btn" style="margin-top:4px"></div></div>
+  </div>
+</div></section>
+
+<!-- 8 ДОКУМЕНТЫ -->
+<section class="sec--alt"><span class="mark">09 · документы и сертификаты</span><div class="wrap stack">
+  <div class="bar h w30"></div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:8px">
+    <div class="card stack" style="align-items:center"><div class="dot"></div><div class="bar sm" style="width:70%"></div></div>
+    <div class="card stack" style="align-items:center"><div class="dot"></div><div class="bar sm" style="width:60%"></div></div>
+    <div class="card stack" style="align-items:center"><div class="dot"></div><div class="bar sm" style="width:75%"></div></div>
+    <div class="card stack" style="align-items:center"><div class="dot"></div><div class="bar sm" style="width:65%"></div></div>
+  </div>
+</div></section>
+
+<!-- 9 КОНТАКТЫ + ФОРМА -->
+<section class="sec--dark"><span class="mark">10 · контакты + форма</span><div class="wrap row" style="gap:24px;align-items:flex-start">
+  <div class="stack w40">
+    <div class="bar h" style="width:60%"></div>
+    <div class="card row" style="gap:12px;align-items:center;margin-top:6px"><div class="circle"></div><div class="stack" style="flex:1"><div class="bar sm w70"></div><div class="bar sm w50"></div></div></div>
+    <div class="card row" style="gap:12px;align-items:center"><div class="circle"></div><div class="stack" style="flex:1"><div class="bar sm w70"></div><div class="bar sm w50"></div></div></div>
+  </div>
+  <div class="card stack w60">
+    <div class="box" style="height:38px;background:var(--box);border:1px solid var(--edge);border-radius:8px"></div>
+    <div class="box" style="height:38px;background:var(--box);border:1px solid var(--edge);border-radius:8px"></div>
+    <div class="box" style="height:38px;background:var(--box);border:1px solid var(--edge);border-radius:8px"></div>
+    <div class="box" style="height:76px;background:var(--box);border:1px solid var(--edge);border-radius:8px"></div>
+    <div class="btn solid" style="width:100%;margin-top:4px"></div>
+  </div>
+</div></section>
+
+<!-- 10 ПОДВАЛ -->
+<footer class="sec--dark" style="padding:40px 0"><span class="mark">11 · подвал</span><div class="wrap row" style="gap:40px;align-items:flex-start">
+  <div class="stack w30"><div class="box2" style="width:120px;height:34px;background:var(--box2);border:1px solid var(--edge);border-radius:6px"></div><div class="bar sm w80"></div><div class="bar sm w60"></div></div>
+  <div class="stack" style="flex:1"><div class="bar sm" style="width:80px"></div><div class="bar sm" style="width:70px"></div><div class="bar sm" style="width:90px"></div></div>
+  <div class="stack" style="flex:1"><div class="bar sm" style="width:80px"></div><div class="bar sm" style="width:70px"></div><div class="bar sm" style="width:60px"></div></div>
+  <div class="stack" style="flex:1"><div class="bar sm" style="width:120px"></div><div class="bar sm" style="width:120px"></div><div class="bar sm" style="width:100px"></div></div>
+</div></footer>
+
+</body></html>
