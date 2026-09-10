@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Saturn — блок-схема с текстом V4.4</title>
+<style>
+:root{--page:#fff;--sec:#f5f5f6;--dark:#e6e6e8;--edge:#c3c3c8;--line:#d5d5d9;--ink:#3a3a3d;--mut:#7a7a80;--box:#eaeaed}
+*{box-sizing:border-box}
+body{margin:0;background:#dcdcde;font-family:system-ui,Arial,sans-serif;color:var(--ink);font-size:14px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+section,header,footer{border-bottom:1px dashed #d2d2d6;position:relative}
+.sec{background:var(--page);padding:38px 0}
+.sec--alt{background:var(--sec)}
+.sec--dark{background:var(--dark)}
+.mark{position:absolute;left:8px;top:6px;font:600 11px/1 ui-monospace,monospace;color:#a9a9ae;letter-spacing:.04em}
+h1,h2,h3,h4{margin:0;font-weight:700;color:#2c2c2f}
+h1{font-size:26px;line-height:1.15}
+h2{font-size:20px}
+h3{font-size:15px}
+p{margin:6px 0 0;color:#4a4a4e}
+.mut{color:var(--mut)}
+.eyebrow{font:600 11px/1 ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+.lead{color:#54545a;margin-top:6px;max-width:64ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 16px;border:1.5px solid var(--edge);border-radius:8px;background:#fff;font-weight:600;font-size:13px;color:#33333a}
+.btn.solid{background:#dedee1}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.between{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.grid{display:grid;gap:14px}
+.card{background:#fff;border:1px solid var(--edge);border-radius:12px;padding:16px}
+.circle{width:42px;height:42px;border-radius:50%;background:var(--box);border:1px solid var(--edge);flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mut)}
+.num{width:30px;height:30px;border-radius:50%;background:var(--box);border:1px solid var(--edge);display:flex;align-items:center;justify-content:center;font-weight:700;color:#55555b;font-size:13px}
+.ph{background:var(--box);border:1px solid var(--edge);border-radius:12px;position:relative;display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:12px;text-align:center;min-height:120px}
+.ph::before,.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - .5px),var(--edge),transparent calc(50% + .5px))}
+.ph::after{background:linear-gradient(to top left,transparent calc(50% - .5px),var(--edge),transparent calc(50% + .5px))}
+.ph span{position:relative;background:var(--box);padding:2px 8px}
+.pill{display:inline-flex;align-items:center;height:30px;padding:0 14px;border-radius:16px;border:1px solid var(--edge);background:#fff;font-size:13px;color:#4a4a4e}
+.chip{display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:8px;border:1px solid var(--edge);background:#fff;font-size:13px;color:#4a4a4e}
+.chip.on{background:#dedee1}
+.logo{width:120px;height:34px;border:1px solid var(--edge);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:11px;background:#fff}
+.field{height:38px;border:1px solid var(--edge);border-radius:8px;background:#fff;display:flex;align-items:center;padding:0 12px;color:var(--mut);font-size:13px}
+.field.area{height:64px;align-items:flex-start;padding-top:10px}
+ul{margin:8px 0 0;padding-left:18px;color:#4a4a4e}
+li{margin:2px 0}
+.stack>*+*{margin-top:10px}
+.w40{width:40%}.w45{width:45%}.w55{width:55%}.w60{width:60%}.w35{width:35%}
+.big{font-size:22px;font-weight:800;color:#2c2c2f}
+</style></head>
+<body>
+
+<!-- 01 ШАПКА -->
+<header class="sec"><span class="mark">01 · header</span><div class="wrap between">
+  <div class="logo">лого</div>
+  <div class="row" style="gap:20px"><span>Каталог</span><span>Агросопровождение</span><span>О компании</span><span>Контакты</span></div>
+  <div class="row" style="gap:16px"><b>+7 960 953-48-88</b><span class="mut">nilov@sssaturn.ru</span></div>
+</div></header>
+
+<!-- 02 HERO -->
+<section class="sec--dark" style="padding:64px 0"><span class="mark">02 · hero</span><div class="wrap">
+  <div style="max-width:640px">
+    <h1>Семена, удобрения и защита растений<br>для сельхозпроизводителей</h1>
+    <p class="lead">Подбираем решения под культуру, регион и задачи хозяйства.</p>
+    <div class="row" style="margin-top:18px"><span class="btn solid">Подобрать решение</span><span class="btn">Перейти в каталог</span></div>
+  </div>
+</div></section>
+
+<!-- 03 НАПРАВЛЕНИЯ + ПАРТНЁРЫ -->
+<section class="sec"><span class="mark">03 · направления + партнёры</span><div class="wrap">
+  <h2>Пять направлений — один поставщик</h2>
+  <p class="lead">Полный цикл — от диагностики поля до сопровождения применения.</p>
+  <div class="grid" style="grid-template-columns:repeat(5,1fr);margin-top:14px">
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle">икон.</div><h3>Удобрения</h3></div>
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle">икон.</div><h3>СЗР</h3></div>
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle">икон.</div><h3>Семена</h3></div>
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle">икон.</div><h3>Диагностика</h3></div>
+    <div class="card stack" style="align-items:center;text-align:center"><div class="circle">икон.</div><h3>Агросопровождение</h3></div>
+  </div>
+  <div class="row" style="align-items:center;margin-top:22px;padding-top:18px;border-top:1px solid var(--line);gap:18px">
+    <span class="eyebrow" style="margin:0">Партнёры производителей</span>
+    <span class="chip">Фертика</span><span class="chip">Волски Биохим</span><span class="chip">Relict Organics</span>
+  </div>
+</div></section>
+
+<!-- 04 ПОПУЛЯРНЫЕ ПОЗИЦИИ -->
+<section class="sec--dark"><span class="mark">04 · популярные позиции (превью каталога)</span><div class="wrap">
+  <div class="between"><h2>Популярные позиции</h2><span class="btn">Весь каталог →</span></div>
+  <div class="row" style="margin-top:12px"><span class="chip on">Все</span><span class="chip">Удобрения</span><span class="chip">СЗР</span><span class="chip">Семена</span></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:14px">
+    <div class="card stack"><div class="ph" style="min-height:110px"><span>фото продукта</span></div><h3>Фертика STARTER 13-40-13</h3><div class="mut">Фертика · комплексное удобрение</div><div><b>от 227 ₽/кг</b> <span class="mut">· цена по запросу</span></div><div class="row"><span class="btn" style="flex:1">Подробнее</span><span class="btn solid" style="flex:1">Получить предложение</span></div></div>
+    <div class="card stack"><div class="ph" style="min-height:110px"><span>фото продукта</span></div><h3>Реликт М Кремний</h3><div class="mut">Реликт · листовая подкормка</div><div><b>от 470 ₽/л</b> <span class="mut">· цена по запросу</span></div><div class="row"><span class="btn" style="flex:1">Подробнее</span><span class="btn solid" style="flex:1">Получить предложение</span></div></div>
+    <div class="card stack"><div class="ph" style="min-height:110px"><span>фото продукта</span></div><h3>Гербицид (пример)</h3><div class="mut">СЗР · гербицид</div><div><b>Цена по запросу</b></div><div class="row"><span class="btn" style="flex:1">Подробнее</span><span class="btn solid" style="flex:1">Получить предложение</span></div></div>
+  </div>
+  <p class="lead" style="margin-top:14px">Доставка, хранение и сопровождение включаются в предложение. Итоговая стоимость зависит от объёма, региона и условий поставки.</p>
+</div></section>
+
+<!-- 05 СЕРВИС -->
+<section class="sec"><span class="mark">05 · сервис</span><div class="wrap">
+  <div class="grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card stack"><div class="num">1</div><h3>Подбор</h3><p>Продукция под задачу поля.</p></div>
+    <div class="card stack"><div class="num">2</div><h3>Диагностика</h3><p>Листовая диагностика посевов.</p></div>
+    <div class="card stack"><div class="num">3</div><h3>Поставка</h3><p>Доставка и хранение оптом.</p></div>
+    <div class="card stack"><div class="num">4</div><h3>Сопровождение</h3><p>Контроль в течение сезона.</p></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:14px">
+    <div class="card"><h3>Диагностика</h3><p>Функциональная листовая диагностика: определяем дефициты питания и корректируем схему под конкретное поле.</p><ul><li>Обследование посевов</li><li>Отбор материала</li><li>Листовая диагностика</li><li>Определение дефицитов</li><li>Рекомендации по корректировке</li></ul><div style="margin-top:10px"><span class="btn">Заказать диагностику</span></div></div>
+    <div class="card"><h3>Агросопровождение</h3><p>Ведём культуру от подбора схемы до контроля результата в течение всего сезона.</p><ul><li>Подбор продукции</li><li>Разработка схемы</li><li>Расчёт норм</li><li>Консультации по применению</li><li>Контроль и корректировка в течение сезона</li></ul><div style="margin-top:10px"><span class="btn">Обсудить задачу с агрономом</span></div></div>
+  </div>
+</div></section>
+
+<!-- 06 О КОМПАНИИ -->
+<section class="sec--dark"><span class="mark">06 · о компании</span><div class="wrap between" style="align-items:stretch;gap:28px">
+  <div class="w55 stack">
+    <h2>«Сатурн» — поставщик решений для растениеводства</h2>
+    <p class="lead">Обеспечиваем сельхозпроизводителей семенами, удобрениями и СЗР — с подбором, поставкой и сопровождением.</p>
+    <div class="row"><span class="btn">Подробнее о компании</span><span class="btn">Скачать реквизиты (PDF)</span></div>
+  </div>
+  <div class="ph w40" style="min-height:190px"><span>фото компании / поля / склада</span></div>
+</div></section>
+
+<!-- 07 ГЕОГРАФИЯ -->
+<section class="sec"><span class="mark">07 · география поставок</span><div class="wrap">
+  <h2>География поставок</h2>
+  <p class="lead">Организуем оптовые поставки и агросопровождение в аграрных регионах России. Доставка в другие регионы — по запросу.</p>
+  <div class="row" style="gap:28px;margin-top:14px;align-items:stretch">
+    <div class="w40 grid" style="grid-template-columns:1fr 1fr;align-content:start">
+      <span class="pill">Алтайский край</span><span class="pill">Красноярский край</span>
+      <span class="pill">Новосибирская обл.</span><span class="pill">Омская область</span>
+      <span class="pill">Амурская область</span><span class="pill">Ростовская область</span>
+      <span class="pill">Ставропольский край</span><span class="pill">Краснодарский край</span>
+    </div>
+    <div class="ph" style="flex:1;min-height:190px"><span>карта · 8 регионов регулярных поставок<br>● офис Барнаул · ● поставки · ○ по запросу</span></div>
+  </div>
+</div></section>
+
+<!-- 08 РЕЗУЛЬТАТЫ ИСПЫТАНИЙ -->
+<section class="sec"><span class="mark">08 · результаты испытаний</span><div class="wrap">
+  <h2>Результаты производственных испытаний</h2>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:14px">
+    <div class="card stack"><div class="big">до +15%</div><h3>Пшеница</h3><div class="mut">Хозяйство: АО «СибАгро»</div></div>
+    <div class="card stack"><div class="big">+4%</div><h3>Соя</h3><div class="mut">Хозяйство: АО «СибАгро»</div></div>
+    <div class="card stack"><div class="big">🌾</div><h3>Ваше поле?</h3><p>Проведём диагностику, подберём схему и покажем результат в вашем хозяйстве.</p><div class="mut">оставьте заявку →</div></div>
+  </div>
+</div></section>
+
+<!-- 09 ДОКУМЕНТЫ -->
+<section class="sec--alt"><span class="mark">09 · документы и сертификаты</span><div class="wrap">
+  <div class="eyebrow">Документы</div>
+  <h2>Документы и сертификаты</h2>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:14px">
+    <div class="card stack" style="align-items:flex-start"><div class="circle">PDF</div><h3>Свидетельство о госрегистрации (СГР)</h3></div>
+    <div class="card stack" style="align-items:flex-start"><div class="circle">PDF</div><h3>Сертификаты соответствия</h3></div>
+    <div class="card stack" style="align-items:flex-start"><div class="circle">PDF</div><h3>Инструкции по применению</h3></div>
+    <div class="card stack" style="align-items:flex-start"><div class="circle">PDF</div><h3>Паспорта безопасности</h3></div>
+  </div>
+</div></section>
+
+<!-- 10 КОНТАКТЫ + ФОРМА -->
+<section class="sec--dark"><span class="mark">10 · контакты + форма</span><div class="wrap">
+  <div class="eyebrow">Контакты</div>
+  <h2>Свяжитесь со специалистом</h2>
+  <div class="row" style="gap:24px;margin-top:14px;align-items:flex-start">
+    <div class="w40 stack">
+      <div class="card row" style="gap:12px;align-items:center"><div class="circle">фото</div><div><h3>Алексей Нилов</h3><div class="mut">коммерческий руководитель</div><div><b>+7 960 953-48-88</b></div><div class="mut">nilov@sssaturn.ru</div></div></div>
+      <div class="card row" style="gap:12px;align-items:center"><div class="circle">фото</div><div><h3>Андрей Хаблак</h3><div class="mut">специалист по поставкам</div><div><b>+7 963 502-38-55</b></div><div class="mut">поставки и сопровождение</div></div></div>
+    </div>
+    <div class="card w55 stack">
+      <h3>Получить предложение</h3>
+      <div class="field">Имя</div>
+      <div class="field">Телефон *</div>
+      <div class="field">Регион</div>
+      <div class="field">Что требуется ▾</div>
+      <div class="field area">Комментарий (необязательно)</div>
+      <span class="btn solid" style="width:100%">Получить предложение</span>
+      <span class="mut" style="font-size:12px">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- 11 ПОДВАЛ -->
+<footer class="sec--dark" style="padding:36px 0"><span class="mark">11 · подвал</span><div class="wrap row" style="gap:36px;align-items:flex-start">
+  <div class="w35 stack"><div class="logo">лого</div></div>
+  <div style="flex:1"><b>Разделы</b><p class="mut">Каталог · Диагностика · Агросопровождение · О компании · География · Контакты</p></div>
+  <div style="flex:1"><b>Контакты</b><p class="mut">☎ +7 960 953-48-88<br>☎ +7 963 502-38-55<br>nilov@sssaturn.ru<br>г. Барнаул, пр. Ленина 56 / Шевченко 52А, пом. Н13</p></div>
+  <div style="flex:1"><b>Реквизиты</b><p class="mut">ООО «Сатурн» · ИНН 2801274078 · КПП 280101001 · ОГРН 1232800002709<br>Юр. адрес: 656056, Алтайский край, г. Барнаул, пл. Баварина 2, офис 11/09</p></div>
+</div></footer>
+
+</body></html>
