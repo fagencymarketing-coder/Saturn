@@ -1,0 +1,118 @@
+/* ============================================================
+   Saturn — Design Tokens (CSS custom properties)
+   v1.0  ·  Источник: логобук «Сатурн», 2024  ·  saturn.systems
+   Цвета и шрифт — из логобука. Размеры, отступы, скругления,
+   кнопки — выведены под веб (можно калибровать).
+   Подключить шрифт:
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+   ============================================================ */
+
+:root{
+  /* --- Бренд (из логобука) --- */
+  --saturn-orange:   #FF4200;
+  --saturn-black:    #000000;
+  --saturn-white:    #FFFFFF;
+
+  /* --- Состояния оранжевого --- */
+  --orange-hover:    #E63B00;
+  --orange-active:   #C43200;
+  --orange-tint:     #FFF0EA;
+
+  /* --- Текст --- */
+  --text:            #1A1A1A;
+  --text-secondary:  #6B6560;
+  --text-muted:      #9A938C;
+
+  /* --- Поверхности --- */
+  --background:      #FFFFFF;
+  --surface:         #F6F5F3;
+  --surface-2:       #EFEDE9;
+  --border:          #E7E3DE;
+  --border-strong:   #D2CCC4;
+
+  /* --- Типографика --- */
+  --font-sans: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+
+  --fw-light: 300; --fw-regular: 400; --fw-medium: 500;
+  --fw-semibold: 600; --fw-bold: 700; --fw-extrabold: 800;
+
+  --fs-h1: 3.5rem;    --lh-h1: 1.05;  --ls-h1: -0.02em;
+  --fs-h2: 2.5rem;    --lh-h2: 1.1;   --ls-h2: -0.015em;
+  --fs-h3: 1.75rem;   --lh-h3: 1.2;   --ls-h3: -0.01em;
+  --fs-lead: 1.25rem; --lh-lead: 1.5;
+  --fs-body: 1.0625rem; --lh-body: 1.6;
+  --fs-small: 0.875rem;
+  --fs-label: 0.8125rem; --ls-label: 0.16em;
+
+  /* --- Отступы (8pt) --- */
+  --sp-2xs: 4px;  --sp-xs: 8px;  --sp-sm: 12px; --sp-md: 16px;
+  --sp-lg: 24px;  --sp-xl: 32px; --sp-2xl: 48px; --sp-3xl: 64px; --sp-4xl: 96px;
+
+  --container-max: 1200px;
+  --container-gutter: 24px;
+
+  /* --- Скругления --- */
+  --r-sm: 8px; --r-md: 12px; --r-lg: 20px; --r-xl: 28px; --r-pill: 999px;
+
+  /* --- Кнопки --- */
+  --btn-radius: 12px;
+  --btn-focus-ring: 0 0 0 4px rgba(255, 66, 0, 0.38);
+}
+
+/* --- Тёмная тема (опционально) --- */
+:root[data-theme="dark"]{
+  --text:           #F3F1EE;
+  --text-secondary: #A8A29B;
+  --text-muted:     #75706A;
+  --background:     #0E0D0C;
+  --surface:        #1A1817;
+  --surface-2:      #232120;
+  --border:         #2C2926;
+  --border-strong:  #3A3633;
+  --orange-tint:    #2A1710;
+}
+
+/* ============================================================
+   Готовые классы-примеры (по желанию)
+   ============================================================ */
+
+body{
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+  background: var(--background);
+}
+
+h1{ font-size: var(--fs-h1); font-weight: var(--fw-extrabold); line-height: var(--lh-h1); letter-spacing: var(--ls-h1); }
+h2{ font-size: var(--fs-h2); font-weight: var(--fw-bold);      line-height: var(--lh-h2); letter-spacing: var(--ls-h2); }
+h3{ font-size: var(--fs-h3); font-weight: var(--fw-semibold);  line-height: var(--lh-h3); letter-spacing: var(--ls-h3); }
+a{ color: var(--saturn-orange); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+.label{
+  font-size: var(--fs-label); font-weight: var(--fw-semibold);
+  text-transform: uppercase; letter-spacing: var(--ls-label);
+  color: var(--saturn-orange);
+}
+
+.btn{
+  font-family: var(--font-sans); font-weight: var(--fw-semibold);
+  font-size: 16px; line-height: 1; letter-spacing: 0.01em;
+  padding: 16px 32px; border-radius: var(--btn-radius);
+  border: 2px solid transparent; cursor: pointer; transition: .15s;
+}
+.btn:focus-visible{ outline: none; box-shadow: var(--btn-focus-ring); }
+
+.btn--primary{ background: var(--saturn-orange); color: #fff; }
+.btn--primary:hover{ background: var(--orange-hover); }
+.btn--primary:active{ background: var(--orange-active); }
+
+.btn--secondary{ background: transparent; color: var(--text); border-color: var(--text); }
+.btn--secondary:hover{ background: var(--text); color: var(--background); }
+
+.btn--ghost{ background: transparent; color: var(--saturn-orange); border: 0; padding-inline: 8px; }
+.btn--ghost:hover{ text-decoration: underline; }
+
+.btn--pill{ border-radius: var(--r-pill); }

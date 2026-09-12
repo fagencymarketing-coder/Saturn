@@ -1,0 +1,478 @@
+<title>Дизайн-гайд Сатурн</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+<style>
+:root{
+  --orange:#FF4200;
+  --orange-hover:#E63B00;
+  --orange-active:#C43200;
+  --orange-tint:#FFF0EA;
+  --brand-black:#000000;
+  --brand-white:#FFFFFF;
+
+  --ground:#FFFFFF;
+  --surface:#F6F5F3;
+  --surface-2:#EFEDE9;
+  --text:#1A1A1A;
+  --text-2:#6B6560;
+  --text-3:#9A938C;
+  --border:#E7E3DE;
+  --border-strong:#D2CCC4;
+
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+  --sans:"Montserrat",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+
+  --r-sm:8px; --r-md:12px; --r-lg:20px; --r-xl:28px; --r-pill:999px;
+  --maxw:920px;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme:dark){
+    --ground:#0E0D0C;
+    --surface:#1A1817;
+    --surface-2:#232120;
+    --text:#F3F1EE;
+    --text-2:#A8A29B;
+    --text-3:#75706A;
+    --border:#2C2926;
+    --border-strong:#3A3633;
+    --orange-tint:#2A1710;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E0D0C;
+  --surface:#1A1817;
+  --surface-2:#232120;
+  --text:#F3F1EE;
+  --text-2:#A8A29B;
+  --text-3:#75706A;
+  --border:#2C2926;
+  --border-strong:#3A3633;
+  --orange-tint:#2A1710;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--text);
+  font-family:var(--sans);font-weight:400;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:24px}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- header ---------- */
+header{position:relative;overflow:hidden;background:var(--brand-black);color:#fff}
+.pattern{position:absolute;inset:0;opacity:.16;pointer-events:none}
+.hwrap{position:relative;max-width:var(--maxw);margin:0 auto;padding:56px 24px 48px}
+.mark{display:flex;align-items:center;gap:18px;margin-bottom:34px}
+.disc{width:60px;height:60px;border-radius:var(--r-pill);background:var(--orange);flex:0 0 auto;display:grid;place-items:center}
+.disc svg{width:34px;height:34px}
+.word{line-height:1}
+.word .n{font-weight:800;font-size:26px;letter-spacing:.02em}
+.word .s{display:block;font-weight:600;font-size:10.5px;letter-spacing:.34em;color:var(--orange);margin-top:5px}
+h1.title{font-weight:800;font-size:clamp(38px,7vw,64px);line-height:1.02;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.lede{margin:18px 0 0;max-width:60ch;font-weight:300;font-size:clamp(16px,2.4vw,20px);line-height:1.5;color:#e9e6e2}
+.meta{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:26px}
+.meta span{font-family:var(--mono);font-size:12px;color:#cfcac4;border:1px solid rgba(255,255,255,.22);border-radius:var(--r-pill);padding:6px 12px}
+
+/* ---------- sections ---------- */
+section{padding:52px 0;border-bottom:1px solid var(--border)}
+.eyebrow{font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin:0 0 10px}
+h2{font-weight:700;font-size:clamp(26px,4vw,36px);line-height:1.1;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.sub{color:var(--text-2);margin:0 0 30px;max-width:64ch}
+h3{font-weight:600;font-size:20px;letter-spacing:-.01em;margin:36px 0 14px}
+
+/* legend chips */
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:500;padding:3px 9px;border-radius:var(--r-pill);vertical-align:middle;white-space:nowrap}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%}
+.tag.book{background:var(--orange-tint);color:var(--orange-active)}
+.tag.book::before{background:var(--orange)}
+.tag.ext{background:var(--surface-2);color:var(--text-2)}
+.tag.ext::before{background:var(--text-3)}
+:root[data-theme="dark"] .tag.book,:root:not([data-theme="light"]) .tag.book{color:#ff7a4d}
+.legend{display:flex;flex-wrap:wrap;gap:14px 22px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px}
+.legend p{margin:0;font-size:14px;color:var(--text-2)}
+
+/* ---------- colors ---------- */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.sw{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--surface)}
+.sw .chip{height:104px;display:flex;align-items:flex-end;justify-content:space-between;padding:12px 14px}
+.sw .chip .role{font-size:11.5px;font-weight:600;letter-spacing:.04em;background:rgba(0,0,0,.28);color:#fff;padding:3px 8px;border-radius:var(--r-pill)}
+.sw .body{padding:13px 15px 16px}
+.sw .nm{font-weight:600;font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sw .val{font-family:var(--mono);font-size:12.5px;color:var(--text-2);display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-top:1px solid var(--border)}
+.sw .val b{color:var(--text);font-weight:600}
+.sw .use{font-size:12.5px;color:var(--text-3);margin-top:10px;line-height:1.45}
+
+/* ---------- type ---------- */
+.type-row{display:grid;grid-template-columns:1fr;gap:6px;padding:22px 0;border-top:1px solid var(--border)}
+.type-row:first-of-type{border-top:0}
+.spec{font-family:var(--mono);font-size:12px;color:var(--text-3);display:flex;flex-wrap:wrap;gap:6px 16px}
+.spec b{color:var(--text-2);font-weight:600}
+.samp{color:var(--text);margin:2px 0}
+.s-h1{font-weight:800;font-size:clamp(34px,6vw,56px);line-height:1.05;letter-spacing:-.02em}
+.s-h2{font-weight:700;font-size:clamp(28px,4.5vw,40px);line-height:1.1;letter-spacing:-.015em}
+.s-h3{font-weight:600;font-size:clamp(22px,3vw,28px);line-height:1.2;letter-spacing:-.01em}
+.s-lead{font-weight:400;font-size:20px;line-height:1.5;color:var(--text-2)}
+.s-body{font-weight:400;font-size:17px;line-height:1.6;max-width:62ch}
+.s-small{font-weight:400;font-size:14px;line-height:1.5;color:var(--text-2)}
+.s-label{font-weight:600;font-size:13px;line-height:1.4;text-transform:uppercase;letter-spacing:.16em;color:var(--orange)}
+.fontcard{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px}
+.fontcard>div{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px}
+.fontcard h4{margin:0 0 4px;font-size:15px;font-weight:700}
+.fontcard p{margin:0;font-size:13.5px;color:var(--text-2);line-height:1.5}
+.fontcard .big{font-size:34px;font-weight:700;margin:10px 0 6px;letter-spacing:-.01em}
+
+/* ---------- scale bars ---------- */
+.scale{display:grid;gap:9px}
+.scale .row{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:16px}
+.scale .tok{font-family:var(--mono);font-size:12.5px;color:var(--text-2);font-weight:600}
+.scale .bar{height:16px;background:var(--orange);border-radius:4px}
+.scale .px{font-family:var(--mono);font-size:12.5px;color:var(--text-3)}
+
+/* radii */
+.radii{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
+.radii .rc{text-align:center}
+.radii .box{height:88px;background:var(--orange-tint);border:1.5px solid var(--orange);margin-bottom:10px}
+.radii .tok{font-family:var(--mono);font-size:12.5px;font-weight:600}
+.radii .px{font-family:var(--mono);font-size:12px;color:var(--text-3)}
+
+/* buttons */
+.btnrow{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:8px}
+.btn{font-family:var(--sans);font-weight:600;font-size:16px;line-height:1;letter-spacing:.01em;border-radius:var(--r-md);padding:16px 32px;border:2px solid transparent;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:10px}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--orange) 38%,transparent)}
+.btn-primary{background:var(--orange);color:#fff}
+.btn-primary:hover{background:var(--orange-hover)}
+.btn-primary:active{background:var(--orange-active)}
+.btn-secondary{background:transparent;color:var(--text);border-color:var(--text)}
+.btn-secondary:hover{background:var(--text);color:var(--ground)}
+.btn-ghost{background:transparent;color:var(--orange);padding-left:8px;padding-right:8px}
+.btn-ghost:hover{text-decoration:underline}
+.btn-pill{border-radius:var(--r-pill)}
+.btntbl{width:100%;border-collapse:collapse;margin-top:6px;font-size:13.5px}
+.btntbl th,.btntbl td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.btntbl th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);font-weight:600}
+.btntbl td{color:var(--text-2)}
+.btntbl code{font-family:var(--mono);color:var(--text);font-size:12.5px}
+
+/* tilda / callout */
+.note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:var(--r-md);padding:16px 20px;margin:18px 0;font-size:14.5px;line-height:1.55;color:var(--text-2)}
+.note b{color:var(--text)}
+.kv{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px}
+.kv th,.kv td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+.kv th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);font-weight:600}
+.kv td:first-child{color:var(--text);font-weight:500;white-space:nowrap}
+.kv td:last-child{font-family:var(--mono);font-size:13px;color:var(--orange-active)}
+:root[data-theme="dark"] .kv td:last-child,:root:not([data-theme="light"]) .kv td:last-child{color:#ff7a4d}
+
+/* code block */
+.code{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:auto}
+.code pre{margin:0;padding:20px 22px;font-family:var(--mono);font-size:12.5px;line-height:1.65;color:var(--text)}
+.code .c{color:var(--text-3)}
+.code .p{color:var(--orange-active)}
+:root[data-theme="dark"] .code .p,:root:not([data-theme="light"]) .code .p{color:#ff7a4d}
+
+/* patterns */
+.patgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.patbox{aspect-ratio:16/7;border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden}
+footer{padding:40px 0 64px;color:var(--text-3);font-size:13.5px}
+
+@media(max-width:640px){
+  .fontcard{grid-template-columns:1fr}
+  .patgrid{grid-template-columns:1fr}
+  .scale .row{grid-template-columns:56px 1fr auto;gap:10px}
+}
+</style>
+
+<header>
+  <svg class="pattern" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <pattern id="halfd" width="60" height="60" patternUnits="userSpaceOnUse">
+        <path d="M0 30a30 30 0 0 1 30 -30v30z" fill="#FF4200"/>
+        <path d="M60 30a30 30 0 0 1 -30 30v-30z" fill="#FF4200"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#halfd)"/>
+  </svg>
+  <div class="hwrap">
+    <div class="mark">
+      <span class="disc" aria-hidden="true">
+        <svg viewBox="0 0 34 34" fill="none"><path d="M11 7a5 5 0 0 1 5 5v0a5 5 0 0 0 5 5 5 5 0 0 1 0 10 5 5 0 0 1-5-5v0a5 5 0 0 0-5-5 5 5 0 0 1 0-10Z" fill="#fff"/><path d="M23 9a4 4 0 1 1-8 0" stroke="#fff" stroke-width="0"/><path d="M22 8.5a4.5 4.5 0 1 1-9 0h9Z" fill="#fff"/><path d="M12 25.5a4.5 4.5 0 1 1 9 0h-9Z" fill="#fff"/></svg>
+      </span>
+      <span class="word"><span class="n">САТУРН</span><span class="s">Система&nbsp;успеха</span></span>
+    </div>
+    <h1 class="title">Дизайн-гайд Сатурн</h1>
+    <p class="lede">Логобук, оцифрованный в токены: точные цвета, шрифты и размеры, отступы, скругления и кнопки — единый источник правды для Claude Design и Тильды.</p>
+    <div class="meta">
+      <span>Источник: логобук «Сатурн», 2024</span>
+      <span>saturn.systems</span>
+      <span>v1.0</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <p class="eyebrow">Как читать</p>
+  <h2>Что из брендбука, что — расширение</h2>
+  <p class="sub">Логобук фиксирует фирменные цвета, шрифт и характер знака. Размеры текста, шкалу отступов, скругления и кнопки в нём не описаны — они выведены под веб в логике бренда (круглый знак → щедрые скругления, геометрия на окружностях). Каждый блок помечен.</p>
+  <div class="legend">
+    <p><span class="tag book">из логобука</span> — зафиксировано в брендбуке, менять нельзя.</p>
+    <p><span class="tag ext">расширение под веб</span> — выведено под сайт, можно калибровать.</p>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">01 — Цвет</p>
+  <h2>Палитра</h2>
+  <p class="sub">Ядро — три цвета из логобука. Остальное — служебные нейтрали и состояния оранжевого для интерфейса. Тёплый серый смещён в сторону оранжевого, чтобы «сидеть» рядом с брендом.</p>
+
+  <h3>Ядро <span class="tag book">из логобука</span></h3>
+  <div class="swatches">
+    <div class="sw">
+      <div class="chip" style="background:#FF4200"><span></span><span class="role">Акцент</span></div>
+      <div class="body">
+        <div class="nm">Saturn Orange</div>
+        <div class="val"><span>HEX</span><b>#FF4200</b></div>
+        <div class="val"><span>RGB</span><b>255 · 66 · 0</b></div>
+        <div class="val"><span>CMYK≈</span><b>0 · 74 · 100 · 0</b></div>
+        <div class="use">Главный акцент: кнопки, ссылки, знак, активные состояния, плашки. Не заливать им большие текстовые блоки.</div>
+      </div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#000000"><span></span><span class="role">Текст / фон</span></div>
+      <div class="body">
+        <div class="nm">Ink Black</div>
+        <div class="val"><span>HEX</span><b>#000000</b></div>
+        <div class="val"><span>RGB</span><b>0 · 0 · 0</b></div>
+        <div class="use">Логотип и заголовки, тёмный фон (версия логотипа на чёрном). Для длинного текста — мягкий #1A1A1A.</div>
+      </div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--border)"><span></span><span class="role" style="background:#111">Фон</span></div>
+      <div class="body">
+        <div class="nm">White</div>
+        <div class="val"><span>HEX</span><b>#FFFFFF</b></div>
+        <div class="val"><span>RGB</span><b>255 · 255 · 255</b></div>
+        <div class="use">Основной фон, знак на оранжевом/чёрном, «воздух». База светлой темы.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Служебные <span class="tag ext">расширение под веб</span></h3>
+  <div class="swatches">
+    <div class="sw">
+      <div class="chip" style="background:#E63B00"><span></span><span class="role">Hover</span></div>
+      <div class="body"><div class="nm">Orange Hover</div><div class="val"><span>HEX</span><b>#E63B00</b></div><div class="use">Наведение на оранжевую кнопку/ссылку.</div></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#C43200"><span></span><span class="role">Active</span></div>
+      <div class="body"><div class="nm">Orange Active</div><div class="val"><span>HEX</span><b>#C43200</b></div><div class="use">Нажатие; оранжевый текст на светлом фоне для контраста.</div></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#FFF0EA;border-bottom:1px solid var(--border)"><span></span><span class="role" style="background:#111">Плашка</span></div>
+      <div class="body"><div class="nm">Orange Tint</div><div class="val"><span>HEX</span><b>#FFF0EA</b></div><div class="use">Мягкая подложка: бейджи, выделенные блоки, иконки.</div></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#1A1A1A"><span></span><span class="role">Body</span></div>
+      <div class="body"><div class="nm">Text Primary</div><div class="val"><span>HEX</span><b>#1A1A1A</b></div><div class="use">Основной текст на светлом фоне.</div></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#6B6560"><span></span><span class="role">Вторичный</span></div>
+      <div class="body"><div class="nm">Text Secondary</div><div class="val"><span>HEX</span><b>#6B6560</b></div><div class="use">Подписи, лиды, вторичный текст.</div></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#9A938C"><span></span><span class="role">Muted</span></div>
+      <div class="body"><div class="nm">Text Muted</div><div class="val"><span>HEX</span><b>#9A938C</b></div><div class="use">Пометки, плейсхолдеры, отключённое.</div></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#F6F5F3;border-bottom:1px solid var(--border)"><span></span><span class="role" style="background:#111">Поверхность</span></div>
+      <div class="body"><div class="nm">Surface</div><div class="val"><span>HEX</span><b>#F6F5F3</b></div><div class="use">Тёплый фон секций и карточек.</div></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#E7E3DE;border-bottom:1px solid var(--border)"><span></span><span class="role" style="background:#111">Границы</span></div>
+      <div class="body"><div class="nm">Border</div><div class="val"><span>HEX</span><b>#E7E3DE</b></div><div class="use">Линии, разделители, обводка полей.</div></div>
+    </div>
+  </div>
+  <div class="note"><b>Контраст.</b> Оранжевый #FF4200 на белом даёт AA для крупного текста и UI-элементов, но НЕ проходит AA для мелкого текста. Мелкий текст — чёрный/#1A1A1A; оранжевый оставляем для акцентов, кнопок (белый текст на оранжевом — ОК) и крупных заголовков.</div>
+</section>
+
+<section>
+  <p class="eyebrow">02 — Типографика</p>
+  <h2>Шрифт</h2>
+  <p class="sub">Оригинал логобука — <b>Gotham Pro</b> (Medium — заголовки и логотип, Light — текст). Шрифт коммерческий и без кириллицы в базовой версии, поэтому для сайта и Тильды берём ближайшую бесплатную кириллическую замену — <b>Montserrat</b> (Google Fonts). Соответствие начертаний ниже.</p>
+  <div class="fontcard">
+    <div>
+      <h4>Gotham Pro <span class="tag book">из логобука</span></h4>
+      <div class="big" style="font-weight:500">Сатурн</div>
+      <p>Печать, фирменная документация, макеты дизайнера при наличии лицензии. Начертания: Medium, Light.</p>
+    </div>
+    <div>
+      <h4>Montserrat <span class="tag ext">веб-замена</span></h4>
+      <div class="big" style="font-weight:600">Сатурн</div>
+      <p>Сайт, Тильда, Claude Design. Геометрический гротеск, близкий к Gotham, полноценная кириллица.</p>
+    </div>
+  </div>
+  <table class="btntbl">
+    <tr><th>Роль</th><th>Gotham Pro</th><th>Montserrat (web)</th></tr>
+    <tr><td>Логотип / display</td><td><code>Bold / Black</code></td><td><code>800 ExtraBold</code></td></tr>
+    <tr><td>Заголовки</td><td><code>Medium</code></td><td><code>700 Bold / 600 SemiBold</code></td></tr>
+    <tr><td>Основной текст</td><td><code>Light</code></td><td><code>400 Regular</code></td></tr>
+    <tr><td>Надписи-капсы</td><td><code>Medium</code></td><td><code>600, ls .16em, UPPERCASE</code></td></tr>
+  </table>
+  <div class="note"><b>Подключение:</b> <code style="font-family:var(--mono)">fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800</code>. В Тильде: Настройки сайта → Шрифты → Montserrat (или загрузить свой Gotham Pro в разделе своих шрифтов).</div>
+
+  <h2 style="margin-top:44px">Масштаб <span class="tag ext">расширение под веб</span></h2>
+  <p class="sub">База 16px = 1rem. Слева — десктоп; мобильные размеры указаны в спецификации. Заголовкам — плотный трекинг, тексту — воздух (line-height 1.6).</p>
+
+  <div class="type-row">
+    <div class="spec"><b>H1 · display</b> <span>56px / 3.5rem</span> <span>вес 800</span> <span>lh 1.05</span> <span>ls −0.02em</span> <span>моб. 36px</span></div>
+    <div class="samp s-h1">Система успеха для вашего бизнеса</div>
+  </div>
+  <div class="type-row">
+    <div class="spec"><b>H2</b> <span>40px / 2.5rem</span> <span>вес 700</span> <span>lh 1.1</span> <span>ls −0.015em</span> <span>моб. 28px</span></div>
+    <div class="samp s-h2">Заголовок раздела страницы</div>
+  </div>
+  <div class="type-row">
+    <div class="spec"><b>H3</b> <span>28px / 1.75rem</span> <span>вес 600</span> <span>lh 1.2</span> <span>ls −0.01em</span> <span>моб. 22px</span></div>
+    <div class="samp s-h3">Подзаголовок или название карточки</div>
+  </div>
+  <div class="type-row">
+    <div class="spec"><b>Lead</b> <span>20px / 1.25rem</span> <span>вес 400</span> <span>lh 1.5</span> <span>цвет secondary</span></div>
+    <div class="samp s-lead">Вводный абзац под заголовком: чуть крупнее основного текста, задаёт тон разделу и ведёт читателя дальше.</div>
+  </div>
+  <div class="type-row">
+    <div class="spec"><b>Body</b> <span>17px / 1.0625rem</span> <span>вес 400</span> <span>lh 1.6</span> <span>макс. 62ch</span> <span>моб. 16px</span></div>
+    <div class="samp s-body">Основной текст. Строка держится около 60–65 знаков для комфортного чтения. Ссылки — оранжевые, без подчёркивания до наведения. Абзацы разделяются отступом, а не пустой строкой.</div>
+  </div>
+  <div class="type-row">
+    <div class="spec"><b>Small / caption</b> <span>14px / 0.875rem</span> <span>вес 400</span> <span>lh 1.5</span> <span>цвет secondary</span></div>
+    <div class="samp s-small">Подпись, сноска, вспомогательный текст под элементами формы.</div>
+  </div>
+  <div class="type-row">
+    <div class="spec"><b>Label / overline</b> <span>13px</span> <span>вес 600</span> <span>UPPERCASE</span> <span>ls 0.16em</span> <span>цвет orange</span></div>
+    <div class="samp s-label">Система успеха</div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">03 — Отступы</p>
+  <h2>Шкала отступов <span class="tag ext">расширение под веб</span></h2>
+  <p class="sub">Сетка 8pt (плюс шаг 4 для мелких зазоров). Одна шкала на padding, margin и gap — не подбирать значения на глаз.</p>
+  <div class="scale">
+    <div class="row"><span class="tok">2xs</span><span class="bar" style="width:4px"></span><span class="px">4px · 0.25rem</span></div>
+    <div class="row"><span class="tok">xs</span><span class="bar" style="width:8px"></span><span class="px">8px · 0.5rem</span></div>
+    <div class="row"><span class="tok">sm</span><span class="bar" style="width:12px"></span><span class="px">12px · 0.75rem</span></div>
+    <div class="row"><span class="tok">md</span><span class="bar" style="width:16px"></span><span class="px">16px · 1rem</span></div>
+    <div class="row"><span class="tok">lg</span><span class="bar" style="width:24px"></span><span class="px">24px · 1.5rem</span></div>
+    <div class="row"><span class="tok">xl</span><span class="bar" style="width:32px"></span><span class="px">32px · 2rem</span></div>
+    <div class="row"><span class="tok">2xl</span><span class="bar" style="width:48px"></span><span class="px">48px · 3rem</span></div>
+    <div class="row"><span class="tok">3xl</span><span class="bar" style="width:64px"></span><span class="px">64px · 4rem</span></div>
+    <div class="row"><span class="tok">4xl</span><span class="bar" style="width:96px"></span><span class="px">96px · 6rem</span></div>
+  </div>
+  <div class="note"><b>Ритм страницы.</b> Отступ между секциями — 3xl/4xl (64–96px десктоп, 40–56px мобайл). Внутренний паддинг карточек — lg/xl (24–32px). Контейнер контента — макс. 1200px, боковые поля от 24px.</div>
+</section>
+
+<section>
+  <p class="eyebrow">04 — Скругления</p>
+  <h2>Радиусы <span class="tag ext">расширение под веб</span></h2>
+  <p class="sub">Знак «Сатурн» — окружность, поэтому система тяготеет к округлости. По умолчанию — md (12px) для кнопок и полей, lg (20px) для карточек, pill для тегов и «капсульных» кнопок.</p>
+  <div class="radii">
+    <div class="rc"><div class="box" style="border-radius:0"></div><div class="tok">none</div><div class="px">0</div></div>
+    <div class="rc"><div class="box" style="border-radius:8px"></div><div class="tok">sm</div><div class="px">8px</div></div>
+    <div class="rc"><div class="box" style="border-radius:12px"></div><div class="tok">md · базовый</div><div class="px">12px</div></div>
+    <div class="rc"><div class="box" style="border-radius:20px"></div><div class="tok">lg · карточки</div><div class="px">20px</div></div>
+    <div class="rc"><div class="box" style="border-radius:28px"></div><div class="tok">xl</div><div class="px">28px</div></div>
+    <div class="rc"><div class="box" style="border-radius:999px"></div><div class="tok">pill</div><div class="px">999px</div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">05 — Кнопки</p>
+  <h2>Кнопки <span class="tag ext">расширение под веб</span></h2>
+  <p class="sub">Три уровня: главная (оранжевая), вторичная (обводка), текстовая. Высота 52px, паддинг 16×32, радиус 12px (или pill), вес 600.</p>
+
+  <div class="btnrow">
+    <button class="btn btn-primary">Оставить заявку</button>
+    <button class="btn btn-secondary">Подробнее</button>
+    <button class="btn btn-ghost">Смотреть кейсы →</button>
+    <button class="btn btn-primary btn-pill">Капсульный вариант</button>
+  </div>
+  <p class="s-small" style="margin-top:4px">Наведите и нажмите — состояния живые.</p>
+
+  <table class="btntbl">
+    <tr><th>Тип</th><th>Фон</th><th>Текст</th><th>Обводка</th><th>Hover</th></tr>
+    <tr><td>Primary</td><td><code>#FF4200</code></td><td><code>#FFFFFF</code></td><td>—</td><td><code>#E63B00</code> · active <code>#C43200</code></td></tr>
+    <tr><td>Secondary</td><td>прозрачный</td><td><code>#1A1A1A</code></td><td><code>2px #1A1A1A</code></td><td>инверсия: фон #1A1A1A, текст #FFF</td></tr>
+    <tr><td>Ghost / link</td><td>прозрачный</td><td><code>#FF4200</code></td><td>—</td><td>подчёркивание</td></tr>
+  </table>
+  <div class="note"><b>Общее:</b> радиус 12px (pill — по желанию), вес 600, размер 16px, трекинг +0.01em. Фокус — кольцо <code>0 0 0 4px rgba(255,66,0,.38)</code>. На тёмном/оранжевом фоне вторичная кнопка — белая обводка и белый текст.</div>
+</section>
+
+<section>
+  <p class="eyebrow">06 — Фирменный паттерн</p>
+  <h2>Полукруги</h2>
+  <p class="sub">Дополнительный фирменный элемент из логобука — паттерн из полукругов (та же геометрия окружностей, что и в знаке). Используется как акцентная заливка блоков, фон футера, «шапки» на транспорте и документации. Оранжевый на белом или белый на оранжевом.</p>
+  <div class="patgrid">
+    <div class="patbox">
+      <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100%" height="100%" fill="#FFFFFF"/><rect width="100%" height="100%" fill="url(#halfd)"/></svg>
+    </div>
+    <div class="patbox">
+      <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100%" height="100%" fill="#FF4200"/>
+        <defs><pattern id="halfw" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M0 30a30 30 0 0 1 30 -30v30z" fill="#fff"/><path d="M60 30a30 30 0 0 1 -30 30v-30z" fill="#fff"/></pattern></defs>
+        <rect width="100%" height="100%" fill="url(#halfw)"/></svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">07 — Быстрый перенос</p>
+  <h2>Шпаргалка для Тильды</h2>
+  <p class="sub">Куда вписывать значения в «Настройках сайта».</p>
+  <table class="kv">
+    <tr><th>Настройка Тильды</th><th>Значение</th></tr>
+    <tr><td>Цвет · Основной (акцент)</td><td>#FF4200</td></tr>
+    <tr><td>Цвет · Текст</td><td>#1A1A1A</td></tr>
+    <tr><td>Цвет · Фон</td><td>#FFFFFF</td></tr>
+    <tr><td>Цвет · Ссылки</td><td>#FF4200</td></tr>
+    <tr><td>Шрифт · Заголовки</td><td>Montserrat 700</td></tr>
+    <tr><td>Шрифт · Текст</td><td>Montserrat 400</td></tr>
+    <tr><td>Кнопка · Фон</td><td>#FF4200</td></tr>
+    <tr><td>Кнопка · Фон при наведении</td><td>#E63B00</td></tr>
+    <tr><td>Кнопка · Текст</td><td>#FFFFFF</td></tr>
+    <tr><td>Кнопка · Скругление</td><td>12px</td></tr>
+  </table>
+  <div class="note"><b>Для Claude Design:</b> дайте ссылку на этот гайд или вставьте блок CSS-переменных ниже — этого достаточно, чтобы генерации попадали в бренд с первого раза, а не «почти как в брендбуке».</div>
+
+  <h3>CSS-переменные — вставить в проект</h3>
+  <div class="code"><pre>:root{
+  <span class="c">/* Бренд — из логобука */</span>
+  --saturn-orange:<span class="p">#FF4200</span>;
+  --saturn-black:<span class="p">#000000</span>;
+  --saturn-white:<span class="p">#FFFFFF</span>;
+  <span class="c">/* Состояния и нейтрали */</span>
+  --orange-hover:<span class="p">#E63B00</span>;
+  --orange-active:<span class="p">#C43200</span>;
+  --orange-tint:<span class="p">#FFF0EA</span>;
+  --text:<span class="p">#1A1A1A</span>;
+  --text-secondary:<span class="p">#6B6560</span>;
+  --text-muted:<span class="p">#9A938C</span>;
+  --surface:<span class="p">#F6F5F3</span>;
+  --border:<span class="p">#E7E3DE</span>;
+  <span class="c">/* Типографика */</span>
+  --font:"Montserrat",system-ui,sans-serif;
+  --h1:3.5rem; --h2:2.5rem; --h3:1.75rem; --body:1.0625rem;
+  <span class="c">/* Отступы (8pt) */</span>
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
+  --sp-6:24px; --sp-8:32px; --sp-12:48px; --sp-16:64px;
+  <span class="c">/* Скругления */</span>
+  --r-sm:8px; --r-md:12px; --r-lg:20px; --r-pill:999px;
+}</pre></div>
+</section>
+
+<footer class="wrap">
+  Дизайн-гайд «Сатурн» · v1.0 · цвета и шрифт — из логобука 2024; размеры, отступы, скругления и кнопки выведены под веб. Значения можно калибровать под конкретные макеты, сохраняя ядро палитры и шрифт.
+</footer>
+</div>
