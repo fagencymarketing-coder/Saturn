@@ -593,9 +593,9 @@
 <line x1="188.5" y1="519.9" x2="226" y2="500" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
 <line x1="136.5" y1="532.6" x2="226" y2="542" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
 <line x1="167.3" y1="575.1" x2="226" y2="584" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
-<line x1="581.6" y1="611.0" x2="476" y2="685" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
-<line x1="641.4" y1="648.3" x2="684" y2="595" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
-<line x1="657.7" y1="706.2" x2="566" y2="775" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
+<line x1="581.6" y1="611.0" x2="436" y2="611" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
+<line x1="641.4" y1="648.3" x2="641" y2="540" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
+<line x1="657.7" y1="706.2" x2="657" y2="797" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
 <line x1="819.6" y1="480.3" x2="894" y2="465" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
 <line x1="1163.5" y1="653.5" x2="1194" y2="715" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>
 <circle cx="188.5" cy="519.9" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="7"/><circle cx="188.5" cy="519.9" r="8" fill="#FF4200"/>
@@ -609,9 +609,9 @@
 <text x="232" y="505" fill="#F3F1EE" font-size="21" font-weight="600" text-anchor="start">Ростовская обл.</text>
 <text x="232" y="547" fill="#F3F1EE" font-size="21" font-weight="600" text-anchor="start">Краснодарский край</text>
 <text x="232" y="589" fill="#F3F1EE" font-size="21" font-weight="600" text-anchor="start">Ставропольский край</text>
-<text x="470" y="690" fill="#F3F1EE" font-size="21" font-weight="600" text-anchor="end">Омская обл.</text>
-<text x="690" y="600" fill="#F3F1EE" font-size="21" font-weight="600" text-anchor="start">Новосибирская обл.</text>
-<text x="560" y="780" fill="#fff" font-size="21" font-weight="700" text-anchor="end">Алтайский край · Барнаул</text>
+<text x="430" y="616" fill="#F3F1EE" font-size="21" font-weight="600" text-anchor="end">Омская обл.</text>
+<text x="641" y="545" fill="#F3F1EE" font-size="21" font-weight="600" text-anchor="middle">Новосибирская обл.</text>
+<text x="657" y="802" fill="#fff" font-size="21" font-weight="700" text-anchor="middle">Алтайский край · Барнаул</text>
 <text x="900" y="470" fill="#F3F1EE" font-size="21" font-weight="600" text-anchor="start">Красноярский край</text>
 <text x="1200" y="720" fill="#F3F1EE" font-size="21" font-weight="600" text-anchor="start">Амурская обл.</text>
 <text x="70" y="70" fill="#fff" font-size="30" font-weight="800">География поставок</text>
