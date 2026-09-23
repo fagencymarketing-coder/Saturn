@@ -1,0 +1,21 @@
+const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+const clip = async (p,name,y,h)=>{const H=await p.evaluate(()=>document.body.scrollHeight); const hh=Math.min(h,H-y); if(hh>0){await p.screenshot({path:name,clip:{x:0,y,width:p.viewportSize().width,height:hh}});} return H;};
+(async () => {
+  const b = await chromium.launch();
+  const p = await b.newPage({ viewport:{width:1200,height:1000}, deviceScaleFactor:1.3 });
+  await p.goto('file://'+process.cwd()+'/present-saturn.html',{waitUntil:'networkidle'});
+  await p.waitForTimeout(700);
+  const H=await p.evaluate(()=>document.body.scrollHeight);
+  console.log('desktop H=',H,'overflow=',await p.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1));
+  await clip(p,'chk-mid.png',1650,1500);
+  await clip(p,'chk-bot.png',Math.max(0,H-1600),1600);
+  await p.close();
+  const m = await b.newPage({ viewport:{width:390,height:844}, deviceScaleFactor:2 });
+  await m.goto('file://'+process.cwd()+'/present-saturn.html',{waitUntil:'networkidle'});
+  await m.waitForTimeout(500);
+  const MH=await m.evaluate(()=>document.body.scrollHeight);
+  console.log('mobile H=',MH,'overflow=',await m.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1));
+  await clip(m,'chk-mob.png',1500,1500);
+  await m.close();
+  await b.close();
+})();

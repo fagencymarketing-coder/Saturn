@@ -1,0 +1,13 @@
+Не включены в архив (рендеры PNG >3МБ, пересоздаются из HTML):
+_extracted/saturn-project/coming-soon/light/saturn-coming-soon-light-plain.png
+_extracted/saturn-project/coming-soon/light/saturn-coming-soon-light-ref.png
+_extracted/saturn-project/coming-soon/light/saturn-coming-soon-light-ref-green.png
+_extracted/saturn-project/coming-soon/light/saturn-coming-soon-light.png
+_extracted/saturn-project/coming-soon/light/saturn-coming-soon-wheat-light.png
+_extracted/saturn-project/coming-soon/light/saturn-coming-soon-white.png
+_extracted/saturn-project/coming-soon/light/saturn-coming-soon-light-clean.png
+_extracted/saturn-project/coming-soon/light/saturn-coming-soon-light-pattern.png
+_extracted/saturn-project/coming-soon/dark/saturn-coming-soon-dark-plain.png
+_extracted/saturn-project/coming-soon/dark/saturn-coming-soon.png
+_extracted/saturn-project/coming-soon/dark/saturn-coming-soon-dark-ref.png
+_extracted/saturn-project/coming-soon/dark/saturn-coming-soon-dark-ref-green.png

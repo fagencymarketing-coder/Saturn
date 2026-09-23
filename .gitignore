@@ -11,3 +11,13 @@ research/chat.txt
 .DS_Store
 __pycache__/
 *.pyc
+
+# Рабочие дубли (содержимое сохранено в archive/)
+/final/
+/incoming/
+/_extracted/
+/saturn-project.zip
+
+# Переписка с паролем reg.ru — на ЛЮБОМ уровне вложенности
+**/chat.md
+**/chat.txt

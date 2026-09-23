@@ -1,0 +1,57 @@
+CSS = '''<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#111;font-family:Arial,Helvetica,sans-serif;font-size:14px}
+.page{max-width:1100px;margin:0 auto;padding:8px}
+.b{border:1.5px dashed #9aa0a6;background:#f3f4f6;margin:8px;padding:16px;border-radius:6px}
+.t{font-weight:bold;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#5a6067;margin-bottom:12px}
+.note{font-size:12px;color:#6b7280}
+.lbl{font-size:12px;color:#5a6067;font-weight:bold;margin:10px 0 6px}
+.chip{display:inline-block;border:1.4px solid #9aa0a6;border-radius:20px;padding:7px 14px;font-size:13px;background:#fff;margin:0 6px 6px 0}
+.chip.on{background:#111;color:#fff;border-color:#111;font-weight:bold}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.card{border:1.5px dashed #9aa0a6;border-radius:6px;background:#fff;padding:12px}
+.ph{background:repeating-linear-gradient(45deg,#e5e7eb,#e5e7eb 8px,#eef0f2 8px,#eef0f2 16px);border:1px solid #d1d5db;border-radius:4px;height:56px;display:flex;align-items:center;justify-content:center;color:#9aa0a6;font-size:12px}
+.btn{display:inline-block;border:1.5px solid #111;border-radius:6px;padding:8px 12px;background:#fff;font-size:12px;font-weight:bold;margin:6px 6px 0 0}
+.btn.solid{background:#111;color:#fff}
+.arrow{color:#5a6067;font-size:22px;text-align:center;margin:4px 0}
+.hint{background:#fff;border:1px solid #d1d5db;border-radius:6px;padding:10px 12px;font-size:12px;color:#374151;margin-top:6px}
+</style>'''
+
+def card(n, prod, cat):
+    return f"<div class='card'><div class='ph'>фото</div><div style='margin-top:6px'><b>Препарат №{n}</b></div><div class='note'>{prod} · {cat}</div><div><span class='btn'>Подробнее</span><span class='btn solid'>Запросить цену</span></div></div>"
+
+body = f"""
+<div class='b'><div class='t'>Блок «Товары» — 2 ряда фильтров над одной сеткой</div>
+
+  <div class='lbl'>Фильтр по категории:</div>
+  <span class='chip on'>Все</span><span class='chip'>Минеральные удобрения</span><span class='chip'>Защита растений (СЗР)</span>
+
+  <div class='lbl'>Фильтр по бренду:</div>
+  <span class='chip on'>Все</span><span class='chip'>Реликт ДВ</span><span class='chip'>Волский Биохим</span><span class='chip'>Фертика</span>
+
+  <div class='hint'>Как работает: клик по кнопке отбирает карточки. Можно совместить — напр. «СЗР» + «Фертика» → покажутся только СЗР Фертики. По умолчанию активно «Все / Все» — виден весь список.</div>
+
+  <div class='grid3'>
+    {card(1,'Реликт ДВ','СЗР')}
+    {card(2,'Фертика','Удобрения')}
+    {card(3,'Волский Биохим','СЗР')}
+    {card(4,'Фертика','Удобрения')}
+    {card(5,'Реликт ДВ','Удобрения')}
+    {card(6,'Волский Биохим','СЗР')}
+  </div>
+  <div style='margin-top:10px'><span class='btn'>Показать ещё</span></div>
+</div>
+
+<div class='b' style='background:#eef0f2'><div class='t'>Пример: выбрали «СЗР» + «Фертика»</div>
+  <span class='chip'>Все</span><span class='chip on'>Защита растений (СЗР)</span> &nbsp; + &nbsp; <span class='chip'>Все</span><span class='chip on'>Фертика</span>
+  <div class='grid3'>
+    {card(2,'Фертика','СЗР')}
+    {card(7,'Фертика','СЗР')}
+    {card(9,'Фертика','СЗР')}
+  </div>
+  <div class='note' style='margin-top:8px'>Показаны только препараты, где категория = СЗР И бренд = Фертика.</div>
+</div>
+"""
+html = f"<!DOCTYPE html><html lang='ru'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Блок Товары — фильтры</title>{CSS}</head><body><div class='page'>{body}</div></body></html>"
+open('wireframe-block3-filters.html','w').write(html)
+print("built block3")
