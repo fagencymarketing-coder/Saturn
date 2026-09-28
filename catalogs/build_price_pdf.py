@@ -71,16 +71,23 @@ def short(t, limit):
     t = str(t or '').strip()
     if len(t) <= limit: return t
     cut = t[:limit]
-    for sep in ('. ', '; '):
+    for sep in ('. ', '; ', ' · ', ', ', ' '):
         i = cut.rfind(sep)
-        if i > limit * 0.45: return cut[:i]
+        if i > limit * 0.45: return cut[:i].rstrip(' ,;·') + '…'
     return cut.rstrip(' ,;·') + '…'
 
-def first_sentence(t):
-    """В прайсе нужна норма, а не вся агротехника: оставляем до первой точки."""
+def first_sentence(t, limit=150):
+    """В прайсе нужна норма, а не вся агротехника: оставляем до первой точки.
+    Если и после этого длинно — режем по границе перечисления, не посреди слова."""
     t = str(t or '').strip()
     i = t.find('. ')
-    return (t[:i] if i > 8 else t)[:110]
+    if i > 8: t = t[:i]
+    if len(t) <= limit: return t
+    cut = t[:limit]
+    for sep in ('; ', ', ', ' '):
+        j = cut.rfind(sep)
+        if j > limit * 0.5: return cut[:j].rstrip(' ,;') + '…'
+    return cut.rstrip(' ,;') + '…'
 
 def table(cat, items):
     dv = DV.get(cat, "Состав / элементы питания")
@@ -94,7 +101,7 @@ def table(cat, items):
         pack = esc(r.get('Фасовка_прайс') or r.get('Фасовка_каталог'))
         tr.append(f"""<tr class="{'odd' if i%2 else ''}">
           <td class="c1 nm">{esc(r['Название'])}</td>
-          <td class="c2 dv">{esc(SOSTAV.get(r['Название']) or short(r['Состав_ДВ'],150))}</td>
+          <td class="c2 dv">{esc(SOSTAV.get(r['Название']) or short(r['Состав_ДВ'],185))}</td>
           <td class="c3 nr">{esc(NORM.get(r['Название']) or first_sentence(r['Норма_расхода']))}</td>
           <td class="c4 pk">{pack}</td>
           <td class="c5 {cls}">{price}</td></tr>""")
@@ -110,13 +117,13 @@ HTML = f"""<!doctype html><html lang="ru"><head><meta charset="utf-8">
 @font-face{{font-family:M;src:url({FONTS[600]});font-weight:600}}
 @font-face{{font-family:M;src:url({FONTS[700]});font-weight:700}}
 @font-face{{font-family:M;src:url({FONTS[800]});font-weight:800}}
-@page{{size:A4;margin:0 0 17mm}}
-.pad{{padding:0 12mm 4mm}}
+@page{{size:A4 landscape;margin:0 0 14mm}}
+.pad{{padding:0 14mm 4mm}}
 *{{box-sizing:border-box}}
-body{{font-family:M,sans-serif;color:#1A1A1A;margin:0;font-size:8.2pt;line-height:1.35}}
-.cover{{background:#141210;color:#fff;padding:16mm 12mm 12mm;margin-bottom:10mm}}
+body{{font-family:M,sans-serif;color:#1A1A1A;margin:0;font-size:8.4pt;line-height:1.38}}
+.cover{{background:#141210;color:#fff;padding:14mm 14mm 11mm;margin-bottom:9mm}}
 .cover img{{height:13mm;display:block;margin-bottom:9mm}}
-.cover h1{{font-size:26pt;font-weight:800;letter-spacing:-.02em;margin:0 0 3mm}}
+.cover h1{{font-size:24pt;font-weight:800;letter-spacing:-.02em;margin:0 0 3mm}}
 .cover h1 span{{color:#FF4200}}
 .cover .sub{{font-size:10pt;font-weight:600;color:rgba(255,255,255,.72);margin-bottom:8mm}}
 .cover .meta{{display:flex;gap:16mm;font-size:8pt;color:rgba(255,255,255,.62);line-height:1.6}}
@@ -136,13 +143,13 @@ body{{font-family:M,sans-serif;color:#1A1A1A;margin:0;font-size:8.2pt;line-heigh
 table{{width:100%;border-collapse:collapse}}
 .th th{{font-size:7pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
  color:#8A837C;text-align:left;padding:2mm 2mm;border-bottom:1px solid #E7E3DE}}
-td{{padding:1.8mm 2mm;vertical-align:top;border-bottom:1px solid #F0EDE9}}
+td{{padding:1.6mm 2.5mm;vertical-align:top;border-bottom:1px solid #F0EDE9}}
 tr.odd td{{background:#F7F7F6}}
 tr{{break-inside:avoid}}
 .th th.c5{{text-align:right}}
-.c1{{width:25%}} .c2{{width:29%}} .c3{{width:19%}} .c4{{width:11%}} .c5{{width:16%}}
+.c1{{width:19%}} .c2{{width:36%}} .c3{{width:20%}} .c4{{width:14%}} .c5{{width:11%}}
 .nm{{font-weight:700}}
-.dv{{font-size:7.2pt;color:#6B6560}}
+.dv{{font-size:7.4pt;color:#6B6560}}
 .nr{{font-size:7.4pt;color:#3D3A37}}
 .pk{{font-size:7.4pt;color:#6B6560}}
 .pr{{font-weight:800;color:#FF4200;text-align:right;white-space:nowrap}}
