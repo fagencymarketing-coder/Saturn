@@ -22,10 +22,12 @@ DV = {"Гербициды":"Действующее вещество","Десик
       "Фунгициды":"Действующее вещество","Адъюванты и спецпрепараты":"Состав"}
 
 
-# ── Нормы расхода ИЗ ПРАЙСА «САТУРНА» ───────────────────────────────────────
-# Прайс — собственный документ компании, поэтому в прайс-листе его нормы
-# имеют приоритет над каталогами производителей. Сверено построчно
-# с source-files/Prais-Saturn.pdf (стр. 1–5), 2026-09-28.
+# ── Нормы расхода ───────────────────────────────────────────────────────────
+# 🔴 2026-09-28: заказчик объявил подтверждённую таблицу единым первоисточником
+# И ДЛЯ САЙТА, И ДЛЯ ПРАЙСА. Поэтому нормы берутся ИЗ НЕЁ, а не из старого
+# прайса. Словарь ниже оставлен как след сверки со старым прайсом
+# (source-files/Prais-Saturn.pdf) — он БОЛЬШЕ НЕ ПРИМЕНЯЕТСЯ.
+USE_OLD_PRICE_NORMS = False
 NORM = {
  "Реликт Р Старт (протравитель)":"0,4 л/т",
  "Микромак":"2 л/т",
@@ -117,8 +119,8 @@ def table(cat, items):
         pack = esc(r.get('Фасовка_прайс') or r.get('Фасовка_каталог'))
         tr.append(f"""<tr class="{'odd' if i%2 else ''}">
           <td class="c1 nm">{esc(r['Название'])}</td>
-          <td class="c2 dv">{esc(SOSTAV.get(r['Название']) or short(r['Состав_ДВ'],185))}</td>
-          <td class="c3 nr">{esc(NORM.get(r['Название']) or first_sentence(r['Норма_расхода']))}</td>
+          <td class="c2 dv">{esc(short(r['Состав_ДВ'],185))}</td>
+          <td class="c3 nr">{esc((NORM.get(r['Название']) if USE_OLD_PRICE_NORMS else '') or first_sentence(r['Норма_расхода']))}</td>
           <td class="c4 pk">{pack}</td>
           <td class="c5 {cls}">{price}</td></tr>""")
     return f"""<section class="sec">
@@ -144,12 +146,12 @@ body{{font-family:M,sans-serif;color:#1A1A1A;margin:0;font-size:8.4pt;line-heigh
 .cover .sub{{font-size:10pt;font-weight:600;color:rgba(255,255,255,.72);margin-bottom:8mm}}
 .cover .meta{{display:flex;gap:16mm;font-size:8pt;color:rgba(255,255,255,.62);line-height:1.6}}
 .cover .meta b{{display:block;color:#fff;font-weight:700;font-size:8.6pt}}
-.team{{display:flex;gap:6mm;margin-top:8mm;padding-top:7mm;
+.team{{display:flex;gap:5mm;margin-top:8mm;padding-top:7mm;
  border-top:1px solid rgba(255,255,255,.14)}}
-.team>div{{flex:1;font-size:7.4pt;color:rgba(255,255,255,.62);line-height:1.5}}
-.team i{{display:block;font-style:normal;font-weight:700;font-size:6.6pt;
+.team>div{{flex:1;font-size:7pt;color:rgba(255,255,255,.62);line-height:1.5}}
+.team i{{display:block;font-style:normal;font-weight:700;font-size:6.2pt;
  letter-spacing:.1em;text-transform:uppercase;color:#FF4200;margin-bottom:2mm}}
-.team b{{display:block;color:#fff;font-weight:700;font-size:8.2pt;margin-bottom:1mm}}
+.team b{{display:block;color:#fff;font-weight:700;font-size:7.8pt;margin-bottom:1mm}}
 .sec{{break-inside:auto;margin-bottom:7mm}}
 .lbl{{display:flex;align-items:center;gap:3mm;font-size:8pt;font-weight:700;
  letter-spacing:.14em;text-transform:uppercase;color:#1A1A1A;margin:0 0 3mm;
@@ -184,6 +186,7 @@ tr{{break-inside:avoid}}
     <div><b>sssaturn.ru</b>Прайс действует с 12.01.2026<br>Цены при 100% предоплате, за 1 л / 1 кг</div>
   </div>
   <div class="team">
+    <div><i>Генеральный директор</i><b>Нилова Анастасия</b>+7 (913) 022-48-88<br>nilova.anastasia@sssaturn.ru</div>
     <div><i>Коммерческие вопросы</i><b>Нилов Алексей</b>+7 (960) 953-48-88<br>nilov@sssaturn.ru</div>
     <div><i>Агрономический отдел</i><b>Хаблак Андрей</b>+7 (963) 502-38-55<br>khablak.a@sssaturn.ru</div>
     <div><i>Семена</i><b>Боровиков Виталий</b>+7 (960) 948-83-40<br>borovikov.v@sssaturn.ru</div>
