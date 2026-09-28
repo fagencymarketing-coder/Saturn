@@ -135,9 +135,9 @@ def table(cat, items):
           <td class="c3 nr">{esc(r['Норма_расхода'])}</td>
           <td class="c4 pk">{pack}</td>
           <td class="c5 {cls}">{price}</td></tr>""")
-    return f"""<section class="sec">
-      <div class="lbl"><i></i>{esc(cat)}<span>{len(items)}</span></div>
-      <table>{head}{''.join(tr)}</table></section>"""
+    lbl = (f'<tr class="lblrow"><td colspan="5">'
+           f'<span class="lbl"><i></i>{esc(cat)}<b>{len(items)}</b></span></td></tr>')
+    return f"""<section class="sec"><table>{lbl}{head}{''.join(tr)}</table></section>"""
 
 body = "".join(table(c, groups[c]) for c in ORDER if groups[c])
 
@@ -164,16 +164,19 @@ body{{font-family:M,sans-serif;color:#1A1A1A;margin:0;font-size:8.4pt;line-heigh
 .team i{{display:block;font-style:normal;font-weight:700;font-size:6.2pt;
  letter-spacing:.1em;text-transform:uppercase;color:#FF4200;margin-bottom:2mm}}
 .team b{{display:block;color:#fff;font-weight:700;font-size:7.8pt;margin-bottom:1mm}}
-.sec{{break-inside:auto;margin-bottom:7mm}}
-.lbl{{display:flex;align-items:center;gap:3mm;font-size:8pt;font-weight:700;
- letter-spacing:.14em;text-transform:uppercase;color:#1A1A1A;margin:0 0 3mm;
- break-after:avoid}}
+.sec{{break-inside:auto;margin-bottom:0}}
+.lblrow td{{border:0;padding:7mm 0 3mm;background:#fff!important}}
+.lbl{{display:inline-flex;align-items:center;gap:3mm;font-size:8pt;font-weight:700;
+ letter-spacing:.14em;text-transform:uppercase;color:#1A1A1A}}
 .lbl i{{width:7mm;height:2px;background:#FF4200;display:block}}
-.lbl span{{font-weight:600;letter-spacing:0;color:#B7B0A8;text-transform:none}}
+.lbl b{{font-weight:600;letter-spacing:0;color:#B7B0A8;text-transform:none}}
+/* заголовок раздела и шапка таблицы не должны разъезжаться по страницам */
+tr.lblrow{{break-after:avoid;break-inside:avoid}}
+tr.th{{break-after:avoid;break-inside:avoid}}
 table{{width:100%;border-collapse:collapse}}
 .th th{{font-size:7pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
  color:#8A837C;text-align:left;padding:2mm 2mm;border-bottom:1px solid #E7E3DE}}
-td{{padding:1.6mm 2.5mm;vertical-align:top;border-bottom:1px solid #F0EDE9}}
+td{{padding:1.45mm 2.5mm;vertical-align:top;border-bottom:1px solid #F0EDE9}}
 tr.odd td{{background:#F7F7F6}}
 tr{{break-inside:avoid}}
 .th th.c5{{text-align:right}}
