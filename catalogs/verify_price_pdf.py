@@ -19,10 +19,18 @@ PDF  = 'catalogs/Прайс-лист-Сатурн-2026.pdf'
 
 def sq(t): return re.sub(r'[\s ­]+','',str(t or '')).lower().replace('–','-').replace('—','-')
 
+def shown(v):
+    """Значение так, как его показывает Excel: у чисел разделитель — запятая."""
+    if v is None: return ''
+    if isinstance(v, float):
+        return str(int(v)) if v == int(v) else repr(v).replace('.', ',')
+    if isinstance(v, int): return str(v)
+    return str(v).strip()
+
 def table():
     ws = openpyxl.load_workbook(XLS, data_only=True)['Каталог']
     hdr = [c.value for c in ws[1]]
-    return [{h:(str(v).strip() if v is not None else '') for h,v in zip(hdr,r)}
+    return [{h: shown(v) for h, v in zip(hdr, r)}
             for r in ws.iter_rows(min_row=2, values_only=True) if r[0]]
 
 def html_cells():
