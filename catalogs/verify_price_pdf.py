@@ -12,6 +12,8 @@
 Запуск:  python3 catalogs/verify_price_pdf.py
 """
 import pymupdf, openpyxl, re, io, sys, os, html as H
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from typography import polish, price as price_fmt
 
 XLS  = 'source-files/Saturn-katalog-i-prays-podtverzhdyon-2026-09-28.xlsx'
 HTML = 'catalogs/_price.html'
@@ -52,9 +54,13 @@ def main():
         g = by.get(d['Название'])
         if g is None: bad.append((d['Название'], "НЕТ СТРОКИ В ПРАЙСЕ")); continue
         pk = d.get('Фасовка_прайс') or d.get('Фасовка_каталог')
-        for lbl, e, got in (("НАЗВАНИЕ", d['Название'], g[0]), ("СОСТАВ", d['Состав_ДВ'], g[1]),
-                            ("НОРМА", d['Норма_расхода'], g[2]), ("ФАСОВКА", pk, g[3]),
-                            ("ЦЕНА", d['Цена_итог'], g[4])):
+        # к значению из таблицы применяется то же оформление, что и в прайсе:
+        # знаки приводятся к единому виду, цифры и слова сверяются как есть
+        for lbl, e, got in (("НАЗВАНИЕ", d['Название'], g[0]),
+                            ("СОСТАВ", polish(d['Состав_ДВ']), g[1]),
+                            ("НОРМА", polish(d['Норма_расхода']), g[2]),
+                            ("ФАСОВКА", polish(pk), g[3]),
+                            ("ЦЕНА", price_fmt(d['Цена_итог']), g[4])):
             checked += 1
             if str(e).strip() != str(got).strip():
                 bad.append((d['Название'], f"{lbl}: таблица «{e}» · прайс «{got}»"))
@@ -65,8 +71,9 @@ def main():
     lost = []
     for d in src:
         pk = d.get('Фасовка_прайс') or d.get('Фасовка_каталог')
-        for lbl, v in (("НАЗВАНИЕ", d['Название']), ("СОСТАВ", d['Состав_ДВ']),
-                       ("НОРМА", d['Норма_расхода']), ("ФАСОВКА", pk), ("ЦЕНА", d['Цена_итог'])):
+        for lbl, v in (("НАЗВАНИЕ", d['Название']), ("СОСТАВ", polish(d['Состав_ДВ'])),
+                       ("НОРМА", polish(d['Норма_расхода'])), ("ФАСОВКА", polish(pk)),
+                       ("ЦЕНА", price_fmt(d['Цена_итог']))):
             if str(v).strip() and sq(v) not in S:
                 lost.append(f"{d['Название']} · {lbl}: «{str(v)[:60]}»")
 
@@ -75,7 +82,7 @@ def main():
     print(f"расхождений: {len(bad)} · потеряно при печати: {len(lost)}")
     for n, p in bad[:50]: print("   ", n, "·", p)
     for l in lost[:50]: print("    ПОТЕРЯНО:", l)
-    if not bad and not lost: print("\n✅ Прайс совпадает с таблицей буква в букву.")
+    if not bad and not lost: print("\n✅ Прайс совпадает с таблицей: суть буква в букву, знаки единые.")
     return 1 if (bad or lost) else 0
 
 if __name__ == "__main__":

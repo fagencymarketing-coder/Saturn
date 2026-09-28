@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 """Прайс-лист ООО «Сатурн» в фирменном стиле → HTML → PDF.
 
-🔴 Требование заказчика (2026-09-28): прайс должен совпадать с таблицей
-БУКВА В БУКВУ. Поэтому никаких сокращений и нормализаций — значения
-выводятся ровно так, как лежат в источнике.
+🔴 Требование заказчика (2026-09-28): СУТЬ — ровно как в подтверждённой
+таблице, ОФОРМЛЕНИЕ — единое. Цифры и слова не меняются и не сокращаются;
+единообразие знаков (валюта, тире, единицы) даёт catalogs/typography.py.
+Название позиции не трогается вовсе — там 13-40-13 это марка, а не диапазон.
 Источник данных: catalogs/catalog_tech.json (99 позиций, подтверждён заказчиком).
 Рендер: Playwright/Chromium, A4.
 """
-import json, io, base64, os, html
+import json, io, base64, os, html, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from typography import polish, price as price_fmt
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def b64(p, mime):
@@ -126,13 +129,13 @@ def table(cat, items):
       <th class="c3">Норма расхода</th><th class="c4">Фасовка</th><th class="c5">Цена</th></tr>"""
     tr = []
     for i, r in enumerate(items):
-        price = esc(r['Цена_итог'])
+        price = esc(price_fmt(r['Цена_итог']))
         cls = 'req' if 'запрос' in price.lower() else 'pr'
-        pack = esc(r.get('Фасовка_прайс') or r.get('Фасовка_каталог'))
+        pack = esc(polish(r.get('Фасовка_прайс') or r.get('Фасовка_каталог')))
         tr.append(f"""<tr class="{'odd' if i%2 else ''}">
           <td class="c1 nm">{esc(r['Название'])}</td>
-          <td class="c2 dv">{esc(r['Состав_ДВ'])}</td>
-          <td class="c3 nr">{esc(r['Норма_расхода'])}</td>
+          <td class="c2 dv">{esc(polish(r['Состав_ДВ']))}</td>
+          <td class="c3 nr">{esc(polish(r['Норма_расхода']))}</td>
           <td class="c4 pk">{pack}</td>
           <td class="c5 {cls}">{price}</td></tr>""")
     lbl = (f'<tr class="lblrow"><td colspan="5">'
