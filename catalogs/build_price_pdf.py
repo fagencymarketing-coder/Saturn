@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 """Прайс-лист ООО «Сатурн» в фирменном стиле → HTML → PDF.
+
+🔴 Требование заказчика (2026-09-28): прайс должен совпадать с таблицей
+БУКВА В БУКВУ. Поэтому никаких сокращений и нормализаций — значения
+выводятся ровно так, как лежат в источнике.
 Источник данных: catalogs/catalog_tech.json (99 позиций, подтверждён заказчиком).
 Рендер: Playwright/Chromium, A4.
 """
@@ -80,6 +84,14 @@ SOSTAV = {
 
 rows = json.load(io.open(os.path.join(ROOT,'catalogs/catalog_tech.json'), encoding='utf-8'))
 groups = {c: [r for r in rows if r['Категория'] == c] for c in ORDER}
+# ни одна позиция не должна потеряться: всё, что не попало в известные
+# разделы (например, с пустой категорией), уходит в «Прочие позиции»
+_placed = {id(r) for g in groups.values() for r in g}
+_rest = [r for r in rows if id(r) not in _placed]
+if _rest:
+    groups["Прочие позиции"] = _rest
+    ORDER = ORDER + ["Прочие позиции"]
+assert sum(len(g) for g in groups.values()) == len(rows), "позиции потерялись при группировке"
 
 def esc(x): return html.escape(str(x or ''))
 
@@ -119,8 +131,8 @@ def table(cat, items):
         pack = esc(r.get('Фасовка_прайс') or r.get('Фасовка_каталог'))
         tr.append(f"""<tr class="{'odd' if i%2 else ''}">
           <td class="c1 nm">{esc(r['Название'])}</td>
-          <td class="c2 dv">{esc(short(r['Состав_ДВ'],185))}</td>
-          <td class="c3 nr">{esc((NORM.get(r['Название']) if USE_OLD_PRICE_NORMS else '') or first_sentence(r['Норма_расхода']))}</td>
+          <td class="c2 dv">{esc(r['Состав_ДВ'])}</td>
+          <td class="c3 nr">{esc(r['Норма_расхода'])}</td>
           <td class="c4 pk">{pack}</td>
           <td class="c5 {cls}">{price}</td></tr>""")
     return f"""<section class="sec">
