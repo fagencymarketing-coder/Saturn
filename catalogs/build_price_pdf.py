@@ -21,6 +21,45 @@ DV = {"Гербициды":"Действующее вещество","Десик
       "Протравители":"Действующее вещество","Инсектициды":"Действующее вещество",
       "Фунгициды":"Действующее вещество","Адъюванты и спецпрепараты":"Состав"}
 
+
+# ── Нормы расхода ИЗ ПРАЙСА «САТУРНА» ───────────────────────────────────────
+# Прайс — собственный документ компании, поэтому в прайс-листе его нормы
+# имеют приоритет над каталогами производителей. Сверено построчно
+# с source-files/Prais-Saturn.pdf (стр. 1–5), 2026-09-28.
+NORM = {
+ "Реликт Р Старт (протравитель)":"0,4 л/т",
+ "Микромак":"2 л/т",
+ "Экомак":"0,5 л/т",
+ "Реликт Р":"0,2–0,5 л/га",
+ "Микроэл Универсальный":"0,2 л/га",
+ "Страда N":"2–5 л/га", "Страда P":"2–5 л/га", "Страда K":"2–5 л/га",
+ "FERTIKA Листовое Старт 13-40-13":"Семена 1–2 кг/т; по вегетации 2–3 кг/га",
+ "FERTIKA Листовое 18-18-18":"2–4 кг/га",
+ "FERTIKA Листовое 10-5-40":"2–4 кг/га",
+ "FERTIKA Листовое 4-13-36":"2–4 кг/га",
+ "FERTIKA Листовое 19-6-20":"2–3 кг/га",
+ "FERTIKA Плюс 16-20-27":"2–4 кг/га",
+ "FERTIKA Плюс 6,4-11-31":"2–4 кг/га",
+ "FERTIKA Плюс 12-11-26":"2–4 кг/га",
+ "Реликт М Молибден":"0,2–0,5 л/га", "Реликт М Сера":"0,3–1,5 л/га",
+ "Реликт М Бор":"0,5–1,5 л/га", "Реликт М Цинк":"0,3–1,5 л/га",
+ "Реликт М Кремний":"0,2–0,5 л/га",
+ "Волски Моно-Бор":"0,2–1 л/га", "Волски Моно-Цинк":"0,2–1 л/га",
+ "Волски Моно-Железо":"0,2–1 л/га", "Волски Моно-Сера":"0,2–1 л/га",
+ "Волски Моно-Медь":"0,2–1 л/га",
+ "Диформа Марганец-Цинк":"0,5–2 л/га", "Диформа Бор-Молибден":"0,5–1,5 л/га",
+ "Диформа Магний-Цинк":"0,5–2 л/га", "Диформа Марганец-Бор":"0,5–2 л/га",
+ "Диформа Кальций-Азот":"0,5–2 л/га", "Диформа Магний-Марганец":"0,5–2 л/га",
+ "Диформа Кремний-Калий":"0,2–1 л/га", "Диформа Кобальт-Селен":"0,5–1 л/га",
+ "Волски Оптим":"30–150 мл на 100 л", "Биостик Терра":"1 л/га на 100–200 л воды/га",
+ "Вега 90, Ж":"0,2–0,5", "Вега АнтиПена, КЭ":"0,01–0,05", "Вега Баланс, ВР":"0,1–1",
+}
+# Уточнения состава по прайсу
+SOSTAV = {
+ "Диформа Магний-Цинк":"Магний 75 г/л · Цинк 30 г/л · Азот 52 г/л · Сера 37 г/л · "
+                       "Фосфор 14 г/л · Калий 37 г/л",
+}
+
 rows = json.load(io.open(os.path.join(ROOT,'catalogs/catalog_tech.json'), encoding='utf-8'))
 groups = {c: [r for r in rows if r['Категория'] == c] for c in ORDER}
 
@@ -55,8 +94,8 @@ def table(cat, items):
         pack = esc(r.get('Фасовка_прайс') or r.get('Фасовка_каталог'))
         tr.append(f"""<tr class="{'odd' if i%2 else ''}">
           <td class="c1 nm">{esc(r['Название'])}</td>
-          <td class="c2 dv">{esc(short(r['Состав_ДВ'],150))}</td>
-          <td class="c3 nr">{esc(first_sentence(r['Норма_расхода']))}</td>
+          <td class="c2 dv">{esc(SOSTAV.get(r['Название']) or short(r['Состав_ДВ'],150))}</td>
+          <td class="c3 nr">{esc(NORM.get(r['Название']) or first_sentence(r['Норма_расхода']))}</td>
           <td class="c4 pk">{pack}</td>
           <td class="c5 {cls}">{price}</td></tr>""")
     return f"""<section class="sec">
@@ -80,8 +119,14 @@ body{{font-family:M,sans-serif;color:#1A1A1A;margin:0;font-size:8.2pt;line-heigh
 .cover h1{{font-size:26pt;font-weight:800;letter-spacing:-.02em;margin:0 0 3mm}}
 .cover h1 span{{color:#FF4200}}
 .cover .sub{{font-size:10pt;font-weight:600;color:rgba(255,255,255,.72);margin-bottom:8mm}}
-.cover .meta{{display:flex;gap:14mm;font-size:8pt;color:rgba(255,255,255,.62);line-height:1.6}}
+.cover .meta{{display:flex;gap:16mm;font-size:8pt;color:rgba(255,255,255,.62);line-height:1.6}}
 .cover .meta b{{display:block;color:#fff;font-weight:700;font-size:8.6pt}}
+.team{{display:flex;gap:6mm;margin-top:8mm;padding-top:7mm;
+ border-top:1px solid rgba(255,255,255,.14)}}
+.team>div{{flex:1;font-size:7.4pt;color:rgba(255,255,255,.62);line-height:1.5}}
+.team i{{display:block;font-style:normal;font-weight:700;font-size:6.6pt;
+ letter-spacing:.1em;text-transform:uppercase;color:#FF4200;margin-bottom:2mm}}
+.team b{{display:block;color:#fff;font-weight:700;font-size:8.2pt;margin-bottom:1mm}}
 .sec{{break-inside:auto;margin-bottom:7mm}}
 .lbl{{display:flex;align-items:center;gap:3mm;font-size:8pt;font-weight:700;
  letter-spacing:.14em;text-transform:uppercase;color:#1A1A1A;margin:0 0 3mm;
@@ -111,10 +156,16 @@ tr{{break-inside:avoid}}
   <h1>Прайс-лист <span>2026</span></h1>
   <div class="sub">Удобрения · средства защиты растений · адъюванты</div>
   <div class="meta">
-    <div><b>ООО «Сатурн»</b>ИНН 2801274078 · КПП 222501001<br>ОГРН 1232800002709</div>
-    <div><b>Отдел продаж</b>+7 (960) 953-48-88<br>nilov@sssaturn.ru</div>
-    <div><b>Адрес</b>г. Барнаул, пр. Ленина 56 /<br>Шевченко 52А, пом. Н13</div>
-    <div><b>Сайт</b>sssaturn.ru</div>
+    <div><b>ООО «Сатурн»</b>ИНН 2801274078 · КПП 222501001<br>ОГРН 1232800002709<br>
+      г. Барнаул, пр. Ленина 56 / Шевченко 52А, пом. Н13</div>
+    <div><b>sssaturn.ru</b>Прайс действует с 12.01.2026<br>Цены при 100% предоплате, за 1 л / 1 кг</div>
+  </div>
+  <div class="team">
+    <div><i>Коммерческие вопросы</i><b>Нилов Алексей</b>+7 (960) 953-48-88<br>nilov@sssaturn.ru</div>
+    <div><i>Агрономический отдел</i><b>Хаблак Андрей</b>+7 (963) 502-38-55<br>khablak.a@sssaturn.ru</div>
+    <div><i>Семена</i><b>Боровиков Виталий</b>+7 (960) 948-83-40<br>borovikov.v@sssaturn.ru</div>
+    <div><i>Закуп</i><b>Пекарский Сергей</b>+7 (903) 947-73-53<br>psv@sssaturn.ru</div>
+    <div><i>Документы и договоры</i><b>Слободина Марина</b>+7 (983) 170-01-70<br>slobodina.marina@sssaturn.ru</div>
   </div>
 </div>
 <div class="pad">{body}
