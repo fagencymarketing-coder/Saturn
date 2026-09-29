@@ -16,7 +16,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 # раздел по ходу сезона → подразделы в порядке показа
 SEASON = [
-    ('Семена', ['Гибриды', 'Пшеница озимая', 'Пшеница яровая', 'Ячмень яровой', 'Соя', 'Горох посевной', 'Гречиха', 'Картофель']),
+    # культуру у семян показывает фильтр — подраздел по культуре его дублировал
+    ('Семена', ['Гибриды', 'Сорта']),
     ('Обработка семян и протравители', ['Обработка семян', 'Протравители']),
     ('Гербициды', ['Гербициды']),
     ('Удобрения и листовые подкормки', ['Удобрения', 'Листовые подкормки']),
@@ -90,7 +91,7 @@ for s in csv.DictReader(io.open(os.path.join(HERE, 'seeds.csv'), encoding='utf-8
 for s in csv.DictReader(io.open(os.path.join(HERE, 'seeds_tech.csv'), encoding='utf-8-sig'), delimiter=';'):
     crop, name = s['Культура'], s['Название']
     hybrid = s['Тип'].startswith('гибрид')
-    sub = 'Гибриды' if hybrid else crop
+    sub = 'Гибриды' if hybrid else 'Сорта'
     kind = 'гибрид F1' if hybrid else ', '.join(dict.fromkeys(repro.get(name, [])))
     rows.append({
         'Раздел': 'Семена', 'Подраздел': sub, 'Название': name, 'Бренд': s['Оригинатор'] if 'не указан' not in s['Оригинатор'] else '',
