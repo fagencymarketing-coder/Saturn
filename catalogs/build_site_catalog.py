@@ -80,8 +80,20 @@ for r in json.load(io.open(os.path.join(HERE, 'catalog_tech.json'), encoding='ut
 
 SEED_PHOTO = {'Новосёл CL': 'seed-novosel-cl.jpg', 'Ampir 10 Express': 'seed-ampir-10.jpg',
               'Ampir 25 Express': 'seed-ampir-25.jpg'}
-CROP_PHOTO = {'Пшеница озимая': 'seed-crop-pshenitsa.jpg', 'Пшеница яровая': 'seed-crop-pshenitsa.jpg',
-              'Ячмень яровой': 'seed-crop-yachmen.jpg', 'Соя': 'seed-crop-soya.jpg'}
+# у каждой культуры несколько кадров — соседние карточки сортов не повторяют друг друга
+CROP_PHOTOS = {'Пшеница озимая': 'pshenitsa', 'Пшеница яровая': 'pshenitsa', 'Ячмень яровой': 'yachmen',
+               'Соя': 'soya', 'Горох посевной': 'goroh', 'Гречиха': 'grechiha', 'Картофель': 'kartofel'}
+_crop_dir = os.path.join(os.path.dirname(HERE), 'assets', 'crop-photos', 'cards')
+_used = {}
+
+
+def crop_photo(crop):
+    slug = CROP_PHOTOS.get(crop)
+    if not slug:
+        return ''
+    files = sorted(f for f in os.listdir(_crop_dir) if f.startswith(f'seed-crop-{slug}-'))
+    i = _used.get(slug, 0); _used[slug] = i + 1
+    return files[i % len(files)] if files else ''
 CROP_TAG = {'Пшеница озимая': 'Пшеница', 'Пшеница яровая': 'Пшеница', 'Ячмень яровой': 'Ячмень',
             'Рапс яровой': 'Рапс', 'Горох посевной': 'Горох'}
 repro = {}
@@ -97,7 +109,7 @@ for s in csv.DictReader(io.open(os.path.join(HERE, 'seeds_tech.csv'), encoding='
         'Раздел': 'Семена', 'Подраздел': sub, 'Название': name, 'Бренд': s['Оригинатор'] if 'не указан' not in s['Оригинатор'] else '',
         'Подпись в карточке': f'{crop} · {kind}', 'Культуры (фильтр)': CROP_TAG.get(crop, crop),
         'Цена': 'Запросить цену', 'Фасовка': '',
-        'Фото': SEED_PHOTO.get(name) or CROP_PHOTO.get(crop, ''), '_sub': sub,
+        'Фото': SEED_PHOTO.get(name) or crop_photo(crop), '_sub': sub,
     })
 
 order = [(sec, sub) for sec, subs in SEASON for sub in subs]

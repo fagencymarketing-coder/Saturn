@@ -36,3 +36,22 @@
 - `seed-crop-yachmen.jpg` — ячмень, 495×495 (на ретине мягковато)
 - `seed-crop-soya.jpg` — соя, 739×739
 Для гороха, гречихи и картофеля фото нет — карточка без фото идёт в одну колонку.
+
+## cards/seed-crop-<культура>-<n>.jpg — фото культур для карточек сортов (4:3, 1200×900), 2026-09-29
+По 1–3 кадра на культуру, у соседних сортов разные кадры. Вариант 1 у пшеницы, ячменя, сои — из наших снимков выше.
+Остальные — Wikimedia Commons, **только CC0 и общественное достояние**: разрешено коммерческое использование без указания автора.
+
+| Файл | Лицензия | Источник |
+|---|---|---|
+| `seed-crop-pshenitsa-2.jpg` | cc0 | https://commons.wikimedia.org/wiki/File:Arno_Smit_2016_(Unsplash).jpg |
+| `seed-crop-pshenitsa-3.jpg` | cc0 | https://commons.wikimedia.org/wiki/File:Wheat_stalks.jpg |
+| `seed-crop-yachmen-2.jpg` | cc0 | https://commons.wikimedia.org/wiki/File:Barley_field,_Ehrenbach,_detail.jpg |
+| `seed-crop-yachmen-3.jpg` | cc0 | https://commons.wikimedia.org/wiki/File:Barley_field,_Ehrenbach,_evening_sun.jpg |
+| `seed-crop-soya-2.jpg` | public domain | https://commons.wikimedia.org/wiki/File:An_unhealthy_soybean_field_in_South_Dakota_on_8_August_2024_-_4.jpg |
+| `seed-crop-goroh-1.jpg` | public domain | https://commons.wikimedia.org/wiki/File:Vora_Tosca_pea_field_200809.jpg |
+| `seed-crop-goroh-2.jpg` | cc0 | https://commons.wikimedia.org/wiki/File:Peas_in_a_Pod_(Unsplash).jpg |
+| `seed-crop-grechiha-1.jpg` | cc0 | https://commons.wikimedia.org/wiki/File:Buckwheat_fields_in_Minamiaso.jpg |
+| `seed-crop-grechiha-2.jpg` | public domain | https://commons.wikimedia.org/wiki/File:Buckwheat_Bhutan.jpg |
+| `seed-crop-kartofel-1.jpg` | public domain | https://commons.wikimedia.org/wiki/File:Potato_flowers1.jpg |
+
+Отброшены: «гречиха» из выдачи в основном дикий эриогонум (тоже buckwheat), не посевная гречиха; соя с подтопленным больным полем — не для сайта поставщика удобрений.
