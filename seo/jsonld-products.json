@@ -1,0 +1,1924 @@
+{
+ "novosel-cl": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Новосёл CL",
+  "sku": "novosel-cl",
+  "description": "Высокоурожайный и высокомасличный среднеранний гибрид 00 типа, безэруковый, низкоглюкозинолатный. Под систему Clearfield. Устойчив к полеганию и осыпанию, отзывчив на удобрения",
+  "category": "Семена / Гибриды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/novosel-cl.jpg"
+ },
+ "ampir-10-express": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Ampir 10 Express",
+  "sku": "ampir-10-express",
+  "description": "Гибрид нового поколения под технологию ExpressSun. Высокая устойчивость к фомопсису, склеротинии и ЛМР",
+  "category": "Семена / Гибриды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/ampir-10-express.jpg"
+ },
+ "ampir-25-express": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Ampir 25 Express",
+  "sku": "ampir-25-express",
+  "description": "Гибрид нового поколения под технологию ExpressSun. Высокая устойчивость к фомопсису, склеротинии и ЛМР",
+  "category": "Семена / Гибриды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/ampir-25-express.jpg"
+ },
+ "skipetr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Скипетр",
+  "sku": "skipetr",
+  "description": "Среднеспелый, низкорослый сорт мягкой озимой пшеницы, устойчив к полеганию",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "КФХ «Приволье-1», Полетаев Г.М., ООО «ЭкоНива-Семена»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/skipetr.jpg"
+ },
+ "soberbash": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Собербаш",
+  "sku": "soberbash",
+  "description": "Среднеспелый, среднерослый сорт мягкой озимой пшеницы, устойчив к полеганию. Для хлебопекарного производства",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ «НЦЗ им. П.П. Лукьяненко»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/soberbash.jpg"
+ },
+ "lgovskaya-4": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Льговская 4",
+  "sku": "lgovskaya-4",
+  "description": "Короткостебельный, высокоадаптивный сорт интенсивного типа с повышенной зимо- и морозостойкостью. Устойчив к полеганию",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "Льговская опытно-селекционная станция"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/lgovskaya-4.jpg"
+ },
+ "priirtyshskaya-2": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Прииртышская 2",
+  "sku": "priirtyshskaya-2",
+  "description": "Озимая мягкая пшеница сибирской селекции. Устойчива к осыпанию, полеганию и засухе, зимостойкость 73%",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ «Омский АНЦ»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/priirtyshskaya-2.jpg"
+ },
+ "kvs-akvilon": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "КВС Аквилон",
+  "sku": "kvs-akvilon",
+  "description": "Сбалансированное сочетание высокой урожайности, устойчивости к болезням и качества зерна",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "KWS"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/kvs-akvilon.jpg"
+ },
+ "kvs-buran": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "КВС Буран",
+  "sku": "kvs-buran",
+  "description": "Высокая урожайность при сбалансированной устойчивости и качестве зерна. Мощный колос и высокая масса 1000 зёрен",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "KWS"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/kvs-buran.jpg"
+ },
+ "gonets": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Гонец",
+  "sku": "gonets",
+  "description": "Среднепоздний, низкорослый сорт мягкой яровой пшеницы. Устойчив к полеганию, пыльной головне и бурой ржавчине",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ «ФАНЦА»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/gonets.jpg"
+ },
+ "yunion": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Юнион",
+  "sku": "yunion",
+  "description": "Короткостебельный сорт мягкой яровой пшеницы алтайской селекции",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ ФАНЦА (Барнаул)"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/yunion.jpg"
+ },
+ "altayskiy-22": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Алтайский 22",
+  "sku": "altayskiy-22",
+  "description": "Ячмень пивоваренного направления, создан ФАНЦА в рамках нацпроекта после 2021 года",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ ФАНЦА (Барнаул)"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/altayskiy-22.jpg"
+ },
+ "kvs-dzhessi": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "КВС Джесси",
+  "sku": "kvs-dzhessi",
+  "description": "Среднеранний сорт двойного назначения с высоким потенциалом урожайности и превосходными пивоваренными характеристиками",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "KWS"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/kvs-dzhessi.jpg"
+ },
+ "kvs-hobbs": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "КВС Хоббс",
+  "sku": "kvs-hobbs",
+  "description": "Пивоваренный ячмень, отлично подходящий для производства светлых типов солода",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "KWS"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/kvs-hobbs.jpg"
+ },
+ "zolotistaya": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Золотистая",
+  "sku": "zolotistaya",
+  "description": "Раннеспелый. Растение индетерминантного типа, средней высоты. Устойчив к засухе",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ «Омский АНЦ»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/zolotistaya.jpg"
+ },
+ "sibiriada": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Сибириада",
+  "sku": "sibiriada",
+  "description": "Раннеспелый сорт. Рекомендован для Новосибирской, Омской областей и Красноярского края. Устойчив к засухе",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ «Омский АНЦ»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/sibiriada.jpg"
+ },
+ "sibiriada-20": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Сибириада 20",
+  "sku": "sibiriada-20",
+  "description": "Скороспелый сорт с высоким прикреплением нижних бобов и повышенной масличностью. Бобы устойчивы к растрескиванию",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ «Омский АНЦ»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/sibiriada-20.jpg"
+ },
+ "sentyabrinka": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Сентябринка",
+  "sku": "sentyabrinka",
+  "description": "Раннеспелый, среднерослый сорт индетерминантного типа, семена жёлто-зелёные",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФНЦ «ВНИИ сои»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/sentyabrinka.jpg"
+ },
+ "topaz": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Топаз",
+  "sku": "topaz",
+  "description": "Индетерминантный, низко-среднерослый сорт, семена жёлтые",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФНЦ «ВНИИ сои»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/topaz.jpg"
+ },
+ "cheremshanka": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Черемшанка",
+  "sku": "cheremshanka",
+  "description": "Скороспелый сорт, устойчив к бактериозу. Высота прикрепления нижнего боба 14,5 см",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ «Омский АНЦ»"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/cheremshanka.jpg"
+ },
+ "kvs-bagu": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "КВС Багу",
+  "sku": "kvs-bagu",
+  "description": "Среднерослый сорт с оптимальным расположением бобов к уборке. Лидирующий горох KWS в мире",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "KWS"
+  }
+ },
+ "bonus-2": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Бонус 2",
+  "sku": "bonus-2",
+  "description": "Усатый сорт с укороченным стеблем и ограниченным типом роста. Устойчив к полеганию, семена не осыпаются, бобы формируются в верхней части растения — убирается прямым комбайнированием",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФГБНУ «Омский АНЦ»"
+  }
+ },
+ "dasha": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Даша",
+  "sku": "dasha",
+  "description": "Детерминантный тип роста. Устойчивость к полеганию, осыпанию и засухе выше средней. Слабо поражается болезнями",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФНЦ ЗБК, Орловский ГАУ"
+  }
+ },
+ "diana": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Диана",
+  "sku": "diana",
+  "description": "Ценный по качеству зерна. Технологические и кулинарные качества высокие",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "ФНЦ ЗБК"
+  }
+ },
+ "innovator": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Инноватор",
+  "sku": "innovator",
+  "description": "Столового назначения, для жарки во фритюре. Пригоден для длительного хранения",
+  "category": "Семена / Сорта",
+  "brand": {
+   "@type": "Brand",
+   "name": "HZPC Holland B.V., ФИЦ картофеля им. А.Г. Лорха"
+  }
+ },
+ "mikromak": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Микромак",
+  "sku": "mikromak",
+  "description": "Комплексное микроудобрение для обработки семян, повышения всхожести и развития корней.  Цена: от 585 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Обработка семян и протравители / Обработка семян",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/mikromak.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "585",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "ekomak": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Экомак",
+  "sku": "ekomak",
+  "description": "Стартовое микроудобрение для обработки семян и повышения устойчивости всходов.  Цена: от 700 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Обработка семян и протравители / Обработка семян",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/ekomak.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "700",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "relikt-r-start-protravitel": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Реликт Р Старт (протравитель)",
+  "sku": "relikt-r-start-protravitel",
+  "description": "Гуминовый препарат с микроэлементами и Bacillus для предпосевной обработки семян.  Цена: от 735 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Обработка семян и протравители / Обработка семян",
+  "brand": {
+   "@type": "Brand",
+   "name": "Реликт"
+  },
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "735",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "anker-trio-ks": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Анкер Трио, КС",
+  "sku": "anker-trio-ks",
+  "description": "Цена: 1475 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Обработка семян и протравители / Протравители",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1475",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "tiara-ks": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Тиара, КС",
+  "sku": "tiara-ks",
+  "description": "Цена: 945 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Обработка семян и протравители / Протравители",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "945",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "til-pro-ks": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Тиль Про, КС",
+  "sku": "til-pro-ks",
+  "description": "тиаметоксам 350 г/л",
+  "category": "Обработка семян и протравители / Протравители",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/til-pro-ks.png"
+ },
+ "toreador-maksi-ks": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Тореадор Макси, КС",
+  "sku": "toreador-maksi-ks",
+  "description": "Цена: 1760 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Обработка семян и протравители / Протравители",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1760",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "alfard-vr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Альфард, ВР",
+  "sku": "alfard-vr",
+  "description": "Цена: 1040 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/alfard-vr.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1040",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "ampir-ekstra-vr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Ампир Экстра, ВР",
+  "sku": "ampir-ekstra-vr",
+  "description": "Цена: 540 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/ampir-ekstra-vr.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "540",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "ampir-vr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Ампир, ВР",
+  "sku": "ampir-vr",
+  "description": "глифосат (изопропиламинная соль) 360 г/л",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/ampir-vr.png"
+ },
+ "rangoli-bazoron-vr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Ранголи-Базорон, ВР",
+  "sku": "rangoli-bazoron-vr",
+  "description": "Цена: 1040 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/rangoli-bazoron-vr.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1040",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "gekstar-vdg": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Гекстар, ВДГ",
+  "sku": "gekstar-vdg",
+  "description": "Цена: 2590 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/gekstar-vdg.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "2590",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "zazofen-vr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Зазофен, ВР",
+  "sku": "zazofen-vr",
+  "description": "Цена: 1825 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1825",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "zlakoff-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Злакофф, КЭ",
+  "sku": "zlakoff-ke",
+  "description": "Цена: 877,5 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/zlakoff-ke.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "877.5",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "kirasir-se": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Кирасир, СЭ",
+  "sku": "kirasir-se",
+  "description": "Цена: 540 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/kirasir-se.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "540",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "kleo-vdg": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Клео, ВДГ",
+  "sku": "kleo-vdg",
+  "description": "Цена: 4050 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "4050",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "klordin-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Клордин, КЭ",
+  "sku": "klordin-ke",
+  "description": "Цена: 1065 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/klordin-ke.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1065",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "kursar-vr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Курсар, ВР",
+  "sku": "kursar-vr",
+  "description": "Цена: 880 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/kursar-vr.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "880",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "metols-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Метолс, КЭ",
+  "sku": "metols-ke",
+  "description": "Цена: 1150 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/metols-ke.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1150",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "polluks-emv": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Поллукс, ЭМВ",
+  "sku": "polluks-emv",
+  "description": "Цена: 745 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/polluks-emv.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "745",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "spika-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Спика, КЭ",
+  "sku": "spika-ke",
+  "description": "Цена: 850 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/spika-ke.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "850",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "tifilagro-vdg": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Тифилагро, ВДГ",
+  "sku": "tifilagro-vdg",
+  "description": "Цена: 5625 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "5625",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "torpeda-vdg": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Торпеда, ВДГ",
+  "sku": "torpeda-vdg",
+  "description": "тифенсульфурон-метил 500 г/кг + флорасулам 170 г/кг",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/torpeda-vdg.png"
+ },
+ "ukrotitel-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Укротитель, КЭ",
+  "sku": "ukrotitel-ke",
+  "description": "Цена: 800 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/ukrotitel-ke.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "800",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "tsarumin-vk": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Царумин, ВК",
+  "sku": "tsarumin-vk",
+  "description": "Цена: 880 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "880",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "chellendzher-vrk": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Челленджер, ВРК",
+  "sku": "chellendzher-vrk",
+  "description": "Цена: 945 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Гербициды",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "945",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-listovoe-start-13-40-13": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Листовое Старт 13-40-13",
+  "sku": "fertika-listovoe-start-13-40-13",
+  "description": "Водорастворимое фосфорное NPK-удобрение для стартовых стадий роста и развития корней.  Цена: от 227 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-listovoe-start-13-40-13.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "227",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-listovoe-18-18-18": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Листовое 18-18-18",
+  "sku": "fertika-listovoe-18-18-18",
+  "description": "Универсальное водорастворимое NPK-удобрение для сбалансированного питания в течение вегетации.  Цена: от 202 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-listovoe-18-18-18.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "202",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-listovoe-10-5-40": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Листовое 10-5-40",
+  "sku": "fertika-listovoe-10-5-40",
+  "description": "Высококалийное водорастворимое удобрение для формирования и качества урожая.  Цена: от 222 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-listovoe-10-5-40.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "222",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-listovoe-4-13-36": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Листовое 4-13-36",
+  "sku": "fertika-listovoe-4-13-36",
+  "description": "Водорастворимое удобрение для цветения, плодоношения и налива урожая.  Цена: от 232 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-listovoe-4-13-36.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "232",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-plyus-6-4-11-31": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Плюс 6,4-11-31",
+  "sku": "fertika-plyus-6-4-11-31",
+  "description": "Бесхлорное водорастворимое NPK-удобрение с магнием, серой и микроэлементами.  Цена: от 225 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-plyus-6-4-11-31.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "225",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-listovoe-19-6-20": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Листовое 19-6-20",
+  "sku": "fertika-listovoe-19-6-20",
+  "description": "Азотсодержащее водорастворимое удобрение для активного роста растений.  Цена: от 196 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-listovoe-19-6-20.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "196",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-plyus-12-11-26": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Плюс 12-11-26",
+  "sku": "fertika-plyus-12-11-26",
+  "description": "Комплексное водорастворимое NPK-удобрение с повышенным содержанием калия.  Цена: от 207 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-plyus-12-11-26.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "207",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-plyus-16-20-27": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Плюс 16-20-27",
+  "sku": "fertika-plyus-16-20-27",
+  "description": "Концентрированное водорастворимое NPK-удобрение для интенсивного питания.  Цена: от 203 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-plyus-16-20-27.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "203",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-universal-2-npk-12-8-14": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Универсал-2 NPK 12-8-14",
+  "sku": "fertika-universal-2-npk-12-8-14",
+  "description": "Гранулированное бесхлорное удобрение для овощных и плодово-ягодных культур.  Цена: от 112 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-universal-2-npk-12-8-14.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "112",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-gazonnoe-vesna-leto-npk-11-12-26": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Газонное Весна-Лето NPK 11-12-26",
+  "sku": "fertika-gazonnoe-vesna-leto-npk-11-12-26",
+  "description": "Гранулированное удобрение для густого газона и ярко-зелёной окраски травы.  Цена: от 96 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-gazonnoe-vesna-leto-npk-11-12-26.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "96",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-osennee-npk-5-21-31": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Осеннее NPK 5-21-31",
+  "sku": "fertika-osennee-npk-5-21-31",
+  "description": "Осеннее фосфорно-калийное удобрение для подготовки растений к стрессам.  Цена: от 106 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-osennee-npk-5-21-31.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "106",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-hvoynoe-dlya-vechnozelenyh-vesna-leto-npk-10-7-14": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Хвойное для вечнозелёных Весна-Лето NPK 10-7-14",
+  "sku": "fertika-hvoynoe-dlya-vechnozelenyh-vesna-leto-npk-10-7-14",
+  "description": "Пролонгированное удобрение для хвойных и кислолюбивых растений.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-hvoynoe-dlya-vechnozelenyh-vesna-leto-npk-10-7-14.png"
+ },
+ "fertika-kartofelnoe-5-npk-11-9-16": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Картофельное-5 NPK 11-9-16",
+  "sku": "fertika-kartofelnoe-5-npk-11-9-16",
+  "description": "Специализированное удобрение для клубнеобразования и повышения качества картофеля.  Цена: от 110 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-kartofelnoe-5-npk-11-9-16.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "110",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-eko-kaliy": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Эко Калий",
+  "sku": "fertika-eko-kaliy",
+  "description": "Бесхлорное калийное удобрение растительного происхождения с серой и магнием.  Цена: от 48 ₽ (МКР) · 54 ₽ (25 кг). При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-eko-kaliy.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "48",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "fertika-sulfat-kaliya": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Сульфат калия",
+  "sku": "fertika-sulfat-kaliya",
+  "description": "Концентрированное бесхлорное калийное удобрение с серой.  Цена: от 103 ₽ (МКР 1000 кг) · 108 ₽ (мешки 35 кг). При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/fertika-sulfat-kaliya.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "103",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "relict-makro-n-mg": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Relict Макро N Mg+",
+  "sku": "relict-makro-n-mg",
+  "description": "Азотно-серно-магниевое удобрение для листовых подкормок.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Реликт"
+  }
+ },
+ "relict-makro-pk": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Relict Макро PK",
+  "sku": "relict-makro-pk",
+  "description": "Фосфорно-калийное удобрение для налива и качества урожая.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Реликт"
+  }
+ },
+ "fertika-gazonnoe-osen": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "FERTIKA Газонное. Осень",
+  "sku": "fertika-gazonnoe-osen",
+  "description": "Гранулированное осеннее удобрение для газона.  Цена: от 97 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Удобрения",
+  "brand": {
+   "@type": "Brand",
+   "name": "Фертика"
+  },
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "97",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "mikroel-universalnyy": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Микроэл Универсальный",
+  "sku": "mikroel-universalnyy",
+  "description": "Комплексное микроудобрение для листовых подкормок и коррекции дефицитов.  Цена: от 595 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/mikroel-universalnyy.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "595",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "mikroel-pivovarennyy-yachmen": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Микроэл Пивоваренный ячмень",
+  "sku": "mikroel-pivovarennyy-yachmen",
+  "description": "Специализированное микроудобрение для питания пивоваренного ячменя.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  }
+ },
+ "strada-n": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Страда N",
+  "sku": "strada-n",
+  "description": "Жидкое азотное удобрение с микроэлементами для роста вегетативной массы.  Цена: от 315 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/strada-n.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "315",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "strada-p": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Страда P",
+  "sku": "strada-p",
+  "description": "Жидкое фосфорное удобрение для развития корней, цветения и плодоношения.  Цена: от 535 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/strada-p.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "535",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "strada-k": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Страда K",
+  "sku": "strada-k",
+  "description": "Жидкое калийное удобрение для качества и лёжкости урожая.  Цена: от 315 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/strada-k.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "315",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "volski-mono-sera": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Волски Моно-Сера",
+  "sku": "volski-mono-sera",
+  "description": "Высококонцентрированное серное удобрение для серолюбивых культур.  Цена: от 450 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/volski-mono-sera.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "450",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "volski-mono-bor": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Волски Моно-Бор",
+  "sku": "volski-mono-bor",
+  "description": "Борное микроудобрение для цветения, опыления и формирования завязей.  Цена: от 635 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/volski-mono-bor.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "635",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "volski-mono-tsink": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Волски Моно-Цинк",
+  "sku": "volski-mono-tsink",
+  "description": "Цинковое микроудобрение для роста, фотосинтеза и стрессоустойчивости.  Цена: от 500 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/volski-mono-tsink.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "500",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "volski-mono-zhelezo": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Волски Моно-Железо",
+  "sku": "volski-mono-zhelezo",
+  "description": "Хелатное железосодержащее микроудобрение для профилактики хлороза.  Цена: от 400 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/volski-mono-zhelezo.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "400",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "volski-mono-med": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Волски Моно-Медь",
+  "sku": "volski-mono-med",
+  "description": "Хелатное медное микроудобрение для обменных процессов и устойчивости.  Цена: от 545 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/volski-mono-med.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "545",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "diforma-bor-molibden": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Диформа Бор-Молибден",
+  "sku": "diforma-bor-molibden",
+  "description": "Микроудобрение с бором и молибденом для цветения и азотного обмена.  Цена: от 1470 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/diforma-bor-molibden.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1470",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "diforma-kaltsiy-azot": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Диформа Кальций-Азот",
+  "sku": "diforma-kaltsiy-azot",
+  "description": "Удобрение с кальцием и азотом для прочности тканей и качества плодов.  Цена: от 685 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/diforma-kaltsiy-azot.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "685",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "diforma-magniy-tsink": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Диформа Магний-Цинк",
+  "sku": "diforma-magniy-tsink",
+  "description": "Микроудобрение с магнием и цинком для фотосинтеза и стрессоустойчивости.  Цена: от 670 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/diforma-magniy-tsink.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "670",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "diforma-magniy-marganets": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Диформа Магний-Марганец",
+  "sku": "diforma-magniy-marganets",
+  "description": "Микроудобрение с магнием и марганцем для фотосинтеза и ферментативных процессов.  Цена: от 455 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/diforma-magniy-marganets.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "455",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "diforma-marganets-tsink": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Диформа Марганец-Цинк",
+  "sku": "diforma-marganets-tsink",
+  "description": "Микроудобрение с марганцем и цинком для роста и фотосинтеза.  Цена: от 510 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/diforma-marganets-tsink.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "510",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "diforma-marganets-bor": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Диформа Марганец-Бор",
+  "sku": "diforma-marganets-bor",
+  "description": "Микроудобрение с марганцем и бором для цветения и формирования урожая.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/diforma-marganets-bor.png"
+ },
+ "diforma-kremniy-kaliy": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Диформа Кремний-Калий",
+  "sku": "diforma-kremniy-kaliy",
+  "description": "Удобрение с кремнием и калием для прочности тканей и стрессоустойчивости.  Цена: от 800 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/diforma-kremniy-kaliy.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "800",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "diforma-kobalt-selen": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Диформа Кобальт-Селен",
+  "sku": "diforma-kobalt-selen",
+  "description": "Микроудобрение с кобальтом и селеном для азотфиксации и антистрессовой защиты.  Цена: от 1245 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/diforma-kobalt-selen.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1245",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "relikt-r": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Реликт Р",
+  "sku": "relikt-r",
+  "description": "Гуминово-фульвовый стимулятор для повышения урожайности и стрессоустойчивости.  Цена: от 615 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Реликт"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/relikt-r.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "615",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "relikt-m-molibden": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Реликт М Молибден",
+  "sku": "relikt-m-molibden",
+  "description": "Молибденовое микроудобрение с аминокислотами для азотного обмена.  Цена: от 1340 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Реликт"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/relikt-m-molibden.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1340",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "relikt-m-sera": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Реликт М Сера",
+  "sku": "relikt-m-sera",
+  "description": "Серное удобрение для синтеза аминокислот, белка и повышения урожайности.  Цена: от 730 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Реликт"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/relikt-m-sera.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "730",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "relikt-m-bor": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Реликт М Бор",
+  "sku": "relikt-m-bor",
+  "description": "Борное микроудобрение для цветения, опыления и формирования плодов.  Цена: от 765 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Реликт"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/relikt-m-bor.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "765",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "relikt-m-tsink": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Реликт М Цинк",
+  "sku": "relikt-m-tsink",
+  "description": "Цинковое удобрение с аминокислотами для фотосинтеза и качества урожая.  Цена: от 695 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Реликт"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/relikt-m-tsink.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "695",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "relikt-m-kremniy": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Реликт М Кремний",
+  "sku": "relikt-m-kremniy",
+  "description": "Кремниевое удобрение с калием для укрепления растений и стрессоустойчивости.  Цена: от 470 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Реликт"
+  },
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/relikt-m-kremniy.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "470",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "volski-aminator": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Волски Аминатор",
+  "sku": "volski-aminator",
+  "description": "Комплекс аминокислот нового поколения для быстрого снятия стресса во время засухи и активации роста  Цена: от 900 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Удобрения и листовые подкормки / Листовые подкормки",
+  "brand": {
+   "@type": "Brand",
+   "name": "Волски Биохим"
+  },
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "900",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "atlant-super": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Атлант Супер",
+  "sku": "atlant-super",
+  "description": "пропиконазол 250 г/л + ципроконазол 80 г/л",
+  "category": "Фунгициды"
+ },
+ "granberg-pro-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Гранберг Про, КЭ",
+  "sku": "granberg-pro-ke",
+  "description": "Цена: 1562,5 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Фунгициды",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1562.5",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "granberg-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Гранберг, КЭ",
+  "sku": "granberg-ke",
+  "description": "Цена: 1417,5 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Фунгициды",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1417.5",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "alfatsin-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Альфацин, КЭ",
+  "sku": "alfatsin-ke",
+  "description": "Цена: 510 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Инсектициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/alfatsin-ke.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "510",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "garpun-ks": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Гарпун, КС",
+  "sku": "garpun-ks",
+  "description": "Цена: 1150 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Инсектициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/garpun-ks.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1150",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "kastra-ks": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Кастра, КС",
+  "sku": "kastra-ks",
+  "description": "Цена: 1125 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Инсектициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/kastra-ks.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1125",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "rangoli-noril-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Ранголи Норил, КЭ",
+  "sku": "rangoli-noril-ke",
+  "description": "Цена: 1040 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Инсектициды",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/rangoli-noril-ke.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1040",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "rangoli-regolon-vr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Ранголи-Реголон, ВР",
+  "sku": "rangoli-regolon-vr",
+  "description": "Цена: 392 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Десиканты",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/rangoli-regolon-vr.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "392",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "rigel-forte-vr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Ригель Форте, ВР",
+  "sku": "rigel-forte-vr",
+  "description": "Цена: 540 ₽. При 100% предоплате, доставка и хранение включены.",
+  "category": "Десиканты",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/rigel-forte-vr.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "540",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "volski-optim": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Волски Оптим",
+  "sku": "volski-optim",
+  "description": "рН-корректор рабочего раствора  Цена: от 700 ₽ (рассрочка 735 ₽). При 100% предоплате, доставка и хранение включены.",
+  "category": "Адъюванты",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/volski-optim.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "700",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "biostik-terra": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Биостик Терра",
+  "sku": "biostik-terra",
+  "description": "Биоклей для гороха, сои, чечевицы, рапса, льна, горчицы  Цена: от 635 ₽ (рассрочка 730 ₽). При 100% предоплате, доставка и хранение включены.",
+  "category": "Адъюванты",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "635",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "vega-90-zh": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Вега 90, Ж",
+  "sku": "vega-90-zh",
+  "description": "ПАВ-адъювант для совместного применения с эмульсионными гербицидами  Цена: от 220 ₽ (рассрочка 253 ₽). При 100% предоплате, доставка и хранение включены.",
+  "category": "Адъюванты",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/vega-90-zh.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "220",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "vega-antipena-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Вега АнтиПена, КЭ",
+  "sku": "vega-antipena-ke",
+  "description": "Пеногаситель для баковых смесей пестицидов",
+  "category": "Адъюванты",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/vega-antipena-ke.png"
+ },
+ "vega-balans-vr": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Вега Баланс, ВР",
+  "sku": "vega-balans-vr",
+  "description": "Кондиционер и смягчитель воды под физиологически кислые пестициды",
+  "category": "Адъюванты",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/vega-balans-vr.png"
+ },
+ "vega-gold-zh": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Вега Голд, Ж",
+  "sku": "vega-gold-zh",
+  "description": "Кремнийорганический ПАВ-адъювант, суперсмачиватель  Цена: от 1350 ₽ (рассрочка 1552,5 ₽). При 100% предоплате, доставка и хранение включены.",
+  "category": "Адъюванты",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/vega-gold-zh.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "1350",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "vega-kley": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Вега Клей",
+  "sku": "vega-kley",
+  "description": "Клей для крестоцветных и зернобобовых — против опадения и потери зерна",
+  "category": "Адъюванты"
+ },
+ "vega-turbo": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Вега Турбо",
+  "sku": "vega-turbo",
+  "description": "Чистящее средство для промывки опрыскивающего оборудования  Цена: от 426 ₽ (рассрочка 490 ₽). При 100% предоплате, доставка и хранение включены.",
+  "category": "Адъюванты",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/vega-turbo.png",
+  "offers": {
+   "@type": "Offer",
+   "priceCurrency": "RUB",
+   "price": "426",
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://sssaturn.ru/#org"
+   }
+  }
+ },
+ "vega-emuls-ke": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Вега Эмульс, КЭ",
+  "sku": "vega-emuls-ke",
+  "description": "ПАВ-адъювант для повышения эффективности СЗР",
+  "category": "Адъюванты",
+  "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/vega-emuls-ke.png"
+ }
+}
