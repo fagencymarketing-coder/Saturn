@@ -68,7 +68,7 @@ LAB={
  "Ростовская область":   (232,505,"start"),
  "Краснодарский край":   (232,547,"start"),
  "Ставропольский край":  (232,589,"start"),
- "Омская область":       (430,605,"end"),      # влево
+ "Омская область":       (430,632,"end"),      # влево; ниже Ставрополья — Montserrat шире Arial
  "Томская область":      (682,540,"middle"),   # вверх
  "Новосибирская область":(470,692,"end"),      # влево-вниз
  "Кемеровская область":  (762,690,"start"),    # вправо
@@ -78,7 +78,7 @@ LAB={
 }
 
 BG="#141210"; LAND="#211C18"; LANDS="rgba(255,255,255,.07)"
-HIL="#3A2A20"; HILS="rgba(255,66,0,.55)"; ORANGE="#FF4200"; TXT="#F3F1EE"; LEAD="rgba(255,255,255,.35)"
+HIL="#3A2A20"; HILS="rgba(255,66,0,.9)"; ORANGE="#FF4200"; TXT="#F3F1EE"; LEAD="rgba(255,255,255,.35)"
 svg=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="Montserrat,Arial,sans-serif">']
 svg.append(f'<rect width="{W}" height="{H}" fill="{BG}"/>')
 # base regions
@@ -88,7 +88,7 @@ for nm,rr,is_t in all_regions:
 # highlighted target regions (contour)
 for nm,rr,is_t in all_regions:
     if not is_t: continue
-    for ring in rr: svg.append(f'<path d="{path(ring)}" fill="{HIL}" stroke="{HILS}" stroke-width="1.8" stroke-linejoin="round"/>')
+    for ring in rr: svg.append(f'<path d="{path(ring)}" fill="{HIL}" stroke="{HILS}" stroke-width="2.2" stroke-linejoin="round"/>')
 # leaders
 for nm in TARGETS:
     px,py=PIN[nm]; lx,ly,anc=LAB[nm]
@@ -105,12 +105,15 @@ for nm in TARGETS:
 for nm in TARGETS:
     lx,ly,anc=LAB[nm]; col="#fff" if nm==OFFICE else TXT; fw="700" if nm==OFFICE else "600"
     svg.append(f'<text x="{lx}" y="{ly}" fill="{col}" font-size="21" font-weight="{fw}" text-anchor="{anc}">{LABEL[nm]}</text>')
-# title + legend
-svg.append(f'<text x="70" y="70" fill="#fff" font-size="30" font-weight="800">География поставок</text>')
-svg.append(f'<text x="70" y="102" fill="#B9B2AA" font-size="18">10 регионов · офис в Барнауле</text>')
-lgx,lgy=1180,60
-svg.append(f'<circle cx="{lgx}" cy="{lgy}" r="8" fill="{ORANGE}"/><text x="{lgx+18}" y="{lgy+6}" fill="{TXT}" font-size="19">регионы поставок</text>')
-svg.append(f'<circle cx="{lgx}" cy="{lgy+34}" r="9" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="{lgx}" cy="{lgy+34}" r="4" fill="#fff"/><text x="{lgx+18}" y="{lgy+40}" fill="{TXT}" font-size="19">офис · Барнаул</text>')
+# title + legend — только для самостоятельной картинки; на сайте они в вёрстке
+import os
+SITE = os.environ.get('MAP_SITE') == '1'
+if not SITE:
+  svg.append(f'<text x="70" y="70" fill="#fff" font-size="30" font-weight="800">География поставок</text>')
+  svg.append(f'<text x="70" y="102" fill="#B9B2AA" font-size="18">10 регионов · офис в Барнауле</text>')
+  lgx,lgy=1180,60
+  svg.append(f'<circle cx="{lgx}" cy="{lgy}" r="8" fill="{ORANGE}"/><text x="{lgx+18}" y="{lgy+6}" fill="{TXT}" font-size="19">регионы поставок</text>')
+  svg.append(f'<circle cx="{lgx}" cy="{lgy+34}" r="9" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="{lgx}" cy="{lgy+34}" r="4" fill="#fff"/><text x="{lgx+18}" y="{lgy+40}" fill="{TXT}" font-size="19">офис · Барнаул</text>')
 svg.append('</svg>')
-open("map_ref.svg","w").write("\n".join(svg))
+open("map_site.svg" if SITE else "map_ref.svg","w").write("\n".join(svg))
 print("wrote map_ref.svg")

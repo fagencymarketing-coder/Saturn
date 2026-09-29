@@ -5,7 +5,8 @@
 обведён контуром, пины стоят по **центрам самих регионов** (центроид полигона),
 поэтому каждый пин попадает внутрь своего контура.
 
-- `saturn-map-geo.png` — готовый рендер (для вставки/трассировки в Claude Design).
+- `saturn-map-site.png` — **версия для сайта**: без заголовка и легенды (они в вёрстке), пропорция 1,965 — как у `geo-map-10-outline.png` в макете, на замену ему.
+- `saturn-map-geo.png` — самостоятельная картинка с заголовком и легендой.
 - `map_ref.svg` — векторный источник (контуры регионов + подсветка 10 регионов +
   пины + выноски + легенда).
 - `build_map.py` — генератор SVG. Проекция Albers conic (`lat1=50, lat2=65,
@@ -18,8 +19,18 @@
 ## Пересборка
 ```
 cd design/geo-map
-python3 build_map.py                   # → map_ref.svg (печатает пины в px/%)
-/opt/node22/bin/node render_map.cjs    # → saturn-map-geo.png
+python3 build_map.py                              # → map_ref.svg
+MAP_SITE=1 python3 build_map.py                   # → map_site.svg (без заголовка и легенды)
+/opt/node22/bin/node render_map.cjs map_ref.svg saturn-map-geo.png
+/opt/node22/bin/node render_map.cjs map_site.svg saturn-map-site.png
+```
+🔴 `render_map.cjs` встраивает Montserrat из `catalogs/_fonts` и падает, если
+шрифт не загрузился. Раньше Chromium молча подставлял Arial — подписи регионов
+на сайте были набраны не фирменным шрифтом.
+
+После рендера `saturn-map-site.png` обрезается по контенту до пропорции 1,965
+(скрипт обрезки — в истории коммита 29.09).
+```
 ```
 
 ## Пины (центроиды регионов), % от рамки карты 1600×900
