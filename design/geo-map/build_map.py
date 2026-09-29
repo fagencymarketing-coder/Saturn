@@ -89,8 +89,10 @@ for nm,rr,is_t in all_regions:
 for nm,rr,is_t in all_regions:
     if not is_t: continue
     for ring in rr: svg.append(f'<path d="{path(ring)}" fill="{HIL}" stroke="{HILS}" stroke-width="2.2" stroke-linejoin="round"/>')
+import os
+NOLAB = os.environ.get('MAP_NOLABELS') == '1'
 # leaders
-for nm in TARGETS:
+for nm in ([] if NOLAB else TARGETS):
     px,py=PIN[nm]; lx,ly,anc=LAB[nm]
     ex = lx-6 if anc=="start" else (lx+6 if anc=="end" else lx)
     svg.append(f'<line x1="{px:.1f}" y1="{py:.1f}" x2="{ex}" y2="{ly-5}" stroke="{LEAD}" stroke-width="1.2"/>')
@@ -102,7 +104,7 @@ for nm in TARGETS:
     else:
         svg.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="8" fill="none" stroke="{ORANGE}" stroke-opacity=".22" stroke-width="7"/><circle cx="{px:.1f}" cy="{py:.1f}" r="8" fill="{ORANGE}"/>')
 # labels
-for nm in TARGETS:
+for nm in ([] if NOLAB else TARGETS):
     lx,ly,anc=LAB[nm]; col="#fff" if nm==OFFICE else TXT; fw="700" if nm==OFFICE else "600"
     svg.append(f'<text x="{lx}" y="{ly}" fill="{col}" font-size="21" font-weight="{fw}" text-anchor="{anc}">{LABEL[nm]}</text>')
 # title + legend — только для самостоятельной картинки; на сайте они в вёрстке
@@ -115,5 +117,5 @@ if not SITE:
   svg.append(f'<circle cx="{lgx}" cy="{lgy}" r="8" fill="{ORANGE}"/><text x="{lgx+18}" y="{lgy+6}" fill="{TXT}" font-size="19">регионы поставок</text>')
   svg.append(f'<circle cx="{lgx}" cy="{lgy+34}" r="9" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="{lgx}" cy="{lgy+34}" r="4" fill="#fff"/><text x="{lgx+18}" y="{lgy+40}" fill="{TXT}" font-size="19">офис · Барнаул</text>')
 svg.append('</svg>')
-open("map_site.svg" if SITE else "map_ref.svg","w").write("\n".join(svg))
+open(("map_mobile.svg" if NOLAB else "map_site.svg") if SITE else "map_ref.svg","w").write("\n".join(svg))
 print("wrote map_ref.svg")

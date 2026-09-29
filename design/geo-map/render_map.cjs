@@ -12,7 +12,8 @@ const face = w => `@font-face{font-family:Montserrat;font-weight:${w};src:url(da
   const p = await b.newPage({ viewport: { width: 1600, height: 900 }, deviceScaleFactor: 2 });
   await p.setContent(`<style>${[400, 600, 700, 800].map(face).join('')}body{margin:0}</style>${svg}`);
   await p.evaluate(() => document.fonts.ready);
-  const ok = await p.evaluate(() => document.fonts.check('600 21px Montserrat'));
+  // проверять шрифт есть смысл, только если в карте есть подписи
+  const ok = !svg.includes('<text') || await p.evaluate(() => document.fonts.check('600 21px Montserrat'));
   if (!ok) throw new Error('Montserrat не загрузился — подписи ушли бы в Arial');
   await p.locator('svg').screenshot({ path: path.join(__dirname, out) });
   await b.close(); console.log('rendered', out, '· Montserrat: ok');
