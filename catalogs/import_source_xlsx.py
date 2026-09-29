@@ -9,8 +9,10 @@
 Служебные колонки (фото, показ на главной и в каталоге) сохраняются из
 существующего catalog_tech.json — они не приходят из таблицы.
 """
-import csv, json, os
+import csv, json, os, sys
 import openpyxl
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from rules import excluded
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 XLSX = os.path.join(ROOT, 'source-files',
@@ -40,13 +42,16 @@ def cell(c):
 
 ws = openpyxl.load_workbook(XLSX, data_only=True)['Каталог']
 head = [c.value for c in ws[1]]
-rows = []
+rows, skipped = [], []
 for r in ws.iter_rows(min_row=2):
     if not r[0].value:
         continue
     d = {k: cell(c) for k, c in zip(head, r) if k}
     if not d.get('Категория') and d['Название'] in FIX_CATEGORY:
         d['Категория'] = FIX_CATEGORY[d['Название']]
+    if excluded(d):          # решение заказчика, см. rules.py
+        skipped.append(d['Название'])
+        continue
     rows.append(d)
 
 old = {r['Название']: r for r in json.load(open(JSON, encoding='utf-8'))}
@@ -62,4 +67,4 @@ with open(CSV, 'w', encoding='utf-8-sig', newline='') as f:
     w.writeheader()
     w.writerows(rows)
 
-print('позиций: %d · колонок: %d' % (len(rows), len(cols)))
+print('позиций: %d · колонок: %d · исключено по rules.py: %d' % (len(rows), len(cols), len(skipped)))

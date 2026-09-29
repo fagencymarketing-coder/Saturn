@@ -14,6 +14,7 @@
 import pymupdf, openpyxl, re, io, sys, os, html as H
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from typography import polish, price as price_fmt
+from rules import excluded
 
 XLS  = 'source-files/Saturn-katalog-i-prays-podtverzhdyon-2026-09-28.xlsx'
 HTML = 'catalogs/_price.html'
@@ -32,8 +33,9 @@ def shown(v):
 def table():
     ws = openpyxl.load_workbook(XLS, data_only=True)['Каталог']
     hdr = [c.value for c in ws[1]]
-    return [{h: shown(v) for h, v in zip(hdr, r)}
+    rows = [{h: shown(v) for h, v in zip(hdr, r)}
             for r in ws.iter_rows(min_row=2, values_only=True) if r[0]]
+    return [r for r in rows if not excluded(r)]   # решения заказчика, см. rules.py
 
 def html_cells():
     doc = io.open(HTML, encoding='utf-8').read()
