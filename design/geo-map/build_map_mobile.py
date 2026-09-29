@@ -14,9 +14,9 @@ PIN, all_regions, path = g['PIN'], g['all_regions'], g['path']
 TARGETS, OFFICE, LABEL = g['TARGETS'], g['OFFICE'], g['LABEL']
 
 VX, VY, VW, VH = 50, 300, 1250, 610          # видимая область, единицы карты
-FS = 36                                        # ≈12px при ширине 390
+FS = 30                                        # ≈10px при ширине 390 — тише, аккуратнее
 BG = "#141210"; LAND = "#211C18"; LANDS = "rgba(255,255,255,.07)"
-HIL = "#3A2A20"; HILS = "rgba(255,66,0,.9)"; ORANGE = "#FF4200"; TXT = "#F3F1EE"; LEAD = "rgba(255,255,255,.45)"
+HIL = "#3A2A20"; HILS = "rgba(255,66,0,.9)"; ORANGE = "#FF4200"; TXT = "#D9D4CE"; LEAD = "rgba(255,255,255,.35)"
 
 # подпись: x, y, выравнивание, [точка излома выноски]
 LAB = {
@@ -46,7 +46,7 @@ for nm in TARGETS:                                   # выноски
     ty = ly - FS * 0.35 if anc != "middle" else ly - FS
     pts = [(px, py)] + ([knee] if knee else []) + [(tx, ty)]
     if ((px - tx) ** 2 + (py - ty) ** 2) ** .5 > 30:
-        svg.append('<polyline points="' + ' '.join(f'{x:.0f},{y:.0f}' for x, y in pts) + f'" fill="none" stroke="{LEAD}" stroke-width="2"/>')
+        svg.append('<polyline points="' + ' '.join(f'{x:.0f},{y:.0f}' for x, y in pts) + f'" fill="none" stroke="{LEAD}" stroke-width="1.6"/>')
 for nm in TARGETS:                                   # пины
     px, py = PIN[nm]
     if nm == OFFICE:
@@ -55,9 +55,9 @@ for nm in TARGETS:                                   # пины
         svg.append(f'<circle cx="{px}" cy="{py}" r="9" fill="{ORANGE}" stroke="{BG}" stroke-width="3"/>')
 for nm in TARGETS:                                   # подписи с тёмной обводкой — читаются поверх контуров
     lx, ly, anc, _ = LAB[nm]
-    w = 700 if nm == OFFICE else 600
+    w = 600 if nm == OFFICE else 500
     svg.append(f'<text x="{lx}" y="{ly}" font-size="{FS}" font-weight="{w}" fill="{"#fff" if nm == OFFICE else TXT}" '
-               f'text-anchor="{anc}" stroke="{BG}" stroke-width="9" paint-order="stroke" stroke-linejoin="round">{LABEL[nm]}</text>')
+               f'text-anchor="{anc}" stroke="{BG}" stroke-width="7" paint-order="stroke" stroke-linejoin="round">{LABEL[nm]}</text>')
 svg.append('</svg>')
 io.open(os.path.join(os.path.dirname(__file__), 'map_mobile_labels.svg'), 'w', encoding='utf-8').write('\n'.join(svg))
 print('ok')
