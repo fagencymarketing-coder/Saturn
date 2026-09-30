@@ -8,7 +8,10 @@
 .saturn-legal strong{font-weight:600}
 .saturn-legal a{color:#FF4200;text-decoration:underline;text-decoration-thickness:1px}
 .saturn-legal a:hover{color:#D93800}
-.saturn-legal table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14px}
+.saturn-legal .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 20px;border:1px solid #EDE9E4;border-radius:8px}
+.saturn-legal table{width:100%;border-collapse:collapse;margin:0;font-size:14px;min-width:560px}
+.saturn-legal .tbl th:first-child,.saturn-legal .tbl td:first-child{border-left:0}
+.saturn-legal .tbl th:last-child,.saturn-legal .tbl td:last-child{border-right:0}
 .saturn-legal th{text-align:left;font-weight:600;background:#F6F5F3;padding:10px 12px;border:1px solid #EDE9E4}
 .saturn-legal td{padding:10px 12px;border:1px solid #EDE9E4;vertical-align:top}
 .saturn-legal hr{border:0;border-top:1px solid #EDE9E4;margin:28px 0}
@@ -37,7 +40,7 @@
 <p>2.3. <strong>Пользователь</strong> — любое лицо, посетившее Сайт.</p>
 <p>2.4. <strong>Файлы cookie</strong> — небольшие фрагменты данных, которые Сайт сохраняет в браузере Пользователя.</p>
 <h2>3. Какие данные обрабатываются, у кого и зачем</h2>
-<table>
+<div class="tbl"><table>
 <thead>
 <tr>
 <th>Цель обработки</th>
@@ -66,7 +69,7 @@
 <td>согласие субъекта</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>3.1. Оператор не обрабатывает специальные категории персональных данных (о здоровье, убеждениях и т.п.) и биометрические персональные данные.</p>
 <p>3.2. Оператор не принимает решений, порождающих юридические последствия для Пользователя, исключительно на основании автоматизированной обработки.</p>
 <p>3.3. Сайт не предназначен для лиц младше 18 лет. Оператор не собирает их данные намеренно.</p>
