@@ -594,34 +594,14 @@
 <rect x="95" y="330" width="1235" height="90" fill="url(#ft)"/>
 <rect x="95" y="710" width="1235" height="90" fill="url(#fb)"/>
 <rect x="1240" y="330" width="90" height="470" fill="url(#fr)"/>
-<polyline points="188,520 242,503" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<polyline points="136,533 242,546" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<polyline points="167,575 242,589" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<polyline points="582,611 465,640" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<polyline points="641,648 520,690 465,701" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<polyline points="658,706 610,759" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<polyline points="820,480 895,410" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<polyline points="1163,654 1105,729" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<polyline points="717,677 760,712 790,725" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<polyline points="682,596 700,504" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"/>
-<circle cx="188" cy="520" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="8"/><circle cx="188" cy="520" r="8" fill="#FF4200"/>
-<circle cx="136" cy="533" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="8"/><circle cx="136" cy="533" r="8" fill="#FF4200"/>
-<circle cx="167" cy="575" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="8"/><circle cx="167" cy="575" r="8" fill="#FF4200"/>
-<circle cx="582" cy="611" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="8"/><circle cx="582" cy="611" r="8" fill="#FF4200"/>
-<circle cx="641" cy="648" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="8"/><circle cx="641" cy="648" r="8" fill="#FF4200"/>
-<circle cx="658" cy="706" r="13" fill="#141210" stroke="#fff" stroke-width="2.6"/><circle cx="658" cy="706" r="5" fill="#fff"/>
-<circle cx="820" cy="480" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="8"/><circle cx="820" cy="480" r="8" fill="#FF4200"/>
-<circle cx="1163" cy="654" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="8"/><circle cx="1163" cy="654" r="8" fill="#FF4200"/>
-<circle cx="717" cy="677" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="8"/><circle cx="717" cy="677" r="8" fill="#FF4200"/>
-<circle cx="682" cy="596" r="8" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="8"/><circle cx="682" cy="596" r="8" fill="#FF4200"/>
-<text x="252" y="508" font-size="16" font-weight="600" fill="#EDE9E4" text-anchor="start" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Ростовская обл.</text>
-<text x="252" y="551" font-size="16" font-weight="600" fill="#EDE9E4" text-anchor="start" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Краснодарский край</text>
-<text x="252" y="594" font-size="16" font-weight="600" fill="#EDE9E4" text-anchor="start" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Ставропольский край</text>
-<text x="455" y="645" font-size="16" font-weight="600" fill="#EDE9E4" text-anchor="end" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Омская обл.</text>
-<text x="455" y="706" font-size="16" font-weight="600" fill="#EDE9E4" text-anchor="end" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Новосибирская обл.</text>
-<text x="610" y="775" font-size="16" font-weight="700" fill="#fff" text-anchor="middle" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Алтайский край · Барнаул</text>
-<text x="905" y="415" font-size="16" font-weight="600" fill="#EDE9E4" text-anchor="start" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Красноярский край</text>
-<text x="1105" y="745" font-size="16" font-weight="600" fill="#EDE9E4" text-anchor="middle" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Амурская обл.</text>
-<text x="800" y="730" font-size="16" font-weight="600" fill="#EDE9E4" text-anchor="start" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Кемеровская обл.</text>
-<text x="700" y="520" font-size="16" font-weight="600" fill="#EDE9E4" text-anchor="middle" stroke="#141210" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Томская обл.</text>
+<circle cx="188" cy="520" r="13" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="13"/><circle cx="188" cy="520" r="13" fill="#FF4200"/>
+<circle cx="136" cy="533" r="13" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="13"/><circle cx="136" cy="533" r="13" fill="#FF4200"/>
+<circle cx="167" cy="575" r="13" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="13"/><circle cx="167" cy="575" r="13" fill="#FF4200"/>
+<circle cx="582" cy="611" r="13" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="13"/><circle cx="582" cy="611" r="13" fill="#FF4200"/>
+<circle cx="641" cy="648" r="13" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="13"/><circle cx="641" cy="648" r="13" fill="#FF4200"/>
+<circle cx="658" cy="706" r="20" fill="#141210" stroke="#fff" stroke-width="4"/><circle cx="658" cy="706" r="8" fill="#fff"/>
+<circle cx="820" cy="480" r="13" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="13"/><circle cx="820" cy="480" r="13" fill="#FF4200"/>
+<circle cx="1163" cy="654" r="13" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="13"/><circle cx="1163" cy="654" r="13" fill="#FF4200"/>
+<circle cx="717" cy="677" r="13" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="13"/><circle cx="717" cy="677" r="13" fill="#FF4200"/>
+<circle cx="682" cy="596" r="13" fill="none" stroke="#FF4200" stroke-opacity=".22" stroke-width="13"/><circle cx="682" cy="596" r="13" fill="#FF4200"/>
 </svg>

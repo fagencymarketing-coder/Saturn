@@ -16,7 +16,8 @@ PIN, all_regions, path = g['PIN'], g['all_regions'], g['path']
 TARGETS, OFFICE, LABEL = g['TARGETS'], g['OFFICE'], g['LABEL']
 
 VX, VY, VW, VH = 95, 330, 1235, 470      # кадр: от Краснодара до Амурской
-FS = 19                                   # ≈19px при показе во всю ширину контейнера
+FS = 16                                   # ≈16px при показе во всю ширину контейнера
+NOLAB = os.environ.get('WIDE_NOLABELS') == '1'   # вариант без подписей — для телефона и планшета
 FADE = 90                                 # растушёвка срезанных краёв
 BG = "#141210"; LAND = "#211C18"; LANDS = "rgba(255,255,255,.07)"
 HIL = "#3A2A20"; HILS = "rgba(255,66,0,.9)"; ORANGE = "#FF4200"
@@ -55,7 +56,7 @@ svg.append(f'<rect x="{VX}" y="{VY}" width="{VW}" height="{FADE}" fill="url(#ft)
 svg.append(f'<rect x="{VX}" y="{VY+VH-FADE}" width="{VW}" height="{FADE}" fill="url(#fb)"/>')
 svg.append(f'<rect x="{VX+VW-FADE}" y="{VY}" width="{FADE}" height="{VH}" fill="url(#fr)"/>')
 
-for nm in TARGETS:                                   # выноски
+for nm in ([] if NOLAB else TARGETS):                # выноски
     px, py = PIN[nm]; lx, ly, anc, knee = LAB[nm]
     tx = lx + (10 if anc == "end" else -10 if anc == "start" else 0)
     ty = ly - FS * 0.34 if anc != "middle" else ly - FS
@@ -65,14 +66,16 @@ for nm in TARGETS:                                   # выноски
 for nm in TARGETS:                                   # точки
     px, py = PIN[nm]
     if nm == OFFICE:
-        svg.append(f'<circle cx="{px:.0f}" cy="{py:.0f}" r="13" fill="{BG}" stroke="#fff" stroke-width="2.6"/><circle cx="{px:.0f}" cy="{py:.0f}" r="5" fill="#fff"/>')
+        rr_, ri_, sw_ = (20, 8, 4) if NOLAB else (13, 5, 2.6)
+        svg.append(f'<circle cx="{px:.0f}" cy="{py:.0f}" r="{rr_}" fill="{BG}" stroke="#fff" stroke-width="{sw_}"/><circle cx="{px:.0f}" cy="{py:.0f}" r="{ri_}" fill="#fff"/>')
     else:
-        svg.append(f'<circle cx="{px:.0f}" cy="{py:.0f}" r="8" fill="none" stroke="{ORANGE}" stroke-opacity=".22" stroke-width="8"/><circle cx="{px:.0f}" cy="{py:.0f}" r="8" fill="{ORANGE}"/>')
-for nm in TARGETS:                                   # подписи с тёмной обводкой
+        r = 13 if NOLAB else 8
+        svg.append(f'<circle cx="{px:.0f}" cy="{py:.0f}" r="{r}" fill="none" stroke="{ORANGE}" stroke-opacity=".22" stroke-width="{r}"/><circle cx="{px:.0f}" cy="{py:.0f}" r="{r}" fill="{ORANGE}"/>')
+for nm in ([] if NOLAB else TARGETS):                # подписи с тёмной обводкой
     lx, ly, anc, _ = LAB[nm]
     w = 700 if nm == OFFICE else 600
     svg.append(f'<text x="{lx}" y="{ly}" font-size="{FS}" font-weight="{w}" fill="{"#fff" if nm == OFFICE else TXT}" '
                f'text-anchor="{anc}" stroke="{BG}" stroke-width="5" paint-order="stroke" stroke-linejoin="round">{LABEL[nm]}</text>')
 svg.append('</svg>')
-io.open(os.path.join(here, 'map_wide.svg'), 'w', encoding='utf-8').write('\n'.join(svg))
+io.open(os.path.join(here, 'map_wide_clean.svg' if NOLAB else 'map_wide.svg'), 'w', encoding='utf-8').write('\n'.join(svg))
 print('ok')
