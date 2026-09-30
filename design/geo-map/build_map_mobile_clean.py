@@ -30,9 +30,9 @@ for nm, rr, t in all_regions:
 for nm in TARGETS:
     px, py = PIN[nm]
     if nm == OFFICE:
-        svg.append(f'<circle cx="{px:.0f}" cy="{py:.0f}" r="24" fill="{BG}" stroke="#fff" stroke-width="5"/><circle cx="{px:.0f}" cy="{py:.0f}" r="9" fill="#fff"/>')
+        svg.append(f'<circle cx="{px:.0f}" cy="{py:.0f}" r="16" fill="{BG}" stroke="#fff" stroke-width="3.4"/><circle cx="{px:.0f}" cy="{py:.0f}" r="6" fill="#fff"/>')
     else:
-        svg.append(f'<circle cx="{px:.0f}" cy="{py:.0f}" r="16" fill="none" stroke="{ORANGE}" stroke-opacity=".20" stroke-width="14"/><circle cx="{px:.0f}" cy="{py:.0f}" r="16" fill="{ORANGE}"/>')
+        svg.append(f'<circle cx="{px:.0f}" cy="{py:.0f}" r="10" fill="none" stroke="{ORANGE}" stroke-opacity=".20" stroke-width="9"/><circle cx="{px:.0f}" cy="{py:.0f}" r="10" fill="{ORANGE}"/>')
 svg.append('</svg>')
 io.open(os.path.join(here, 'map_mobile_clean.svg'), 'w', encoding='utf-8').write('\n'.join(svg))
 print('ok')
