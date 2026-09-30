@@ -59,6 +59,17 @@ def section_of(sub):
     raise KeyError(sub)
 
 
+# фото, найденные позже (30.09.2026, сайты производителей) — в таблице заказчика их нет;
+# берём вырезку из _cutout по имени «<бренд> — <название>.png»
+_CUT = os.path.join(os.path.dirname(HERE), 'assets', 'product-photos', '_cutout')
+def extra_photo(name):
+    short = name.replace('FERTIKA ', '')
+    for f in sorted(os.listdir(_CUT)):
+        base = f.rsplit('.', 1)[0]
+        if base.endswith(' — ' + name) or base.endswith(' — ' + short):
+            return f
+    return ''
+
 rows = []
 for r in json.load(io.open(os.path.join(HERE, 'catalog_tech.json'), encoding='utf-8')):
     cat = r['Категория']
@@ -75,7 +86,7 @@ for r in json.load(io.open(os.path.join(HERE, 'catalog_tech.json'), encoding='ut
         'Название': r['Название'], 'Бренд': brand, 'Подпись в карточке': sub_line,
         'Культуры (фильтр)': ', '.join(crops_of(r.get('Культуры_и_фазы'))),
         'Цена': price_fmt(r['Цена_итог'], r['Название']), 'Фасовка': '' if pack == 'см. прайс' else pack,
-        'Фото': os.path.basename(r.get('Файл_вырезанный') or ''), '_sub': cat,
+        'Фото': os.path.basename(r.get('Файл_вырезанный') or '') or extra_photo(r['Название']), '_sub': cat,
     })
 
 SEED_PHOTO = {'Новосёл CL': 'seed-novosel-cl.jpg', 'Ampir 10 Express': 'seed-ampir-10.jpg',
