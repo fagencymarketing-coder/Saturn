@@ -129,7 +129,7 @@ def table(cat, items):
       <th class="c3">Норма расхода</th><th class="c4">Фасовка</th><th class="c5">Цена</th></tr>"""
     tr = []
     for i, r in enumerate(items):
-        price = esc(price_fmt(r['Цена_итог']))
+        price = esc(price_fmt(r['Цена_итог'], r['Название']))
         cls = 'req' if 'запрос' in price.lower() else 'pr'
         pack = esc(polish(r.get('Фасовка_прайс') or r.get('Фасовка_каталог')))
         tr.append(f"""<tr class="{'odd' if i%2 else ''}">

@@ -46,8 +46,20 @@ def polish(v):
     return s.strip()
 
 
-def price(v):
-    """Оформление колонки «Цена»: единый знак ₽ и единая формулировка запроса."""
+# Единица цены (за кг / за л). В таблице заказчика её нет; взята по фасовке
+# (мешок 25 кг за 227 ₽ — это цена за кг) — решение 30.09.2026, пока заказчик
+# не на связи. Позиции без понятной фасовки остаются просто с «₽».
+import csv as _csv, os as _os
+def _key(s):
+    return re.sub(r'[^a-zа-я0-9]', '', (s or '').lower().replace('ё', 'е').replace('k', 'к'))
+_UNITS_FILE = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'price_units.csv')
+UNITS = {_key(r['Название']): r['Единица']
+         for r in _csv.DictReader(open(_UNITS_FILE, encoding='utf-8'), delimiter=';')} if _os.path.exists(_UNITS_FILE) else {}
+
+
+def price(v, name=None):
+    """Оформление колонки «Цена»: единый знак ₽ и единая формулировка запроса.
+    С name — добавляет единицу из price_units.csv: «от 227 ₽/кг»."""
     s = polish(v)
     if not s:
         return ''
@@ -57,4 +69,8 @@ def price(v):
     m = BARE_PRICE.match(s)
     if m:
         s = m.group(1).strip() + ' ₽'
-    return re.sub(r'\s+', ' ', s).strip()
+    s = re.sub(r'\s+', ' ', s).strip()
+    unit = UNITS.get(_key(name)) if name else None
+    if unit:
+        s = re.sub(r'₽(?!/)', '₽/' + unit, s)
+    return s

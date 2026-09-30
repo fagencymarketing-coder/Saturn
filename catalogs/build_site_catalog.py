@@ -74,7 +74,7 @@ for r in json.load(io.open(os.path.join(HERE, 'catalog_tech.json'), encoding='ut
         'Раздел': section_of(cat), 'Подраздел': 'Адъюванты' if cat.startswith('Адъюванты') else cat,
         'Название': r['Название'], 'Бренд': brand, 'Подпись в карточке': sub_line,
         'Культуры (фильтр)': ', '.join(crops_of(r.get('Культуры_и_фазы'))),
-        'Цена': price_fmt(r['Цена_итог']), 'Фасовка': '' if pack == 'см. прайс' else pack,
+        'Цена': price_fmt(r['Цена_итог'], r['Название']), 'Фасовка': '' if pack == 'см. прайс' else pack,
         'Фото': os.path.basename(r.get('Файл_вырезанный') or ''), '_sub': cat,
     })
 
