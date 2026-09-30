@@ -18,7 +18,7 @@ ROOT = os.path.dirname(HERE)
 PHOTO_DIR = os.path.join(ROOT, 'assets', 'tilda-photos')
 # ссылка на фото в момент импорта; репозиторий должен быть доступен без входа
 PHOTO_BASE = os.environ.get('PHOTO_BASE',
-    'https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/assets/tilda-photos/')
+    'https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/')
 
 TR = dict(zip('абвгдеёжзийклмнопрстуфхцчшщъыьэюя',
               ['a','b','v','g','d','e','e','zh','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','ts','ch','sh','sch','','y','','e','yu','ya']))
