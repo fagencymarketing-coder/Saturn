@@ -2,8 +2,8 @@
 """Карта «География поставок» для телефона и планшета — одна карта, одним блоком.
 
 Та же композиция, что на ПК (вся Россия, 10 подсвеченных регионов, подпись у
-каждого), но подписи разложены под узкий экран: крупнее относительно карты
-(11,5px на телефоне, 13px на планшете) и вынесены в свободное место — южные
+каждого), но подписи разложены под узкий экран (9,5px на телефоне, 11px на
+планшете) и вынесены в свободное место — южные
 регионы подписаны над и под Кавказом, сибирские разведены «веером» во все
 стороны от кластера, нижний ряд подписей стоит под картой, где нет суши.
 
@@ -67,7 +67,7 @@ def build(fn, W, size, r, labels, bottom, view=RUS):
     placed = []
     for nm, (x, y, anc, text, *sub) in labels.items():
         off = nm == OFFICE
-        w = max([tw(text, size, 700 if off else 600)] + [tw(s, size - 1.5) for s in sub])
+        w = max([tw(text, size, 700 if off else 600)] + [tw(s, size - 1) for s in sub])
         x0 = {"start": x, "end": x - w, "middle": x - w / 2}[anc]
         top, bot = y - size * .8, y + ((size + 2) * len(sub) if sub else size * .25)
         placed.append((nm, *P(nm), x0, w, y, top, bot, text, sub, off))
@@ -88,7 +88,7 @@ def build(fn, W, size, r, labels, bottom, view=RUS):
         assert x0 >= 2 and x0 + w <= W - 2, f'{nm}: подпись вылезла за край ({x0:.0f}…{x0 + w:.0f} из {W})'
         o.append(f'<text x="{x0:.1f}" y="{y:.1f}" fill="{"#fff" if off else TXT}" font-size="{size}" font-weight="{700 if off else 600}" {halo}>{text}</text>')
         for i, s in enumerate(sub):
-            o.append(f'<text x="{x0:.1f}" y="{y + (size + 2) * (i + 1):.1f}" fill="{MUTED}" font-size="{size - 1.5}" font-weight="500" {halo}>{s}</text>')
+            o.append(f'<text x="{x0:.1f}" y="{y + (size + 2) * (i + 1):.1f}" fill="{MUTED}" font-size="{size - 1}" font-weight="500" {halo}>{s}</text>')
     o.append('</svg>')
     io.open(os.path.join(here, fn), 'w', encoding='utf-8').write('\n'.join(o))
     print('wrote', fn, W, '×', H)
@@ -106,9 +106,9 @@ MOBILE = {
     "Омская область":        (134, 150, "end", "Омская обл."),
     "Томская область":       (190, 122, "middle", "Томская обл."),
     "Красноярский край":     (230, 133, "start", "Красноярский край"),
-    "Новосибирская область": (152, 228, "end", "Новосибирская обл."),
-    "Алтайский край":        (172, 248, "middle", "Алтайский край", "офис · Барнаул"),
-    "Кемеровская область":   (202, 228, "start", "Кемеровская обл."),
+    "Новосибирская область": (152, 224, "end", "Новосибирская обл."),
+    "Алтайский край":        (172, 241, "middle", "Алтайский край", "офис · Барнаул"),
+    "Кемеровская область":   (202, 224, "start", "Кемеровская обл."),
     "Амурская область":      (354, 160, "end", "Амурская обл."),
 }
 TABLET = {
@@ -125,5 +125,5 @@ TABLET = {
 }
 
 if __name__ == '__main__':
-    build('map_mobile_v3.svg', 358, 11.5, 3.2, MOBILE, 42, RUS_M)
-    build('map_tablet_v3.svg', 704, 13, 4.5, TABLET, 24)
+    build('map_mobile_v3.svg', 358, 9.5, 2.8, MOBILE, 36, RUS_M)
+    build('map_tablet_v3.svg', 704, 11, 4, TABLET, 18)
