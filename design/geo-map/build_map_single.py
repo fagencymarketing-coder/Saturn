@@ -2,8 +2,8 @@
 """Карта «География поставок» для телефона и планшета — одна карта, одним блоком.
 
 Та же композиция, что на ПК (вся Россия, 10 подсвеченных регионов, подпись у
-каждого), но подписи разложены под узкий экран (9,5px на телефоне, 11px на
-планшете) и вынесены в свободное место — южные
+каждого), но подписи разложены под узкий экран (8,5px на телефоне, 10px на
+планшете, Montserrat 400) и вынесены в свободное место — южные
 регионы подписаны над и под Кавказом, сибирские разведены «веером» во все
 стороны от кластера, нижний ряд подписей стоит под картой, где нет суши.
 
@@ -25,7 +25,7 @@ PIN, all_regions, path, OFFICE = g['PIN'], g['all_regions'], g['path'], g['OFFIC
 
 BG = "#141210"; LAND = "#211C18"; LANDS = "rgba(255,255,255,.075)"
 HIL = "#3A2A20"; ORANGE = "#FF4200"
-TXT = "#F3F1EE"; MUTED = "#9A928A"; LEAD = "rgba(255,255,255,.4)"
+TXT = "#E9E4DE"; MUTED = "#8E867E"; LEAD = "rgba(255,255,255,.28)"
 RUS = (70, 60, 1460, 760)   # рамка всей России в координатах build_map (1600×900)
 # телефон: Калининград и край Чукотки/Камчатки за кадром — регионы поставок
 # лежат между Кубанью и Амуром, так карта на 25% крупнее
@@ -33,9 +33,9 @@ RUS_M = (95, 60, 1170, 740)
 FULL = RUS
 
 
-def tw(text, size, weight=600):
-    """Ширина строки Montserrat (оценка, кириллица чуть шире латиницы)."""
-    return len(text) * size * (.64 if weight >= 700 else .61)
+def tw(text, size, weight=400):
+    """Ширина строки Montserrat (оценка, кириллица шире латиницы)."""
+    return len(text) * size * (.65 if weight >= 600 else .6)
 
 
 def build(fn, W, size, r, labels, bottom, view=RUS):
@@ -46,7 +46,7 @@ def build(fn, W, size, r, labels, bottom, view=RUS):
     tr = f'translate({-RUS[0] * k:.2f} {-RUS[1] * k:.2f}) scale({k:.5f})'
     ns = 'vector-effect="non-scaling-stroke" stroke-linejoin="round"'
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="Montserrat,Arial,sans-serif">',
-         f'<defs><filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="{2.2 / k:.2f}"/></filter></defs>',
+         f'<defs><filter id="glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="{1.6 / k:.2f}"/></filter></defs>',
          f'<rect width="{W}" height="{H}" fill="{BG}"/>', f'<g transform="{tr}">']
     hil = []
     for nm, rr, t in all_regions:
@@ -54,8 +54,8 @@ def build(fn, W, size, r, labels, bottom, view=RUS):
             if t: hil.append(path(ring))
             else: o.append(f'<path d="{path(ring)}" fill="{LAND}" stroke="{LANDS}" stroke-width=".6" {ns}/>')
     d = "".join(hil)
-    o.append(f'<path d="{d}" fill="none" stroke="{ORANGE}" stroke-opacity=".6" stroke-width="{3.2 / k:.2f}" filter="url(#glow)"/>')
-    o.append(f'<path d="{d}" fill="{HIL}" stroke="{ORANGE}" stroke-width="{1.3 if W < 500 else 1.6}" {ns}/>')
+    o.append(f'<path d="{d}" fill="none" stroke="{ORANGE}" stroke-opacity=".32" stroke-width="{2.4 / k:.2f}" filter="url(#glow)"/>')
+    o.append(f'<path d="{d}" fill="{HIL}" stroke="{ORANGE}" stroke-width="{.9 if W < 500 else 1.1}" {ns}/>')
     o.append('</g>')
     if view != FULL:   # карта кадрирована — края растворяются в фоне, а не обрезаны
         o.append(f'<linearGradient id="fade"><stop offset="0" stop-color="{BG}"/><stop offset=".04" stop-color="{BG}" stop-opacity="0"/>'
@@ -67,7 +67,7 @@ def build(fn, W, size, r, labels, bottom, view=RUS):
     placed = []
     for nm, (x, y, anc, text, *sub) in labels.items():
         off = nm == OFFICE
-        w = max([tw(text, size, 700 if off else 600)] + [tw(s, size - 1) for s in sub])
+        w = max([tw(text, size, 600 if off else 400)] + [tw(s, size - 1) for s in sub])
         x0 = {"start": x, "end": x - w, "middle": x - w / 2}[anc]
         top, bot = y - size * .8, y + ((size + 2) * len(sub) if sub else size * .25)
         placed.append((nm, *P(nm), x0, w, y, top, bot, text, sub, off))
@@ -76,19 +76,19 @@ def build(fn, W, size, r, labels, bottom, view=RUS):
         dist = math.hypot(qx - px, qy - py); gap = r * (2.1 if nm == OFFICE else 1.5)
         if dist > gap + 3:
             sx, sy = px + (qx - px) * gap / dist, py + (qy - py) * gap / dist
-            o.append(f'<line x1="{sx:.1f}" y1="{sy:.1f}" x2="{qx:.1f}" y2="{qy:.1f}" stroke="{LEAD}" stroke-width="1"/>')
+            o.append(f'<line x1="{sx:.1f}" y1="{sy:.1f}" x2="{qx:.1f}" y2="{qy:.1f}" stroke="{LEAD}" stroke-width=".6"/>')
     for nm in labels:
         px, py = P(nm)
         if nm == OFFICE:
-            o.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="{r * 1.8:.1f}" fill="{BG}" stroke="#fff" stroke-width="{r * .42:.1f}"/><circle cx="{px:.1f}" cy="{py:.1f}" r="{r * .72:.1f}" fill="#fff"/>')
+            o.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="{r * 1.8:.1f}" fill="{BG}" stroke="#fff" stroke-width="{r * .32:.2f}"/><circle cx="{px:.1f}" cy="{py:.1f}" r="{r * .62:.1f}" fill="#fff"/>')
         else:
-            o.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="{r * 2:.1f}" fill="{ORANGE}" fill-opacity=".2"/><circle cx="{px:.1f}" cy="{py:.1f}" r="{r:.1f}" fill="{ORANGE}"/>')
-    halo = f'stroke="{BG}" stroke-width="{size * .34:.1f}" stroke-linejoin="round" paint-order="stroke"'
+            o.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="{r * 2.2:.1f}" fill="{ORANGE}" fill-opacity=".14"/><circle cx="{px:.1f}" cy="{py:.1f}" r="{r:.1f}" fill="{ORANGE}"/>')
+    halo = f'stroke="{BG}" stroke-width="{size * .28:.1f}" stroke-linejoin="round" paint-order="stroke"'
     for nm, px, py, x0, w, y, top, bot, text, sub, off in placed:
         assert x0 >= 2 and x0 + w <= W - 2, f'{nm}: подпись вылезла за край ({x0:.0f}…{x0 + w:.0f} из {W})'
-        o.append(f'<text x="{x0:.1f}" y="{y:.1f}" fill="{"#fff" if off else TXT}" font-size="{size}" font-weight="{700 if off else 600}" {halo}>{text}</text>')
+        o.append(f'<text x="{x0:.1f}" y="{y:.1f}" fill="{"#fff" if off else TXT}" font-size="{size}" font-weight="{600 if off else 400}" {halo}>{text}</text>')
         for i, s in enumerate(sub):
-            o.append(f'<text x="{x0:.1f}" y="{y + (size + 2) * (i + 1):.1f}" fill="{MUTED}" font-size="{size - 1}" font-weight="500" {halo}>{s}</text>')
+            o.append(f'<text x="{x0:.1f}" y="{y + (size + 2) * (i + 1):.1f}" fill="{MUTED}" font-size="{size - 1}" font-weight="400" {halo}>{s}</text>')
     o.append('</svg>')
     io.open(os.path.join(here, fn), 'w', encoding='utf-8').write('\n'.join(o))
     print('wrote', fn, W, '×', H)
@@ -100,30 +100,30 @@ def build(fn, W, size, r, labels, bottom, view=RUS):
 # Томск 180,164 / 295,258 · Кемерово 190,189 / 312,298 · Красноярск 222,129 / 362,203
 # Амур 327,182 / 527,286
 MOBILE = {
-    "Краснодарский край":    (4, 106, "start", "Краснодарский край"),
-    "Ростовская область":    (40, 123, "start", "Ростовская обл."),
-    "Ставропольский край":   (4, 186, "start", "Ставропольский край"),
-    "Омская область":        (134, 150, "end", "Омская обл."),
-    "Томская область":       (190, 122, "middle", "Томская обл."),
-    "Красноярский край":     (230, 133, "start", "Красноярский край"),
-    "Новосибирская область": (152, 224, "end", "Новосибирская обл."),
-    "Алтайский край":        (172, 241, "middle", "Алтайский край", "офис · Барнаул"),
-    "Кемеровская область":   (202, 224, "start", "Кемеровская обл."),
-    "Амурская область":      (354, 160, "end", "Амурская обл."),
+    "Краснодарский край":    (4, 112, "start", "Краснодарский край"),
+    "Ростовская область":    (38, 127, "start", "Ростовская обл."),
+    "Ставропольский край":   (4, 181, "start", "Ставропольский край"),
+    "Омская область":        (138, 153, "end", "Омская обл."),
+    "Томская область":       (176, 128, "middle", "Томская обл."),
+    "Красноярский край":     (229, 132, "start", "Красноярский край"),
+    "Новосибирская область": (154, 219, "end", "Новосибирская обл."),
+    "Алтайский край":        (172, 233, "middle", "Алтайский край", "офис · Барнаул"),
+    "Кемеровская область":   (200, 219, "start", "Кемеровская обл."),
+    "Амурская область":      (352, 165, "end", "Амурская обл."),
 }
 TABLET = {
-    "Краснодарский край":    (6, 192, "start", "Краснодарский край"),
-    "Ростовская область":    (74, 214, "start", "Ростовская обл."),
-    "Ставропольский край":   (6, 286, "start", "Ставропольский край"),
-    "Омская область":        (234, 244, "end", "Омская обл."),
-    "Томская область":       (302, 228, "middle", "Томская обл."),
-    "Красноярский край":     (376, 207, "start", "Красноярский край"),
-    "Новосибирская область": (250, 334, "end", "Новосибирская обл."),
-    "Алтайский край":        (283, 362, "middle", "Алтайский край", "офис · Барнаул"),
-    "Кемеровская область":   (324, 336, "start", "Кемеровская обл."),
-    "Амурская область":      (527, 320, "middle", "Амурская обл."),
+    "Краснодарский край":    (6, 198, "start", "Краснодарский край"),
+    "Ростовская область":    (70, 217, "start", "Ростовская обл."),
+    "Ставропольский край":   (6, 279, "start", "Ставропольский край"),
+    "Омская область":        (236, 248, "end", "Омская обл."),
+    "Томская область":       (300, 234, "middle", "Томская обл."),
+    "Красноярский край":     (374, 206, "start", "Красноярский край"),
+    "Новосибирская область": (256, 328, "end", "Новосибирская обл."),
+    "Алтайский край":        (283, 350, "middle", "Алтайский край", "офис · Барнаул"),
+    "Кемеровская область":   (322, 330, "start", "Кемеровская обл."),
+    "Амурская область":      (527, 314, "middle", "Амурская обл."),
 }
 
 if __name__ == '__main__':
-    build('map_mobile_v3.svg', 358, 9.5, 2.8, MOBILE, 36, RUS_M)
-    build('map_tablet_v3.svg', 704, 11, 4, TABLET, 18)
+    build('map_mobile_v3.svg', 358, 8.5, 2.2, MOBILE, 30, RUS_M)
+    build('map_tablet_v3.svg', 704, 10, 3.2, TABLET, 14)
