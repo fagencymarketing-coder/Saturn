@@ -52,7 +52,7 @@ for nm, rr, t in all_regions:
         for ring in rr:
             defs.append(f'<path d="{path(ring)}" fill="{HIL}" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>')
 defs.append('</g>')
-defs.append('<filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>')
+defs.append('<filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.5"/></filter>')
 defs.append('<linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A1714" stop-opacity=".97"/><stop offset=".13" stop-color="#1A1714" stop-opacity=".55"/><stop offset=".3" stop-color="#1A1714" stop-opacity="0"/><stop offset=".85" stop-color="#1A1714" stop-opacity="0"/><stop offset="1" stop-color="#1A1714" stop-opacity=".6"/></linearGradient>')
 defs.append('<radialGradient id="vign" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="#FF4200" stop-opacity=".07"/><stop offset="1" stop-color="#FF4200" stop-opacity="0"/></radialGradient>')
 defs.append('</defs>')
@@ -81,7 +81,7 @@ class Panel:
         out.append(f'<g clip-path="url(#{cid})"><g transform="{tr}">')
         out.append('<use href="#land"/>')
         if glow:
-            out.append(f'<use href="#hil" fill="none" stroke="{ORANGE}" stroke-opacity=".55" stroke-width="{hil_w * 3}" filter="url(#glow)"/>')
+            out.append(f'<use href="#hil" fill="none" stroke="{ORANGE}" stroke-opacity=".28" stroke-width="{hil_w * 2.2}" filter="url(#glow)"/>')
         out.append(f'<use href="#hil" stroke="{HILS}" stroke-width="{hil_w}"/>')
         out.append('</g></g>')
 
@@ -91,7 +91,7 @@ def dot(out, x, y, r, office=False):
         out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r * 1.75:.1f}" fill="{BG}" stroke="#fff" stroke-width="{max(1.5, r * .32):.1f}"/>'
                    f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r * .7:.1f}" fill="#fff"/>')
     else:
-        out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r * 2.1:.1f}" fill="{ORANGE}" fill-opacity=".16"/>'
+        out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r * 1.8:.1f}" fill="{ORANGE}" fill-opacity=".12"/>'
                    f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}" fill="{ORANGE}"/>')
 
 
@@ -196,7 +196,7 @@ def overview(out, X, Y, W, fs, r, amur):
     ax, ay = p.pin("Амурская область")
     dx, dy, anc = amur
     leader(out, [(ax, ay + r * 1.3), (ax + dx, ay + dy - fs - 1)])
-    label(out, "Амурская обл.", ax + dx, ay + dy, fs + 1, anc)
+    label(out, "Амурская обл.", ax + dx, ay + dy, fs, anc, 600, MUTED)
     return H
 
 
@@ -211,7 +211,7 @@ def inset(out, view, X, Y, W, H, title, count, spec, fs_head, fs_lab, r, pad_top
 
 def mobile(out, W):
     y = 4
-    y += overview(out, 0, y, W, 10, 2.6, (0, 26, "middle")) + 22
+    y += overview(out, 8, y, W - 16, 10, 2.6, (0, 26, "middle")) + 22
     hs = 356
     inset(out, SIB, 0, y, W, hs, "СИБИРЬ", "6 регионов", SIB_LAB, 10, 12.5, 5.5)
     y += hs + 12
@@ -222,10 +222,10 @@ def mobile(out, W):
 
 def tablet(out, W):
     y = 4
-    y += overview(out, 0, y, W, 12, 4, (0, 34, "middle")) + 26
+    y += overview(out, 10, y, W - 20, 12, 4, (0, 34, "middle")) + 26
     gap = 16; cw = (W - gap) / 2; h = 380
-    inset(out, SOUTH, 0, y, cw, h, "ЮГ РОССИИ", "3 региона", SOUTH_LAB, 10.5, 13, 6)
-    inset(out, SIB, cw + gap, y, cw, h, "СИБИРЬ", "6 регионов", SIB_LAB, 10.5, 13, 6)
+    inset(out, SIB, 0, y, cw, h, "СИБИРЬ", "6 регионов", SIB_LAB, 10.5, 13, 6)
+    inset(out, SOUTH, cw + gap, y, cw, h, "ЮГ РОССИИ", "3 региона", SOUTH_LAB, 10.5, 13, 6)
     return y + h
 
 
