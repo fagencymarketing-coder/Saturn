@@ -37,7 +37,7 @@ function table(rows, widths, opts = {}) {
 
 // ─────────────────────────── ДОГОВОР ───────────────────────────
 const body = [];
-body.push(center('ДОГОВОР ВОЗМЕЗДНОГО ОКАЗАНИЯ УСЛУГ № ____', { bold: true, after: 60 }));
+body.push(center('ДОГОВОР ВОЗМЕЗДНОГО ОКАЗАНИЯ УСЛУГ № 1', { bold: true, after: 60 }));
 body.push(center('по созданию сайта', { after: 240 }));
 
 body.push(new Paragraph({
@@ -113,7 +113,7 @@ body.push(table([
 // ─────────────────── ПРИЛОЖЕНИЕ № 1 ───────────────────
 body.push(brk());
 body.push(center('ПРИЛОЖЕНИЕ № 1', { bold: true, after: 60 }));
-body.push(center('к Договору возмездного оказания услуг № ____ от «01» октября 2026 г.', { after: 60 }));
+body.push(center('к Договору возмездного оказания услуг № 1 от «01» октября 2026 г.', { after: 60 }));
 body.push(center('Состав услуг по созданию сайта', { bold: true, after: 240 }));
 
 body.push(new Paragraph({
@@ -155,7 +155,7 @@ body.push(table([
 // ─────────────────── ПРИЛОЖЕНИЕ № 2 ───────────────────
 body.push(brk());
 body.push(center('ПРИЛОЖЕНИЕ № 2', { bold: true, after: 60 }));
-body.push(center('к Договору возмездного оказания услуг № ____ от «01» октября 2026 г.', { after: 60 }));
+body.push(center('к Договору возмездного оказания услуг № 1 от «01» октября 2026 г.', { after: 60 }));
 body.push(center('Оплата тарифа платформы для размещения сайта', { bold: true, after: 240 }));
 
 body.push(new Paragraph({
@@ -197,7 +197,7 @@ body.push(table([
 body.push(brk());
 body.push(center('АКТ № 1', { bold: true, after: 60 }));
 body.push(center('сдачи-приёмки оказанных услуг', { bold: true, after: 60 }));
-body.push(center('к Приложению № 2 к Договору возмездного оказания услуг № ____ от «01» октября 2026 г.', { after: 240 }));
+body.push(center('к Приложению № 2 к Договору возмездного оказания услуг № 1 от «01» октября 2026 г.', { after: 240 }));
 
 body.push(new Paragraph({
   tabStops: [{ type: 'right', position: W }], spacing: { after: 240 },
