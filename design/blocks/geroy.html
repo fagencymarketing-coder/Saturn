@@ -1,0 +1,133 @@
+<!-- Блок «Герой» + полоса цифр для вставки в T123 на главной -->
+<style>
+.sa-hero{--ink:#141210;--acc:#FF4200;--mut:#6B6560;--line:#E7E3DE;--lin2:#EDE9E4;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#fff;overflow:hidden}
+.sa-hero *{box-sizing:border-box;margin:0;padding:0}
+.sa-hero__in{max-width:1200px;margin:0 auto;padding:128px 20px;position:relative;
+  display:grid;grid-template-columns:560fr 526fr;gap:56px;align-items:center}
+.sa-hero__h{font-size:42px;font-weight:800;line-height:45.4px;letter-spacing:-.01em}
+.sa-hero__h em{font-style:normal;color:var(--acc)}
+.sa-hero__sub{font-size:20px;font-weight:400;line-height:30px;color:var(--mut);
+  max-width:460px;margin-top:24px}
+.sa-hero__btns{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+.sa-hero__b1,.sa-hero__b2{display:inline-flex;align-items:center;justify-content:center;
+  height:52px;padding:0 28px;border-radius:12px;text-decoration:none;font-size:16px}
+.sa-hero__b1{background:var(--acc);color:#fff;font-weight:700}
+.sa-hero__b2{border:1px solid var(--line);color:var(--ink);font-weight:600}
+.sa-hero__nums{display:flex;max-width:541px;margin-top:32px}
+.sa-hero__n{flex:1;padding-right:32px}
+.sa-hero__n+.sa-hero__n{padding-left:32px;border-left:1px solid var(--lin2)}
+.sa-hero__n b{display:block;font-size:32px;font-weight:800;line-height:1.1;white-space:nowrap}
+.sa-hero__n span{display:block;font-size:13px;font-weight:500;color:var(--mut);margin-top:8px}
+.sa-hero__strip{display:none}
+.sa-hero__short{display:none}
+.sa-hero__pic{position:relative}
+.sa-hero__pic img{display:block;height:600px;object-fit:cover;object-position:35% center;
+  border-radius:22px 0 0 22px;
+  /* фото уходит в правый край экрана, за пределы контейнера 1200 */
+  width:calc(100% + max(20px,(100vw - 1160px)/2))}
+.sa-hero__em{position:absolute;top:50%;left:0;width:104px;height:104px;z-index:2;
+  animation:sa-float 7s ease-in-out infinite}
+.sa-hero__em img{display:block;width:104px;height:104px;object-fit:contain;
+  filter:drop-shadow(0 8px 24px rgba(20,18,16,.18))}
+@keyframes sa-float{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 8px))}}
+.sa-hero__em{transform:translate(-50%,-50%)}
+@media (prefers-reduced-motion:reduce){.sa-hero__em{animation:none}}
+@media (hover:hover){
+  .sa-hero__b1:hover{background:#D93800}
+  .sa-hero__b2:hover{border-color:var(--ink)}
+}
+/* планшет */
+@media (max-width:1023px) and (min-width:768px){
+  .sa-hero__in{padding:72px 32px;gap:32px;grid-template-columns:1fr 1fr}
+  .sa-hero__h{font-size:34px;line-height:37px}
+  .sa-hero__sub{font-size:16px;line-height:24px;margin-top:18px}
+  .sa-hero__btns{margin-top:28px;gap:10px}
+  .sa-hero__b1,.sa-hero__b2{padding:0 20px;font-size:15px}
+  .sa-hero__nums{margin-top:28px}
+  .sa-hero__n{padding-right:16px}
+  .sa-hero__n+.sa-hero__n{padding-left:16px}
+  .sa-hero__n b{font-size:24px}
+  .sa-hero__n span{font-size:12px;line-height:15.6px}
+  .sa-hero__pic img{width:100%;height:480px;border-radius:22px}
+  .sa-hero__em{left:auto;right:20px;top:20px;width:80px;height:80px;transform:none;
+    animation:sa-floatY 7s ease-in-out infinite}
+  .sa-hero__em img{width:80px;height:80px}
+}
+@keyframes sa-floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes sa-floatX{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-8px)}}
+/* телефон: фото на весь экран, текст поверх */
+@media (max-width:767px){
+  .sa-hero{background:var(--ink)}
+  .sa-hero__in{display:block;padding:0;max-width:none;height:min(78vh,660px);min-height:560px}
+  .sa-hero__pic{position:absolute;inset:0;z-index:0}
+  .sa-hero__pic img{width:100%;height:100%;object-position:38% center;border-radius:0}
+  .sa-hero__pic::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(20,18,16,.96) 0%,rgba(20,18,16,.88) 42%,rgba(20,18,16,.08) 82%)}
+  .sa-hero__em{left:50%;right:auto;top:16%;width:64px;height:64px;
+    transform:translateX(-50%);animation:sa-floatX 7s ease-in-out infinite}
+  .sa-hero__em img{width:64px;height:64px}
+  .sa-hero__col{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 20px 28px}
+  /* самое длинное слово «сельхозпроизводителей» = 13,65em,
+     поэтому кегль привязан к ширине экрана и слово никогда не рвётся */
+  .sa-hero__h{font-size:clamp(18px,calc(7.2vw - 3px),26px);line-height:1.15;color:#fff;
+    overflow-wrap:break-word}
+  .sa-hero__sub{font-size:15px;line-height:22.5px;color:rgba(255,255,255,.8);margin-top:14px}
+  .sa-hero__btns{gap:10px;margin-top:22px;flex-wrap:nowrap}
+  .sa-hero__b1,.sa-hero__b2{height:52px;font-size:15px;font-weight:600;padding:0 16px;
+    white-space:nowrap}
+  .sa-hero__b1{flex:1 1 auto}
+  .sa-hero__b2{flex:0 0 auto;border-color:rgba(255,255,255,.25);color:#fff}
+  .sa-hero__long{display:none}
+  .sa-hero__short{display:inline}
+  .sa-hero__nums{display:none}
+  .sa-hero__strip{display:block;background:#fff;padding:22px 20px}
+  .sa-hero__strip .sa-hero__nums{display:flex;margin-top:0;max-width:none}
+  .sa-hero__strip .sa-hero__n{padding-right:12px}
+  .sa-hero__strip .sa-hero__n+.sa-hero__n{padding-left:12px}
+  .sa-hero__strip .sa-hero__n b{font-size:22px}
+  .sa-hero__strip .sa-hero__n span{font-size:12px;line-height:15.6px;margin-top:6px}
+}
+</style>
+
+<div class="sa-hero">
+  <div class="sa-hero__in">
+
+    <div class="sa-hero__col">
+      <h1 class="sa-hero__h">Семена, <em>удобрения</em> и защита растений для сельхозпроизводителей</h1>
+      <p class="sa-hero__sub">Подберём решения под культуру, регион и задачу хозяйства</p>
+      <div class="sa-hero__btns">
+        <a class="sa-hero__b1" href="#contacts">Подобрать решение</a>
+        <a class="sa-hero__b2" href="/catalog"><span class="sa-hero__long">Перейти в к</span><span class="sa-hero__short">К</span>аталог</a>
+      </div>
+      <div class="sa-hero__nums">
+        <div class="sa-hero__n"><b>5 000+ га</b><span>испытаний, 2025</span></div>
+        <div class="sa-hero__n"><b>10</b><span>регионов поставок</span></div>
+        <div class="sa-hero__n"><b>до 28%</b><span>прибавка урожайности</span></div>
+      </div>
+    </div>
+
+    <div class="sa-hero__pic">
+      <img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/hero-field.jpg" alt="Агроном осматривает посевы в поле">
+      <div class="sa-hero__em"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-emblem.png" alt=""></div>
+    </div>
+
+  </div>
+
+  <div class="sa-hero__strip" aria-hidden="true">
+    <div class="sa-hero__nums">
+      <div class="sa-hero__n"><b>5 000+ га</b><span>испытаний, 2025</span></div>
+      <div class="sa-hero__n"><b>10</b><span>регионов поставок</span></div>
+      <div class="sa-hero__n"><b>до 28%</b><span>прибавка урожайности</span></div>
+    </div>
+  </div>
+</div>
+
+<style>
+@media (max-width:359px){
+  .sa-hero__b1,.sa-hero__b2{padding:0 12px;font-size:14px}
+  .sa-hero__strip .sa-hero__n b{font-size:19px}
+  .sa-hero__strip .sa-hero__n span{font-size:11px;line-height:14px}
+}
+</style>
