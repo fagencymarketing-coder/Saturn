@@ -16,8 +16,8 @@ https://raw.githubusercontent.com/fagencymarketing-coder/saturn/main/design/bloc
 | 2 | Популярные позиции | `populyarnye.html` | T123 |
 | 3 | Семена | `semena.html` | T123 |
 | 4 | Агросопровождение | `agro.html` | T123 |
-| 5 | География | `geografiya.html` | T123 |
-| 6 | Результаты испытаний | `rezultaty.html` | T123 |
+| 5 | Результаты испытаний | `rezultaty.html` | T123 |
+| 6 | География | `geografiya.html` | T123 |
 | 7 | Документы | `dokumenty.html` | T123 |
 | 8 | Контакты (люди) | `kontakty.html` | T123 |
 | 9 | Форма заявки | — | **штатный блок формы Tilda** |

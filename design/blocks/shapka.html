@@ -54,6 +54,13 @@
   .sa-hd__icons{display:flex}
   .sa-hd__sp{height:64px}
 }
+/* якоря: закреплённая шапка не должна перекрывать заголовок секции */
+html{scroll-behavior:smooth}
+#seeds,#service,#contacts,#geo,#docs,#results{scroll-margin-top:85px}
+@media (max-width:767px){
+  #seeds,#service,#contacts,#geo,#docs,#results{scroll-margin-top:64px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 
 <div class="sa-hd">
