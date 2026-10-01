@@ -1,0 +1,121 @@
+<!-- Блок «Результаты производственных испытаний» для вставки в T123 на Tilda -->
+<style>
+.sa-res{--acc:#FF4200;--ink:#141210;--mut:#8A837C;--tile:#F0EDE9;--line:#E7E3DE;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#F6F5F3;padding:160px 0 128px}
+.sa-res *{box-sizing:border-box;margin:0;padding:0}
+.sa-res__in{max-width:1200px;margin:0 auto;padding:0 20px}
+.sa-res__kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mut);line-height:1}
+.sa-res__h{font-size:40px;font-weight:800;line-height:46px;margin-top:28px;max-width:720px;
+  letter-spacing:-.01em}
+.sa-res__nums{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.sa-res__num b{display:block;font-size:32px;font-weight:800;line-height:1.1}
+.sa-res__num span{display:block;font-size:13px;font-weight:500;color:var(--mut);margin-top:8px}
+.sa-res__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:72px}
+.sa-res__card{display:flex;flex-direction:column;background:#fff;border-radius:22px;padding:32px}
+.sa-res__chip{align-self:flex-start;display:inline-flex;align-items:center;height:32px;
+  padding:0 14px;border-radius:999px;background:var(--tile);
+  font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.sa-res__big{font-size:48px;font-weight:800;line-height:1;color:var(--acc);margin-top:12px}
+.sa-res__cap{font-size:15px;font-weight:500;line-height:19.5px;color:#6B6560;margin-top:8px}
+.sa-res__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:auto;padding-top:15px}
+.sa-res__reg{font-size:14px;font-weight:600;white-space:nowrap}
+.sa-res__pdf{font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;
+  white-space:nowrap;border-bottom:1px solid var(--line);padding-bottom:1px}
+.sa-res__card_dark{background:var(--ink);color:#fff}
+.sa-res__ico{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center}
+.sa-res__ico svg{width:24px;height:24px;stroke:#FF4200;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.sa-res__dh{font-size:22px;font-weight:800;line-height:26.4px;margin-top:28px}
+.sa-res__dt{font-size:13px;font-weight:400;line-height:20.8px;color:#B5B0AA;margin-top:10px}
+.sa-res__btn{display:flex;align-items:center;justify-content:center;height:52px;
+  border-radius:12px;background:var(--acc);color:#fff;text-decoration:none;
+  font-size:15px;font-weight:700;margin-top:auto;margin-top:max(24px,auto)}
+.sa-res__card_dark .sa-res__dt{margin-bottom:24px}
+@media (hover:hover){
+  .sa-res__pdf:hover{color:var(--acc);border-color:var(--acc)}
+  .sa-res__btn:hover{background:#D93800}
+}
+@media (max-width:1199px){
+  .sa-res{padding:96px 0 80px}
+  .sa-res__in{padding:0 32px}
+  .sa-res__h{font-size:28px;line-height:32px;margin-top:24px}
+  .sa-res__nums{gap:12px;margin-top:40px}
+  .sa-res__num b{font-size:26px}
+  .sa-res__grid{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:48px}
+  .sa-res__card{padding:24px}
+  .sa-res__big{font-size:40px}
+}
+@media (max-width:640px){
+  .sa-res{padding:72px 0}
+  .sa-res__in{padding:0 20px}
+  .sa-res__nums{margin-top:32px;gap:8px}
+  .sa-res__num b{font-size:20px;white-space:nowrap}
+  .sa-res__num span{font-size:11px;line-height:14px;margin-top:6px}
+  .sa-res__grid{grid-template-columns:1fr;gap:12px;margin-top:36px}
+  .sa-res__card{padding:20px}
+  .sa-res__chip{font-size:11px;height:28px;padding:0 12px}
+  .sa-res__big{font-size:40px}
+  .sa-res__cap{font-size:14px}
+  .sa-res__foot{padding-top:16px;min-height:44px}
+  .sa-res__pdf{display:flex;align-items:center;min-height:44px}
+}
+</style>
+
+<section class="sa-res">
+  <div class="sa-res__in">
+    <span class="sa-res__kicker">Кейсы · 2025 · СФО</span>
+    <h2 class="sa-res__h">Результаты производственных испытаний</h2>
+
+    <div class="sa-res__nums">
+      <div class="sa-res__num"><b>5 000+ га</b><span>испытаний, 2025</span></div>
+      <div class="sa-res__num"><b>53</b><span>хозяйства-участника</span></div>
+      <div class="sa-res__num"><b>89</b><span>опытных полей</span></div>
+    </div>
+
+    <div class="sa-res__grid">
+      <div class="sa-res__card">
+        <span class="sa-res__chip">Ячмень</span>
+        <div class="sa-res__big">до 28%</div>
+        <div class="sa-res__cap">прибавка урожайности</div>
+        <div class="sa-res__foot">
+          <span class="sa-res__reg">Алтайский край</span>
+          <a class="sa-res__pdf" target="_blank" rel="noopener"
+             href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-4.pdf">Протокол ↓</a>
+        </div>
+      </div>
+
+      <div class="sa-res__card">
+        <span class="sa-res__chip">Пшеница</span>
+        <div class="sa-res__big">+27%</div>
+        <div class="sa-res__cap">прибавка урожайности</div>
+        <div class="sa-res__foot">
+          <span class="sa-res__reg">Алтайский край</span>
+          <a class="sa-res__pdf" target="_blank" rel="noopener"
+             href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-1.pdf">Протокол ↓</a>
+        </div>
+      </div>
+
+      <div class="sa-res__card">
+        <span class="sa-res__chip">Рапс</span>
+        <div class="sa-res__big">+14%</div>
+        <div class="sa-res__cap">прибавка урожайности</div>
+        <div class="sa-res__foot">
+          <span class="sa-res__reg">Алтайский край</span>
+          <a class="sa-res__pdf" target="_blank" rel="noopener"
+             href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-7.pdf">Протокол ↓</a>
+        </div>
+      </div>
+
+      <div class="sa-res__card sa-res__card_dark">
+        <span class="sa-res__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-8"/><path d="M12 13c0-4 3-7 8-7 0 4-3 7-8 7z"/><path d="M12 16c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></span>
+        <div class="sa-res__dh">Ваше поле?</div>
+        <div class="sa-res__dt">Проведём диагностику и покажем прибавку в вашем хозяйстве</div>
+        <a class="sa-res__btn" href="#contacts">Оставить заявку →</a>
+      </div>
+    </div>
+  </div>
+</section>
