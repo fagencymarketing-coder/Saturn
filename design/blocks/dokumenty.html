@@ -1,0 +1,84 @@
+<!-- Блок «Документы и сертификаты» для вставки в T123 на Tilda -->
+<style>
+.sa-docs{--acc:#FF4200;--ink:#141210;--mut:#8A837C;--tile:#F0EDE9;--line:#E7E3DE;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#F6F5F3;padding:128px 0;margin:0}
+.sa-docs *{box-sizing:border-box;margin:0;padding:0}
+.sa-docs__in{max-width:1200px;margin:0 auto;padding:0 20px}
+.sa-docs__kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mut);line-height:1}
+.sa-docs__h{font-size:40px;font-weight:800;line-height:46px;margin-top:28px;letter-spacing:-.01em}
+.sa-docs__sub{font-size:17px;font-weight:400;line-height:27px;color:var(--mut);
+  margin-top:16px;max-width:640px}
+.sa-docs__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:102px}
+.sa-docs__card{display:flex;flex-direction:column;background:#fff;border-radius:22px;
+  padding:16px 16px 24px;text-decoration:none;color:inherit;
+  transition:transform .2s ease,box-shadow .2s ease}
+.sa-docs__pic{background:var(--tile);border-radius:12px;overflow:hidden;aspect-ratio:355/278}
+.sa-docs__pic img{display:block;width:100%;height:100%;object-fit:cover}
+.sa-docs__name{font-size:16px;font-weight:700;line-height:21.6px;margin-top:14px}
+.sa-docs__btnwrap{display:flex;justify-content:center;margin-top:48px}
+.sa-docs__btn{display:inline-flex;align-items:center;justify-content:center;height:52px;
+  padding:0 28px;border:1px solid var(--line);border-radius:12px;background:transparent;
+  font-size:15px;font-weight:700;color:var(--ink);text-decoration:none;cursor:pointer;
+  transition:border-color .2s ease,color .2s ease}
+@media (hover:hover){
+  .sa-docs__card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,18,16,.08)}
+  .sa-docs__btn:hover{border-color:var(--acc);color:var(--acc)}
+}
+@media (max-width:960px){
+  .sa-docs{padding:72px 0}
+  .sa-docs__in{padding:0 32px}
+  .sa-docs__h{font-size:28px;line-height:32px;margin-top:24px}
+  .sa-docs__sub{font-size:16px;line-height:25px;margin-top:12px}
+  .sa-docs__grid{gap:12px;margin-top:60px}
+  .sa-docs__card{border-radius:16px;padding:10px 10px 14px}
+  .sa-docs__pic{border-radius:10px;aspect-ratio:164/128}
+  .sa-docs__name{font-size:14px;line-height:19px;margin-top:10px}
+  .sa-docs__btnwrap{margin-top:32px}
+}
+@media (max-width:640px){
+  .sa-docs__in{padding:0 20px}
+  .sa-docs__grid{grid-template-columns:1fr;gap:10px;margin-top:36px}
+  .sa-docs__card{flex-direction:row;align-items:center;gap:14px;padding:10px;
+    border-radius:16px;min-height:94px}
+  .sa-docs__pic{flex:0 0 96px;width:96px;height:72px;border-radius:8px;aspect-ratio:auto}
+  .sa-docs__name{font-size:15px;line-height:19.5px;margin-top:0}
+  .sa-docs__btn{width:100%}
+}
+</style>
+
+<section class="sa-docs">
+  <div class="sa-docs__in">
+    <span class="sa-docs__kicker">Документы</span>
+    <h2 class="sa-docs__h">Документы и сертификаты</h2>
+    <p class="sa-docs__sub">Сертификат официального дилера и свидетельства о госрегистрации препаратов, которые мы поставляем</p>
+
+    <div class="sa-docs__grid">
+      <a class="sa-docs__card" target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/01-sertifikat-dilera-fertika-do-2026.pdf">
+        <span class="sa-docs__pic"><img loading="lazy" alt="Сертификат дилера АО «Фертика»"
+          src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/docs/preview-sertifikat-fertika.jpg"></span>
+        <span class="sa-docs__name">Сертификат дилера АО «Фертика»</span>
+      </a>
+
+      <a class="sa-docs__card" target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf">
+        <span class="sa-docs__pic"><img loading="lazy" alt="СГР — Страда N, P, K"
+          src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/docs/preview-sgr-strada.jpg"></span>
+        <span class="sa-docs__name">СГР — Страда N, P, K</span>
+      </a>
+
+      <a class="sa-docs__card" target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/08-sgr-diforma-2899-do-2030.pdf">
+        <span class="sa-docs__pic"><img loading="lazy" alt="СГР — Волски Диформа"
+          src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/docs/preview-sgr-diforma.jpg"></span>
+        <span class="sa-docs__name">СГР — Волски Диформа</span>
+      </a>
+    </div>
+
+    <div class="sa-docs__btnwrap">
+      <a class="sa-docs__btn" href="/catalog">Все документы →</a>
+    </div>
+  </div>
+</section>
