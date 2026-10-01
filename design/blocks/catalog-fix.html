@@ -1,71 +1,80 @@
-<!-- Правки оформления каталога. Блок T123 на странице каталога, выше блока ST340F. -->
+<!-- Правки оформления каталога ST340F. Блок T123, ставится ВЫШЕ блока каталога.
+     Версия 2: разметка t-catalog__ (в версии 1 селекторы были от старого
+     магазина t-store__ и не находили ничего). -->
 <style>
-/* 1. Подчёркивания ссылок не должны попадать в список разделов и фильтров.
-   Общая настройка проекта красит их оранжевым — внутри каталога это мусор. */
-.t-store__tabs__item a,
-.t-store__tabs__item-link,
-.t-catalog__filter__item a,
-.t-store__parts-switch__item,
-.js-store-parts-switcher a,
-.t-store__sidebar a,
-.t-store__filter a{
+/* 1. Убрать оранжевые линии под разделами и фильтрами.
+      Это не text-decoration и не border, а внутренняя тень. */
+.js-catalog-parts-switcher,
+.t-catalog__parts-switch-btn,
+.t-catalog__parts-button-base,
+.t-catalog__filter__title,
+.t-catalog__filter__custom-sel,
+.js-catalog-filter-custom-select{
+  box-shadow:none !important;
   text-decoration:none !important;
   border-bottom:0 !important;
-  box-shadow:none !important;
 }
 
-/* 2. Фото товара вписывается целиком, а не обрезается, на подложке #F0EDE9. */
-.t-store__card__imgwrapper{background:#F0EDE9 !important}
-.t-store__card__bgimg,
-.t-store__product-snippet__bgimg{
-  background-size:contain !important;
-  background-position:center !important;
-  background-repeat:no-repeat !important;
-}
-.t-store__prod-popup__slider .t-slds__bgimg{
-  background-size:contain !important;
-  background-color:#F0EDE9 !important;
-}
+/* 2. Фото товара вписывается целиком на светлую подложку, а не обрезается */
+.t-catalog__card__imgwrapper{background:#F0EDE9 !important;border-radius:12px;overflow:hidden}
+.t-catalog__card__bgimg,
+.js-product-img.t-bgimg{background-size:contain !important;background-position:center !important;
+  background-repeat:no-repeat !important}
+/* на странице товара фото — это <img>, а не фон */
+img.js-product-img,
+.t-catalog__prod-popup__columns img.js-product-img{object-fit:contain !important;background:#F0EDE9}
 
-/* 3. На планшете три карточки в ряд. */
-@media (min-width:641px) and (max-width:1199px){
-  .t-store__grid-cont .t-store__card{
-    width:33.3333% !important;
-    max-width:33.3333% !important;
-  }
-}
+/* 3. Кнопка «Оставить заявку»: текст целиком, в две строки если надо.
+      Пресет (M) даёт боковые отступы 60px — перебиваем. */
+.js-catalog-prod-btn,
+.t-catalog__card__btns-wrapper .t-btn{
+  padding:12px 16px !important;height:auto !important;min-height:52px !important;
+  white-space:normal !important;line-height:1.25 !important;
+  display:flex !important;align-items:center;justify-content:center;text-align:center}
+.t-catalog__card__btn-text,
+.js-catalog-prod-btn .t-btnflex__text{
+  white-space:normal !important;overflow:visible !important;text-overflow:clip !important;
+  line-height:1.25 !important}
 
-/* 4. У товаров без цены вместо пустоты — «Цена по запросу». */
-.t-store__card__price-wrapper:not(:has(.t-store__card__price_value)):before,
-.t-store__card__price-wrapper:empty:before{
-  content:"Цена по запросу";
-  display:block;
-  font-family:Montserrat,sans-serif;
-  font-size:14px;
-  font-weight:400;
-  color:#8A837C;
-  line-height:24px;
-}
-
-/* 5. Характеристика «Культура» нужна фильтру, но в карточке повторяется
-   по одной строке на каждую культуру. Прячем её: культуры и так видны
-   в строке «Культуры и фазы». */
-.t-store__prod-popup__info .js-store-prod-charcs .t-store__prod-popup__charcs-item:has(> .t-store__prod-popup__charcs-title:not(:empty)){
-  /* заглушка для браузеров без :has — ниже основной приём */
-}
-.js-store-prod-charcs span[data-charcs-title="Культура"],
-.t-store__prod-popup__charcs-item[data-charcs-title="Культура"]{display:none !important}
-
-/* 6. Кнопка «Оставить заявку» — нормальная высота, текст не обрезается. */
-.t-store__card__btn,
-.t-store__card__btns-wrapper .t-btn{
-  height:auto !important;
-  min-height:48px !important;
-  padding:12px 18px !important;
-  white-space:normal !important;
-  line-height:1.25 !important;
-}
-
-/* 7. Мелочь: заголовок товара не должен прыгать по высоте из-за длины. */
-.t-store__card__title{min-height:2.6em}
+/* 4. Название товара — не длиннее двух строк, чтобы карточки не прыгали */
+.t-catalog__card__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden}
 </style>
+
+<script>
+(function(){
+  function fix(){
+    /* A. «Цена по запросу» там, где цены нет */
+    document.querySelectorAll('.t-catalog__card__price-wrapper,.js-catalog-price-wrapper')
+      .forEach(function(el){
+        if(el.dataset.saFixed) return;
+        if(el.textContent.replace(/\s/g,'') === ''){
+          el.textContent = 'Цена по запросу';
+          el.style.cssText += ';font-size:14px;font-weight:400;color:#8A837C;';
+          el.dataset.saFixed = '1';
+        }
+      });
+
+    /* B. Двенадцать строк «Культура» → одна строка через запятую.
+          Фильтр это не ломает: он читает данные товара, а не видимый текст. */
+    document.querySelectorAll('.js-catalog-prod-all-charcs').forEach(function(box){
+      if(box.dataset.saCrops) return;
+      var rows = [].slice.call(box.querySelectorAll('p.t-typography__characteristics'))
+        .filter(function(p){ return /^\s*Культура\s*:/.test(p.textContent); });
+      if(rows.length > 1){
+        var vals = rows.map(function(p){
+          return p.textContent.replace(/^\s*Культура\s*:\s*/,'').trim();
+        }).filter(Boolean);
+        rows[0].textContent = 'Культура: ' + vals.join(', ');
+        rows.slice(1).forEach(function(p){ p.remove(); });
+      }
+      box.dataset.saCrops = '1';
+    });
+  }
+  fix();
+  document.addEventListener('DOMContentLoaded', fix);
+  window.addEventListener('load', fix);
+  /* каталог дорисовывает карточки и открывает товар без перезагрузки */
+  new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
