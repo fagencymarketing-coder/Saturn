@@ -21,3 +21,7 @@ __pycache__/
 # Переписка с паролем reg.ru — на ЛЮБОМ уровне вложенности
 **/chat.md
 **/chat.txt
+
+contracts/node_modules/
+contracts/package-lock.json
+protocols/html/

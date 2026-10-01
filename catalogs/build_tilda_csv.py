@@ -48,6 +48,21 @@ CH = ['Культура', 'Состав', 'Действующее веществ
 cols = ['SKU', 'External ID', 'Brand', 'Category', 'Title', 'Description', 'Text', 'Photo', 'Price'] + \
        ['Characteristics:' + c for c in CH]
 
+# Tilda режет значение характеристики по «;» на отдельные значения.
+# Для «Культуры» это нужно — иначе фильтр не увидит каждую культуру отдельно.
+# Во всех остальных полях «;» внутри текста надо убрать, иначе характеристика
+# разваливается на несколько одноимённых строк в карточке.
+MULTI = {'Культура'}
+
+
+def fix_ch(name, value):
+    if not value:
+        return value
+    if name in MULTI:
+        return ';'.join(x.strip() for x in value.split(',') if x.strip())
+    return re.sub(r'\s*;\s*', ' · ', value)
+
+
 os.makedirs(PHOTO_DIR, exist_ok=True)
 out, seen = [], set()
 for r in site:
@@ -96,7 +111,7 @@ for r in site:
                 'Title': name, 'Description': r['Подпись в карточке'],
                 'Text': '<br><br>'.join(x for x in (text, f'Цена: {exact}. При 100% предоплате, доставка и хранение включены.' if exact else '') if x),
                 'Photo': photo, 'Price': price_num(r['Цена']),
-                **{'Characteristics:' + c: v for c, v in ch.items()}})
+                **{'Characteristics:' + c: fix_ch(c, v) for c, v in ch.items()}})
 
 # колонки, пустые у всех, Tilda советует убрать
 cols = [c for c in cols if any(o[c] for o in out)]
