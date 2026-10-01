@@ -70,6 +70,10 @@ img.js-product-img,
         if(!hasPrice){
           el.textContent = 'Цена по запросу';
           el.setAttribute('data-sa-ask','1');
+          /* Tilda вешает инлайновый visibility:hidden, когда цены нет.
+             Инлайновый стиль перебивается только через setProperty + important. */
+          el.style.setProperty('visibility','visible','important');
+          el.style.setProperty('display','block','important');
         }
         el.dataset.saFixed = '1';
       });
