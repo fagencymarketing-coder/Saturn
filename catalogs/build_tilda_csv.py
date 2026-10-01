@@ -54,12 +54,25 @@ cols = ['SKU', 'External ID', 'Brand', 'Category', 'Title', 'Description', 'Text
 # разваливается на несколько одноимённых строк в карточке.
 MULTI = {'Культура'}
 
+# «Все культуры» разворачивается в полный список: иначе такие товары выпадают
+# из фильтра по конкретной культуре, хотя подходят под любую.
+ALL_CROPS = ['Пшеница', 'Ячмень', 'Рапс', 'Подсолнечник', 'Соя', 'Кукуруза',
+             'Горох', 'Гречиха', 'Лён', 'Свёкла', 'Картофель', 'Овощи']
+
 
 def fix_ch(name, value):
     if not value:
         return value
     if name in MULTI:
-        return ';'.join(x.strip() for x in value.split(',') if x.strip())
+        items = [x.strip() for x in value.split(',') if x.strip()]
+        out = []
+        for x in items:
+            out.extend(ALL_CROPS if x.lower() == 'все культуры' else [x])
+        seen, uniq = set(), []
+        for x in out:
+            if x not in seen:
+                seen.add(x); uniq.append(x)
+        return ';'.join(uniq)
     return re.sub(r'\s*;\s*', ' · ', value)
 
 
