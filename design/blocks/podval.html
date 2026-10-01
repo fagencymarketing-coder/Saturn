@@ -53,8 +53,11 @@
   .sa-ft__about{font-size:14px;color:var(--cap);max-width:none;margin-top:14px}
   .sa-ft__c3 .sa-ft__h{display:none}
   .sa-ft__c3{margin-top:24px}
-  .sa-ft__row{margin-bottom:0;min-height:44px;align-items:center;padding:6px 0}
-  .sa-ft__row svg{margin-top:0}
+  .sa-ft__row{margin-bottom:0;min-height:44px;align-items:stretch;padding:0}
+  .sa-ft__row svg{margin-top:0;align-self:center}
+  /* ссылка занимает всю строку: зона нажатия пальцем не меньше 44 */
+  .sa-ft__row a,.sa-ft__row span{display:flex;align-items:center;min-height:44px;
+    padding:6px 0;flex:1}
   .sa-ft__mhr{display:block;height:1px;background:var(--lin2);margin:20px 0}
   .sa-ft__mnav{display:flex;flex-direction:column}
   .sa-ft__mnav a,.sa-ft__mnav summary{display:flex;align-items:center;
@@ -74,7 +77,7 @@
   .sa-ft__btn{display:none}
   .sa-ft__bot{display:block;margin-top:20px;padding:20px 0 32px;font-size:12px}
   .sa-ft__legal{display:block;margin-top:10px}
-  .sa-ft__legal a{display:block;min-height:32px;line-height:32px}
+  .sa-ft__legal a{display:flex;align-items:center;min-height:44px}
   .sa-ft__legal i{display:none}
 }
 </style>
