@@ -1,4 +1,130 @@
-<!-- Сатурн: код для всех страниц сайта. Собран tools/build_head_code.py — руками не править. -->
+<!-- Сатурн: весь код для «Настройки сайта → Вставка кода → HEAD».
+     Собран tools/build_head_code.py. Вставлять целиком, заменяя всё содержимое поля. -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": [
+    "Organization",
+    "LocalBusiness"
+   ],
+   "@id": "https://sssaturn.ru/#org",
+   "name": "Сатурн",
+   "legalName": "ООО «Сатурн»",
+   "url": "https://sssaturn.ru/",
+   "logo": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-logo-color.png",
+   "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-logo-color.png",
+   "description": "Поставщик удобрений, средств защиты растений и семян для сельхозпроизводителей Сибири. Агросопровождение от диагностики поля до уборки.",
+   "telephone": "+7-960-953-48-88",
+   "email": "nilov@sssaturn.ru",
+   "taxID": "2801274078",
+   "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "ОГРН",
+    "value": "1232800002709"
+   },
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "пр. Ленина 56 / ул. Шевченко 52А, пом. Н13",
+    "addressLocality": "Барнаул",
+    "addressRegion": "Алтайский край",
+    "addressCountry": "RU"
+   },
+   "openingHoursSpecification": [
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+     ],
+     "opens": "09:00",
+     "closes": "18:00"
+    }
+   ],
+   "areaServed": [
+    {
+     "@type": "AdministrativeArea",
+     "name": "Алтайский край"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Новосибирская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Омская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Томская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Кемеровская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Красноярский край"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Амурская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Краснодарский край"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Ростовская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Ставропольский край"
+    }
+   ],
+   "contactPoint": [
+    {
+     "@type": "ContactPoint",
+     "contactType": "sales",
+     "telephone": "+7-960-953-48-88",
+     "email": "nilov@sssaturn.ru",
+     "areaServed": "RU",
+     "availableLanguage": "ru"
+    },
+    {
+     "@type": "ContactPoint",
+     "contactType": "technical support",
+     "name": "Агрономический отдел",
+     "telephone": "+7-963-502-38-55",
+     "email": "khablak.a@sssaturn.ru",
+     "availableLanguage": "ru"
+    }
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://sssaturn.ru/#site",
+   "url": "https://sssaturn.ru/",
+   "name": "Сатурн",
+   "inLanguage": "ru-RU",
+   "publisher": {
+    "@id": "https://sssaturn.ru/#org"
+   },
+   "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://sssaturn.ru/catalog?q={query}",
+    "query-input": "required name=query"
+   }
+  }
+ ]
+}
+</script>
+
 <style>
 /* 1. Убрать оранжевые линии под разделами и фильтрами.
       Это не text-decoration и не border, а внутренняя тень. */

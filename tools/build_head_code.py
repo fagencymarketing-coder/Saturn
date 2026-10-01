@@ -30,7 +30,13 @@ ft_css, ft_html = split_block('podval.html')
 catalog = (B / 'catalog-fix.html').read_text(encoding='utf-8')
 catalog = re.sub(r'<!--.*?-->', '', catalog, flags=re.S).strip()
 
-out = f"""<!-- Сатурн: код для всех страниц сайта. Собран tools/build_head_code.py — руками не править. -->
+jsonld = (ROOT / 'seo' / 'jsonld-site.html').read_text(encoding='utf-8')
+jsonld = re.sub(r'<!--.*?-->', '', jsonld, flags=re.S).strip()
+
+out = f"""<!-- Сатурн: весь код для «Настройки сайта → Вставка кода → HEAD».
+     Собран tools/build_head_code.py. Вставлять целиком, заменяя всё содержимое поля. -->
+{jsonld}
+
 {catalog}
 
 <style>
