@@ -1,0 +1,71 @@
+<!-- Правки оформления каталога. Блок T123 на странице каталога, выше блока ST340F. -->
+<style>
+/* 1. Подчёркивания ссылок не должны попадать в список разделов и фильтров.
+   Общая настройка проекта красит их оранжевым — внутри каталога это мусор. */
+.t-store__tabs__item a,
+.t-store__tabs__item-link,
+.t-catalog__filter__item a,
+.t-store__parts-switch__item,
+.js-store-parts-switcher a,
+.t-store__sidebar a,
+.t-store__filter a{
+  text-decoration:none !important;
+  border-bottom:0 !important;
+  box-shadow:none !important;
+}
+
+/* 2. Фото товара вписывается целиком, а не обрезается, на подложке #F0EDE9. */
+.t-store__card__imgwrapper{background:#F0EDE9 !important}
+.t-store__card__bgimg,
+.t-store__product-snippet__bgimg{
+  background-size:contain !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+}
+.t-store__prod-popup__slider .t-slds__bgimg{
+  background-size:contain !important;
+  background-color:#F0EDE9 !important;
+}
+
+/* 3. На планшете три карточки в ряд. */
+@media (min-width:641px) and (max-width:1199px){
+  .t-store__grid-cont .t-store__card{
+    width:33.3333% !important;
+    max-width:33.3333% !important;
+  }
+}
+
+/* 4. У товаров без цены вместо пустоты — «Цена по запросу». */
+.t-store__card__price-wrapper:not(:has(.t-store__card__price_value)):before,
+.t-store__card__price-wrapper:empty:before{
+  content:"Цена по запросу";
+  display:block;
+  font-family:Montserrat,sans-serif;
+  font-size:14px;
+  font-weight:400;
+  color:#8A837C;
+  line-height:24px;
+}
+
+/* 5. Характеристика «Культура» нужна фильтру, но в карточке повторяется
+   по одной строке на каждую культуру. Прячем её: культуры и так видны
+   в строке «Культуры и фазы». */
+.t-store__prod-popup__info .js-store-prod-charcs .t-store__prod-popup__charcs-item:has(> .t-store__prod-popup__charcs-title:not(:empty)){
+  /* заглушка для браузеров без :has — ниже основной приём */
+}
+.js-store-prod-charcs span[data-charcs-title="Культура"],
+.t-store__prod-popup__charcs-item[data-charcs-title="Культура"]{display:none !important}
+
+/* 6. Кнопка «Оставить заявку» — нормальная высота, текст не обрезается. */
+.t-store__card__btn,
+.t-store__card__btns-wrapper .t-btn{
+  height:auto !important;
+  min-height:48px !important;
+  padding:12px 18px !important;
+  white-space:normal !important;
+  line-height:1.25 !important;
+}
+
+/* 7. Мелочь: заголовок товара не должен прыгать по высоте из-за длины. */
+.t-store__card__title{min-height:2.6em}
+</style>
