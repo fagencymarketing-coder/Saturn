@@ -1,0 +1,100 @@
+<!-- Блок «Семена» для вставки в T123 на главной -->
+<!-- Ссылки карточек (data-sku) надо заменить на реальные адреса товаров в каталоге -->
+<style>
+.sa-sd{--ink:#141210;--acc:#FF4200;--mut:#8A837C;--tile:#F0EDE9;--line:#E7E3DE;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#fff;padding:128px 0}
+.sa-sd *{box-sizing:border-box;margin:0;padding:0}
+.sa-sd__in{max-width:1200px;margin:0 auto;padding:0 20px}
+.sa-sd__top{display:flex;align-items:flex-start;gap:24px}
+.sa-sd__kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mut);line-height:1}
+.sa-sd__h{font-size:40px;font-weight:800;line-height:46px;margin-top:16px;letter-spacing:-.01em}
+.sa-sd__all{margin-left:auto;flex:0 0 auto;margin-top:22px;
+  display:inline-flex;align-items:center;gap:6px;height:52px;padding:0 22px;
+  border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--ink);
+  font-size:15px;font-weight:700;white-space:nowrap}
+.sa-sd__all i{font-style:normal;color:var(--mut);font-weight:700}
+.sa-sd__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:48px}
+.sa-sd__card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);
+  border-radius:22px;padding:16px;text-decoration:none;color:inherit}
+.sa-sd__ph{position:relative;background:var(--tile);border-radius:12px;aspect-ratio:353/264;
+  overflow:hidden}
+.sa-sd__ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sa-sd__body{padding:20px 6px 6px;display:flex;flex-direction:column;gap:8px}
+.sa-sd__name{font-size:18px;font-weight:700;line-height:22.5px}
+.sa-sd__sig{font-size:14px;font-weight:500;line-height:19.6px;color:var(--mut)}
+.sa-sd__y{display:flex;align-items:baseline;gap:5px}
+.sa-sd__y i{font-style:normal;font-size:14px;font-weight:400;color:var(--mut)}
+.sa-sd__y b{font-size:28px;font-weight:700;line-height:1}
+@media (hover:hover){
+  .sa-sd__all:hover{border-color:var(--ink)}
+  .sa-sd__card:hover{border-color:var(--ink)}
+  .sa-sd__card:hover .sa-sd__name{color:var(--acc)}
+}
+@media (max-width:1023px){
+  .sa-sd{padding:96px 0}
+  .sa-sd__in{padding:0 32px}
+  .sa-sd__top{display:block}
+  .sa-sd__h{font-size:28px;line-height:33px}
+  .sa-sd__all{margin-left:0;margin-top:20px}
+  .sa-sd__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:32px}
+  .sa-sd__ph{aspect-ratio:262/196}
+  .sa-sd__name{font-size:16px;line-height:20px}
+  .sa-sd__y b{font-size:22px}
+}
+@media (max-width:767px){
+  .sa-sd{padding:72px 0}
+  .sa-sd__in{padding:0 20px}
+  .sa-sd__all{display:flex;justify-content:center;width:100%}
+  .sa-sd__grid{grid-template-columns:minmax(0,1fr);gap:16px;margin-top:28px}
+  .sa-sd__ph{aspect-ratio:auto;height:220px}
+  .sa-sd__name{font-size:17px;line-height:21px}
+  .sa-sd__sig{font-size:13px;line-height:18px}
+  .sa-sd__y b{font-size:24px}
+}
+</style>
+
+<div class="sa-sd" id="seeds">
+  <div class="sa-sd__in">
+
+    <div class="sa-sd__top">
+      <div>
+        <span class="sa-sd__kicker">Семена</span>
+        <h2 class="sa-sd__h">Гибриды рапса и подсолнечника</h2>
+      </div>
+      <a class="sa-sd__all" href="/catalog">Все семена <i>25</i> →</a>
+    </div>
+
+    <div class="sa-sd__grid">
+
+      <a class="sa-sd__card" href="/catalog" data-sku="novosel-cl">
+        <div class="sa-sd__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/novosel-cl.jpg" alt="Новосёл CL"></div>
+        <div class="sa-sd__body">
+          <div class="sa-sd__name">Новосёл CL</div>
+          <div class="sa-sd__sig">Рапс яровой · гибрид F1</div>
+          <div class="sa-sd__y"><b>12,5–15</b><i>ц/га</i></div>
+        </div>
+      </a>
+
+      <a class="sa-sd__card" href="/catalog" data-sku="ampir-10-express">
+        <div class="sa-sd__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/ampir-10-express.jpg" alt="Ampir 10 Express"></div>
+        <div class="sa-sd__body">
+          <div class="sa-sd__name">Ampir 10 Express</div>
+          <div class="sa-sd__sig">Подсолнечник · гибрид F1</div>
+          <div class="sa-sd__y"><i>до</i><b>56</b><i>ц/га</i></div>
+        </div>
+      </a>
+
+      <a class="sa-sd__card" href="/catalog" data-sku="ampir-25-express">
+        <div class="sa-sd__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/ampir-25-express.jpg" alt="Ampir 25 Express"></div>
+        <div class="sa-sd__body">
+          <div class="sa-sd__name">Ampir 25 Express</div>
+          <div class="sa-sd__sig">Подсолнечник · гибрид F1</div>
+          <div class="sa-sd__y"><i>до</i><b>56</b><i>ц/га</i></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
