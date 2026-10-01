@@ -50,7 +50,12 @@ img.js-product-img,
   }
 }
 
-/* 6. Подстановка «Цена по запросу» (сам текст ставит скрипт) */
+/* 6. Карточка товара не должна уезжать вбок на планшетной ширине:
+      слайдер Tilda шире вьюпорта, а блок с описанием — на 10px шире экрана */
+.t-catalog__prod-popup__info{max-width:100% !important;box-sizing:border-box}
+.t-slds__items-wrapper{overflow:hidden}
+
+/* 7. Подстановка «Цена по запросу» (сам текст ставит скрипт) */
 .t-catalog__card__price-wrapper[data-sa-ask],
 .js-catalog-price-wrapper[data-sa-ask]{
   display:block !important;font-size:14px;font-weight:400;color:#8A837C}
@@ -74,6 +79,7 @@ img.js-product-img,
              Инлайновый стиль перебивается только через setProperty + important. */
           el.style.setProperty('visibility','visible','important');
           el.style.setProperty('display','block','important');
+          el.style.fontFamily = 'Montserrat,-apple-system,Segoe UI,Roboto,sans-serif';
         }
         el.dataset.saFixed = '1';
       });
