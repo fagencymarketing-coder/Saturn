@@ -376,6 +376,27 @@ html{scroll-behavior:smooth}
   .sa-ft__legal a{display:flex;align-items:center;min-height:44px}
   .sa-ft__legal i{display:none}
 }
+
+/* Баннер cookie для страниц товаров */
+#sa-ck{position:fixed;right:34px;bottom:34px;z-index:9500;width:360px;max-width:calc(100vw - 40px);
+  background:#1E1B18;color:#fff;border-radius:16px;padding:24px;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
+  box-shadow:0 12px 40px rgba(0,0,0,.35)}
+#sa-ck .sa-ck__t{font-size:16px;font-weight:700;line-height:1.3}
+#sa-ck .sa-ck__x{font-size:13px;font-weight:400;line-height:19.5px;color:#B5B0AA;margin-top:10px}
+#sa-ck .sa-ck__x a{color:#FF4200;text-decoration:none}
+#sa-ck .sa-ck__b{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+#sa-ck button{min-height:44px;border-radius:10px;border:0;cursor:pointer;
+  font-family:inherit;font-size:14px;font-weight:600;padding:10px 16px}
+#sa-ck button[data-sa-ck=all]{background:#D93800;color:#fff}
+#sa-ck button[data-sa-ck=none]{background:transparent;color:#fff;border:1px solid #B5B0AA}
+@media (hover:hover){
+  #sa-ck button[data-sa-ck=all]:hover{background:#C23100}
+  #sa-ck button[data-sa-ck=none]:hover{border-color:#FF4200;color:#FF4200}
+}
+@media (max-width:640px){
+  #sa-ck{right:12px;left:12px;bottom:12px;width:auto;padding:18px}
+}
 </style>
 
 <script>
@@ -399,9 +420,47 @@ html{scroll-behavior:smooth}
     bot.innerHTML = FT;
     document.body.appendChild(bot);
   }
-  draw();
-  document.addEventListener('DOMContentLoaded', draw);
-  window.addEventListener('load', draw);
+  /* Баннер cookie на страницах товаров: блока T972 там нет,
+     поэтому показываем свой. Пишет те же cookie, что и Tilda,
+     поэтому выбор, сделанный здесь, виден и на остальных страницах. */
+  function ck(n){
+    var m = document.cookie.match('(^|;)\s*' + n + '\s*=\s*([^;]+)');
+    return m ? m.pop() : '';
+  }
+  function setCk(n,v){
+    var d = new Date(); d.setTime(d.getTime() + 365*24*60*60*1000);
+    document.cookie = n + '=' + v + ';expires=' + d.toUTCString() + ';path=/';
+  }
+  function cookieBanner(){
+    if(!document.body) return;
+    if(!onProductPage()) return;
+    if(document.querySelector('.t972')) return;          /* штатный баннер есть */
+    if(document.getElementById('sa-ck')) return;
+    if(ck('t_cookiesConsentGiven') || ck('t_cookiesRejectAll')) return;
+    var b = document.createElement('div');
+    b.id = 'sa-ck';
+    b.innerHTML =
+      '<div class="sa-ck__t">Файлы cookie</div>' +
+      '<div class="sa-ck__x">Мы используем файлы cookie и Яндекс Метрику, чтобы сайт работал удобнее. ' +
+      'Подробнее — в <a href="/privacy">политике обработки персональных данных</a>.</div>' +
+      '<div class="sa-ck__b">' +
+      '<button type="button" data-sa-ck="all">Принять все</button>' +
+      '<button type="button" data-sa-ck="none">Отклонить необязательные</button>' +
+      '</div>';
+    b.addEventListener('click', function(e){
+      var a = e.target.getAttribute && e.target.getAttribute('data-sa-ck');
+      if(!a) return;
+      setCk('t_cookiesConsentGiven','true');
+      if(a === 'all'){ setCk('t_cookiesCategories', encodeURIComponent('["analytics"]')); }
+      else { setCk('t_cookiesCategories', encodeURIComponent('[]')); setCk('t_cookiesRejectAll','true'); }
+      b.remove();
+    });
+    document.body.appendChild(b);
+  }
+
+  draw(); cookieBanner();
+  document.addEventListener('DOMContentLoaded', function(){ draw(); cookieBanner(); });
+  window.addEventListener('load', function(){ draw(); cookieBanner(); });
   /* каталог меняет адрес без перезагрузки — следим за переходами */
   setInterval(function(){
     if(!onProductPage()){
