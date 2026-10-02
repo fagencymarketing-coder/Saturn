@@ -85,8 +85,10 @@
   .sa-hero__nums{display:none}
   .sa-hero__strip{display:block;background:#fff;padding:22px 20px}
   .sa-hero__strip .sa-hero__nums{display:flex;margin-top:0;max-width:none}
-  .sa-hero__strip .sa-hero__n{padding-right:12px}
-  .sa-hero__strip .sa-hero__n+.sa-hero__n{padding-left:12px}
+  .sa-hero__strip .sa-hero__nums{min-width:0}
+  .sa-hero__strip .sa-hero__n{padding-right:10px;min-width:0;overflow:hidden}
+  .sa-hero__strip .sa-hero__n+.sa-hero__n{padding-left:10px}
+  .sa-hero__strip .sa-hero__n b{white-space:nowrap;font-size:clamp(16px,5.4vw,22px)}
   .sa-hero__strip .sa-hero__n b{font-size:22px}
   .sa-hero__strip .sa-hero__n span{font-size:12px;line-height:15.6px;margin-top:6px}
 }
@@ -128,7 +130,9 @@
 <style>
 @media (max-width:359px){
   .sa-hero__b1,.sa-hero__b2{padding:0 12px;font-size:14px}
-  .sa-hero__strip .sa-hero__n b{font-size:19px}
+  .sa-hero__strip{padding-left:14px;padding-right:14px}
+  .sa-hero__strip .sa-hero__n{padding-right:7px}
+  .sa-hero__strip .sa-hero__n+.sa-hero__n{padding-left:7px}
   .sa-hero__strip .sa-hero__n span{font-size:11px;line-height:14px}
 }
 </style>
