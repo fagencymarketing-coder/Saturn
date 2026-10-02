@@ -177,6 +177,9 @@ img.js-product-img,
       слайдер Tilda шире вьюпорта, а блок с описанием — на 10px шире экрана */
 .t-catalog__prod-popup__info{max-width:100% !important;box-sizing:border-box}
 .t-slds__items-wrapper{overflow:hidden}
+/* ширина колонки уже равна 100% контейнера, но у .t-col остаётся
+   штатный боковой отступ Tilda 10px — он и даёт переполнение */
+.t-catalog__prod-popup__col-right{margin-left:0 !important;margin-right:0 !important}
 
 /* 7. Подстановка «Цена по запросу» (сам текст ставит скрипт) */
 .t-catalog__card__price-wrapper[data-sa-ask],
