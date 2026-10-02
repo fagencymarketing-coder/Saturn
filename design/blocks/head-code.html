@@ -377,6 +377,34 @@ html{scroll-behavior:smooth}
   .sa-ft__legal i{display:none}
 }
 
+/* Полоса заявки на страницах товаров */
+#sa-tp-cta,#sa-tp-cta *{box-sizing:border-box}
+#sa-tp-cta{background:#141210;color:#fff;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif}
+#sa-tp-cta .sa-tp-cta__in{max-width:1200px;margin:0 auto;padding:56px 20px}
+#sa-tp-cta .sa-tp-cta__t{font-size:28px;font-weight:800;line-height:1.15;
+  overflow-wrap:break-word}
+#sa-tp-cta .sa-tp-cta__x{font-size:15px;font-weight:400;line-height:22.5px;
+  color:#B5B0AA;margin-top:10px;max-width:560px}
+#sa-tp-cta .sa-tp-cta__b{display:flex;align-items:center;gap:20px;margin-top:28px;
+  flex-wrap:wrap}
+#sa-tp-cta .sa-tp-cta__btn{display:inline-flex;align-items:center;justify-content:center;
+  height:52px;padding:0 28px;border-radius:12px;background:#D93800;color:#fff;
+  text-decoration:none;font-size:16px;font-weight:700}
+#sa-tp-cta .sa-tp-cta__tel{color:#fff;text-decoration:none;font-size:16px;font-weight:700;
+  min-height:44px;display:inline-flex;align-items:center}
+@media (hover:hover){
+  #sa-tp-cta .sa-tp-cta__btn:hover{background:#C23100}
+  #sa-tp-cta .sa-tp-cta__tel:hover{color:#FF4200}
+}
+@media (max-width:767px){
+  #sa-tp-cta .sa-tp-cta__in{padding:40px 20px}
+  #sa-tp-cta .sa-tp-cta__t{font-size:clamp(20px,6.4vw,24px)}
+  #sa-tp-cta .sa-tp-cta__b{flex-direction:column;align-items:stretch;gap:12px}
+  #sa-tp-cta .sa-tp-cta__btn{width:100%}
+  #sa-tp-cta .sa-tp-cta__tel{justify-content:center}
+}
+
 /* Баннер cookie для страниц товаров */
 #sa-ck{position:fixed;right:34px;bottom:34px;z-index:9500;width:360px;max-width:calc(100vw - 40px);
   background:#1E1B18;color:#fff;border-radius:16px;padding:24px;
@@ -416,6 +444,20 @@ html{scroll-behavior:smooth}
     top.id = 'sa-tp-chrome';
     top.innerHTML = HD;
     document.body.insertBefore(top, document.body.firstChild);
+    /* полоса заявки: на странице товара своей кнопки у Tilda нет,
+       а именно сюда приходят из поиска и по пересланным ссылкам */
+    var cta = document.createElement('div');
+    cta.id = 'sa-tp-cta';
+    cta.innerHTML =
+      '<div class="sa-tp-cta__in">' +
+      '<div class="sa-tp-cta__t">Нужна цена или подбор под вашу культуру?</div>' +
+      '<div class="sa-tp-cta__x">Ответим в течение рабочего дня, подберём решение под хозяйство</div>' +
+      '<div class="sa-tp-cta__b">' +
+      '<a class="sa-tp-cta__btn" href="/#contacts">Получить предложение</a>' +
+      '<a class="sa-tp-cta__tel" href="tel:+79609534888">+7 (960) 953-48-88</a>' +
+      '</div></div>';
+    document.body.appendChild(cta);
+
     var bot = document.createElement('div');
     bot.innerHTML = FT;
     document.body.appendChild(bot);
