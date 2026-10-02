@@ -30,6 +30,10 @@
   flex:0 0 auto}
 .sa-pop__chip_on{background:var(--ink);border-color:var(--ink);color:#fff}
 .sa-pop__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
+.sa-pop__cta{display:flex;justify-content:center;margin-top:52px}
+.sa-pop__cta a{display:inline-flex;align-items:center;justify-content:center;
+  min-width:274px;height:52px;padding:0 24px;border-radius:12px;background:#D93800;
+  color:#fff;text-decoration:none;font-size:16px;font-weight:700}
 .sa-pop__card{display:flex;flex-direction:column;background:#fff;border-radius:22px;
   padding:16px;text-decoration:none;color:inherit}
 .sa-pop__ph{position:relative;background:var(--tile);border-radius:12px;aspect-ratio:355/266}
@@ -47,6 +51,7 @@
 @media (hover:hover){
   .sa-pop__a1:hover{background:#2a2622}
   .sa-pop__a2:hover{background:#F0EDE9}
+  .sa-pop__cta a:hover{background:#C23100}
   .sa-pop__chip:hover{border-color:var(--ink)}
   .sa-pop__chip_on:hover{background:#2a2622}
   .sa-pop__card:hover .sa-pop__name{color:var(--acc)}
@@ -77,6 +82,8 @@
   .sa-pop__logos::-webkit-scrollbar{display:none}
   .sa-pop__logos img{height:36px;flex:0 0 auto}
   .sa-pop__chip{height:36px;font-size:13px;padding:0 14px}
+  .sa-pop__cta{margin-top:32px}
+  .sa-pop__cta a{min-width:0;width:100%}
   .sa-pop__card{padding:12px;border-radius:16px}
   .sa-pop__ph{aspect-ratio:1/1;border-radius:10px}
   .sa-pop__ph img{inset:12px;width:calc(100% - 24px);height:calc(100% - 24px)}
@@ -172,5 +179,7 @@
       </a>
 
     </div>
+
+    <div class="sa-pop__cta"><a href="#contacts">Получить предложение</a></div>
   </div>
 </div>
