@@ -103,3 +103,11 @@
 
   </div>
 </div>
+
+<style>
+/* длинные слова в заголовке не должны расталкивать страницу на узком экране */
+.sa-ag__h{overflow-wrap:break-word}
+@media (max-width:374px){
+  .sa-ag__h{font-size:clamp(20px,7vw,28px);line-height:1.15}
+}
+</style>

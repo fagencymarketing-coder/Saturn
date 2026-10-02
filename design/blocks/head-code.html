@@ -424,8 +424,13 @@ html{scroll-behavior:smooth}
      поэтому показываем свой. Пишет те же cookie, что и Tilda,
      поэтому выбор, сделанный здесь, виден и на остальных страницах. */
   function ck(n){
-    var m = document.cookie.match('(^|;)\s*' + n + '\s*=\s*([^;]+)');
-    return m ? m.pop() : '';
+    /* без регулярного выражения: в строковом литерале JS «\s» схлопывается в «s» */
+    var parts = document.cookie.split(';');
+    for (var i = 0; i < parts.length; i++) {
+      var t = parts[i].replace(/^ +/, '');
+      if (t.indexOf(n + '=') === 0) return t.slice(n.length + 1);
+    }
+    return '';
   }
   function setCk(n,v){
     var d = new Date(); d.setTime(d.getTime() + 365*24*60*60*1000);

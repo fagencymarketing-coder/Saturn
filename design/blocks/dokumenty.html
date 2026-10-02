@@ -10,7 +10,7 @@
 .sa-docs__h{font-size:40px;font-weight:800;line-height:46px;margin-top:28px;letter-spacing:-.01em}
 .sa-docs__sub{font-size:17px;font-weight:400;line-height:27px;color:var(--mut);
   margin-top:16px;max-width:640px}
-.sa-docs__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:102px}
+.sa-docs__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:102px}
 .sa-docs__card{display:flex;flex-direction:column;background:#fff;border-radius:22px;
   padding:16px 16px 24px;text-decoration:none;color:inherit;
   transition:transform .2s ease,box-shadow .2s ease}
@@ -40,9 +40,11 @@
 }
 @media (max-width:640px){
   .sa-docs__in{padding:0 20px}
-  .sa-docs__grid{grid-template-columns:1fr;gap:10px;margin-top:36px}
+  .sa-docs__grid{grid-template-columns:minmax(0,1fr);gap:10px;margin-top:36px}
   .sa-docs__card{flex-direction:row;align-items:center;gap:14px;padding:10px;
-    border-radius:16px;min-height:94px}
+    border-radius:16px;min-height:94px;min-width:0}
+  .sa-docs__card>div{min-width:0}
+  .sa-docs__name,.sa-docs__meta{overflow-wrap:anywhere}
   .sa-docs__pic{flex:0 0 96px;width:96px;height:72px;border-radius:8px;aspect-ratio:auto}
   .sa-docs__name{font-size:15px;line-height:19.5px;margin-top:0}
   .sa-docs__btn{width:100%}
