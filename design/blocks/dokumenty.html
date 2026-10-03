@@ -5,8 +5,12 @@
   background:#F6F5F3;padding:80px 0;margin:0}
 .sa-docs *{box-sizing:border-box;margin:0;padding:0}
 .sa-docs__in{max-width:1200px;margin:0 auto;padding:0 20px}
-.sa-docs__kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;
+.sa-docs__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--mut);line-height:1}
+/* оранжевая риска перед надзаголовком — есть на утверждённом холсте
+   у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
+.sa-docs__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
+  background:#FF4200}
 .sa-docs__h{font-size:40px;font-weight:800;line-height:46px;margin-top:28px;letter-spacing:-.01em}
 .sa-docs__sub{font-size:17px;font-weight:400;line-height:27px;color:var(--mut);
   margin-top:16px;max-width:640px}

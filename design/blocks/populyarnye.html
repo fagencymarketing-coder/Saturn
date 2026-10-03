@@ -10,8 +10,12 @@
 .sa-pop *{box-sizing:border-box;margin:0;padding:0}
 .sa-pop__in{max-width:1200px;margin:0 auto;padding:0 20px}
 .sa-pop__top{display:flex;align-items:flex-start;gap:24px}
-.sa-pop__kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;
+.sa-pop__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--mut);line-height:1}
+/* оранжевая риска перед надзаголовком — есть на утверждённом холсте
+   у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
+.sa-pop__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
+  background:#FF4200}
 .sa-pop__h{font-size:40px;font-weight:800;line-height:46px;margin-top:16px;letter-spacing:-.01em}
 .sa-pop__acts{margin-left:auto;display:flex;gap:12px;flex:0 0 auto;padding-top:22px}
 .sa-pop__a1,.sa-pop__a2{display:inline-flex;align-items:center;justify-content:center;gap:8px;
@@ -22,7 +26,7 @@
 .sa-pop__a2 svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
 .sa-pop__logos{display:flex;align-items:center;gap:32px;margin-top:40px;flex-wrap:wrap}
-.sa-pop__logos img{display:block;height:72px;width:auto;object-fit:contain}
+.sa-pop__logos img{display:block;height:48px;width:auto;object-fit:contain}
 .sa-pop__chips{display:flex;gap:12px;margin-top:40px;overflow-x:auto;
   scrollbar-width:none;-ms-overflow-style:none}
 .sa-pop__chips::-webkit-scrollbar{display:none}
@@ -66,7 +70,7 @@
   .sa-pop__h{font-size:28px;line-height:33px}
   .sa-pop__acts{margin-left:0;padding-top:20px;gap:12px}
   .sa-pop__logos{gap:24px;margin-top:32px}
-  .sa-pop__logos img{height:48px}
+  .sa-pop__logos img{height:40px}
   .sa-pop__chips{margin-top:32px;gap:10px}
   .sa-pop__chip{height:40px;padding:0 16px}
   .sa-pop__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
@@ -82,7 +86,7 @@
   .sa-pop__logos{flex-wrap:nowrap;overflow-x:auto;gap:20px;
     scrollbar-width:none;-ms-overflow-style:none}
   .sa-pop__logos::-webkit-scrollbar{display:none}
-  .sa-pop__logos img{height:36px;flex:0 0 auto}
+  .sa-pop__logos img{height:32px;flex:0 0 auto}
   .sa-pop__chip{height:36px;font-size:13px;padding:0 14px}
   .sa-pop__cta{margin-top:32px}
   .sa-pop__cta a{min-width:0;width:100%}

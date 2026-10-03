@@ -10,8 +10,12 @@
 .sa-sd *{box-sizing:border-box;margin:0;padding:0}
 .sa-sd__in{max-width:1200px;margin:0 auto;padding:0 20px}
 .sa-sd__top{display:flex;align-items:flex-start;gap:24px}
-.sa-sd__kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;
+.sa-sd__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--mut);line-height:1}
+/* оранжевая риска перед надзаголовком — есть на утверждённом холсте
+   у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
+.sa-sd__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
+  background:#FF4200}
 .sa-sd__h{font-size:40px;font-weight:800;line-height:46px;margin-top:16px;letter-spacing:-.01em}
 .sa-sd__all{margin-left:auto;flex:0 0 auto;margin-top:22px;
   display:inline-flex;align-items:center;gap:6px;height:52px;padding:0 22px;

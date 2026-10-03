@@ -17,8 +17,12 @@
 .sa-ag__bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(20,18,16,.88) 0%,rgba(20,18,16,.94) 62%,#141210 100%)}
 .sa-ag__in{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 20px}
-.sa-ag__kicker{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;
+.sa-ag__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;color:rgba(255,255,255,.45);line-height:1}
+/* оранжевая риска перед надзаголовком — есть на утверждённом холсте
+   у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
+.sa-ag__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
+  background:#FF4200}
 .sa-ag__h{font-size:40px;font-weight:800;line-height:44px;margin-top:20px;letter-spacing:-.01em}
 .sa-ag__sub{font-size:18px;font-weight:500;line-height:27px;color:rgba(255,255,255,.7);
   margin-top:12px;max-width:900px}

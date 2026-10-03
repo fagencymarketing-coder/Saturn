@@ -8,8 +8,12 @@
   background:#141210;padding:80px 0 48px}
 .sa-ct *{box-sizing:border-box;margin:0;padding:0}
 .sa-ct__in{max-width:1200px;margin:0 auto;padding:0 20px}
-.sa-ct__kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;
+.sa-ct__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:#8A837C;line-height:1}
+/* оранжевая риска перед надзаголовком — есть на утверждённом холсте
+   у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
+.sa-ct__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
+  background:#FF4200}
 .sa-ct__h{font-size:40px;font-weight:800;line-height:46px;margin-top:16px;letter-spacing:-.01em}
 .sa-ct__sub{font-size:16px;font-weight:400;line-height:24px;color:#B5B0AA;
   margin-top:12px;max-width:560px}
