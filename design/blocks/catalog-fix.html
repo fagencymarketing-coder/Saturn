@@ -77,13 +77,14 @@ img.js-product-img,
   .t-catalog__grid-cont .t-section__descr{margin-bottom:28px !important}
 }
 
-/* 9. Хлебные крошки и заголовок — одна группа.
-      Домик у Тильды 14px при заголовке 44px, между ними ещё и отступ. */
-[class*="t-catalog__breadcrumb"],[class*="t-breadcrumb"]{
-  margin-bottom:10px !important;line-height:1.2 !important}
-[class*="t-catalog__breadcrumb"] img,[class*="t-breadcrumb"] img,
-[class*="t-catalog__breadcrumb"] svg,[class*="t-breadcrumb"] svg{
-  height:15px !important;width:auto !important;vertical-align:-2px}
+/* 9. Хлебные крошки убраны совсем.
+      На утверждённом холсте каталога их нет: страница начинается прямо
+      с заголовка «Каталог». Сайт одноуровневый, каталог — второй и
+      последний уровень, так что крошки «Главная / Каталог» ничего не
+      сообщают, а экран занимают. Решение заказчика 03.10.2026.
+      Раньше здесь мы их только ужимали: домик у Тильды 14px при
+      заголовке 44px смотрелся мусором. Теперь вопрос снят целиком. */
+[class*="t-catalog__breadcrumb"],[class*="t-breadcrumb"]{display:none !important}
 
 /* 10. Разделы над товарами — пустые плитки без картинок, занимают полтора
        экрана. На ПК они дублируют боковую панель, поэтому скрыты;
