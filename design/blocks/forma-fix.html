@@ -2,7 +2,9 @@
      Блок T123 ставится ПОД блоком формы.
      В настройках блока формы задать CSS-класс: uc-saturn-form -->
 <style>
-.uc-saturn-form{background:#141210;padding:0 0 128px}
+/* было 128px снизу — под формой зияла пустая полоса в треть экрана,
+   из-за неё подвал выглядел оторванным. Заказчик заметил 03.10.2026. */
+.uc-saturn-form{background:#141210;padding:0 0 56px}
 .uc-saturn-form .t-container,
 .uc-saturn-form .t-col{font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif}
 
