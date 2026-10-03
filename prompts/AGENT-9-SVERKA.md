@@ -19,7 +19,7 @@ https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/prompts/PRA
 Главная → блок «Популярные позиции» `record4401085101` → Контент → поле HTML →
 заменить целиком:
 
-https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/design/blocks/populyarnye.html
+https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/claude/nifty-fermat-az604f/design/blocks/populyarnye.html
 
 Должно стать **10 979 символов** (было 10 945).
 
