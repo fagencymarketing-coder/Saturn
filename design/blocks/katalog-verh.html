@@ -1,0 +1,199 @@
+<!-- Блок над каталогом для вставки в T123 на странице «Каталог»,
+     ВЫШЕ блока ST340F.
+     Заголовок + «Скачать прайс», поле поиска, чипы культур.
+     Все размеры сняты с утверждённого холста каталога
+     (артефакт KsY2QrkP2cb6zXnkCV7N5V, версия 1791033969-2f19):
+     поиск 52px r12 #fff рамка #E7E3DE, чип h40 14/600 r999 рамка
+     #E7E3DE, активный тёмный, промежуток 8, заголовок 40/800/46.
+     На телефоне (холст XLBmbZPG88N19nNW4gPbPW) поиск подписан
+     «Поиск по каталогу» и перед чипами стоит кнопка «Разделы». -->
+<style>
+.sa-kv{--ink:#141210;--acc:#FF4200;--mut:#6B6560;--line:#E7E3DE;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#fff;padding:40px 0 24px}
+.sa-kv *{box-sizing:border-box;margin:0;padding:0}
+.sa-kv__in{max-width:1240px;margin:0 auto;padding:0 20px}
+.sa-kv__top{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.sa-kv__h{font-size:40px;font-weight:800;line-height:46px;letter-spacing:-.01em}
+.sa-kv__price{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;
+  color:var(--ink);text-decoration:none;position:relative}
+.sa-kv__price svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+/* зона нажатия 44px при высоте строки 18 */
+.sa-kv__price::after{content:"";position:absolute;left:-10px;right:-10px;top:-13px;bottom:-13px}
+@media (hover:hover){.sa-kv__price:hover{color:var(--ink);box-shadow:inset 0 -1px 0 0 var(--ink)}}
+
+.sa-kv__search{position:relative;margin-top:24px}
+.sa-kv__search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;fill:none;stroke:#8A837C;stroke-width:1.8;pointer-events:none}
+.sa-kv__input{width:100%;height:52px;border-radius:12px;background:#fff;
+  border:1px solid var(--line);padding:0 18px 0 50px;font-size:16px;font-weight:400;
+  font-family:inherit;color:var(--ink);outline:none}
+.sa-kv__input::placeholder{color:#8A837C}
+.sa-kv__input:focus{border-color:var(--acc)}
+
+.sa-kv__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.sa-kv__chip{display:inline-flex;align-items:center;height:40px;padding:0 14px;
+  border-radius:999px;border:1px solid var(--line);background:transparent;
+  font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);
+  text-decoration:none;cursor:pointer;white-space:nowrap;
+  transition:background .15s ease,border-color .15s ease,color .15s ease}
+@media (hover:hover){.sa-kv__chip:hover{border-color:var(--ink);color:var(--ink)}}
+.sa-kv__chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+
+.sa-kv__parts{display:none}
+
+@media (max-width:1023px){
+  .sa-kv{padding:32px 0 20px}
+  .sa-kv__in{padding:0 32px}
+  .sa-kv__h{font-size:30px;line-height:35px}
+}
+@media (max-width:767px){
+  .sa-kv{padding:24px 0 16px}
+  .sa-kv__in{padding:0 20px}
+  .sa-kv__top{display:block}
+  .sa-kv__h{font-size:28px;line-height:32px}
+  .sa-kv__price{margin-top:10px}
+  .sa-kv__search{margin-top:16px}
+  .sa-kv__chips{margin-top:14px;flex-wrap:nowrap;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .sa-kv__chips::-webkit-scrollbar{display:none}
+  .sa-kv__chip{height:36px;flex:0 0 auto;font-size:14px}
+  /* кнопка «Разделы» — только на телефоне: боковой панели там нет */
+  .sa-kv__parts{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;
+    border-radius:999px;background:#fff;border:1px solid var(--ink);
+    font-family:inherit;font-size:14px;font-weight:700;color:var(--ink);
+    cursor:pointer;flex:0 0 auto}
+  .sa-kv__parts svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2}
+}
+</style>
+
+<div class="sa-kv">
+  <div class="sa-kv__in">
+
+    <div class="sa-kv__top">
+      <h1 class="sa-kv__h">Каталог</h1>
+      <a class="sa-kv__price"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>Скачать прайс</a>
+    </div>
+
+    <div class="sa-kv__search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+      <input class="sa-kv__input" type="search" autocomplete="off"
+             aria-label="Поиск по каталогу"
+             placeholder="Название, действующее вещество или культура">
+    </div>
+
+    <div class="sa-kv__chips" role="group" aria-label="Фильтр по культуре">
+      <button class="sa-kv__parts" type="button" aria-expanded="false">Разделы
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="sa-kv__chip" type="button" aria-pressed="true" data-crop="">Все культуры</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Рапс">Рапс</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Подсолнечник">Подсолнечник</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Соя">Соя</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Пшеница">Пшеница</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Ячмень">Ячмень</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Кукуруза">Кукуруза</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Картофель">Картофель</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Свёкла">Свёкла</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Горох">Горох</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Гречиха">Гречиха</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Лён">Лён</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Овощи">Овощи</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* Поиск и чипы не изобретают свой фильтр, а управляют штатным
+   каталогом Tilda: пишут в его поле поиска и щёлкают его чекбоксы
+   культуры. Так результат всегда совпадает с тем, что показывает
+   сам магазин, и ничего не ломается, если Tilda поменяет адреса.
+   Штатные поиск и сортировка при этом спрятаны — см. catalog-fix. */
+(function(){
+  function tilda(){ return document.querySelector('[id^="rec"] .t-catalog, .t-catalog'); }
+
+  function nativeSearch(){
+    var k = tilda(); if (!k) return null;
+    var list = k.querySelectorAll('input[type="search"],input[type="text"]');
+    for (var i = 0; i < list.length; i++){
+      if (!list[i].closest('.sa-kv')) return list[i];
+    }
+    return null;
+  }
+
+  function setVal(el, v){
+    var proto = Object.getPrototypeOf(el);
+    var d = Object.getOwnPropertyDescriptor(proto, 'value');
+    if (d && d.set) d.set.call(el, v); else el.value = v;
+    el.dispatchEvent(new Event('input', {bubbles:true}));
+    el.dispatchEvent(new Event('change', {bubbles:true}));
+    el.dispatchEvent(new KeyboardEvent('keyup', {bubbles:true, key:'Enter'}));
+  }
+
+  var pole = document.querySelector('.sa-kv__input');
+  if (pole){
+    var t;
+    pole.addEventListener('input', function(){
+      clearTimeout(t);
+      t = setTimeout(function(){
+        var n = nativeSearch();
+        if (n) setVal(n, pole.value);
+      }, 250);
+    });
+  }
+
+  /* чекбокс культуры в штатном фильтре ищем по подписи */
+  function cropBox(name){
+    var k = tilda(); if (!k) return null;
+    var labels = k.querySelectorAll('label,span,div');
+    for (var i = 0; i < labels.length; i++){
+      var el = labels[i];
+      if (el.children.length) continue;
+      if ((el.textContent||'').trim() !== name) continue;
+      var box = el.closest('label') || el.parentElement;
+      var inp = box && box.querySelector('input[type="checkbox"]');
+      if (inp) return inp;
+    }
+    return null;
+  }
+
+  function snyat(){
+    var k = tilda(); if (!k) return;
+    var all = k.querySelectorAll('input[type="checkbox"]');
+    for (var i = 0; i < all.length; i++){
+      if (all[i].checked) all[i].click();
+    }
+  }
+
+  var chips = document.querySelectorAll('.sa-kv__chip');
+  for (var i = 0; i < chips.length; i++){
+    chips[i].addEventListener('click', function(){
+      for (var j = 0; j < chips.length; j++) chips[j].setAttribute('aria-pressed','false');
+      this.setAttribute('aria-pressed','true');
+      var crop = this.getAttribute('data-crop');
+      snyat();
+      if (crop){
+        var b = cropBox(crop);
+        if (b && !b.checked) b.click();
+      }
+    });
+  }
+
+  /* «Разделы» на телефоне — открывает штатный список разделов Tilda,
+     он там уже есть, просто спрятан (см. catalog-fix, правило 10) */
+  var knopka = document.querySelector('.sa-kv__parts');
+  if (knopka){
+    knopka.addEventListener('click', function(){
+      var list = document.querySelector('[id^="parts-above-id-"]');
+      if (!list) return;
+      var open = list.getAttribute('data-sa-open') === '1';
+      list.setAttribute('data-sa-open', open ? '0' : '1');
+      knopka.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  }
+})();
+</script>

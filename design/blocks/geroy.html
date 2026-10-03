@@ -14,7 +14,13 @@
 .sa-hero__in{width:100%;max-width:1240px;margin:0 auto;
   padding:clamp(24px,5vh,56px) 20px;position:relative;
   display:grid;grid-template-columns:560px minmax(0,1fr);gap:32px;align-items:center}
-.sa-hero__h{font-size:42px;font-weight:800;line-height:45.4px;letter-spacing:-.01em}
+/* Трекинг -.02em, а не -.01em, ради одного слова: «сельхозпроизводителей»
+   при 42px и -.01em занимает 563px, а колонка заголовка по холсту 560.
+   Трёх пикселей не хватало, и раньше их лечили мягким переносом &shy; —
+   из-за него на сайте читалось «сельхоз-производителей», чего на холсте
+   нет. Трекинг решает то же самое, не трогая ни кегль, ни ширину колонки,
+   ни положение фотографии. Заказчик заметил перенос 03.10.2026. */
+.sa-hero__h{font-size:42px;font-weight:800;line-height:45.4px;letter-spacing:-.02em}
 .sa-hero__h em{font-style:normal;color:var(--acc)}
 .sa-hero__sub{font-size:20px;font-weight:400;line-height:30px;color:var(--mut);
   max-width:460px;margin-top:24px}
@@ -114,7 +120,7 @@
   <div class="sa-hero__in">
 
     <div class="sa-hero__col">
-      <h1 class="sa-hero__h">Семена, <em>удобрения</em> и защита растений для сельхоз&shy;производителей</h1>
+      <h1 class="sa-hero__h">Семена, <em>удобрения</em> и защита растений для сельхозпроизводителей</h1>
       <p class="sa-hero__sub">Подберём решения под культуру, регион и задачу хозяйства</p>
       <div class="sa-hero__btns">
         <a class="sa-hero__b1" href="#contacts">Подобрать решение</a>
