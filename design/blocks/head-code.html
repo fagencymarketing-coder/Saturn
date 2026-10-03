@@ -230,6 +230,34 @@ img.js-product-img,
   .t-catalog__product-snippet .t-catalog__prod-popup__col-right{
     flex:1 1 auto;max-width:none;width:auto;margin:0;padding-top:0}
 }
+
+/* 12. Разделы в боковой панели краснели при наведении. Глобальное
+       правило Тильды оказалось не просто a:hover, а списком селекторов
+       её типографики — .t-text a:hover, .t-descr a:hover, .t-title a:hover
+       и так далее, цвет #d93800. Самодельные блоки sa-* под него не
+       попадают, а вот девять ссылок боковой панели попали: «Все»,
+       «Семена», «Гербициды», «Удобрения и листовые подкормки»,
+       «Адъюванты», «Обработка семян и протравители», «Фунгициды»,
+       «Инсектициды», «Десиканты». Нашёл агент при прогоне 03.10.2026,
+       замерено наведением: #333333 → #d93800.
+
+       Задаём наведение явно, как требует правило проекта. Цвет при
+       наведении не меняем — отклик даёт подчёркивание, как у разделов
+       и фильтров в остальном каталоге: box-shadow inset, а не
+       text-decoration и не border. Так раздел не выглядит выбранным,
+       пока по нему не щёлкнули. */
+.t-catalog__parts-sidebar-item,
+.t-catalog__parts-sidebar-item a,
+.t-catalog__parts-sidebar__list a{
+  color:#141210;
+  transition:box-shadow .15s ease}
+.t-catalog__parts-sidebar-item:hover,
+.t-catalog__parts-sidebar-item a:hover,
+.t-catalog__parts-sidebar__list a:hover,
+#allrecords .t-catalog__parts-sidebar-item a:hover,
+#allrecords .t-catalog__parts-sidebar__list a:hover{
+  color:#141210;
+  box-shadow:inset 0 -1px 0 0 #141210}
 </style>
 
 <script>
@@ -539,14 +567,37 @@ html{scroll-behavior:smooth}
       '</div></div>';
     document.body.appendChild(cta);
 
+    /* Значок «Made on Tilda» стоит сразу после карточки товара, и если
+       просто дописать подвал в конец body, значок окажется в середине
+       страницы. Поэтому не двигаем его, а ставим свои блоки ПЕРЕД ним:
+       значок остаётся последним, как и задумано платформой.
+
+       Раньше здесь было document.body.appendChild(cp), то есть значок
+       переносился вниз. Tilda это ломает намеренно: после сохранения
+       кода она заменяет в слове tildacopy латинскую «o» на кириллическую,
+       и обращение перестаёт находить элемент (проверено агентом дважды
+       03.10.2026). Обходить защиту мы не будем — лейбл убирается
+       легально, годовым тарифом. Текущий способ в защиту не упирается:
+       мы не трогаем чужой элемент, а расставляем свои. */
+    var cp = document.getElementById('tildacopy');
+    if (!cp) {
+      /* Запасной способ найти значок: Tilda портит именно это слово в
+         коде, поэтому обращение по id после сохранения может не
+         сработать. Значок — единственная ссылка на tilda.cc в body.
+         Ищем её только чтобы понять, куда поставить СВОИ блоки.
+         Сам значок не трогаем, не прячем и не переносим. */
+      var a = document.querySelector('body a[href*="tilda.cc"]');
+      cp = a ? a.closest('div') || a : null;
+    }
+
     var bot = document.createElement('div');
     bot.innerHTML = FT;
-    document.body.appendChild(bot);
-
-    /* значок «Made on Tilda» стоит сразу после карточки товара и
-       разрывает страницу — переносим его в самый низ, под подвал */
-    var cp = document.getElementById('tildacopy');
-    if (cp) document.body.appendChild(cp);
+    if (cp && cp.parentNode === document.body) {
+      document.body.insertBefore(cta, cp);
+      document.body.insertBefore(bot, cp);
+    } else {
+      document.body.appendChild(bot);
+    }
   }
   /* Баннер cookie на страницах товаров: блока T972 там нет,
      поэтому показываем свой. Пишет те же cookie, что и Tilda,

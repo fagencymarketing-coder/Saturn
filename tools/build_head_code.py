@@ -124,14 +124,37 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
       '</div></div>';
     document.body.appendChild(cta);
 
+    /* Значок «Made on Tilda» стоит сразу после карточки товара, и если
+       просто дописать подвал в конец body, значок окажется в середине
+       страницы. Поэтому не двигаем его, а ставим свои блоки ПЕРЕД ним:
+       значок остаётся последним, как и задумано платформой.
+
+       Раньше здесь было document.body.appendChild(cp), то есть значок
+       переносился вниз. Tilda это ломает намеренно: после сохранения
+       кода она заменяет в слове tildacopy латинскую «o» на кириллическую,
+       и обращение перестаёт находить элемент (проверено агентом дважды
+       03.10.2026). Обходить защиту мы не будем — лейбл убирается
+       легально, годовым тарифом. Текущий способ в защиту не упирается:
+       мы не трогаем чужой элемент, а расставляем свои. */
+    var cp = document.getElementById('tildacopy');
+    if (!cp) {{
+      /* Запасной способ найти значок: Tilda портит именно это слово в
+         коде, поэтому обращение по id после сохранения может не
+         сработать. Значок — единственная ссылка на tilda.cc в body.
+         Ищем её только чтобы понять, куда поставить СВОИ блоки.
+         Сам значок не трогаем, не прячем и не переносим. */
+      var a = document.querySelector('body a[href*="tilda.cc"]');
+      cp = a ? a.closest('div') || a : null;
+    }}
+
     var bot = document.createElement('div');
     bot.innerHTML = FT;
-    document.body.appendChild(bot);
-
-    /* значок «Made on Tilda» стоит сразу после карточки товара и
-       разрывает страницу — переносим его в самый низ, под подвал */
-    var cp = document.getElementById('tildacopy');
-    if (cp) document.body.appendChild(cp);
+    if (cp && cp.parentNode === document.body) {{
+      document.body.insertBefore(cta, cp);
+      document.body.insertBefore(bot, cp);
+    }} else {{
+      document.body.appendChild(bot);
+    }}
   }}
   /* Баннер cookie на страницах товаров: блока T972 там нет,
      поэтому показываем свой. Пишет те же cookie, что и Tilda,

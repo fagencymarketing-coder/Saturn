@@ -107,6 +107,34 @@ img.js-product-img,
   .t-catalog__product-snippet .t-catalog__prod-popup__col-right{
     flex:1 1 auto;max-width:none;width:auto;margin:0;padding-top:0}
 }
+
+/* 12. Разделы в боковой панели краснели при наведении. Глобальное
+       правило Тильды оказалось не просто a:hover, а списком селекторов
+       её типографики — .t-text a:hover, .t-descr a:hover, .t-title a:hover
+       и так далее, цвет #d93800. Самодельные блоки sa-* под него не
+       попадают, а вот девять ссылок боковой панели попали: «Все»,
+       «Семена», «Гербициды», «Удобрения и листовые подкормки»,
+       «Адъюванты», «Обработка семян и протравители», «Фунгициды»,
+       «Инсектициды», «Десиканты». Нашёл агент при прогоне 03.10.2026,
+       замерено наведением: #333333 → #d93800.
+
+       Задаём наведение явно, как требует правило проекта. Цвет при
+       наведении не меняем — отклик даёт подчёркивание, как у разделов
+       и фильтров в остальном каталоге: box-shadow inset, а не
+       text-decoration и не border. Так раздел не выглядит выбранным,
+       пока по нему не щёлкнули. */
+.t-catalog__parts-sidebar-item,
+.t-catalog__parts-sidebar-item a,
+.t-catalog__parts-sidebar__list a{
+  color:#141210;
+  transition:box-shadow .15s ease}
+.t-catalog__parts-sidebar-item:hover,
+.t-catalog__parts-sidebar-item a:hover,
+.t-catalog__parts-sidebar__list a:hover,
+#allrecords .t-catalog__parts-sidebar-item a:hover,
+#allrecords .t-catalog__parts-sidebar__list a:hover{
+  color:#141210;
+  box-shadow:inset 0 -1px 0 0 #141210}
 </style>
 
 <script>
