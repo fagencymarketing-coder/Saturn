@@ -4,7 +4,7 @@
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
   background:#fff;overflow:hidden}
 .sa-hero *{box-sizing:border-box;margin:0;padding:0}
-.sa-hero__in{max-width:1200px;margin:0 auto;padding:88px 20px;position:relative;
+.sa-hero__in{max-width:1200px;margin:0 auto;padding:clamp(40px,6vh,72px) 20px;position:relative;
   display:grid;grid-template-columns:560fr 526fr;gap:56px;align-items:center}
 .sa-hero__h{font-size:42px;font-weight:800;line-height:45.4px;letter-spacing:-.01em}
 .sa-hero__h em{font-style:normal;color:var(--acc)}
@@ -24,7 +24,7 @@
 .sa-hero__strip{display:none}
 .sa-hero__short{display:none}
 .sa-hero__pic{position:relative}
-.sa-hero__pic img{display:block;height:600px;object-fit:cover;object-position:35% center;
+.sa-hero__pic img{display:block;height:clamp(420px,56vh,600px);object-fit:cover;object-position:35% center;
   border-radius:22px 0 0 22px;
   /* фото уходит в правый край экрана, за пределы контейнера 1200 */
   width:calc(100% + max(20px,(100vw - 1160px)/2))}
@@ -74,7 +74,7 @@
      поэтому кегль привязан к ширине экрана и слово никогда не рвётся */
   .sa-hero__h{font-size:clamp(17px,calc(6.4vw - 2px),26px);line-height:1.15;color:#fff;
     overflow-wrap:break-word}
-  .sa-hero__sub{font-size:15px;line-height:22.5px;color:rgba(255,255,255,.8);margin-top:14px}
+  .sa-hero__sub{font-size:15px;line-height:22.5px;color:#B5B0AA;margin-top:16px}
   .sa-hero__btns{gap:10px;margin-top:22px;flex-wrap:nowrap}
   .sa-hero__b1,.sa-hero__b2{height:52px;font-size:15px;font-weight:600;padding:0 16px;
     white-space:nowrap}
@@ -128,11 +128,17 @@
 </div>
 
 <style>
+/* «5 000+ га» не помещалось в колонку на 320–380: цифра ужимается
+   плавно по ширине экрана, единица измерения — следом за ней. */
+@media (max-width:389px){
+  .sa-hero__strip .sa-hero__n b{font-size:clamp(18px,5.6vw,22px)}
+  .sa-hero__strip .sa-hero__n b i{font-size:clamp(10px,3vw,12px);margin-left:2px}
+}
 @media (max-width:359px){
   .sa-hero__b1,.sa-hero__b2{padding:0 12px;font-size:14px}
   .sa-hero__strip{padding-left:14px;padding-right:14px}
-  .sa-hero__strip .sa-hero__n{padding-right:7px}
-  .sa-hero__strip .sa-hero__n+.sa-hero__n{padding-left:7px}
+  .sa-hero__strip .sa-hero__n{padding-right:6px}
+  .sa-hero__strip .sa-hero__n+.sa-hero__n{padding-left:6px}
   .sa-hero__strip .sa-hero__n span{font-size:11px;line-height:14px}
 }
 </style>

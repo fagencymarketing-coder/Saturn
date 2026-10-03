@@ -20,10 +20,10 @@
 .sa-res__big{font-size:48px;font-weight:800;line-height:1;color:var(--acc);margin-top:12px}
 .sa-res__cap{font-size:15px;font-weight:500;line-height:19.5px;color:#6B6560;margin-top:8px}
 .sa-res__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  margin-top:auto;padding-top:15px}
+  margin-top:auto;padding-top:16px}
 .sa-res__reg{font-size:14px;font-weight:600;white-space:nowrap}
 .sa-res__pdf{font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;
-  white-space:nowrap;border-bottom:1px solid var(--line);padding-bottom:1px}
+  white-space:nowrap;border-bottom:1px solid var(--line);padding-bottom:2px}
 .sa-res__card_dark{background:var(--ink);color:#fff}
 .sa-res__ico{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.1);
   display:flex;align-items:center;justify-content:center}
@@ -126,4 +126,10 @@
 @media (max-width:374px){
   .sa-res__h{font-size:clamp(20px,7vw,28px);line-height:1.15}
 }
+
+/* Зона нажатия 44px. Через псевдоэлемент — иначе подчёркивание
+   у «Протокол ↓» уехало бы на 12px вниз. */
+.sa-res__pdf{position:relative}
+.sa-res__pdf::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;
+  transform:translateY(-50%)}
 </style>

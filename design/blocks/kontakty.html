@@ -9,9 +9,9 @@
 .sa-ct *{box-sizing:border-box;margin:0;padding:0}
 .sa-ct__in{max-width:1200px;margin:0 auto;padding:0 20px}
 .sa-ct__kicker{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1}
+  text-transform:uppercase;color:#8A837C;line-height:1}
 .sa-ct__h{font-size:40px;font-weight:800;line-height:46px;margin-top:16px;letter-spacing:-.01em}
-.sa-ct__sub{font-size:16px;font-weight:400;line-height:24px;color:rgba(255,255,255,.6);
+.sa-ct__sub{font-size:16px;font-weight:400;line-height:24px;color:#B5B0AA;
   margin-top:12px;max-width:560px}
 .sa-ct__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 40px;
   margin-top:48px}
@@ -51,6 +51,11 @@
   .sa-ct{padding:52px 0 32px}
   .sa-ct__in{padding:0 20px}
 }
+
+/* Зона нажатия 44px, поток не меняется */
+.sa-ct__tel,.sa-ct__mail{position:relative}
+.sa-ct__tel::after,.sa-ct__mail::after{content:"";position:absolute;left:0;right:0;
+  top:50%;height:44px;transform:translateY(-50%)}
 </style>
 
 <div class="sa-ct" id="contacts">
