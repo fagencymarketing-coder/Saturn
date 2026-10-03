@@ -11,15 +11,11 @@
 Запускается у меня, до того как что-то уйдёт в Тильду.
 
 ```
-# собрать главную из блоков
-cd /tmp/blk && bash mk2.sh /home/user/saturn/design/blocks/{shapka,geroy,\
-populyarnye,semena,agro,geografiya,rezultaty,dokumenty,kontakty,podval}.html
-
-# линтер дизайн-системы: 6 ширин
-node /home/user/saturn/tools/audit/check.js /tmp/blk/t2.html
-
-# содержание и ссылки
-python3 /home/user/saturn/tools/audit/content.py
+cd /home/user/saturn
+bash tools/render/build.sh                   # собрать главную из блоков
+node tools/audit/check.js /tmp/blk/t2.html   # линтер дизайн-системы, 6 ширин
+python3 tools/audit/spacing.py               # нечётные отступы
+python3 tools/audit/content.py               # содержание и ссылки
 ```
 
 **`check.js`** на ширинах 1440 · 1280 · 1024 · 768 · 390 · 320 находит:
