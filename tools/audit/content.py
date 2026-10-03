@@ -17,6 +17,17 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 REF  = (ROOT / 'docs' / 'SPRAVOCHNIK-SAYT.md').read_text(encoding='utf-8')
 CA   = '/root/.ccr/ca-bundle.crt'
 
+# Домены, которые Tilda подключает через preconnect и dns-prefetch.
+# Их адрес — не ссылка страницы, проверять там нечего.
+SLUZHEBNYE = {
+    'https://fonts.gstatic.com',
+    'https://fonts.googleapis.com',
+    'https://static.tildacdn.com',
+    'https://ws.tildacdn.com',
+    'https://neo.tildacdn.com',
+    'https://store.tildacdn.com',
+}
+
 def ref_table():
     phones, mails = set(), set()
     for line in REF.splitlines():
@@ -63,12 +74,20 @@ def main():
         for k, v in props.items():
             if k in text and v not in text:
                 bad.append((name, k + ' не совпадает с эталоном', ''))
-        for href in re.findall(r'href="([^"#]+)"', text):
+        # Ссылки берём только из <a>. У <link rel="preconnect"> в href
+        # стоит голый домен служебной инфраструктуры Tilda, он честно
+        # отвечает 204, 403 или 404 — это не битая ссылка, а норма.
+        # Пока их считали, --live всегда давал ложные нарушения.
+        for tag in re.findall(r'<a\b[^>]*>', text):
+            m = re.search(r'href="([^"#]+)"', tag)
+            if not m:
+                continue
+            href = m.group(1)
             if href.startswith(('tel:', 'mailto:', 'javascript:')):
                 continue
+            if href.rstrip('/') in SLUZHEBNYE:
+                continue
             links.add(href)
-        for a in re.findall(r'<a\b[^>]*>(.*?)</a>', text, re.S):
-            pass
 
     print('ЭТАЛОН: телефонов', len(phones_ok), '· почт', len(mails_ok),
           '· реквизитов', len(props))
