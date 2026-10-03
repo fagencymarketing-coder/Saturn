@@ -62,6 +62,51 @@ img.js-product-img,
 .t-catalog__card__price-wrapper[data-sa-ask],
 .js-catalog-price-wrapper[data-sa-ask]{
   display:block !important;font-size:14px;font-weight:400;color:#8A837C}
+
+/* 8. Вертикальный ритм страницы каталога.
+      У блока ST340F собственные 135px сверху и снизу плюс 90px под
+      подзаголовком — из-за этого страница распадается на пустые экраны. */
+.t-rec[data-record-type="2861"]{padding-top:40px !important;padding-bottom:72px !important}
+.t-catalog__grid-cont .t-section__title{margin-bottom:20px !important}
+.t-catalog__grid-cont .t-section__descr{margin-bottom:36px !important}
+.t-catalog__grid-cont .t-section__container:not(:has(.t-section__descr)) .t-section__title{
+  margin-bottom:32px !important}
+@media screen and (max-width:960px){
+  .t-rec[data-record-type="2861"]{padding-top:28px !important;padding-bottom:52px !important}
+  .t-catalog__grid-cont .t-section__title{margin-bottom:16px !important}
+  .t-catalog__grid-cont .t-section__descr{margin-bottom:28px !important}
+}
+
+/* 9. Хлебные крошки и заголовок — одна группа.
+      Домик у Тильды 14px при заголовке 44px, между ними ещё и отступ. */
+[class*="t-catalog__breadcrumb"],[class*="t-breadcrumb"]{
+  margin-bottom:10px !important;line-height:1.2 !important}
+[class*="t-catalog__breadcrumb"] img,[class*="t-breadcrumb"] img,
+[class*="t-catalog__breadcrumb"] svg,[class*="t-breadcrumb"] svg{
+  height:15px !important;width:auto !important;vertical-align:-2px}
+
+/* 10. Разделы над товарами — пустые плитки без картинок, занимают полтора
+       экрана. На ПК они дублируют боковую панель, поэтому скрыты;
+       на телефоне панель прячется в «Фильтры», поэтому разделы остаются,
+       но без пустых кружков-заглушек. */
+@media screen and (min-width:961px){
+  [id^="parts-above-id-"]{display:none !important}
+}
+@media screen and (max-width:960px){
+  [id^="parts-above-id-"] [class*="img"]{display:none !important}
+  [id^="parts-above-id-"] [class*="card"]{min-height:0 !important}
+}
+
+/* 11. Страница товара по прямому адресу /tproduct/: у Тильды описание
+       уходит под фотографию, и правая половина экрана остаётся пустой. */
+@media screen and (min-width:960px){
+  .t-catalog__product-snippet .t-container > div{
+    display:flex;align-items:flex-start;gap:40px}
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{
+    flex:0 0 auto;width:46%;max-width:520px;margin:0}
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-right{
+    flex:1 1 auto;max-width:none;width:auto;margin:0;padding-top:0}
+}
 </style>
 
 <script>

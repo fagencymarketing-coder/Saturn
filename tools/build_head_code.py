@@ -127,6 +127,11 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
     var bot = document.createElement('div');
     bot.innerHTML = FT;
     document.body.appendChild(bot);
+
+    /* значок «Made on Tilda» стоит сразу после карточки товара и
+       разрывает страницу — переносим его в самый низ, под подвал */
+    var cp = document.getElementById('tildacopy');
+    if (cp) document.body.appendChild(cp);
   }}
   /* Баннер cookie на страницах товаров: блока T972 там нет,
      поэтому показываем свой. Пишет те же cookie, что и Tilda,

@@ -4,7 +4,7 @@
 <style>
 .sa-pop{--ink:#141210;--acc:#FF4200;--mut:#766F68;--mut2:#6B6560;--tile:#F0EDE9;--line:#E7E3DE;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
-  background:#F6F5F3;padding:128px 0;overflow-x:hidden}
+  background:#F6F5F3;padding:80px 0;overflow-x:hidden}
 .sa-pop *{box-sizing:border-box;margin:0;padding:0}
 .sa-pop__in{max-width:1200px;margin:0 auto;padding:0 20px}
 .sa-pop__top{display:flex;align-items:flex-start;gap:24px}
@@ -30,7 +30,7 @@
   flex:0 0 auto}
 .sa-pop__chip_on{background:var(--ink);border-color:var(--ink);color:#fff}
 .sa-pop__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
-.sa-pop__cta{display:flex;justify-content:center;margin-top:52px}
+.sa-pop__cta{display:flex;justify-content:center;margin-top:40px}
 .sa-pop__cta a{display:inline-flex;align-items:center;justify-content:center;
   min-width:274px;height:52px;padding:0 24px;border-radius:12px;background:#D93800;
   color:#fff;text-decoration:none;font-size:16px;font-weight:700}
@@ -58,7 +58,7 @@
 }
 /* планшет */
 @media (max-width:1023px){
-  .sa-pop{padding:96px 0}
+  .sa-pop{padding:64px 0}
   .sa-pop__in{padding:0 32px}
   .sa-pop__top{display:block}
   .sa-pop__h{font-size:28px;line-height:33px}
@@ -73,7 +73,7 @@
 }
 /* телефон */
 @media (max-width:767px){
-  .sa-pop{padding:72px 0}
+  .sa-pop{padding:52px 0}
   .sa-pop__in{padding:0 20px}
   .sa-pop__acts{display:flex;flex-direction:column;gap:10px}
   .sa-pop__a1,.sa-pop__a2{width:100%}
