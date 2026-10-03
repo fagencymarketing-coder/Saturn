@@ -35,9 +35,17 @@ python3 tools/audit/content.py               # содержание и ссыл�
 
 ```
 python3 tools/audit/live-blocks.py            # выложены ли правки блоков
+python3 tools/audit/live-catalog.py           # настройки блока каталога
 node tools/audit/live.js https://sssaturn.ru/home 1440 /tmp/h.png
 python3 tools/audit/content.py --live         # ссылки на живых страницах
 ```
+
+`live-catalog.py` читает настройки блока ST340F прямо из страницы:
+Tilda кладёт их в HTML объектами `options`, `parts_optsObj` и
+`breadcrumbs_optsObj`. Видно расположение разделов, закрепление
+панели, первый пункт хлебных крошек и оставшиеся английские надписи.
+Важно: он видит только **опубликованное**. Пока страницу не
+опубликовали, правки в админке ему не видны.
 
 `live-blocks.py` отвечает на один вопрос: лежит на сайте новая версия
 блоков или старая. Признак — отступы секций: 128/96/72 это старое,
