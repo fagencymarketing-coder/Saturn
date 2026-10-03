@@ -42,12 +42,15 @@ Tilda принимает отправку только от своего обр�
 
 ## Что ещё не доделано
 
-- **Ссылки карточек товаров.** В `populyarnye.html` и `semena.html` у карточек
-  стоит `href="/catalog"` и атрибут `data-sku` с артикулом. Когда станут
-  известны адреса страниц товаров в каталоге Tilda — заменить `href`
-  на них. Артикулы: `fertika-listovoe-18-18-18`, `strada-n`,
-  `ampir-ekstra-vr`, `chellendzher-vrk`, `kvs-akvilon`, `ampir-10-express`,
-  `novosel-cl`, `ampir-25-express`.
+- ~~**Ссылки карточек товаров.**~~ Сделано 03.10.2026. Все восемь карточек
+  ведут на свои страницы товара. Адреса взяты из живого каталога через
+  API Tilda (`store.tildacdn.com/api/getproductslist/?storepartuid=527746460323&recid=4384406801`)
+  и лежат в `catalogs/product-links.txt`. Пересоздать связь:
+  `python3 tools/set_product_links.py catalogs/product-links.txt`.
+  Адрес товара собирается как `/catalog/tproduct/<uid>-<slug>`, причём
+  **slug — не артикул**: Tilda транслитерирует «ё» как `yo`, поэтому
+  `novosel-cl` живёт по адресу `…-novosyol-cl`. Проверять адреса, а не
+  выводить их из артикула.
 - **Чипы разделов** в `populyarnye.html` тоже ведут на `/catalog` без раздела,
   нужный раздел записан в `data-section`.
 - **Фото.** Исходники макета распакованы из артефакта в `assets/design-export/`

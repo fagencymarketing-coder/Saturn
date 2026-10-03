@@ -1,0 +1,8 @@
+fertika-listovoe-18-18-18 = /catalog/tproduct/382077388723-fertika-listovoe-18-18-18
+strada-n = /catalog/tproduct/270536558683-strada-n
+ampir-ekstra-vr = /catalog/tproduct/544267401313-ampir-ekstra-vr
+chellendzher-vrk = /catalog/tproduct/149195796403-chellendzher-vrk
+kvs-akvilon = /catalog/tproduct/591143215253-kvs-akvilon
+ampir-10-express = /catalog/tproduct/135486451973-ampir-10-express
+novosel-cl = /catalog/tproduct/349553641013-novosyol-cl
+ampir-25-express = /catalog/tproduct/223742879273-ampir-25-express
