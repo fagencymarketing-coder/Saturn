@@ -102,7 +102,10 @@ def main():
         else:
             continue
         code = subprocess.run(
-            ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}',
+            # -g: у адресов разделов каталога в строке запроса есть
+            # квадратные скобки (tfc_storepartnav[4384406801]=…), и без
+            # -g curl принимает их за шаблон перебора и не ходит никуда.
+            ['curl', '-s', '-g', '-o', '/dev/null', '-w', '%{http_code}',
              '-L', '--cacert', CA, url],
             capture_output=True, text=True).stdout.strip()
         mark = 'ok ' if code == '200' else 'БИТАЯ'
