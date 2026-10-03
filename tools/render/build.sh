@@ -18,7 +18,7 @@ CA="${CURL_CA_BUNDLE:-/root/.ccr/ca-bundle.crt}"
 mkdir -p "$WORK"
 cp -n "$ROOT/tools/render/fonts/"m*.ttf "$WORK/" 2>/dev/null || true
 
-PORYADOK="shapka geroy populyarnye semena agro geografiya rezultaty dokumenty kontakty podval"
+PORYADOK="shapka geroy populyarnye semena agro rezultaty geografiya dokumenty kontakty podval"
 if [ $# -gt 0 ]; then FILES="$@"; else
   FILES=""; for b in $PORYADOK; do FILES="$FILES $BLOCKS/$b.html"; done
 fi
