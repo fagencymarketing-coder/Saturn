@@ -19,6 +19,23 @@
 9. Код для вставки бери **по ссылке raw**, целиком, не переписывай руками
    и не правь на ходу.
 
+## 0. Эталон — пять холстов Клод Дизайна
+
+**Холсты — это то, как должно быть. Расходится вёрстка, а не холст.**
+Любую правку сверять с ними, а не с тем, что сейчас на сайте.
+
+| Что | Ссылка | Снимок в репозитории |
+|---|---|---|
+| Главная, ПК | https://claude.ai/artifact/URwHmJU5hUi6GX8dKsPohU | `design/maket/maket-desktop-1440.png` |
+| Главная, телефон и планшет | https://claude.ai/artifact/LJucqWDUM6R3EMYQXkihhk | `design/maket/maket-mobile-tablet-1791034439-3484.png` |
+| Каталог, ПК | https://claude.ai/artifact/KsY2QrkP2cb6zXnkCV7N5V | `design/maket/katalog-holst-01.jpg` |
+| Каталог, телефон | https://claude.ai/artifact/XLBmbZPG88N19nNW4gPbPW | `design/maket/holst-katalog-390.png` |
+| Страница товара | https://claude.ai/artifact/M4kA494fh5fd6v2RkVa6a6 | `design/maket/holst-tovar.png` |
+
+Разбор расхождений — `docs/SVERKA-S-HOLSTAMI.md`.
+Исключения, где холст уступает: содержание сверяется со
+`SPRAVOCHNIK-SAYT.md`, решения заказчика — со `SVERKA-S-MAKETOM.md`.
+
 ## Формат отчёта
 
 | Шаг | Статус | Что именно |
