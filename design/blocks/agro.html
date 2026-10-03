@@ -1,85 +1,63 @@
-<!-- Блок «Агросопровождение» для вставки в T123 на главной -->
+<!-- Блок «Агросопровождение» для вставки в T123 на главной.
+     Все значения — из замеров утверждённого макета:
+     design/measurements/desktop.json (секция 4) и mobile-tablet.json (секция 5).
+     ПК: цифра → иконка → узел → заголовок → строка сути, 4 колонки.
+     Планшет и телефон: только цифра слева и текст справа, без иконок и узлов. -->
 <style>
-.sa-ag{--acc:#FF4200;--gap:24px;position:relative;overflow:hidden;background:#141210;
+.sa-ag{--acc:#FF4200;position:relative;overflow:hidden;background:#141210;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff;
   padding:80px 0}
 .sa-ag *{box-sizing:border-box;margin:0;padding:0}
 .sa-ag__bg{position:absolute;inset:0;z-index:0}
 .sa-ag__bg img{width:100%;height:100%;object-fit:cover;display:block}
-.sa-ag__bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(20,18,16,.88) 0%,rgba(20,18,16,.94) 62%,#141210 100%)}
+.sa-ag__bg::after{content:"";position:absolute;inset:0;background:rgba(20,18,16,.88)}
 .sa-ag__in{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 20px}
 .sa-ag__kicker{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;color:rgba(255,255,255,.45);line-height:1}
-.sa-ag__h{font-size:40px;font-weight:800;line-height:44px;margin-top:20px;letter-spacing:-.01em}
+  text-transform:uppercase;color:rgba(255,255,255,.45);line-height:12px}
+.sa-ag__h{font-size:40px;font-weight:800;line-height:44px;margin-top:16px;letter-spacing:-.01em}
 .sa-ag__sub{font-size:18px;font-weight:500;line-height:27px;color:rgba(255,255,255,.7);
   margin-top:12px;max-width:900px}
-.sa-ag__steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:var(--gap);margin-top:40px}
-
-/* цифра-призрак отдельной верхней строкой, по левому краю колонки */
-.sa-ag__num{font-size:80px;font-weight:800;line-height:.9;color:rgba(255,255,255,.08);
-  letter-spacing:-.02em}
-/* иконка 32px, оранжевая */
-.sa-ag__ico{width:32px;height:32px;margin-top:16px;
-  transition:transform .25s ease,filter .25s ease}
-.sa-ag__ico svg{width:32px;height:32px;stroke:var(--acc);fill:none;stroke-width:1.6;
+.sa-ag__steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px}
+.sa-ag__num{font-size:40px;font-weight:800;line-height:40px;color:rgba(255,255,255,.16)}
+.sa-ag__ico{width:32px;height:32px;margin-top:12px}
+.sa-ag__ico svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:1.6;
   stroke-linecap:round;stroke-linejoin:round}
-
-/* нить цикла: узлы 01…04 на тонкой линии, линия только между узлами */
-.sa-ag__rail{position:relative;height:8px;margin-top:18px}
-.sa-ag__dot{position:absolute;left:0;top:0;width:8px;height:8px;border-radius:999px;
-  background:var(--acc);box-shadow:0 0 12px rgba(255,66,0,.55)}
-.sa-ag__step:not(:last-child) .sa-ag__rail::after{content:"";position:absolute;
-  left:4px;right:calc(-1 * (var(--gap) + 4px));top:50%;height:1px;
-  background:rgba(255,66,0,.35);box-shadow:0 0 8px rgba(255,66,0,.25)}
-
-.sa-ag__sh{font-size:17px;font-weight:700;line-height:21.25px;margin-top:18px}
+.sa-ag__dot{width:6px;height:6px;border-radius:50%;background:var(--acc);margin-top:12px}
+.sa-ag__sh{font-size:17px;font-weight:700;line-height:21.25px;margin-top:17px}
 .sa-ag__st{font-size:13px;font-weight:500;line-height:18.2px;color:rgba(255,255,255,.55);
   margin-top:6px}
-.sa-ag__step{transition:transform .25s ease}
-@media (hover:hover){
-  .sa-ag__step:hover{transform:translateY(-4px)}
-  .sa-ag__step:hover .sa-ag__ico{transform:scale(1.08);
-    filter:drop-shadow(0 0 10px rgba(255,66,0,.6))}
-}
-
-.sa-ag__cta{display:flex;align-items:center;gap:28px;margin-top:40px;flex-wrap:wrap}
-.sa-ag__btn{display:inline-flex;align-items:center;justify-content:center;height:60px;
+.sa-ag__cta{display:flex;align-items:center;gap:28px;margin-top:72px;padding-top:48px;
+  flex-wrap:wrap}
+.sa-ag__btn{display:inline-flex;align-items:center;justify-content:center;height:52px;
   padding:0 32px;border-radius:12px;background:#D93800;color:#fff;text-decoration:none;
   font-size:16px;font-weight:700}
 @media (hover:hover){
   .sa-ag__btn:hover{background:#C23100}
 }
-@media (max-width:1023px){
+
+/* Планшет и телефон: цифра слева, текст справа. Иконок и узлов в макете нет. */
+@media (max-width:1024px){
   .sa-ag{padding:64px 0}
   .sa-ag__in{padding:0 32px}
-  .sa-ag__h{font-size:28px;line-height:33px}
-  .sa-ag__sub{font-size:16px;line-height:24px}
-  .sa-ag__steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px var(--gap);margin-top:36px}
-  .sa-ag__num{font-size:56px}
-  /* в два ряда нить идёт только внутри ряда */
-  .sa-ag__step:nth-child(2) .sa-ag__rail::after{display:none}
-  .sa-ag__cta{flex-direction:column;align-items:stretch;gap:16px;margin-top:36px}
-  .sa-ag__btn{width:100%}
+  .sa-ag__kicker{font-weight:600;color:rgba(255,255,255,.55)}
+  .sa-ag__h{font-size:28px;line-height:32.2px;margin-top:12px}
+  .sa-ag__sub{font-size:16px;line-height:24px;color:rgba(255,255,255,.75);margin-top:8px}
+  .sa-ag__steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;margin-top:24px}
+  .sa-ag__step{display:flex;align-items:flex-start;padding:24px 0}
+  .sa-ag__num{flex:0 0 64px;font-size:44px;font-weight:500;line-height:44px;
+    color:rgba(255,255,255,.28)}
+  .sa-ag__ico,.sa-ag__dot{display:none}
+  .sa-ag__txt{flex:1 1 auto;min-width:0}
+  .sa-ag__sh{font-size:18px;font-weight:600;line-height:23.4px;margin-top:0}
+  .sa-ag__st{font-size:14px;font-weight:400;line-height:21px;color:#B5B0AA;margin-top:6px}
+  .sa-ag__cta{justify-content:center;margin-top:32px;padding-top:0}
+  .sa-ag__btn{height:52px;width:360px;max-width:100%;font-size:15px;font-weight:600;
+    padding:0 20px}
   }
 @media (max-width:767px){
-  .sa-ag{padding:52px 0}
   .sa-ag__in{padding:0 20px}
-  .sa-ag__sub{font-size:15px;line-height:22.5px}
-  .sa-ag__steps{grid-template-columns:minmax(0,1fr);gap:0;margin-top:32px}
-  .sa-ag__num{font-size:48px}
-  .sa-ag__step{padding:24px 0 0}
-  .sa-ag__step:first-child{padding-top:0}
-  /* в столбик нить вертикальная: от узла одного шага до узла следующего.
-     Над узлом в каждом шаге одинаковая высота: цифра 43 + иконка 48 +
-     отступ рейки 18 + половина узла 4 = 113, у шагов 2-4 плюс отступ 24 */
-  .sa-ag__step{position:relative}
-  .sa-ag__step .sa-ag__rail::after{display:none}
-  .sa-ag__step:not(:last-child)::after{content:"";position:absolute;left:4px;
-    top:137px;bottom:-137px;width:1px;background:rgba(255,66,0,.35);
-    box-shadow:0 0 8px rgba(255,66,0,.25)}
-  .sa-ag__step:first-child::after{top:113px}
+  .sa-ag__steps{grid-template-columns:minmax(0,1fr)}
+  .sa-ag__btn{width:100%}
   }
 </style>
 
@@ -96,33 +74,41 @@
       <div class="sa-ag__step">
         <div class="sa-ag__num">01</div>
         <div class="sa-ag__ico"><svg viewBox="0 0 32 32"><circle cx="14" cy="14" r="8"/><path d="M20 20l6 6"/></svg></div>
-        <div class="sa-ag__rail"><span class="sa-ag__dot"></span></div>
-        <div class="sa-ag__sh">Диагностика</div>
-        <div class="sa-ag__st">Собственная лаборатория и агрономы</div>
+        <div class="sa-ag__dot"></div>
+        <div class="sa-ag__txt">
+          <div class="sa-ag__sh">Диагностика</div>
+          <div class="sa-ag__st">Собственная лаборатория и агрономы</div>
+        </div>
       </div>
 
       <div class="sa-ag__step">
         <div class="sa-ag__num">02</div>
         <div class="sa-ag__ico"><svg viewBox="0 0 32 32"><path d="M12 4h8M13 4v9l-6 11a3 3 0 0 0 2.6 4.5h12.8A3 3 0 0 0 25 24l-6-11V4"/><path d="M9 20h14"/></svg></div>
-        <div class="sa-ag__rail"><span class="sa-ag__dot"></span></div>
-        <div class="sa-ag__sh">Подбор препаратов</div>
-        <div class="sa-ag__st">Под культуру и задачи хозяйства</div>
+        <div class="sa-ag__dot"></div>
+        <div class="sa-ag__txt">
+          <div class="sa-ag__sh">Подбор препаратов</div>
+          <div class="sa-ag__st">Под культуру и задачи хозяйства</div>
+        </div>
       </div>
 
       <div class="sa-ag__step">
         <div class="sa-ag__num">03</div>
         <div class="sa-ag__ico"><svg viewBox="0 0 32 32"><path d="M3 10h14v12H3zM17 14h6l4 4v4h-10z"/><circle cx="8" cy="24" r="2.5"/><circle cx="22" cy="24" r="2.5"/></svg></div>
-        <div class="sa-ag__rail"><span class="sa-ag__dot"></span></div>
-        <div class="sa-ag__sh">Поставка</div>
-        <div class="sa-ag__st">Со склада в Барнауле, доставка в хозяйство</div>
+        <div class="sa-ag__dot"></div>
+        <div class="sa-ag__txt">
+          <div class="sa-ag__sh">Поставка</div>
+          <div class="sa-ag__st">Со склада в Барнауле, доставка в хозяйство</div>
+        </div>
       </div>
 
       <div class="sa-ag__step">
         <div class="sa-ag__num">04</div>
         <div class="sa-ag__ico"><svg viewBox="0 0 32 32"><path d="M16 28s10-7 10-14a6 6 0 0 0-10-4.5A6 6 0 0 0 6 14c0 7 10 14 10 14z"/><path d="M16 9.5V28"/></svg></div>
-        <div class="sa-ag__rail"><span class="sa-ag__dot"></span></div>
-        <div class="sa-ag__sh">Сопровождение в сезоне</div>
-        <div class="sa-ag__st">Корректировка в течение сезона</div>
+        <div class="sa-ag__dot"></div>
+        <div class="sa-ag__txt">
+          <div class="sa-ag__sh">Сопровождение в сезоне</div>
+          <div class="sa-ag__st">Корректировка в течение сезона</div>
+        </div>
       </div>
 
     </div>
