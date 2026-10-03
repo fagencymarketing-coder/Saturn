@@ -25,16 +25,18 @@
 img.js-product-img,
 .t-catalog__prod-popup__columns img.js-product-img{object-fit:contain !important;background:#F0EDE9}
 
-/* 3. Кнопка «Оставить заявку»: текст целиком, в две строки если надо */
-.js-catalog-prod-btn,
-.t-catalog__card__btns-wrapper .t-btn{
-  padding:12px 16px !important;height:auto !important;min-height:52px !important;
-  white-space:normal !important;line-height:1.25 !important;
-  display:flex !important;align-items:center;justify-content:center;text-align:center}
-.t-catalog__card__btn-text,
-.js-catalog-prod-btn .t-btnflex__text{
-  white-space:normal !important;overflow:visible !important;text-overflow:clip !important;
-  line-height:1.25 !important}
+/* 3. Кнопка «Оставить заявку» убрана из плитки каталога.
+      На утверждённом холсте в карточке только название, описание и
+      цифра — красной кнопки под каждым товаром нет. Она остаётся там,
+      где нужна: на странице товара. Решение заказчика 03.10.2026.
+
+      Классы различаются, и это важно:
+        t-catalog__card__btn      — кнопка в плитке, её прячем;
+        t-catalog__prod-popup__btn — кнопка на странице товара, не трогаем.
+      Прячем вместе с обёрткой, иначе от неё останется пустая полоса. */
+.t-catalog__card__btn,
+.t-catalog__card__btns-wrapper,
+.js-catalog-prod-btn{display:none !important}
 
 /* 4. Название товара — не длиннее двух строк, чтобы карточки не прыгали */
 .t-catalog__card__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
@@ -141,6 +143,15 @@ img.js-product-img,
 <script>
 (function(){
   function fix(){
+    /* 0. «Load more» → «Загрузить ещё».
+          Поля для этой надписи в настройках блока нет — агент искал его
+          в трёх разделах и не нашёл. Тильда рисует её из шаблона
+          button_loadmore_<recid>, латиницей, и меняется она только так. */
+    document.querySelectorAll('.js-catalog-load-more-btn-text')
+      .forEach(function(el){
+        if (/^\s*Load more\s*$/.test(el.textContent)) el.textContent = 'Загрузить ещё';
+      });
+
     /* A. «Цена по запросу» там, где цены нет.
           Обёртка НЕ пустая: Тильда всегда рисует два значка валюты «р.»,
           поэтому проверяем наличие цифр внутри блока самой цены. */
