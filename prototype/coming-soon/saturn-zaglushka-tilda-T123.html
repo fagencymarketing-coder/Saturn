@@ -8,16 +8,23 @@
     --paper:#F4EEE7; --muted:#B9ADA2; --muted-2:#8A8078;
     --line:rgba(255,255,255,.10);
   }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{margin:0; background:var(--ink); color:var(--paper);
+  /* Заглушка самостоятельна: фон и цвет текста держит СВОЯ обёртка,
+     а не body. На странице Тильды body закрыт белым #allrecords, и при
+     фоне на body светлый текст #F4EEE7 оказывался на белом — страница
+     читалась как сломанная. Правка 03.10.2026. */
+  .sa-zg,.sa-zg *{box-sizing:border-box}
+  .sa-zg{background:var(--ink); color:var(--paper);
     font-family:"IBM Plex Sans",system-ui,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased;
-    display:flex; flex-direction:column; min-height:100%; position:relative; overflow-x:hidden}
+    display:flex; flex-direction:column; min-height:100vh; position:relative; overflow-x:hidden}
+  /* На заглушке не должно быть ни шапки, ни подвала сайта.
+     Правило живёт внутри самой заглушки, поэтому на других страницах
+     ничего не скрывает. */
+  .sa-hd,.sa-hd__sp,.sa-hd__ov,.sa-ft{display:none !important}
   h1,h2{font-family:"Archivo",sans-serif; margin:0; line-height:1.04; letter-spacing:-.02em}
 
   /* background layers */
-  .bg-pat{position:fixed; inset:0; color:#fff; opacity:.04; z-index:0; pointer-events:none}
-  .bg-glow{position:fixed; z-index:0; pointer-events:none; width:900px; height:900px;
+  .bg-pat{position:absolute; inset:0; color:#fff; opacity:.04; z-index:0; pointer-events:none}
+  .bg-glow{position:absolute; z-index:0; pointer-events:none; width:900px; height:900px;
     right:-260px; top:-320px; border-radius:50%;
     background:radial-gradient(circle, rgba(238,74,14,.42) 0%, rgba(238,74,14,.10) 42%, transparent 68%)}
   .bg-glow.two{left:-320px; right:auto; top:auto; bottom:-380px; width:760px; height:760px;
@@ -73,7 +80,7 @@
     .cbtns{flex-direction:column; align-items:stretch}
     .cbtn{justify-content:flex-start}
   }
-.bg-art{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.bg-art{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
 .cbtn.pri{background:#1F9E57;border-color:#1F9E57;color:#fff}
 .status{color:#8CDCAE;background:rgba(31,158,87,.15);border-color:rgba(31,158,87,.42)}
@@ -110,6 +117,8 @@
 }
 
 </style>
+
+<div class="sa-zg">
 <svg class="bg-art" viewBox="0 0 1440 900" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <defs>
 <linearGradient id="g1" x1="0" y1="0" x2="0.7" y2="1"><stop offset="0" stop-color="#FF9A5A"/><stop offset="1" stop-color="#F0490F"/></linearGradient>
@@ -168,4 +177,4 @@
   <span>sssaturn.ru</span>
   <span>© 2026 «Сатурн» · Система успеха</span>
 </footer>
-
+</div>
