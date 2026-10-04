@@ -8,7 +8,7 @@
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
   background:#fff;padding:80px 0}
 .sa-sd *{box-sizing:border-box;margin:0;padding:0}
-.sa-sd__in{max-width:1200px;margin:0 auto;padding:0 20px}
+.sa-sd__in{max-width:1240px;margin:0 auto;padding:0 20px}
 .sa-sd__top{display:flex;align-items:flex-start;gap:24px}
 .sa-sd__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--mut);line-height:1}
@@ -53,8 +53,14 @@
 @media (max-width:767px){
   .sa-sd{padding:52px 0}
   .sa-sd__in{padding:0 20px}
-  .sa-sd__all{display:flex;justify-content:center;width:100%}
-  .sa-sd__grid{grid-template-columns:minmax(0,1fr);gap:16px;margin-top:28px}
+  /* «Все семена 25 →» на холсте стоит под сеткой, а не под заголовком —
+     обёртка .sa-sd__top на телефоне растворяется, чтобы кнопку можно было
+     переставить, не трогая разметку. */
+  .sa-sd__in{display:flex;flex-direction:column}
+  .sa-sd__top{display:contents}
+  .sa-sd__top>div:first-child{order:1}
+  .sa-sd__grid{order:2;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:28px}
+  .sa-sd__all{order:3;display:flex;justify-content:center;width:100%;margin-top:28px}
   .sa-sd__ph{aspect-ratio:auto;height:220px}
   .sa-sd__name{font-size:17px;line-height:21px}
   .sa-sd__sig{font-size:13px;line-height:18px}

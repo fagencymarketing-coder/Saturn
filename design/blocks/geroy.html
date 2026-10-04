@@ -21,6 +21,7 @@
    нет. Трекинг решает то же самое, не трогая ни кегль, ни ширину колонки,
    ни положение фотографии. Заказчик заметил перенос 03.10.2026. */
 .sa-hero__h{font-size:42px;font-weight:800;line-height:45.4px;letter-spacing:-.02em}
+@media (min-width:768px){.sa-hero__w{white-space:nowrap}}
 .sa-hero__h em{font-style:normal;color:var(--acc)}
 .sa-hero__sub{font-size:20px;font-weight:400;line-height:30px;color:var(--mut);
   max-width:460px;margin-top:24px}
@@ -55,29 +56,11 @@
   .sa-hero__b1:hover{background:#C23100}
   .sa-hero__b2:hover{border-color:var(--ink)}
 }
-/* планшет */
-@media (max-width:1023px) and (min-width:768px){
-  .sa-hero__in{padding:clamp(28px,4.5vh,56px) 32px;gap:32px;
-    grid-template-columns:1fr 1fr;max-width:none}
-  .sa-hero__h{font-size:34px;line-height:37px}
-  .sa-hero__sub{font-size:16px;line-height:24px;margin-top:18px}
-  .sa-hero__btns{margin-top:28px;gap:10px}
-  .sa-hero__b1,.sa-hero__b2{padding:0 20px;font-size:15px}
-  .sa-hero__nums{margin-top:28px}
-  .sa-hero__n{padding-right:16px}
-  .sa-hero__n+.sa-hero__n{padding-left:16px}
-  .sa-hero__n b{font-size:24px}
-  .sa-hero__n span{font-size:12px;line-height:15.6px}
-  .sa-hero__pic img{width:100%;height:clamp(340px,calc(100dvh - 400px),520px);
-    border-radius:22px}
-  .sa-hero__em{left:auto;right:20px;top:20px;width:80px;height:80px;transform:none;
-    animation:sa-floatY 7s ease-in-out infinite}
-  .sa-hero__em img{width:80px;height:80px}
-}
 @keyframes sa-floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes sa-floatX{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-8px)}}
-/* телефон: фото на весь экран, текст поверх */
-@media (max-width:767px){
+/* телефон и планшет: фото на весь экран, текст поверх — так на холсте
+   и на 390, и на 768 */
+@media (max-width:1023px){
   /* на телефоне шапка ниже, а полоса цифр входит в первый экран:
      фото с текстом тянется, полоса стоит под ним — вместе ровно один экран */
   .sa-hero{background:var(--ink);--hd:64px;flex-direction:column;
@@ -94,8 +77,8 @@
   .sa-hero__col{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 20px 28px}
   /* самое длинное слово «сельхозпроизводителей» = 13,65em,
      поэтому кегль привязан к ширине экрана и слово никогда не рвётся */
-  .sa-hero__h{font-size:clamp(17px,calc(6.4vw - 2px),26px);line-height:1.15;color:#fff;
-    overflow-wrap:break-word}
+  .sa-hero__h{font-size:clamp(22px,calc(2.646vw + 19.68px),40px);line-height:1.15;
+    color:#fff;overflow-wrap:break-word}
   .sa-hero__sub{font-size:15px;line-height:22.5px;color:rgba(255,255,255,.8);margin-top:14px}
   .sa-hero__btns{gap:10px;margin-top:22px;flex-wrap:nowrap}
   .sa-hero__b1,.sa-hero__b2{height:52px;font-size:15px;font-weight:600;padding:0 16px;
@@ -105,7 +88,8 @@
   .sa-hero__long{display:none}
   .sa-hero__short{display:inline}
   .sa-hero__nums{display:none}
-  .sa-hero__strip{display:block;flex:0 0 auto;background:#fff;padding:22px 20px}
+  .sa-hero__strip{display:block;flex:0 0 auto;align-self:stretch;width:100%;
+    background:#fff;padding:22px 20px}
   .sa-hero__strip .sa-hero__nums{display:flex;margin-top:0;max-width:none}
   .sa-hero__strip .sa-hero__nums{min-width:0}
   .sa-hero__strip .sa-hero__n{padding-right:10px;min-width:0;overflow:hidden}
@@ -114,13 +98,25 @@
   .sa-hero__strip .sa-hero__n b{font-size:22px}
   .sa-hero__strip .sa-hero__n span{font-size:12px;line-height:15.6px;margin-top:6px}
 }
+/* планшет: тот же тёмный герой, но воздуха больше, а кнопки по содержимому,
+   а не во всю ширину — как на холсте */
+@media (max-width:1023px) and (min-width:768px){
+  .sa-hero__col{padding:0 32px 40px}
+  .sa-hero__sub{font-size:16px;line-height:24px;margin-top:18px;max-width:560px}
+  .sa-hero__btns{margin-top:28px;gap:12px}
+  .sa-hero__b1,.sa-hero__b2{flex:0 0 auto;padding:0 24px}
+  .sa-hero__strip{padding:24px 32px}
+  .sa-hero__strip .sa-hero__n b{font-size:24px}
+  .sa-hero__em{top:24px;left:auto;right:32px;transform:none;
+    animation:sa-floatY 7s ease-in-out infinite}
+}
 </style>
 
 <div class="sa-hero">
   <div class="sa-hero__in">
 
     <div class="sa-hero__col">
-      <h1 class="sa-hero__h">Семена, <em>удобрения</em> и защита растений для сельхозпроизводителей</h1>
+      <h1 class="sa-hero__h">Семена, <em>удобрения</em> и защита растений для <span class="sa-hero__w">сельхоз&shy;производителей</span></h1>
       <p class="sa-hero__sub">Подберём решения под культуру, регион и задачу хозяйства</p>
       <div class="sa-hero__btns">
         <a class="sa-hero__b1" href="#contacts">Подобрать решение</a>

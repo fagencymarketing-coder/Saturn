@@ -4,7 +4,7 @@
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
   background:#fff;padding:56px 0 0}
 .sa-ft *{box-sizing:border-box;margin:0;padding:0}
-.sa-ft__in{max-width:1200px;margin:0 auto;padding:0 20px}
+.sa-ft__in{max-width:1240px;margin:0 auto;padding:0 20px}
 .sa-ft__cols{display:grid;min-width:0;grid-template-columns:329fr 235fr 235fr 282fr;gap:40px}
 .sa-ft__logo img{display:block;width:98px;height:34px;object-fit:contain}
 .sa-ft__about{font-size:14px;font-weight:400;line-height:22.4px;color:var(--mut);
@@ -29,7 +29,9 @@
 .sa-ft__bot{display:flex;align-items:center;justify-content:space-between;gap:16px;
   margin-top:24px;padding:24px 0 40px;border-top:1px solid var(--lin2);
   font-size:13px;font-weight:400;color:var(--cap)}
-.sa-ft__bot a{color:var(--cap);text-decoration:none}
+.sa-ft__bot a{color:var(--cap);text-decoration:underline;
+  text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:rgba(118,111,104,.5)}
 .sa-ft__legal{display:flex;gap:8px;align-items:center}
 .sa-ft__mcol,.sa-ft__mnav,.sa-ft__mbtns,.sa-ft__mhr{display:none}
 @media (hover:hover){
@@ -128,10 +130,10 @@
 
     <div class="sa-ft__mhr"></div>
     <nav class="sa-ft__mnav">
-      <a href="/catalog">Каталог <i>→</i></a>
-      <a href="/#seeds">Семена <i>→</i></a>
-      <a href="/#service">Агросопровождение <i>→</i></a>
-      <a href="/#contacts">Контакты <i>→</i></a>
+      <a href="/catalog">Каталог</a>
+      <a href="/#seeds">Семена</a>
+      <a href="/#service">Агросопровождение</a>
+      <a href="/#contacts">Контакты</a>
       <details><summary>Реквизиты <i>▾</i></summary>
         <p>ООО «Сатурн» · ИНН 2801274078 · КПП 222501001 · ОГРН 1232800002709<br>Юр. адрес: 656056, Алтайский край, г. Барнаул, пл. им. В.Н. Баварина, д. 2, пом./офис Н58/11/09</p>
       </details>
@@ -145,7 +147,7 @@
       <div>© 2026 ООО «Сатурн». Все права защищены.</div>
       <div class="sa-ft__legal">
         <a href="/privacy">Политика обработки персональных данных</a><i>·</i>
-        <a href="/consent">Согласие на обработку</a>
+        <a href="/consent">Согласие на обработку персональных данных</a>
       </div>
     </div>
 

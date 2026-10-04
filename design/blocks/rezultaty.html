@@ -4,7 +4,7 @@
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
   background:#F6F5F3;padding:80px 0 64px}
 .sa-res *{box-sizing:border-box;margin:0;padding:0}
-.sa-res__in{max-width:1200px;margin:0 auto;padding:0 20px}
+.sa-res__in{max-width:1240px;margin:0 auto;padding:0 20px}
 .sa-res__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--mut);line-height:1}
 /* оранжевая риска перед надзаголовком — есть на утверждённом холсте
@@ -43,17 +43,23 @@
   .sa-res__pdf:hover{color:var(--acc);border-color:var(--acc)}
   .sa-res__btn:hover{background:#C23100}
 }
+/* Четыре карточки в ряд перестают помещаться раньше, чем страница уходит
+   в планшетный режим, поэтому сетка переключается на своей ширине, а кегли
+   и поля — на общей для всех блоков. Иначе на 1024 «Результаты» выглядели
+   планшетом среди десктопных соседей. */
 @media (max-width:1199px){
+  .sa-res__grid{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:48px}
+  .sa-res__card{padding:24px}
+  .sa-res__big{font-size:40px}
+}
+@media (max-width:1023px){
   .sa-res{padding:64px 0 56px}
   .sa-res__in{padding:0 32px}
   .sa-res__h{font-size:28px;line-height:32px;margin-top:24px}
   .sa-res__nums{gap:12px;margin-top:40px}
   .sa-res__num b{font-size:26px}
-  .sa-res__grid{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:48px}
-  .sa-res__card{padding:24px}
-  .sa-res__big{font-size:40px}
 }
-@media (max-width:640px){
+@media (max-width:767px){
   .sa-res{padding:52px 0}
   .sa-res__in{padding:0 20px}
   .sa-res__nums{margin-top:32px;gap:8px}

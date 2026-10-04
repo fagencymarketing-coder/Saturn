@@ -47,7 +47,7 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 #sa-tp-cta,#sa-tp-cta *{{box-sizing:border-box}}
 #sa-tp-cta{{background:#141210;color:#fff;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif}}
-#sa-tp-cta .sa-tp-cta__in{{max-width:1200px;margin:0 auto;padding:56px 20px}}
+#sa-tp-cta .sa-tp-cta__in{{max-width:1240px;margin:0 auto;padding:56px 20px}}
 #sa-tp-cta .sa-tp-cta__t{{font-size:28px;font-weight:800;line-height:1.15;
   overflow-wrap:break-word}}
 #sa-tp-cta .sa-tp-cta__x{{font-size:15px;font-weight:400;line-height:22.5px;
