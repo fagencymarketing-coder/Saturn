@@ -8,7 +8,12 @@
    контактами и карточкой зияло 170 px пустоты — форма выглядела
    оторванной от секции, хотя на холсте она её часть. Поля убраны,
    карточка подтянута к контактам. Заказчик 04.10.2026. */
-.uc-saturn-form{background:#141210;padding:0 0 64px;margin-top:-24px}
+/* 04.10, вечер: карточка была тёмной на тёмном — «прямоугольник
+   внутри прямоугольника», и поля внутри неё третьим слоем. Заказчица
+   попросила выделить блок светлым и поднять ближе к контактам.
+   Теперь карточка светлая: на тёмной секции она читается сразу, а
+   поля внутри — белые, и слоёв становится два вместо трёх. */
+.uc-saturn-form{background:#141210;padding:0 0 56px;margin-top:-48px}
 .uc-saturn-form .t-section__container,
 .uc-saturn-form .t-container{padding-top:0 !important}
 .uc-saturn-form .t-form__submit{margin-top:0}
@@ -20,14 +25,14 @@
    Теперь форма стоит на своей подложке — так она отделяется от страницы
    и сразу видно, что это форма. Заказчик заметил 04.10.2026.
    Поля карточки по холсту: 40 сверху и снизу, 40 по бокам. */
-.uc-saturn-form .t-form{background:#1E1B18;border-radius:var(--sa-r-card);
+.uc-saturn-form .t-form{background:#F7F5F2;border-radius:var(--sa-r-card);
   padding:40px}
 /* Заголовок карточки — на холсте он есть, в блоке формы Тильды его
    завести нечем, поэтому вставляем узлом (см. скрипт ниже). */
 .uc-saturn-form .sa-fh{font-size:var(--sa-h3);font-weight:800;line-height:1.25;
-  color:#fff;margin:0 0 6px}
+  color:#141210;margin:0 0 6px}
 .uc-saturn-form .sa-fx{font-size:var(--sa-body);font-weight:400;line-height:1.5;
-  color:#B5B0AA;margin:0 0 24px}
+  color:#6B655E;margin:0 0 24px}
 .uc-saturn-form .t-input-group{margin-bottom:12px}
 
 /* поля: кегль ровно 16 — иначе Safari на iPhone приближает страницу */
@@ -35,21 +40,21 @@
 .uc-saturn-form input.t-input,
 .uc-saturn-form textarea.t-input{
   height:52px !important;border-radius:12px !important;padding:0 18px !important;
-  background:rgba(255,255,255,.05) !important;
-  border:1px solid rgba(255,255,255,.28) !important;
-  color:#fff !important;font-size:16px !important;font-weight:500 !important;
+  background:#fff !important;
+  border:1px solid #E0DAD2 !important;
+  color:#141210 !important;font-size:16px !important;font-weight:500 !important;
   font-family:Montserrat,sans-serif !important}
-.uc-saturn-form .t-input::placeholder{color:rgba(255,255,255,.55) !important}
+.uc-saturn-form .t-input::placeholder{color:#7A736B !important}
 /* Виджет телефона Тильды рисует флаг и код отдельными элементами, мимо
    .t-input, и на тёмном фоне они оставались светлыми пятнами. */
 .uc-saturn-form .t-inputphonemask__wrap,
 .uc-saturn-form .t-inputphonemask__select{
-  background:rgba(255,255,255,.05) !important;
-  border:1px solid rgba(255,255,255,.28) !important;
-  border-radius:12px !important;height:52px !important;color:#fff !important}
-.uc-saturn-form .t-inputphonemask__options{background:#1E1B18 !important;color:#fff !important;
-  border:1px solid rgba(255,255,255,.2) !important;border-radius:12px !important}
-.uc-saturn-form .t-inputphonemask__option:hover{background:rgba(255,255,255,.08) !important}
+  background:#fff !important;
+  border:1px solid #E0DAD2 !important;
+  border-radius:12px !important;height:52px !important;color:#141210 !important}
+.uc-saturn-form .t-inputphonemask__options{background:#fff !important;color:#141210 !important;
+  border:1px solid #E0DAD2 !important;border-radius:12px !important}
+.uc-saturn-form .t-inputphonemask__option:hover{background:#F0EDE9 !important}
 .uc-saturn-form .t-input:focus{border-color:#FF4200 !important;outline:none !important}
 
 /* текст согласия */
@@ -58,11 +63,11 @@
 .uc-saturn-form .t-form__lock-text,
 .uc-saturn-form .t-form__screen-descr{
   font-size:13px !important;font-weight:400 !important;line-height:19.5px !important;
-  color:rgba(255,255,255,.6) !important}
+  color:#6B655E !important}
 .uc-saturn-form .t-checkbox__control a,
-.uc-saturn-form .t-form__lock-text a{color:#fff !important;text-decoration:underline}
+.uc-saturn-form .t-form__lock-text a{color:#141210 !important;text-decoration:underline}
 .uc-saturn-form .t-checkbox__indicator{border-radius:4px !important;width:18px !important;
-  height:18px !important;border:1px solid rgba(255,255,255,.3) !important}
+  height:18px !important;border:1px solid #C9C3BB !important;background:#fff !important}
 .uc-saturn-form .t-checkbox:checked+.t-checkbox__indicator,
 .uc-saturn-form .t-checkbox__indicator_checked{background:#FF4200 !important;
   border-color:#FF4200 !important}
@@ -82,7 +87,7 @@
   color:#fff !important}
 
 /* сообщение после отправки */
-.uc-saturn-form .t-form__successbox{background:#1E1B18 !important;color:#fff !important;
+.uc-saturn-form .t-form__successbox{background:#F7F5F2 !important;color:#141210 !important;
   border-radius:22px !important;font-family:Montserrat,sans-serif !important}
 
 @media (max-width:1023px){
