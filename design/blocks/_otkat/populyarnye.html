@@ -1,0 +1,264 @@
+<!-- Блок «Популярные позиции» для вставки в T123 на главной -->
+<!-- Адреса товаров подставлены 03.10.2026 из живого каталога,
+     список пар «артикул = адрес» — catalogs/product-links.txt,
+     подставляет tools/set_product_links.py. Руками href не править:
+     slug в адресе не равен артикулу (Tilda пишет «ё» как yo). -->
+<style>
+.sa-pop{--ink:#141210;--acc:#FF4200;--mut:#766F68;--mut2:#6B6560;--tile:#F0EDE9;--line:#E7E3DE;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#F6F5F3;padding:80px 0;overflow-x:hidden}
+.sa-pop *{box-sizing:border-box;margin:0;padding:0}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-pop__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+.sa-pop__top{display:flex;align-items:flex-start;gap:24px}
+.sa-pop__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mut);line-height:1}
+/* оранжевая риска перед надзаголовком — есть на утверждённом холсте
+   у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
+.sa-pop__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
+  background:#FF4200}
+/* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
+.sa-pop__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh)5;margin-top:16px;letter-spacing:-.01em}
+.sa-pop__acts{margin-left:auto;display:flex;gap:12px;flex:0 0 auto;padding-top:22px}
+.sa-pop__a1,.sa-pop__a2{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:var(--sa-btn-h);padding:0 var(--sa-btn-px);border-radius:var(--sa-r-ctrl);
+  text-decoration:none;font-size:var(--sa-body);
+  white-space:nowrap}
+.sa-pop__a1{background:var(--ink);color:#fff;font-weight:600}
+/* 04.10: «кнопки остались огромные». Две залитые плашки рядом
+   весили как призыв к действию, хотя прайс — это просто файл.
+   Оставляем одну кнопку, прайс делаем ссылкой со значком, как в
+   подвале. Высота сохранена, чтобы строка не прыгала. */
+.sa-pop__a2{background:transparent;color:var(--ink);font-weight:600;padding:0}
+.sa-pop__a2 svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+/* Логотипы и чипы раньше шли двумя строками одна под другой, обе
+   прижатые влево, и справа оставалась пустая треть экрана — заказчик
+   справедливо назвал это дисгармонией. Теперь это одна полоса: слева
+   фильтр, справа поставщики. Пустота заполнилась, блок стал на строку
+   короче, а два «служебных» ряда перестали спорить с заголовком. */
+.sa-pop__band{display:flex;align-items:center;justify-content:space-between;
+  gap:32px;margin-top:36px;flex-wrap:wrap}
+.sa-pop__logos{display:flex;align-items:center;gap:32px;flex-wrap:wrap;order:2}
+.sa-pop__logos img{display:block;height:36px;width:auto;object-fit:contain;
+  opacity:.85}
+.sa-pop__chips{display:flex;gap:8px;overflow-x:auto;order:1;
+  scrollbar-width:none;-ms-overflow-style:none}
+.sa-pop__chips::-webkit-scrollbar{display:none}
+/* Чипы были 44 px при заголовке в 40 — крупнее того, что они
+   обслуживают. Теперь 36: вспомогательный элемент и выглядит как
+   вспомогательный. */
+.sa-pop__chip{display:inline-flex;align-items:center;height:var(--sa-chip-h);padding:0 16px;
+  border-radius:999px;border:1px solid var(--line);background:transparent;
+  color:var(--ink);text-decoration:none;font-size:13px;font-weight:600;white-space:nowrap;
+  flex:0 0 auto}
+.sa-pop__chip_on{background:var(--ink);border-color:var(--ink);color:#fff}
+.sa-pop__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
+.sa-pop__cta{display:flex;justify-content:center;margin-top:52px}
+.sa-pop__cta a{display:inline-flex;align-items:center;justify-content:center;
+  min-width:274px;height:52px;padding:0 24px;border-radius:12px;background:#D93800;
+  color:#fff;text-decoration:none;font-size:var(--sa-lead);font-weight:700}
+.sa-pop__card{display:flex;flex-direction:column;background:#fff;
+  border-radius:var(--sa-r-card);transition:transform var(--sa-t) var(--sa-ease),
+    box-shadow var(--sa-t) var(--sa-ease),border-color var(--sa-t) var(--sa-ease),
+    color var(--sa-t) var(--sa-ease);
+  padding:16px;text-decoration:none;color:inherit}
+.sa-pop__ph{position:relative;background:var(--tile);border-radius:12px;aspect-ratio:355/266}
+.sa-pop__ph img{position:absolute;inset:18px;width:calc(100% - 36px);height:calc(100% - 36px);
+  object-fit:contain;display:block}
+.sa-pop__body{padding:20px 6px 6px;display:flex;flex-direction:column;gap:8px;flex:1}
+.sa-pop__name{font-size:var(--sa-h3);font-weight:700;line-height:1.25;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sa-pop__sig{font-size:var(--sa-small);font-weight:400;line-height:1.4;color:var(--mut);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sa-pop__price{display:flex;align-items:baseline;gap:4px;margin-top:auto;padding-top:4px}
+.sa-pop__price i{font-style:normal;font-size:var(--sa-small);font-weight:400;color:var(--mut)}
+.sa-pop__price b{font-size:22px;font-weight:700;line-height:1}
+.sa-pop__price_ask{font-size:var(--sa-small);font-weight:400;color:var(--mut)}
+@media (hover:hover){
+  .sa-pop__a1:hover{background:#2a2622}
+  .sa-pop__a2:hover{background:#F0EDE9}
+  .sa-pop__cta a:hover{background:#C23100}
+  .sa-pop__chip:hover{border-color:var(--ink)}
+  .sa-pop__chip_on:hover{background:#2a2622}
+  .sa-pop__card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,18,16,.08)}
+  .sa-pop__card:hover .sa-pop__name{color:var(--acc)}
+}
+/* планшет */
+@media (max-width:1023px){
+  .sa-pop{padding:64px 0}
+  .sa-pop__in{padding:0 32px}
+  .sa-pop__top{display:block}
+  .sa-pop__h{font-size:28px;line-height:33px}
+  .sa-pop__acts{margin-left:0;padding-top:20px;gap:12px}
+  .sa-pop__band{gap:20px;margin-top:28px}
+  .sa-pop__logos{gap:24px}
+  .sa-pop__logos img{height:30px}
+  .sa-pop__chips{gap:8px}
+  /* Планшет — тоже палец, значит те же 44 px. */
+  .sa-pop__chip{height:44px;padding:0 16px}
+  .sa-pop__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
+  .sa-pop__name{font-size:16px;line-height:20px}
+  .sa-pop__price b{font-size:20px}
+}
+/* телефон */
+@media (max-width:767px){
+  .sa-pop{padding:52px 0}
+  .sa-pop__in{padding:0 20px}
+  /* На холсте кнопки стоят под сеткой карточек, а не сразу под заголовком.
+     Они лежат внутри .sa-pop__top, поэтому на телефоне эта обёртка
+     растворяется (display:contents) и её дети становятся элементами общей
+     колонки — только так их можно переставить, не трогая разметку. */
+  .sa-pop__in{display:flex;flex-direction:column}
+  .sa-pop__top{display:contents}
+  .sa-pop__top>div:first-child{order:1}
+  /* min-width:0 и на самой полосе: она сама флекс-элемент общей
+     колонки, и без этого раздувалась по неразрывному содержимому. */
+  .sa-pop__band{order:2;display:flex;flex-direction:column-reverse;
+    align-items:stretch;gap:20px;min-width:0}
+  .sa-pop__grid{order:4}
+  /* На телефоне тут стояли три одинаковые кнопки подряд: «Весь
+     каталог», «Скачать прайс» и «Получить предложение». Три призыва
+     одного веса спорят друг с другом и выглядят шумно. Оставляем
+     кнопками два действия, а прайс делаем обычной ссылкой со
+     значком — ровно так он выглядит в подвале. */
+  /* Три призыва подряд — «Весь каталог», «Скачать прайс» и «Получить
+     предложение» — заказчица 04.10: «несуразно». Прайс уже стал
+     ссылкой, а оранжевую кнопку на телефоне убираем совсем: она
+     повторяет то, что на этом же экране предлагают герой
+     («Подобрать решение»), агросопровождение («Заказать
+     диагностику»), форма и блок «Не нашли нужное?». Остаются одно
+     действие кнопкой и одна ссылка. */
+  .sa-pop__acts{order:5;display:flex;flex-direction:column;gap:4px;margin-top:28px}
+  .sa-pop__cta{display:none}
+  .sa-pop__a1{width:100%}
+  .sa-pop__a2{width:100%;background:transparent;height:auto;min-height:44px;
+    font-weight:600;border-radius:0}
+  /* min-width:0 обязателен: без него флекс-элемент с неразрывным
+     содержимым раздувается по контенту, и на 320 полоса логотипов
+     вылезала за экран вместе с чипами. */
+  /* width:100% обязателен обоим: без него флекс-элемент с неразрывным
+     содержимым считает ширину по контенту, и на 320 полоса логотипов
+     вместе с чипами вылезала за экран на 57 px. min-width:0 тут
+     не спасает — нужна именно заданная ширина. */
+  .sa-pop__logos{flex-wrap:nowrap;overflow-x:auto;gap:20px;
+    width:100%;min-width:0;scrollbar-width:none;-ms-overflow-style:none}
+  .sa-pop__chips{width:100%;min-width:0}
+  .sa-pop__logos::-webkit-scrollbar{display:none}
+  .sa-pop__logos img{height:28px;flex:0 0 auto}
+  /* На телефоне чип — цель нажатия, а не надпись: 44 px минимум,
+     иначе палец промахивается. Проверяется tools/audit/dostup.js. */
+  .sa-pop__chip{height:44px;font-size:13px;padding:0 16px}
+  .sa-pop__cta{margin-top:32px}
+  .sa-pop__cta a{min-width:0;width:100%}
+  .sa-pop__card{padding:12px;border-radius:16px}
+  .sa-pop__ph{aspect-ratio:1/1;border-radius:10px}
+  .sa-pop__ph img{inset:12px;width:calc(100% - 24px);height:calc(100% - 24px)}
+  .sa-pop__body{padding:14px 2px 2px;gap:6px}
+  .sa-pop__name{font-size:15px;line-height:19px}
+  .sa-pop__sig{font-size:12px;line-height:16px}
+  .sa-pop__price i{font-size:13px}
+  .sa-pop__price b{font-size:17px}
+}
+</style>
+
+<div class="sa-pop">
+  <div class="sa-pop__in">
+
+    <div class="sa-pop__top">
+      <div>
+        <span class="sa-pop__kicker">Каталог</span>
+        <h2 class="sa-pop__h">Популярные позиции</h2>
+      </div>
+      <div class="sa-pop__acts">
+        <a class="sa-pop__a1" href="/catalog">Весь каталог →</a>
+        <a class="sa-pop__a2" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>Скачать прайс</a>
+      </div>
+    </div>
+
+    <div class="sa-pop__band">
+
+    <div class="sa-pop__logos">
+      <img src="https://static.tildacdn.com/tild6435-3734-4264-b261-343932303839/fertika.png" alt="Fertika" loading="lazy" decoding="async">
+      <img src="https://static.tildacdn.com/tild6664-3164-4135-a233-363133643137/volsky.png" alt="Волски Биохим" loading="lazy" decoding="async">
+      <img src="https://static.tildacdn.com/tild3662-3134-4239-b239-343138343831/relict-organics.png" alt="Реликт" loading="lazy" decoding="async">
+    </div>
+
+    <div class="sa-pop__chips">
+      <a class="sa-pop__chip sa-pop__chip_on" href="/catalog">Все</a>
+      <a class="sa-pop__chip" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=466293242973&tfc_div=:::" data-section="Удобрения и листовые подкормки">Удобрения</a>
+      <!-- Раздел «СЗР» 216609640123 заведён в магазине 03.10: препараты
+     остались в своих пяти разделах и получили шестым этот. 35 позиций,
+     проверено по API магазина. -->
+      <a class="sa-pop__chip" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::" data-section="СЗР">СЗР</a>
+      <a class="sa-pop__chip" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=316570233513&tfc_div=:::" data-section="Семена">Семена</a>
+    </div>
+
+    </div>
+
+    <div class="sa-pop__grid">
+
+      <a class="sa-pop__card" href="/catalog/tproduct/382077388723-fertika-listovoe-18-18-18" data-sku="fertika-listovoe-18-18-18">
+        <div class="sa-pop__ph"><img src="https://static.tildacdn.com/tild3234-6134-4237-b531-343665336564/fertika-listovoe-18-.png" alt="FERTIKA Листовое 18-18-18" loading="lazy" decoding="async"></div>
+        <div class="sa-pop__body">
+          <div class="sa-pop__name">FERTIKA Листовое 18-18-18</div>
+          <div class="sa-pop__sig">Фертика · удобрения</div>
+          <div class="sa-pop__price"><i>от</i><b>202</b><i>₽/кг</i></div>
+        </div>
+      </a>
+
+      <a class="sa-pop__card" href="/catalog/tproduct/270536558683-strada-n" data-sku="strada-n">
+        <div class="sa-pop__ph"><img src="https://static.tildacdn.com/tild6230-6136-4433-a235-656537613537/strada-n.png" alt="Страда N" loading="lazy" decoding="async"></div>
+        <div class="sa-pop__body">
+          <div class="sa-pop__name">Страда N</div>
+          <div class="sa-pop__sig">Волски Биохим · листовые подкормки</div>
+          <div class="sa-pop__price"><i>от</i><b>315</b><i>₽/л</i></div>
+        </div>
+      </a>
+
+      <a class="sa-pop__card" href="/catalog/tproduct/544267401313-ampir-ekstra-vr" data-sku="ampir-ekstra-vr">
+        <div class="sa-pop__ph"><img src="https://static.tildacdn.com/tild6565-3166-4737-b039-333738613233/ampir-ekstra-vr.png" alt="Ампир Экстра, ВР" loading="lazy" decoding="async"></div>
+        <div class="sa-pop__body">
+          <div class="sa-pop__name">Ампир Экстра, ВР</div>
+          <div class="sa-pop__sig">Глифосат (калийная соль) 540 г/л</div>
+          <div class="sa-pop__price"><b>540</b><i>₽/л</i></div>
+        </div>
+      </a>
+
+      <a class="sa-pop__card" href="/catalog/tproduct/149195796403-chellendzher-vrk" data-sku="chellendzher-vrk">
+        <div class="sa-pop__ph"><img src="https://static.tildacdn.com/tild3032-3937-4333-a435-373538363062/chellendzher-vrk.png" alt="Челленджер, ВРК" loading="lazy" decoding="async"></div>
+        <div class="sa-pop__body">
+          <div class="sa-pop__name">Челленджер, ВРК</div>
+          <div class="sa-pop__sig">Имазамокс 33 г/л + имазапир 15 г/л</div>
+          <div class="sa-pop__price"><b>945</b><i>₽/л</i></div>
+        </div>
+      </a>
+
+      <a class="sa-pop__card" href="/catalog/tproduct/591143215253-kvs-akvilon" data-sku="kvs-akvilon">
+        <div class="sa-pop__ph"><img src="https://static.tildacdn.com/tild3639-3734-4861-a662-623334636439/kvs-akvilon.jpg" alt="КВС Аквилон" loading="lazy" decoding="async"></div>
+        <div class="sa-pop__body">
+          <div class="sa-pop__name">КВС Аквилон</div>
+          <div class="sa-pop__sig">Пшеница яровая · РС 1</div>
+          <div class="sa-pop__price"><i>до</i><b>90</b><i>ц/га</i></div>
+        </div>
+      </a>
+
+      <a class="sa-pop__card" href="/catalog/tproduct/135486451973-ampir-10-express" data-sku="ampir-10-express">
+        <div class="sa-pop__ph"><img src="https://static.tildacdn.com/tild3533-3737-4065-a333-383838346363/ampir-10-express.jpg" alt="Ampir 10 Express" loading="lazy" decoding="async"></div>
+        <div class="sa-pop__body">
+          <div class="sa-pop__name">Ampir 10 Express</div>
+          <div class="sa-pop__sig">Подсолнечник · гибрид F1</div>
+          <div class="sa-pop__price"><i>до</i><b>56</b><i>ц/га</i></div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="sa-pop__cta"><a href="#contacts">Получить предложение</a></div>
+  </div>
+</div>

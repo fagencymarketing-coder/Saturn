@@ -1,0 +1,321 @@
+<!-- Правки оформления каталога ST340F. Версия 3.
+     Ставить ОДИН раз в Настройки сайта → Вставка кода (внутрь <body>),
+     тогда код работает и на прямых адресах товаров /tproduct/...,
+     куда блоки страницы не подставляются. -->
+<style>
+/* 1. Убрать оранжевые линии под разделами и фильтрами.
+      Это не text-decoration и не border, а внутренняя тень. */
+.js-catalog-parts-switcher,
+.t-catalog__parts-switch-btn,
+.t-catalog__parts-button-base,
+.t-catalog__filter__title,
+.t-catalog__filter__custom-sel,
+.js-catalog-filter-custom-select{
+  box-shadow:none !important;
+  text-decoration:none !important;
+  border-bottom:0 !important;
+}
+
+/* 2. Фото товара вписывается целиком на светлую подложку */
+.t-catalog__card__imgwrapper{background:#F0EDE9 !important;border-radius:12px;overflow:hidden}
+.t-catalog__card__bgimg,
+.js-product-img.t-bgimg{background-size:contain !important;background-position:center !important;
+  background-repeat:no-repeat !important}
+/* на странице товара фото — это <img>, а не фон */
+img.js-product-img,
+.t-catalog__prod-popup__columns img.js-product-img{object-fit:contain !important;background:#F0EDE9}
+
+/* 3. Кнопка «Оставить заявку» убрана из плитки каталога.
+      На утверждённом холсте в карточке только название, описание и
+      цифра — красной кнопки под каждым товаром нет. Она остаётся там,
+      где нужна: на странице товара. Решение заказчика 03.10.2026.
+
+      Классы различаются, и это важно:
+        t-catalog__card__btn      — кнопка в плитке, её прячем;
+        t-catalog__prod-popup__btn — кнопка на странице товара, не трогаем.
+      Прячем вместе с обёрткой, иначе от неё останется пустая полоса. */
+.t-catalog__card__btn,
+.t-catalog__card__btns-wrapper,
+.js-catalog-prod-btn{display:none !important}
+
+/* 4. Название товара — не длиннее двух строк, чтобы карточки не прыгали */
+.t-catalog__card__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden}
+
+/* 5. Три карточки в ряд на планшете.
+      Ширину задаёт .t-catalog__stretch-col, медиазапрос Тильды перебивает _25,
+      поэтому нужен !important. column-gap на этих ширинах — 10px. */
+@media screen and (min-width:768px) and (max-width:960px){
+  .t-catalog__card-list > .js-product,
+  .t-catalog__card-list .t-catalog__stretch-col{
+    width:calc((100% - 20px) / 3) !important;
+  }
+}
+
+/* 6. Карточка товара не должна уезжать вбок на планшетной ширине:
+      слайдер Tilda шире вьюпорта, а блок с описанием — на 10px шире экрана */
+.t-catalog__prod-popup__info{max-width:100% !important;box-sizing:border-box}
+.t-slds__items-wrapper{overflow:hidden}
+/* ширина колонки уже равна 100% контейнера, но у .t-col остаётся
+   штатный боковой отступ Tilda 10px — он и даёт переполнение */
+.t-catalog__prod-popup__col-right{margin-left:0 !important;margin-right:0 !important}
+
+/* 7. Строка цены там, где цены нет, убирается совсем. Раньше мы
+      подставляли «Цена по запросу» — заказчик 04.10.2026 попросил убрать:
+      у 112 товаров из 112 цены в магазине нет, и одинаковая серая строка
+      под каждой карточкой читалась как брак, а не как условие продажи.
+      Пустая обёртка схлопывается, карточка становится короче. */
+.t-catalog__card__price-wrapper[data-sa-ask],
+.js-catalog-price-wrapper[data-sa-ask]{display:none !important}
+
+/* 8. Вертикальный ритм страницы каталога.
+      У блока ST340F собственные 135px сверху и снизу плюс 90px под
+      подзаголовком — из-за этого страница распадается на пустые экраны. */
+.t-rec[data-record-type="2861"]{padding-top:40px !important;padding-bottom:72px !important}
+.t-catalog__grid-cont .t-section__title{margin-bottom:20px !important}
+.t-catalog__grid-cont .t-section__descr{margin-bottom:36px !important}
+.t-catalog__grid-cont .t-section__container:not(:has(.t-section__descr)) .t-section__title{
+  margin-bottom:32px !important}
+@media screen and (max-width:960px){
+  .t-rec[data-record-type="2861"]{padding-top:28px !important;padding-bottom:52px !important}
+  .t-catalog__grid-cont .t-section__title{margin-bottom:16px !important}
+  .t-catalog__grid-cont .t-section__descr{margin-bottom:28px !important}
+}
+
+/* 9. Хлебные крошки Тильды скрыты, но сами крошки остались — свои.
+      03.10 их убрали совсем: на холсте каталога их нет. 04.10 заказчик
+      вернул, и правильно: по ним поисковики показывают структуру сайта
+      прямо в выдаче, а на странице товара путь «Главная / Каталог /
+      Ампир Экстра» настоящий и полезный.
+      Но штатные крошки Тильды живут ВНУТРИ блока каталога, то есть
+      ниже нашего верхнего блока с поиском и чипами — получалось бы
+      «Каталог / поиск / чипы / Главная-Каталог / товары». Поэтому
+      штатные прячем, а свои ставим первой строкой в katalog-verh.html,
+      там же и разметка для поисковиков.
+      Заодно прячем штатный заголовок блока: «Каталог» теперь наш,
+      в одной строке со «Скачать прайс», как на холсте. */
+[class*="t-catalog__breadcrumb"],[class*="t-breadcrumb"]{display:none !important}
+#rec4384406801 .js-block-header{display:none !important}
+
+/* 10. Разделы над товарами — пустые плитки без картинок, занимают полтора
+       экрана. На ПК они дублируют боковую панель, поэтому скрыты;
+       на телефоне панель прячется в «Фильтры», поэтому разделы остаются,
+       но без пустых кружков-заглушек. */
+@media screen and (min-width:961px){
+  [id^="parts-above-id-"]{display:none !important}
+}
+@media screen and (max-width:960px){
+  [id^="parts-above-id-"] [class*="img"]{display:none !important}
+  [id^="parts-above-id-"] [class*="card"]{min-height:0 !important}
+}
+
+/* 11. Страница товара /tproduct/ целиком переехала в tovar-fix.html:
+       там не только две колонки, но и плашка раздела, таблица
+       характеристик, цена и кнопки по холсту holst-tovar.png.
+       Здесь правило убрано, чтобы два места не спорили за одну сетку. */
+
+/* 12. Разделы в боковой панели краснели при наведении. Глобальное
+       правило Тильды оказалось не просто a:hover, а списком селекторов
+       её типографики — .t-text a:hover, .t-descr a:hover, .t-title a:hover
+       и так далее, цвет #d93800. Самодельные блоки sa-* под него не
+       попадают, а вот девять ссылок боковой панели попали: «Все»,
+       «Семена», «Гербициды», «Удобрения и листовые подкормки»,
+       «Адъюванты», «Обработка семян и протравители», «Фунгициды»,
+       «Инсектициды», «Десиканты». Нашёл агент при прогоне 03.10.2026,
+       замерено наведением: #333333 → #d93800.
+
+       Задаём наведение явно, как требует правило проекта.
+
+       04.10 отклик переделан. Было подчёркивание — заказчику не
+       понравилось, и справедливо: у подразделов Тильда рисует свою
+       линию, наша ложилась поверх, а выбранный подраздел ещё и
+       краснел. Получалась мешанина из линии, цвета и жирности.
+       Теперь отклик один и тихий: при наведении текст темнеет,
+       выбранный раздел — тёмный и насыщенностью 700. Ни линий, ни
+       красного. */
+.t-catalog__parts-sidebar-item,
+.t-catalog__parts-sidebar-item a,
+.t-catalog__parts-sidebar__list a{
+  color:#6B6560;box-shadow:none !important;
+  text-decoration:none !important;border-bottom:0 !important;
+  transition:color var(--sa-t) var(--sa-ease)}
+.t-catalog__parts-sidebar-item:hover,
+.t-catalog__parts-sidebar-item a:hover,
+.t-catalog__parts-sidebar__list a:hover,
+#allrecords .t-catalog__parts-sidebar-item a:hover,
+#allrecords .t-catalog__parts-sidebar__list a:hover{
+  color:#141210;box-shadow:none !important}
+/* Выбранный раздел и подраздел: тёмный и жирный, без цвета и линии.
+   Тильда помечает его классами с «active» и собственным красным. */
+.t-catalog__parts-sidebar-item_active,
+.t-catalog__parts-sidebar-item_active a,
+.t-catalog__parts-sidebar__list a.t-active,
+[class*="parts-sidebar"] [class*="active"],
+[class*="parts-sidebar"] [class*="active"] a{
+  color:#141210 !important;font-weight:700 !important;
+  box-shadow:none !important;text-decoration:none !important;
+  border-bottom:0 !important}
+
+/* 13. Штатные поиск и сортировка Тильды спрятаны: сверху каталога стоит
+       наш блок с полем и чипами культур по холсту, два поиска подряд
+       не нужны. Прячем стилем, а не галкой «Спрятать поиск и
+       сортировку» в настройках блока: наше поле не ищет само, оно
+       пишет в штатный input и щёлкает его лупу. Скрытое стилями поле
+       остаётся в разметке и работает — проверено на живой странице
+       04.10.2026. Что делает галка, вырезает она разметку или прячет,
+       неизвестно, и выяснять это ценой сломанного поиска незачем.
+       Сама Тильда ниже 961 px прячет этот блок тем же способом. */
+.t-catalog__filter__search-and-sort,
+.t-catalog__filter__sort{display:none !important}
+
+
+/* 14. Боковая панель не уезжает вверх при прокрутке. Заказчик 04.10.2026:
+       «при скроллинге каталога вниз меню слева не должно исчезать»,
+       и на холсте Клод Дизайна оно действительно стоит на месте.
+       Липкость даём своим стилем, а не галкой «закрепить» в Тильде:
+       её закрепление заводит панели собственную полосу прокрутки на всю
+       высоту. Здесь панель прокручивается только если сама не влезает,
+       а отступ сверху 88 = высота шапки 72 плюс 16 воздуха.
+       Селектор снят с живой страницы: колонка фильтра — это
+       .t-catalog__filter-wrapper, внутри .js-sidebar-filters. */
+@media screen and (min-width:961px){
+  .t-catalog__filter-wrapper{
+    position:sticky !important;top:88px;align-self:flex-start;
+    max-height:calc(100vh - 104px);overflow-y:auto;overscroll-behavior:contain;
+    scrollbar-width:thin;scrollbar-color:#D8D3CE transparent}
+  .t-catalog__filter-wrapper::-webkit-scrollbar{width:6px}
+  .t-catalog__filter-wrapper::-webkit-scrollbar-thumb{
+    background:#D8D3CE;border-radius:999px}
+}
+
+
+/* 16. Пока карточки товаров ещё грузятся, Тильда показывает вместо них
+       серые заготовки — «прелоадер». На 768 px его контейнер оказался
+       шире экрана на 20 px, и страница на секунду разъезжалась вбок.
+       Замерено на живом сайте 04.10. Сетку карточек это не трогает:
+       правило действует только на контейнер заготовок. */
+[class*="catalog__grid-cont-preloader"],
+[class*="catalog-grid-cont-preloader"]{
+  max-width:100% !important;overflow-x:clip}
+
+/* 15. Товар без фотографии. Семь позиций из 112 в магазине без снимка
+       (проверено по API 04.10), и в плитке на их месте оставалась белая
+       дыра — сетка выглядела сломанной. Теперь место фотографии
+       заливается той же плашкой, что и у остальных карточек, с эмблемой
+       по центру. Это не прячет проблему: фотографии всё равно нужны,
+       но пока их нет, каталог не выглядит недоделанным. */
+/* Место под фотографию держится всегда, даже когда фотографии нет:
+   иначе у такой карточки название и цена уезжают вверх и ряд теряет
+   общую линию. Пропорция та же, что у карточек с фото.
+
+   04.10, после публикации: первая версия этого правила ставила
+   aspect-ratio и обёртке, и картинке внутри — и высоты сложились.
+   Обёртка у Тильды резервирует место старым способом, через
+   padding-bottom:100% (класс imgwrapper_1-1), поэтому к её 198 px
+   прибавлялись наши 148, выходило 346, и под фотографией зияла
+   бежевая пустота в целую карточку. Замерено на живом сайте.
+   Теперь пропорцию задаём только обёртке и тут же гасим её
+   padding-bottom, а картинка внутри просто растягивается по ней. */
+.t-catalog__card__imgwrapper{
+  aspect-ratio:355/266;
+  padding-bottom:0 !important;
+  height:auto !important;
+  min-height:0}
+.t-catalog__card__bgimg{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  height:auto !important}
+
+/* А у семи позиций без снимка Тильда блок картинки не рисует вовсе —
+   агент проверил разметку 04.10: элемента imgwrapper в карточке просто
+   нет, красить нечего, и название с ценой задраны вверх на 118 px
+   относительно соседей по строке. Поэтому место держим самой карточкой:
+   рисуем его псевдоэлементом там, где картинки не нашлось. Появится
+   фотография — правило перестанет срабатывать само.
+   Эмблема приглушена верхним слоем того же бежевого: прозрачность
+   нельзя задать отдельному слою фона, а гасить весь блок нельзя —
+   поблёкла бы и плашка. */
+.t-catalog__card:not(:has([class*="imgwrapper"]))::before{
+  content:"";display:block;width:100%;aspect-ratio:355/266;
+  border-radius:12px;
+  background:
+    linear-gradient(rgba(240,237,233,.55), rgba(240,237,233,.55)),
+    url("https://static.tildacdn.com/tild3762-3461-4635-b161-643835316538/saturn-emblem.png")
+      center / 56px auto no-repeat,
+    #F0EDE9}
+.t-catalog__card__bgimg[style*="url()"],
+.t-catalog__card__bgimg:not([style*="url("]){
+  background-color:#F0EDE9 !important;
+  background-image:url("https://static.tildacdn.com/tild3762-3461-4635-b161-643835316538/saturn-emblem.png") !important;
+  background-size:56px auto !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  opacity:.5}
+
+<script>
+(function(){
+  function fix(){
+    /* 0. «Load more» → «Загрузить ещё».
+          Поля для этой надписи в настройках блока нет — агент искал его
+          в трёх разделах и не нашёл. Тильда рисует её из шаблона
+          button_loadmore_<recid>, латиницей, и меняется она только так. */
+    document.querySelectorAll('.js-catalog-load-more-btn-text')
+      .forEach(function(el){
+        if (/^\s*Load more\s*$/.test(el.textContent)) el.textContent = 'Загрузить ещё';
+      });
+
+    /* A. Карточка без цены не показывает строку цены вовсе.
+          Обёртка НЕ пустая: Тильда всегда рисует два значка валюты «р.»,
+          поэтому проверяем наличие цифр внутри блока самой цены. */
+    document.querySelectorAll('.t-catalog__card__price-wrapper,.js-catalog-price-wrapper')
+      .forEach(function(el){
+        if(el.dataset.saFixed) return;
+        var val = el.querySelector('.js-product-price,.js-catalog-prod-price-val');
+        var hasPrice = val && /\d/.test(val.textContent);
+        if(!hasPrice){
+          el.setAttribute('data-sa-ask','1');
+          el.style.setProperty('display','none','important');
+        }
+        el.dataset.saFixed = '1';
+      });
+
+    /* B. Двенадцать строк «Культура» → одна строка через запятую.
+          Фильтр это не ломает: он читает данные товара, а не видимый текст. */
+    document.querySelectorAll('.js-catalog-prod-all-charcs').forEach(function(box){
+      if(box.dataset.saCrops) return;
+      var rows = [].slice.call(box.querySelectorAll('p.t-typography__characteristics'))
+        .filter(function(p){ return /^\s*Культура\s*:/.test(p.textContent); });
+      if(rows.length > 1){
+        var vals = rows.map(function(p){
+          return p.textContent.replace(/^\s*Культура\s*:\s*/,'').trim();
+        }).filter(Boolean);
+        rows[0].textContent = 'Культура: ' + vals.join(', ');
+        rows.slice(1).forEach(function(p){ p.remove(); });
+      }
+      box.dataset.saCrops = '1';
+    });
+  }
+  fix();
+  document.addEventListener('DOMContentLoaded', fix);
+  window.addEventListener('load', fix);
+  /* каталог дорисовывает карточки и открывает товар без перезагрузки */
+  new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
+/* 17. Один оранжевый у кнопки. Замер каталога 04.10: тридцать семь
+       кнопок «Оставить заявку» на карточках, «Загрузить ещё» и кнопка
+       на странице товара залиты марочным #FF4200, а «Получить
+       предложение» и «Показать товары» — кнопочным #D93800. Два
+       оттенка в одной роли на одном экране: марочный перестаёт быть
+       редким, а кнопки перестают читаться как одна вещь.
+       Марочный остаётся узлу, значку и выделенному слову.
+       Баннер cookie не трогаю — его цвет Дарья решает отдельно. */
+.t-catalog__card__btn,
+.t-catalog__load-more-btn,
+.t-catalog__prod-popup__btn{background-color:#D93800 !important}
+@media (hover:hover){
+  .t-catalog__card__btn:hover,
+  .t-catalog__load-more-btn:hover,
+  .t-catalog__prod-popup__btn:hover{background-color:#C23100 !important}
+}
+</style>

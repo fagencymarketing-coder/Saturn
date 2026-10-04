@@ -1,0 +1,110 @@
+<!-- Блок «Документы и сертификаты» для вставки в T123 на Tilda -->
+<style>
+.sa-docs{--acc:#FF4200;--ink:#141210;--mut:#766F68;--tile:#F0EDE9;--line:#E7E3DE;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#F6F5F3;padding:clamp(44px,5.6vh,64px) 0;margin:0}
+.sa-docs *{box-sizing:border-box;margin:0;padding:0}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-docs__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+.sa-docs__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mut);line-height:1}
+/* оранжевая риска перед надзаголовком — есть на утверждённом холсте
+   у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
+.sa-docs__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
+  background:#FF4200}
+/* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
+.sa-docs__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh)5;margin-top:20px;letter-spacing:-.01em}
+.sa-docs__sub{font-size:var(--sa-lead);font-weight:400;line-height:1.55;color:var(--mut);
+  margin-top:16px;max-width:640px}
+.sa-docs__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;
+  margin-top:clamp(20px,2.8vh,32px);align-items:start}
+.sa-docs__card{display:flex;flex-direction:column;background:#fff;border-radius:22px;
+  padding:16px 16px 24px;text-decoration:none;color:inherit;
+  transition:transform var(--sa-t) var(--sa-ease),
+    box-shadow var(--sa-t) var(--sa-ease),border-color var(--sa-t) var(--sa-ease),
+    color var(--sa-t) var(--sa-ease)}
+.sa-docs__pic{background:var(--tile);border-radius:12px;overflow:hidden;aspect-ratio:355/278;
+  /* 04.10: «чтобы и заголовок и карточки целиком помещались».
+     Превью держит пропорцию, пока хватает высоты окна, и ужимается,
+     когда её нет: из окна вычитаются шапка, кикер, заголовок,
+     подпись, подписи под карточкой и поля секции. */
+  max-height:calc(100dvh - 500px);min-height:140px}
+.sa-docs__pic img{display:block;width:100%;height:100%;object-fit:cover}
+.sa-docs__meta{display:block;font-size:13px;font-weight:400;line-height:18.2px;color:var(--mut);margin-top:6px}
+.sa-docs__name{font-size:var(--sa-body);font-weight:700;line-height:1.35;margin-top:14px}
+.sa-docs__btnwrap{display:flex;justify-content:center;margin-top:clamp(18px,2.4vh,28px)}
+.sa-docs__btn{display:inline-flex;align-items:center;justify-content:center;
+  height:var(--sa-btn-h);
+  padding:0 var(--sa-btn-px);border:1px solid var(--line);border-radius:12px;background:transparent;
+  font-size:var(--sa-body);font-weight:700;color:var(--ink);text-decoration:none;cursor:pointer;
+  transition:border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease)}
+@media (hover:hover){
+  .sa-docs__card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,18,16,.08)}
+  .sa-docs__btn:hover{border-color:var(--acc);color:var(--acc)}
+}
+@media (max-width:1023px){
+  .sa-docs{padding:52px 0}
+  .sa-docs__in{padding:0 32px}
+  .sa-docs__h{font-size:28px;line-height:32px;margin-top:24px}
+  .sa-docs__sub{font-size:16px;line-height:25px;margin-top:12px}
+  .sa-docs__grid{gap:12px;margin-top:36px}
+  .sa-docs__card{border-radius:16px;padding:10px 10px 14px}
+  .sa-docs__pic{border-radius:10px;aspect-ratio:164/128}
+  .sa-docs__name{font-size:14px;line-height:19px;margin-top:10px}
+  .sa-docs__btnwrap{margin-top:32px}
+}
+@media (max-width:767px){
+  .sa-docs__in{padding:0 20px}
+  .sa-docs__grid{grid-template-columns:minmax(0,1fr);gap:10px;margin-top:36px}
+  .sa-docs__card{flex-direction:row;align-items:center;gap:14px;padding:10px;
+    border-radius:16px;min-height:94px;min-width:0}
+  .sa-docs__card>div{min-width:0}
+  .sa-docs__name,.sa-docs__meta{overflow-wrap:anywhere}
+  .sa-docs__pic{flex:0 0 96px;width:96px;height:72px;border-radius:8px;aspect-ratio:auto}
+  .sa-docs__name{font-size:15px;line-height:19.5px;margin-top:0}
+  .sa-docs__btn{width:100%}
+}
+</style>
+
+<section class="sa-docs" id="docs">
+  <div class="sa-docs__in">
+    <span class="sa-docs__kicker">Документы</span>
+    <h2 class="sa-docs__h">Документы и сертификаты</h2>
+    <p class="sa-docs__sub">Сертификат официального дилера и свидетельства о госрегистрации препаратов, которые мы поставляем</p>
+
+    <div class="sa-docs__grid">
+      <a class="sa-docs__card" target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/01-sertifikat-dilera-fertika-do-2026.pdf">
+        <span class="sa-docs__pic"><img loading="lazy" alt="Сертификат дилера АО «Фертика»"
+          src="https://static.tildacdn.com/tild3164-3534-4330-b063-346663653636/preview-sertifikat-f.jpg"></span>
+        <span class="sa-docs__name">Сертификат дилера АО «Фертика»</span>
+        <span class="sa-docs__meta">Выдан ООО «Сатурн» · до 31.12.2026</span>
+      </a>
+
+      <a class="sa-docs__card" target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf">
+        <span class="sa-docs__pic"><img loading="lazy" alt="СГР — Страда N, P, K"
+          src="https://static.tildacdn.com/tild3334-6466-4133-b535-393436633139/preview-sgr-strada.jpg"></span>
+        <span class="sa-docs__name">СГР — Страда N, P, K</span>
+        <span class="sa-docs__meta">№ 2855 · действует до 2030</span>
+      </a>
+
+      <a class="sa-docs__card" target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/08-sgr-diforma-2899-do-2030.pdf">
+        <span class="sa-docs__pic"><img loading="lazy" alt="СГР — Волски Диформа"
+          src="https://static.tildacdn.com/tild3639-3561-4162-b766-633634663432/preview-sgr-diforma.jpg"></span>
+        <span class="sa-docs__name">СГР — Волски Диформа</span>
+        <span class="sa-docs__meta">№ 2899 · действует до 2030</span>
+      </a>
+    </div>
+
+    <div class="sa-docs__btnwrap">
+      <a class="sa-docs__btn" href="/catalog">Все документы →</a>
+    </div>
+  </div>
+</section>

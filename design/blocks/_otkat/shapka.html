@@ -1,0 +1,178 @@
+<!-- Блок «Шапка» для вставки в T123 на странице-шаблоне «Шапка» -->
+<style>
+.sa-hd{--ink:#141210;--acc:#FF4200;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
+  position:fixed;top:0;left:0;right:0;z-index:9000;background:var(--ink)}
+.sa-hd *{box-sizing:border-box;margin:0;padding:0}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-hd__in{max-width:min(1240px,90vw);margin:0 auto;padding:14px 20px;height:72px;
+  display:flex;align-items:center}
+.sa-hd__logo{display:block;flex:0 0 auto}
+.sa-hd__logo img{display:block;width:103px;height:36px;object-fit:contain}
+.sa-hd__nav{display:flex;align-items:center;gap:32px;margin-left:48px}
+.sa-hd__nav a{font-size:var(--sa-body);font-weight:600;color:#B5B0AA;
+  text-decoration:none;white-space:nowrap}
+.sa-hd__right{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.sa-hd__tel,.sa-hd__mail{display:inline-flex;align-items:center;gap:8px;
+  text-decoration:none;white-space:nowrap}
+.sa-hd__tel{font-size:var(--sa-lead);font-weight:700;color:#fff;line-height:1.25}
+.sa-hd__mail{font-size:var(--sa-small);font-weight:400;color:#B5B0AA;line-height:1.25}
+.sa-hd__tel svg,.sa-hd__mail svg{flex:0 0 auto;width:15px;height:15px;fill:none;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sa-hd__tel svg{stroke:#fff}
+/* Телефон в шапке был не виден, пока на него не наведёшь: у Тильды есть
+   своё правило на ссылки вида href="tel:", и по весу селектора оно
+   перебивает наш класс. Почта на mailto: под него не попадает — потому
+   и была видна. Лечится не !important, а весом: класс + атрибут + тег.
+   -webkit-text-fill-color задаём рядом: он сильнее color и в Тильде
+   встречается. Замерено на живой странице 04.10.2026: было rgb(0,0,0). */
+.sa-hd a[href^="tel:"],
+.sa-hd__ovc a[href^="tel:"]{color:#fff;-webkit-text-fill-color:#fff}
+.sa-hd a[href^="tel:"] svg{stroke:#fff}
+.sa-hd__mail svg{stroke:#8A837C;width:14px;height:14px}
+.sa-hd__icons{display:none;margin-left:auto;gap:4px}
+.sa-hd__ib{width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  background:none;border:0;cursor:pointer;color:#fff;text-decoration:none}
+.sa-hd__ib svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+/* Наведение. Обязательно задавать явно: у Тильды есть глобальное
+   a:hover{color:#d93800}, и оно перебивает класс по весу селектора. */
+@media (hover:hover){
+  .sa-hd a:hover{color:#fff}
+  .sa-hd__nav a:hover{color:#fff}
+  /* 04.10: почта при наведении подсвечивалась, телефон нет — у почты
+     срабатывало чужое правило, у телефона своего не было вовсе.
+     Задаём обоим явно и одинаково: оранжевый, вместе со значком.
+     Это единственный отзывчивый цвет на сайте. */
+  /* 04.10, второй заход. Агент замерил: телефон всё равно белый.
+     Причина — соседнее общее правило .sa-hd a:hover{color:#fff}
+     весом 0,2,1 против наших 0,2,0. Поднимаем вес, дописав тег
+     ссылки: .sa-hd a.sa-hd__tel:hover — это 0,3,1, и спор
+     заканчивается. -webkit-text-fill-color нужен отдельно: в
+     вебките он сильнее color и красил бы текст белым дальше. */
+  .sa-hd a.sa-hd__tel:hover,
+  .sa-hd a.sa-hd__mail:hover{color:var(--acc);-webkit-text-fill-color:var(--acc)}
+  .sa-hd a.sa-hd__tel:hover svg,
+  .sa-hd a.sa-hd__mail:hover svg{stroke:var(--acc)}
+  /* Это правило ставилось, чтобы Тильда не красила телефон в
+     красный при наведении. Но оно же гасило и наш собственный
+     отклик: у него выше вес, чем у .sa-hd__tel:hover, и телефон
+     оставался белым, пока почта светлела. Теперь отклик задаёт
+     только наше правило выше, оранжевым. */
+  .sa-hd__ov a:hover{color:#fff}
+}
+.sa-hd__sp{height:72px}
+/* оверлей-меню */
+.sa-hd__ov{position:fixed;inset:0;z-index:9001;background:#141210;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
+  display:none;flex-direction:column;padding:0 20px 40px;overflow-y:auto}
+.sa-hd__ov *{box-sizing:border-box;margin:0;padding:0}
+.sa-hd__ov.is-open{display:flex}
+.sa-hd__ovtop{height:64px;display:flex;align-items:center;flex:0 0 auto;
+  padding:10px 0;margin:0 -20px 0 0;padding-right:0}
+.sa-hd__ovtop img{display:block;width:80px;height:28px;object-fit:contain}
+.sa-hd__ovtop .sa-hd__ib{margin-left:auto}
+.sa-hd__ovnav{display:flex;flex-direction:column;margin-top:24px}
+.sa-hd__ovnav a{font-size:24px;font-weight:700;color:#fff;text-decoration:none;
+  padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.sa-hd__ovc{margin-top:32px;display:flex;flex-direction:column;gap:4px}
+.sa-hd__ovc a{color:#fff;text-decoration:none;min-height:44px;display:flex;
+  align-items:center;font-size:var(--sa-h3);font-weight:700}
+.sa-hd__ovc a.sa-hd__ovm{font-size:var(--sa-body);font-weight:400;color:#B5B0AA}
+@media (hover:hover){
+  .sa-hd__nav a:hover{color:#fff}
+  .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}
+  .sa-hd__ovnav a:hover{color:#FF4200}
+}
+/* 960–1024: пальцем по двум строкам контактов не попасть.
+   Оставляем только телефон одной строкой высотой 44. */
+@media (max-width:1024px){
+  .sa-hd__mail{display:none}
+  .sa-hd__tel{font-size:15px;min-height:44px;align-items:center}
+  .sa-hd__tel::after{top:0;bottom:0}
+  /* На планшете строка шапки не помещается: логотип 103 + меню 420 +
+     телефон 169 и два зазора по 32 — это 756 при полосе содержимого
+     0,9 ширины окна, то есть 691 на 768. Телефон выезжал за край на
+     52 px и наезжал на «Контакты» — замерено на живом сайте 04.10.
+     Убираем «Контакты»: это якорь на ту же страницу, а настоящий
+     контакт — телефон — стоит рядом и остаётся. Новой точки перелома
+     не завожу, пользуюсь той, на которой уже прячется почта. */
+  .sa-hd__nav a[href$="#contacts"]{display:none}
+}
+@media (max-width:959px){
+  .sa-hd__nav{gap:24px;margin-left:32px}
+  .sa-hd__nav a{font-size:14px}
+}
+@media (max-width:767px){
+  .sa-hd__in{height:64px;padding:10px 20px}
+  .sa-hd__logo img{width:80px;height:28px}
+  .sa-hd__nav,.sa-hd__right{display:none}
+  .sa-hd__icons{display:flex}
+  .sa-hd__sp{height:64px}
+}
+/* якоря: закреплённая шапка не должна перекрывать заголовок секции */
+/* 04.10, замер агента: плавная прокрутка не доезжала. Переход к
+   «Контактам» останавливался на «Популярных позициях» — до цели
+   оставалось 5 674 px. Причина не в адресе: пока идёт анимация,
+   страница подрастает от догружающихся картинок, и браузер обрывает
+   её на полпути. С мгновенным переходом блок встаёт ровно в 72 px
+   под шапкой — проверено на живом сайте. Плавность стоила нам
+   работающей кнопки заявки, поэтому её снимаем. */
+html{scroll-behavior:auto}
+#seeds,#service,#contacts,#geo,#docs,#results{scroll-margin-top:72px}
+@media (max-width:767px){
+  #seeds,#service,#contacts,#geo,#docs,#results{scroll-margin-top:64px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Зона нажатия. Псевдоэлемент не влияет на поток и на выравнивание. */
+.sa-hd__logo,.sa-hd__nav a,.sa-hd__tel,.sa-hd__mail{position:relative}
+.sa-hd__logo::after,.sa-hd__nav a::after{content:"";position:absolute;left:-8px;right:-8px;
+  top:50%;height:44px;transform:translateY(-50%)}
+.sa-hd__tel::after{content:"";position:absolute;left:-8px;right:-8px;top:-6px;bottom:-4px}
+.sa-hd__mail::after{content:"";position:absolute;left:-8px;right:-8px;top:-4px;bottom:-8px}
+</style>
+
+<div class="sa-hd">
+  <div class="sa-hd__in">
+    <a class="sa-hd__logo" href="/home" aria-label="Сатурн — на главную"><img src="https://static.tildacdn.com/tild6233-3132-4339-b431-333131313764/saturn-logo-white.png" alt="Сатурн"></a>
+    <nav class="sa-hd__nav">
+      <a href="/catalog">Каталог</a>
+      <a href="/home#seeds">Семена</a>
+      <a href="/home#service">Агросопровождение</a>
+      <a href="/home#contacts">Контакты</a>
+    </nav>
+    <div class="sa-hd__right">
+      <a class="sa-hd__tel" href="tel:+79609534888"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.2 2.2 6.6 5 5.3 6.3a8 8 0 0 0 4.4 4.4L11 9.4l2.8 1.4v2.4a1 1 0 0 1-1.1 1C6.9 13.8 2.2 9.1 1.7 3.3a1 1 0 0 1 1-1.1h2.5z"/></svg>+7 (960) 953-48-88</a>
+      <a class="sa-hd__mail" href="mailto:nilov@sssaturn.ru"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="m2 4.5 6 4 6-4"/></svg>nilov@sssaturn.ru</a>
+    </div>
+    <div class="sa-hd__icons">
+      <a class="sa-hd__ib" href="mailto:nilov@sssaturn.ru" aria-label="Написать на почту"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg></a>
+      <a class="sa-hd__ib" href="tel:+79609534888" aria-label="Позвонить"><svg viewBox="0 0 24 24"><path d="M5 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2 2 2 0 0 1 5 3z"/></svg></a>
+      <button class="sa-hd__ib" type="button" aria-label="Открыть меню" onclick="document.getElementById('sa-hd-ov').classList.add('is-open');document.documentElement.style.overflow='hidden'"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</div>
+<div class="sa-hd__sp"></div>
+
+<div class="sa-hd__ov" id="sa-hd-ov">
+  <div class="sa-hd__ovtop">
+    <img src="https://static.tildacdn.com/tild6233-3132-4339-b431-333131313764/saturn-logo-white.png" alt="Сатурн">
+    <button class="sa-hd__ib" type="button" aria-label="Закрыть меню" onclick="document.getElementById('sa-hd-ov').classList.remove('is-open');document.documentElement.style.overflow=''"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <nav class="sa-hd__ovnav" onclick="document.getElementById('sa-hd-ov').classList.remove('is-open');document.documentElement.style.overflow=''">
+    <a href="/catalog">Каталог</a>
+    <a href="/home#seeds">Семена</a>
+    <a href="/home#service">Агросопровождение</a>
+    <a href="/home#contacts">Контакты</a>
+  </nav>
+  <div class="sa-hd__ovc">
+    <a href="tel:+79609534888">+7 (960) 953-48-88</a>
+    <a class="sa-hd__ovm" href="mailto:nilov@sssaturn.ru">nilov@sssaturn.ru</a>
+  </div>
+</div>

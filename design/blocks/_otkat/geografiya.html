@@ -1,0 +1,119 @@
+<!-- Блок «География» для вставки в T123 на главной -->
+<style>
+.sa-geo{--acc:#FF4200;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff;
+  background:#141210;padding:clamp(44px,5.6vh,64px) 0}
+.sa-geo *{box-sizing:border-box;margin:0;padding:0}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-geo__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+.sa-geo__top{display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
+.sa-geo__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:#8A837C;line-height:1}
+/* оранжевая риска перед надзаголовком — есть на утверждённом холсте
+   у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
+.sa-geo__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
+  background:#FF4200}
+/* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
+.sa-geo__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh)5;margin-top:16px;letter-spacing:-.01em}
+.sa-geo__legend{display:flex;align-items:center;gap:24px;flex:0 0 auto;
+  font-size:var(--sa-small);font-weight:400;line-height:1.2;color:#B5B0AA}
+.sa-geo__lg{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.sa-geo__dot{width:14px;height:14px;border-radius:999px;background:var(--acc);flex:0 0 14px}
+.sa-geo__pin{width:14px;height:14px;flex:0 0 14px;border-radius:999px;
+  border:2px solid #fff;position:relative}
+.sa-geo__pin::after{content:"";position:absolute;inset:3px;border-radius:999px;background:#fff}
+/* Карта выходит за колонку на всю ширину окна: это главный и
+   единственный «вау» этой секции, и в колонке 1200 она выглядела
+   картинкой в рамке. Приём обычный — отрицательные поля на полразницы
+   между окном и контейнером. Заказчик 04.10.2026. */
+/* Карта во всю ширину окна. 100vw считается ВМЕСТЕ с полосой
+   прокрутки, поэтому на странице с вертикальной полосой карта
+   оказывалась шире экрана примерно на 15 px — и вся главная ехала
+   вбок. Видно это было по горизонтальной полосе внизу окна.
+   Лечим не отказом от полной ширины, а обрезкой у секции: overflow-x
+   clip не создаёт своей прокрутки и не ломает липкую шапку, в отличие
+   от hidden. Карта теряет по 7 px с каждой стороны — незаметно. */
+.sa-geo{overflow-x:clip}
+/* 04.10: «карта мелкая». Высоту ей резал я сам, чтобы блок влезал в
+   экран. Правильнее отыграть место у воздуха: в невысоком окне
+   поля секции и отступ над картой ужимаются, и карта получает те же
+   60 px обратно. При окне 790 карта выходит 590 в высоту и 1090 в
+   ширину вместо 530 и 980. */
+@media (max-height:900px){
+  .sa-geo{padding-top:40px;padding-bottom:40px}
+  .sa-geo__map{margin-top:12px}
+}
+/* Небольшой отступ внутри полной ширины: без него Краснодарский со
+   Ставропольским слева и Амурская справа упирались в край экрана, а
+   справа ещё и уходили под полосу прокрутки — заказчица 04.10:
+   «области по краям немного зарезаются». Карта остаётся во весь
+   экран, просто перестаёт касаться его краёв. */
+.sa-geo__map{margin-top:clamp(16px,2.4vh,24px);
+  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  padding:0 clamp(12px,1.4vw,22px)}
+/* карта — самый высокий элемент страницы: при ширине 1160 её родная
+   пропорция 1408×762 даёт 628px, и секция переставала помещаться
+   в экран. Ограничиваем высоту, ширина подстраивается. */
+.sa-geo__map img{display:block;width:100%;height:auto;
+  /* Пропорция объявлена заранее — 1408×762 у снимка карты. Без неё
+     браузер до загрузки считал высоту нулём, а когда карта
+     прогружалась, всё под ней съезжало вниз на пол-экрана. Переход по
+     якорю #contacts успевал сработать до загрузки и оставлял человека
+     на «Результатах испытаний» — заказчица 04.10 поймала это на
+     кнопке «Получить предложение». */
+  aspect-ratio:1408/762;
+  /* 04.10: «чтобы и заголовок и карта помещались». Раньше высота
+     упиралась в 900 px, и блок вырастал до 847 — больше экрана
+     ноутбука. Теперь потолок считается от окна: что осталось после
+     шапки, кикера, заголовка и полей секции, то и достаётся карте.
+     Когда места хватает, карта идёт во всю ширину, как и просили;
+     когда нет — ужимается по высоте, сохраняя пропорции. Пустое
+     место по бокам при этом не видно: фон секции тёмный, как и у
+     самой карты. */
+  max-height:min(900px, calc(100dvh - 200px));
+  object-fit:contain;object-position:center}
+.sa-geo__map img.sa-geo__m{display:none}
+.sa-geo__m{aspect-ratio:1074/771}
+@media (max-width:1023px){
+  .sa-geo{padding:64px 0}
+  .sa-geo__in{padding:0 32px}
+  .sa-geo__top{display:block}
+  .sa-geo__h{font-size:28px;line-height:32.2px}
+  .sa-geo__legend{margin-top:20px;gap:16px;flex-wrap:wrap;font-size:13px}
+}
+@media (max-width:767px){
+  .sa-geo{padding:52px 0}
+  .sa-geo__in{padding:0 20px}
+  .sa-geo__legend{display:none}
+  .sa-geo__map{margin-top:24px}
+  .sa-geo__map img.sa-geo__d{display:none}
+  .sa-geo__map img.sa-geo__m{display:block}
+}
+</style>
+
+<div class="sa-geo" id="geo">
+  <div class="sa-geo__in">
+
+    <div class="sa-geo__top">
+      <div>
+        <span class="sa-geo__kicker">География</span>
+        <h2 class="sa-geo__h">10 регионов поставки</h2>
+      </div>
+      <div class="sa-geo__legend">
+        <span class="sa-geo__lg"><i class="sa-geo__dot"></i>регионы поставок</span>
+        <span class="sa-geo__lg"><i class="sa-geo__pin"></i>офис · Барнаул</span>
+      </div>
+    </div>
+
+    <div class="sa-geo__map">
+      <img class="sa-geo__d" src="https://static.tildacdn.com/tild3466-3134-4032-b538-366331356161/geo-map-desktop.png" alt="Карта поставок: Алтайский край, Новосибирская, Томская, Омская, Кемеровская области, Красноярский край, Амурская область, Краснодарский и Ставропольский края, Ростовская область" loading="lazy" decoding="async">
+      <img class="sa-geo__m" src="https://static.tildacdn.com/tild6636-3633-4533-a664-653230356533/geo-map-mobile.png" alt="Карта поставок: 10 регионов, офис в Барнауле" loading="lazy" decoding="async">
+    </div>
+
+  </div>
+</div>

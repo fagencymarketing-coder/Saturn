@@ -1,0 +1,192 @@
+<!-- Блок «Агросопровождение» для вставки в T123 на главной.
+     ПК: цифра-призрак 80px, оранжевая иконка 32px и узел на нити цикла,
+     линия идёт от узла 01 до узла 04.
+     Планшет и телефон: цифра слева, текст справа, без иконок и узлов
+     (замеры макета, design/measurements, секция 5).
+     Иконки — по утверждённому холсту ПК: пипетка, распылитель, колос,
+     трактор (были лупа, колба, грузовик, щит). Решение заказчика 03.10.2026.
+     Тексты НЕ приводились к холсту: по ним эталон — docs/SPRAVOCHNIK-SAYT.md,
+     и он новее холста. -->
+<style>
+.sa-ag{--acc:#FF4200;--gap:24px;position:relative;overflow:hidden;background:#141210;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff;
+  padding:80px 0}
+.sa-ag *{box-sizing:border-box;margin:0;padding:0}
+.sa-ag__bg{position:absolute;inset:0;z-index:0}
+.sa-ag__bg img{width:100%;height:100%;object-fit:cover;display:block}
+.sa-ag__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,18,16,.55) 0%,rgba(20,18,16,.82) 45%,
+    rgba(20,18,16,.92) 100%)}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-ag__in{position:relative;z-index:1;max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+.sa-ag__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:rgba(255,255,255,.45);line-height:1}
+/* оранжевая риска перед надзаголовком — есть на утверждённом холсте
+   у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
+.sa-ag__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
+  background:#FF4200}
+/* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
+.sa-ag__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);margin-top:20px;letter-spacing:-.01em}
+.sa-ag__sub{font-size:var(--sa-body);font-weight:400;line-height:1.5;color:rgba(255,255,255,.72);
+  margin-top:12px;max-width:900px}
+.sa-ag__steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:var(--gap);margin-top:40px}
+
+/* цифра-призрак отдельной верхней строкой, по левому краю колонки */
+.sa-ag__num{font-size:80px;font-weight:800;line-height:.9;color:rgba(255,255,255,.08);
+  letter-spacing:-.02em}
+/* иконка 32px, оранжевая */
+.sa-ag__ico{width:32px;height:32px;margin-top:16px;
+  transition:transform var(--sa-t) var(--sa-ease),filter var(--sa-t) var(--sa-ease)}
+.sa-ag__ico svg{width:32px;height:32px;stroke:var(--acc);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+
+/* нить цикла: узлы 01…04 на тонкой линии, линия только между узлами */
+.sa-ag__rail{position:relative;height:8px;margin-top:18px}
+.sa-ag__dot{position:absolute;left:0;top:0;width:8px;height:8px;border-radius:999px;
+  background:var(--acc);box-shadow:0 0 12px rgba(255,66,0,.55)}
+/* 04.10: заказчица сравнила с холстом — «линия и иконки были лучше».
+   На холсте нить читается как сплошная оранжевая, у нас она была в
+   треть силы и терялась на фотографии заката. Подняли до .6 и усилили
+   свечение; обводка значков с 1,6 до 1,8. */
+.sa-ag__step:not(:last-child) .sa-ag__rail::after{content:"";position:absolute;
+  left:4px;right:calc(-1 * (var(--gap) + 4px));top:50%;height:1px;
+  background:rgba(255,66,0,.6);box-shadow:0 0 10px rgba(255,66,0,.45);
+  transition:background var(--sa-t) var(--sa-ease),
+             box-shadow var(--sa-t) var(--sa-ease)}
+
+.sa-ag__sh{font-size:var(--sa-h3);font-weight:700;line-height:1.25;margin-top:18px}
+.sa-ag__st{font-size:13px;font-weight:500;line-height:18.2px;color:rgba(255,255,255,.55);
+  margin-top:6px}
+.sa-ag__step{transition:transform var(--sa-t) var(--sa-ease)}
+/* Наведение подсвечивает весь шаг целиком, а не один значок: узел
+   разгорается, нить до следующего шага светлеет. Раньше откликался
+   только значок, и отклик было почти не видно. */
+.sa-ag__dot{transition:box-shadow var(--sa-t) var(--sa-ease),
+            transform var(--sa-t) var(--sa-ease)}
+@media (hover:hover){
+  .sa-ag__step:hover{transform:translateY(-4px)}
+  .sa-ag__step:hover .sa-ag__ico{transform:scale(1.08);
+    filter:drop-shadow(0 0 12px rgba(255,66,0,.75))}
+  .sa-ag__step:hover .sa-ag__dot{transform:scale(1.35);
+    box-shadow:0 0 18px rgba(255,66,0,.9)}
+  .sa-ag__step:hover .sa-ag__rail::after{background:rgba(255,66,0,.9);
+    box-shadow:0 0 14px rgba(255,66,0,.6)}
+}
+
+/* тонкая линия над кнопкой — есть на утверждённом холсте ПК,
+   у нас её не было. Решение заказчика 03.10.2026. */
+.sa-ag__cta{display:flex;align-items:center;gap:28px;margin-top:40px;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.12);padding-top:40px}
+.sa-ag__btn{display:inline-flex;align-items:center;justify-content:center;
+  height:var(--sa-btn-h);
+  padding:0 32px;border-radius:12px;background:#D93800;color:#fff;text-decoration:none;
+  font-size:var(--sa-lead);font-weight:700}
+@media (hover:hover){
+  .sa-ag__btn:hover{background:#C23100}
+}
+/* Планшет и телефон: цифра слева, текст справа. Иконок и узлов в макете нет. */
+@media (max-width:1023px){
+  .sa-ag{padding:64px 0}
+  .sa-ag__in{padding:0 32px}
+  .sa-ag__kicker{font-weight:600;color:#8A837C}
+  .sa-ag__h{font-size:28px;line-height:32.2px;margin-top:12px}
+  .sa-ag__sub{font-size:16px;line-height:24px;color:#B5B0AA;margin-top:8px}
+  .sa-ag__steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;margin-top:24px}
+  .sa-ag__step{display:flex;align-items:flex-start;padding:24px 0}
+  .sa-ag__num{flex:0 0 64px;font-size:44px;font-weight:500;line-height:44px;
+    color:rgba(255,255,255,.28)}
+  .sa-ag__ico,.sa-ag__rail{display:none}
+  .sa-ag__txt{flex:1 1 auto;min-width:0}
+  .sa-ag__sh{font-size:18px;font-weight:600;line-height:23.4px;margin-top:0}
+  .sa-ag__st{font-size:14px;font-weight:400;line-height:21px;color:#B5B0AA;margin-top:6px}
+  .sa-ag__cta{justify-content:center;margin-top:32px;padding-top:0;border-top:0}
+  .sa-ag__btn{height:52px;width:360px;max-width:100%;font-size:15px;font-weight:600;
+    padding:0 20px}
+  }
+@media (max-width:767px){
+  .sa-ag__in{padding:0 20px}
+  .sa-ag__steps{grid-template-columns:minmax(0,1fr)}
+  .sa-ag__btn{width:100%}
+  }
+</style>
+
+<div class="sa-ag" id="service">
+  <div class="sa-ag__bg"><img src="https://static.tildacdn.com/tild3231-3430-4263-a634-653235613965/cycle-bg.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="sa-ag__in">
+
+    <span class="sa-ag__kicker">Как мы работаем</span>
+    <h2 class="sa-ag__h">Агросопровождение</h2>
+    <p class="sa-ag__sub">от диагностики поля до сопровождения в сезоне</p>
+
+    <div class="sa-ag__steps">
+
+      <div class="sa-ag__step">
+        <div class="sa-ag__num">01</div>
+        <div class="sa-ag__ico"><svg viewBox="0 0 32 32"><path d="M20.6 4.9a3.9 3.9 0 0 1 5.5 0l1 1a3.9 3.9 0 0 1 0 5.5l-2.4 2.4-6.5-6.5 2.4-2.4z"/><path d="m17.2 8.4 6.4 6.4-9.9 9.9-3.4 1.4a1.4 1.4 0 0 1-1.8-1.8l1.4-3.4 7.3-12.5z"/><path d="m8.1 23.9 1.6 1.6"/></svg></div>
+        <div class="sa-ag__rail"><div class="sa-ag__dot"></div></div>
+        <div class="sa-ag__txt">
+          <div class="sa-ag__sh">Диагностика</div>
+          <div class="sa-ag__st">Собственная лаборатория и агрономы</div>
+        </div>
+      </div>
+
+      <div class="sa-ag__step">
+        <div class="sa-ag__num">02</div>
+        <div class="sa-ag__ico"><svg viewBox="0 0 32 32"><path d="M12 12h8v15a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V12z"/><path d="M14 12V8h4v4"/><path d="M18 9h4l2-2"/><path d="M26 4.5h1.5M27.5 8h1.5M25 11.5h1.5"/></svg></div>
+        <div class="sa-ag__rail"><div class="sa-ag__dot"></div></div>
+        <div class="sa-ag__txt">
+          <div class="sa-ag__sh">Подбор препаратов</div>
+          <div class="sa-ag__st">Под культуру и задачи хозяйства</div>
+        </div>
+      </div>
+
+      <div class="sa-ag__step">
+        <div class="sa-ag__num">03</div>
+        <div class="sa-ag__ico"><svg viewBox="0 0 32 32"><path d="M16 4.5 20 9.5 16 14.5 12 9.5 16 4.5z"/><path d="M16 27.5c-5.2 0-8.5-3.6-8.5-8.9 0-1.3.2-2.5.6-3.6 4.9.4 7.9 4 7.9 9.3"/><path d="M16 27.5c5.2 0 8.5-3.6 8.5-8.9 0-1.3-.2-2.5-.6-3.6-4.9.4-7.9 4-7.9 9.3"/><path d="M16 27.5v-3.2"/></svg></div>
+        <div class="sa-ag__rail"><div class="sa-ag__dot"></div></div>
+        <div class="sa-ag__txt">
+          <div class="sa-ag__sh">Поставка</div>
+          <div class="sa-ag__st">Со склада в Барнауле, доставка в хозяйство</div>
+        </div>
+      </div>
+
+      <div class="sa-ag__step">
+        <div class="sa-ag__num">04</div>
+        <div class="sa-ag__ico"><svg viewBox="0 0 32 32"><circle cx="10" cy="21.5" r="6.5"/><circle cx="25.5" cy="24.5" r="3.5"/><circle cx="10" cy="21.5" r="2"/><path d="M3.5 15.5V10h6.5l2.5-5H18v10.5"/><path d="M18 15.5h4l4 4v5"/></svg></div>
+        <div class="sa-ag__rail"><div class="sa-ag__dot"></div></div>
+        <div class="sa-ag__txt">
+          <div class="sa-ag__sh">Сопровождение в сезоне</div>
+          <div class="sa-ag__st">Корректировка в течение сезона</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sa-ag__cta">
+      <a class="sa-ag__btn" href="#contacts">Заказать диагностику</a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+/* длинные слова в заголовке не должны расталкивать страницу на узком экране */
+.sa-ag__h{overflow-wrap:break-word}
+/* 04.10: правило лежало в @media (max-width:374px) и до телефона
+   390 не доставало — агент замерил, что слово по-прежнему рвётся
+   на «Агросопровождени / е». Граница поднята до 767. */
+@media (max-width:767px){
+  /* «Агросопровождение» — 17 знаков, самое длинное слово на сайте.
+     Замерено на живом телефоне: при 28px слово занимает 331px, а
+     места 311 — и оно рвалось посередине. Кегль привязан к ширине
+     экрана так, чтобы слово всегда помещалось в строку: на 390 выйдет
+     26px, на 320 — 20px, на планшете упрётся в 28. */
+  .sa-ag__h{font-size:clamp(18px,calc(7.9vw - 6.4px),28px);line-height:1.15}
+}
+</style>

@@ -1,0 +1,185 @@
+<!-- Оформление штатной формы Tilda под дизайн «Сатурна».
+     Блок T123 ставится ПОД блоком формы.
+     В настройках блока формы задать CSS-класс: uc-saturn-form -->
+<style>
+/* было 128px снизу — под формой зияла пустая полоса в треть экрана,
+   из-за неё подвал выглядел оторванным. Заказчик заметил 03.10.2026. */
+/* Блок формы сверху и снизу имел собственные поля Тильды, и между
+   контактами и карточкой зияло 170 px пустоты — форма выглядела
+   оторванной от секции, хотя на холсте она её часть. Поля убраны,
+   карточка подтянута к контактам. Заказчик 04.10.2026. */
+/* 04.10, вечер: карточка была тёмной на тёмном — «прямоугольник
+   внутри прямоугольника», и поля внутри неё третьим слоем. Заказчица
+   попросила выделить блок светлым и поднять ближе к контактам.
+   Теперь карточка светлая: на тёмной секции она читается сразу, а
+   поля внутри — белые, и слоёв становится два вместо трёх. */
+.uc-saturn-form{background:#141210;padding:0 0 56px;margin-top:-48px}
+.uc-saturn-form .t-section__container,
+.uc-saturn-form .t-container{padding-top:0 !important}
+.uc-saturn-form .t-form__submit{margin-top:0}
+.uc-saturn-form .t-container,
+.uc-saturn-form .t-col{font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif}
+
+/* Карточка формы. Раньше на ПК формы просто не было видно: прозрачные
+   поля с рамкой в 15% белого на почти чёрном фоне читались как пустота.
+   Теперь форма стоит на своей подложке — так она отделяется от страницы
+   и сразу видно, что это форма. Заказчик заметил 04.10.2026.
+   Поля карточки по холсту: 40 сверху и снизу, 40 по бокам. */
+/* 04.10: «узкое поле, выровнять по левому краю, сразу под
+   контактами». Форма во всю ширину смотрелась пустой: три поля
+   растянуты на 1240 px, между ними воздух, который ничего не
+   значит. Узкая карточка слева читается как продолжение колонки
+   контактов, а не как отдельный экран. Поля в ней идут столбиком:
+   так видно, что заполнять, и палец не ищет их по горизонтали. */
+.uc-saturn-form .t-form{background:#F7F5F2;border-radius:var(--sa-r-card);
+  padding:32px;max-width:min(560px,100%);margin:0}
+.uc-saturn-form .t-form__inputsbox{display:block !important}
+.uc-saturn-form .t-input-group{width:100% !important;max-width:none !important;
+  float:none !important;padding:0 !important;margin:0 0 12px !important}
+.uc-saturn-form .t-form__submit{width:100%;margin-top:4px}
+.uc-saturn-form .t-submit{width:100% !important}
+/* Заголовок карточки — на холсте он есть, в блоке формы Тильды его
+   завести нечем, поэтому вставляем узлом (см. скрипт ниже). */
+.uc-saturn-form .sa-fh{font-size:var(--sa-h3);font-weight:800;line-height:1.25;
+  color:#141210;margin:0 0 6px}
+.uc-saturn-form .sa-fx{font-size:var(--sa-body);font-weight:400;line-height:1.5;
+  color:#6B655E;margin:0 0 24px}
+.uc-saturn-form .t-input-group{margin-bottom:12px}
+
+/* поля: кегль ровно 16 — иначе Safari на iPhone приближает страницу */
+.uc-saturn-form .t-input,
+.uc-saturn-form input.t-input,
+.uc-saturn-form textarea.t-input{
+  height:52px !important;border-radius:12px !important;padding:0 18px !important;
+  background:#fff !important;
+  border:1px solid #E0DAD2 !important;
+  color:#141210 !important;font-size:16px !important;font-weight:500 !important;
+  font-family:Montserrat,sans-serif !important}
+.uc-saturn-form .t-input::placeholder{color:#7A736B !important}
+/* Виджет телефона Тильды рисует флаг и код отдельными элементами, мимо
+   .t-input, и на тёмном фоне они оставались светлыми пятнами. */
+.uc-saturn-form .t-inputphonemask__wrap,
+.uc-saturn-form .t-inputphonemask__select{
+  background:#fff !important;
+  border:1px solid #E0DAD2 !important;
+  border-radius:12px !important;height:52px !important;color:#141210 !important}
+.uc-saturn-form .t-inputphonemask__options{background:#fff !important;color:#141210 !important;
+  border:1px solid #E0DAD2 !important;border-radius:12px !important}
+.uc-saturn-form .t-inputphonemask__option:hover{background:#F0EDE9 !important}
+/* Фокус был виден только сменой цвета рамки на 1px — с клавиатуры
+   почти незаметно. Добавляю кольцо: рамка основного цвета и тень 3px,
+   без смены размеров поля. */
+.uc-saturn-form .t-input:focus{border-color:#D93800 !important;outline:none !important;
+  box-shadow:0 0 0 3px rgba(217,56,0,.18) !important}
+.uc-saturn-form .t-submit:focus-visible{outline:2px solid #141210 !important;
+  outline-offset:2px}
+
+/* текст согласия */
+.uc-saturn-form .t-checkbox__control,
+.uc-saturn-form .t-checkbox__indicator+span,
+.uc-saturn-form .t-form__lock-text,
+.uc-saturn-form .t-form__screen-descr{
+  font-size:13px !important;font-weight:400 !important;line-height:19.5px !important;
+  color:#6B655E !important}
+.uc-saturn-form .t-checkbox__control a,
+.uc-saturn-form .t-form__lock-text a{color:#141210 !important;text-decoration:underline}
+/* Квадрат согласия. Было задано 18, а на живой странице меряется 13:
+   правило Тильды сидит на более длинном селекторе и выигрывает.
+   Поднимаю вес тегом поля и ставлю 20, а зону нажатия довожу до 44
+   псевдоэлементом — согласие обязательное, и промахиваться по нему
+   пальцем человек не должен. Замер живого сайта 04.10. */
+.uc-saturn-form .t-checkbox__wrapper .t-checkbox__indicator,
+.uc-saturn-form .t-checkbox__indicator{position:relative;border-radius:4px !important;
+  width:20px !important;height:20px !important;min-height:20px !important;
+  max-height:20px !important;flex:0 0 20px !important;box-sizing:border-box !important;
+  border:1px solid #C9C3BB !important;background:#fff !important}
+.uc-saturn-form .t-checkbox__indicator::after{content:"";position:absolute;
+  left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
+.uc-saturn-form .t-checkbox__control{cursor:pointer}
+.uc-saturn-form .t-checkbox:checked+.t-checkbox__indicator,
+.uc-saturn-form .t-checkbox__indicator_checked{background:#FF4200 !important;
+  border-color:#FF4200 !important}
+
+/* кнопка */
+.uc-saturn-form .t-submit{
+  height:var(--sa-btn-h) !important;border-radius:var(--sa-r-ctrl) !important;background:#D93800 !important;
+  color:#fff !important;font-size:15px !important;font-weight:600 !important;
+  font-family:Montserrat,sans-serif !important;border:0 !important;
+  transition:background var(--sa-t) var(--sa-ease)}
+.uc-saturn-form .t-submit:hover{background:#C23100 !important}
+/* Приглушение кнопки убрано совсем. На холсте она оранжевая всегда,
+   а тускло-красная читалась как сломанная — заказчик так её и описал.
+   Согласие всё равно обязательно: без галочки Тильда не отправит
+   и покажет свою подсказку. */
+.uc-saturn-form .t-submit.sa-off{background:#D93800 !important;
+  color:#fff !important}
+
+/* Состояние ошибки. Тильда рисует его чистым #FF0000, которого в
+   палитре нет, а плашку «заполните все обязательные поля» — лососевым
+   прямоугольником без скругления внутри карточки с радиусом 22.
+   Экран ошибки видит каждый, кто торопится, и сейчас он единственный
+   на сайте выглядит чужим. Перекрашиваю в основной цвет и скругляю;
+   сами подписи у полей оставляю — они говорят по делу. */
+.uc-saturn-form [class*="t-input-error"]{color:#D93800 !important;
+  font-size:13px !important;font-weight:400 !important;
+  font-family:Montserrat,sans-serif !important;margin-top:6px !important}
+.uc-saturn-form .t-input[style*="FF0000" i],
+.uc-saturn-form .t-input[style*="255, 0, 0"],
+.uc-saturn-form .t-input.t-input_has-error,
+.uc-saturn-form .t-input_has-error{border-color:#D93800 !important;
+  box-shadow:0 0 0 3px rgba(217,56,0,.12) !important}
+.uc-saturn-form [class*="t-form__errorbox"]{background:#F0EDE9 !important;
+  color:#141210 !important;border-radius:var(--sa-r-ctrl) !important;
+  font-family:Montserrat,sans-serif !important;font-size:14px !important;
+  text-align:left !important;padding:14px 16px !important}
+
+/* сообщение после отправки */
+.uc-saturn-form .t-form__successbox{background:#F7F5F2 !important;color:#141210 !important;
+  border-radius:22px !important;font-family:Montserrat,sans-serif !important}
+
+@media (max-width:1023px){
+  .uc-saturn-form{padding-bottom:96px}
+  .uc-saturn-form .t-form{padding:24px}
+}
+@media (max-width:767px){
+  .uc-saturn-form{padding-bottom:72px}
+  .uc-saturn-form .t-form{padding:20px}
+  /* на 390 кнопка меряется 46 — ниже, чем все остальные на сайте */
+  .uc-saturn-form .t-submit{height:52px !important}
+}
+</style>
+
+<script>
+(function(){
+  function wire(){
+    document.querySelectorAll('.uc-saturn-form form').forEach(function(f){
+      /* Заголовок карточки. На холсте он есть, а блок формы Тильды
+         своего заголовка не имеет — поля там только для инпутов.
+         Поэтому вставляем узлом в начало формы: разметку Тильды это
+         не ломает, отправку тоже. */
+      if(!f.querySelector('.sa-fh')){
+        var h = document.createElement('div');
+        h.className = 'sa-fh';
+        h.textContent = 'Оставьте номер — перезвоним';
+        var x = document.createElement('div');
+        x.className = 'sa-fx';
+        x.textContent = 'Ответим в течение рабочего дня';
+        f.insertBefore(x, f.firstChild);
+        f.insertBefore(h, f.firstChild);
+      }
+      if(f.dataset.saWired) return;
+      var cb = f.querySelector('input[type=checkbox]');
+      var btn = f.querySelector('.t-submit');
+      if(!cb || !btn) return;
+      f.dataset.saWired = '1';
+      function sync(){ btn.classList.toggle('sa-off', !cb.checked); }
+      cb.addEventListener('change', sync);
+      sync();
+    });
+  }
+  wire();
+  document.addEventListener('DOMContentLoaded', wire);
+  window.addEventListener('load', wire);
+  new MutationObserver(wire).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>

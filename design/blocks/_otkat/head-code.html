@@ -1,0 +1,1121 @@
+<!-- Сатурн: весь код для «Настройки сайта → Вставка кода → HEAD».
+     Собран tools/build_head_code.py. Вставлять целиком, заменяя всё содержимое поля. -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": [
+    "Organization",
+    "LocalBusiness"
+   ],
+   "@id": "https://sssaturn.ru/#org",
+   "name": "Сатурн",
+   "legalName": "ООО «Сатурн»",
+   "url": "https://sssaturn.ru/",
+   "logo": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-logo-color.png",
+   "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-logo-color.png",
+   "description": "Поставщик удобрений, средств защиты растений и семян для сельхозпроизводителей Сибири. Агросопровождение от диагностики поля до уборки.",
+   "telephone": "+7-960-953-48-88",
+   "email": "nilov@sssaturn.ru",
+   "taxID": "2801274078",
+   "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "ОГРН",
+    "value": "1232800002709"
+   },
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "пр. Ленина 56 / ул. Шевченко 52А, пом. Н13",
+    "addressLocality": "Барнаул",
+    "addressRegion": "Алтайский край",
+    "addressCountry": "RU"
+   },
+   "openingHoursSpecification": [
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+     ],
+     "opens": "09:00",
+     "closes": "18:00"
+    }
+   ],
+   "areaServed": [
+    {
+     "@type": "AdministrativeArea",
+     "name": "Алтайский край"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Новосибирская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Омская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Томская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Кемеровская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Красноярский край"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Амурская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Краснодарский край"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Ростовская область"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Ставропольский край"
+    }
+   ],
+   "contactPoint": [
+    {
+     "@type": "ContactPoint",
+     "contactType": "sales",
+     "telephone": "+7-960-953-48-88",
+     "email": "nilov@sssaturn.ru",
+     "areaServed": "RU",
+     "availableLanguage": "ru"
+    },
+    {
+     "@type": "ContactPoint",
+     "contactType": "technical support",
+     "name": "Агрономический отдел",
+     "telephone": "+7-963-502-38-55",
+     "email": "khablak.a@sssaturn.ru",
+     "availableLanguage": "ru"
+    }
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://sssaturn.ru/#site",
+   "url": "https://sssaturn.ru/",
+   "name": "Сатурн",
+   "inLanguage": "ru-RU",
+   "publisher": {
+    "@id": "https://sssaturn.ru/#org"
+   },
+   "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://sssaturn.ru/catalog?q={query}",
+    "query-input": "required name=query"
+   }
+  }
+ ]
+}
+</script>
+
+<style>
+
+.js-catalog-parts-switcher,
+.t-catalog__parts-switch-btn,
+.t-catalog__parts-button-base,
+.t-catalog__filter__title,
+.t-catalog__filter__custom-sel,
+.js-catalog-filter-custom-select{
+  box-shadow:none !important;
+  text-decoration:none !important;
+  border-bottom:0 !important;
+}
+
+.t-catalog__card__imgwrapper{background:#F0EDE9 !important;border-radius:12px;overflow:hidden}
+.t-catalog__card__bgimg,
+.js-product-img.t-bgimg{background-size:contain !important;background-position:center !important;
+  background-repeat:no-repeat !important}
+
+img.js-product-img,
+.t-catalog__prod-popup__columns img.js-product-img{object-fit:contain !important;background:#F0EDE9}
+
+.t-catalog__card__btn,
+.t-catalog__card__btns-wrapper,
+.js-catalog-prod-btn{display:none !important}
+
+.t-catalog__card__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden}
+
+@media screen and (min-width:768px) and (max-width:960px){
+  .t-catalog__card-list > .js-product,
+  .t-catalog__card-list .t-catalog__stretch-col{
+    width:calc((100% - 20px) / 3) !important;
+  }
+}
+
+.t-catalog__prod-popup__info{max-width:100% !important;box-sizing:border-box}
+.t-slds__items-wrapper{overflow:hidden}
+
+.t-catalog__prod-popup__col-right{margin-left:0 !important;margin-right:0 !important}
+
+.t-catalog__card__price-wrapper[data-sa-ask],
+.js-catalog-price-wrapper[data-sa-ask]{display:none !important}
+
+.t-rec[data-record-type="2861"]{padding-top:40px !important;padding-bottom:72px !important}
+.t-catalog__grid-cont .t-section__title{margin-bottom:20px !important}
+.t-catalog__grid-cont .t-section__descr{margin-bottom:36px !important}
+.t-catalog__grid-cont .t-section__container:not(:has(.t-section__descr)) .t-section__title{
+  margin-bottom:32px !important}
+@media screen and (max-width:960px){
+  .t-rec[data-record-type="2861"]{padding-top:28px !important;padding-bottom:52px !important}
+  .t-catalog__grid-cont .t-section__title{margin-bottom:16px !important}
+  .t-catalog__grid-cont .t-section__descr{margin-bottom:28px !important}
+}
+
+[class*="t-catalog__breadcrumb"],[class*="t-breadcrumb"]{display:none !important}
+#rec4384406801 .js-block-header{display:none !important}
+
+@media screen and (min-width:961px){
+  [id^="parts-above-id-"]{display:none !important}
+}
+@media screen and (max-width:960px){
+  [id^="parts-above-id-"] [class*="img"]{display:none !important}
+  [id^="parts-above-id-"] [class*="card"]{min-height:0 !important}
+}
+
+.t-catalog__parts-sidebar-item,
+.t-catalog__parts-sidebar-item a,
+.t-catalog__parts-sidebar__list a{
+  color:#6B6560;box-shadow:none !important;
+  text-decoration:none !important;border-bottom:0 !important;
+  transition:color var(--sa-t) var(--sa-ease)}
+.t-catalog__parts-sidebar-item:hover,
+.t-catalog__parts-sidebar-item a:hover,
+.t-catalog__parts-sidebar__list a:hover,
+#allrecords .t-catalog__parts-sidebar-item a:hover,
+#allrecords .t-catalog__parts-sidebar__list a:hover{
+  color:#141210;box-shadow:none !important}
+
+.t-catalog__parts-sidebar-item_active,
+.t-catalog__parts-sidebar-item_active a,
+.t-catalog__parts-sidebar__list a.t-active,
+[class*="parts-sidebar"] [class*="active"],
+[class*="parts-sidebar"] [class*="active"] a{
+  color:#141210 !important;font-weight:700 !important;
+  box-shadow:none !important;text-decoration:none !important;
+  border-bottom:0 !important}
+
+.t-catalog__filter__search-and-sort,
+.t-catalog__filter__sort{display:none !important}
+
+@media screen and (min-width:961px){
+  .t-catalog__filter-wrapper{
+    position:sticky !important;top:88px;align-self:flex-start;
+    max-height:calc(100vh - 104px);overflow-y:auto;overscroll-behavior:contain;
+    scrollbar-width:thin;scrollbar-color:#D8D3CE transparent}
+  .t-catalog__filter-wrapper::-webkit-scrollbar{width:6px}
+  .t-catalog__filter-wrapper::-webkit-scrollbar-thumb{
+    background:#D8D3CE;border-radius:999px}
+}
+
+[class*="catalog__grid-cont-preloader"],
+[class*="catalog-grid-cont-preloader"]{
+  max-width:100% !important;overflow-x:clip}
+
+.t-catalog__card__imgwrapper{
+  aspect-ratio:355/266;
+  padding-bottom:0 !important;
+  height:auto !important;
+  min-height:0}
+.t-catalog__card__bgimg{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  height:auto !important}
+
+.t-catalog__card:not(:has([class*="imgwrapper"]))::before{
+  content:"";display:block;width:100%;aspect-ratio:355/266;
+  border-radius:12px;
+  background:
+    linear-gradient(rgba(240,237,233,.55), rgba(240,237,233,.55)),
+    url("https://static.tildacdn.com/tild3762-3461-4635-b161-643835316538/saturn-emblem.png")
+      center / 56px auto no-repeat,
+    #F0EDE9}
+.t-catalog__card__bgimg[style*="url()"],
+.t-catalog__card__bgimg:not([style*="url("]){
+  background-color:#F0EDE9 !important;
+  background-image:url("https://static.tildacdn.com/tild3762-3461-4635-b161-643835316538/saturn-emblem.png") !important;
+  background-size:56px auto !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  opacity:.5}
+
+<script>
+(function(){
+  function fix(){
+
+    document.querySelectorAll('.js-catalog-load-more-btn-text')
+      .forEach(function(el){
+        if (/^\s*Load more\s*$/.test(el.textContent)) el.textContent = 'Загрузить ещё';
+      });
+
+    document.querySelectorAll('.t-catalog__card__price-wrapper,.js-catalog-price-wrapper')
+      .forEach(function(el){
+        if(el.dataset.saFixed) return;
+        var val = el.querySelector('.js-product-price,.js-catalog-prod-price-val');
+        var hasPrice = val && /\d/.test(val.textContent);
+        if(!hasPrice){
+          el.setAttribute('data-sa-ask','1');
+          el.style.setProperty('display','none','important');
+        }
+        el.dataset.saFixed = '1';
+      });
+
+    document.querySelectorAll('.js-catalog-prod-all-charcs').forEach(function(box){
+      if(box.dataset.saCrops) return;
+      var rows = [].slice.call(box.querySelectorAll('p.t-typography__characteristics'))
+        .filter(function(p){ return /^\s*Культура\s*:/.test(p.textContent); });
+      if(rows.length > 1){
+        var vals = rows.map(function(p){
+          return p.textContent.replace(/^\s*Культура\s*:\s*/,'').trim();
+        }).filter(Boolean);
+        rows[0].textContent = 'Культура: ' + vals.join(', ');
+        rows.slice(1).forEach(function(p){ p.remove(); });
+      }
+      box.dataset.saCrops = '1';
+    });
+  }
+  fix();
+  document.addEventListener('DOMContentLoaded', fix);
+  window.addEventListener('load', fix);
+
+  new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
+.t-catalog__card__btn,
+.t-catalog__load-more-btn,
+.t-catalog__prod-popup__btn{background-color:#D93800 !important}
+@media (hover:hover){
+  .t-catalog__card__btn:hover,
+  .t-catalog__load-more-btn:hover,
+  .t-catalog__prod-popup__btn:hover{background-color:#C23100 !important}
+}
+</style>
+
+<style>
+
+body:has(.t-catalog__prod-snippet__container){background:#F7F5F2 !important}
+.t-rec:has(> .t-catalog__prod-snippet__container){background:#F7F5F2 !important}
+
+.t-catalog__prod-snippet__container{
+  max-width:min(1240px,90vw) !important;
+  margin:0 auto !important;
+  padding:clamp(18px,2.6vh,28px) 0 clamp(40px,6vh,64px) !important;
+  position:relative}
+
+.t-catalog__prod-snippet__container .t-popup__close{display:none !important}
+.t-catalog__prod-popup__close-txt-wr{
+  position:static !important;margin:0 0 clamp(12px,2vh,18px) !important}
+a.js-catalog-close-text{
+  position:relative;display:inline-flex;align-items:center;gap:8px;
+  font-size:var(--sa-small) !important;color:#6B655E !important;
+  text-decoration:none !important;
+  transition:color var(--sa-t) var(--sa-ease)}
+a.js-catalog-close-text::before{content:"←";font-size:15px;line-height:1}
+
+a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
+@media (hover:hover){a.js-catalog-close-text:hover{color:#141210 !important}}
+
+.t-catalog__prod-snippet__container,
+.t-catalog__prod-snippet__container *{box-sizing:border-box}
+.t-catalog__product-snippet .t-container{
+  width:100% !important;max-width:none !important;
+  background:#fff;border-radius:var(--sa-r-card);
+  padding:clamp(18px,2.4vw,32px);
+  box-shadow:0 1px 2px rgba(20,18,16,.04),0 14px 44px rgba(20,18,16,.07)}
+
+.t-catalog__product-snippet .t-catalog__prod-popup__col-left,
+.t-catalog__product-snippet .t-catalog__prod-popup__col-right{
+  width:auto !important;max-width:none !important;
+  margin:0 !important;padding:0 !important;float:none !important}
+.t-catalog__product-snippet .t-catalog__prod-popup__col-left{
+  background:#F0EDE9 url("https://static.tildacdn.com/tild3762-3461-4635-b161-643835316538/saturn-emblem.png")
+    center / 64px auto no-repeat;
+  border-radius:18px;overflow:hidden}
+
+.t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+  .t-catalog__prod-popup__col-left{display:none !important}
+
+@media screen and (min-width:960px){
+
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{
+    position:sticky;top:104px}
+  .t-catalog__product-snippet .t-container > div{
+    display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
+    align-items:start;column-gap:clamp(28px,3vw,44px);row-gap:0}
+
+  .t-catalog__product-snippet .t-catalog__prod-popup__breadcrumbs{
+    grid-column:1 / -1}
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{grid-column:1}
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-right{grid-column:2}
+
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+    .t-container{max-width:calc(720px + 2 * clamp(18px,2.4vw,32px)) !important;
+    margin:0 auto}
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+    .t-container > div{grid-template-columns:minmax(0,1fr)}
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+    .t-catalog__prod-popup__col-right{grid-column:1}
+}
+@media screen and (max-width:959px){
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-right{
+    margin-top:clamp(18px,3vh,26px) !important}
+}
+
+.sa-tp__cats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.sa-tp__cat{display:inline-block;background:#F0EDE9;color:#6B655E;
+  font-size:var(--sa-kick);font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:7px 14px;border-radius:var(--sa-r-pill)}
+
+.sa-tp__cat--out{background:transparent;box-shadow:inset 0 0 0 1px #DDD7D0}
+h1.t-catalog__prod-popup__name{
+  font-size:var(--sa-h2) !important;font-weight:800 !important;
+  line-height:var(--sa-h2-lh) !important;color:#141210 !important;
+  margin:0 !important;letter-spacing:-.01em}
+.t-catalog__prod-popup__brand{
+  font-size:var(--sa-body) !important;color:#6B655E !important;
+  margin-top:8px !important}
+.t-catalog__prod-popup__brand:empty{display:none}
+
+.t-catalog__prod-popup__sku{display:none !important}
+
+.js-catalog-prod-text{
+  font-size:var(--sa-body) !important;line-height:1.55 !important;
+  color:#4A453F !important;margin-top:clamp(14px,2vh,18px) !important}
+.js-catalog-prod-all-text{max-width:60ch}
+
+.t-catalog__product-snippet .js-catalog-price-wrapper{
+  margin:clamp(16px,2.4vh,22px) 0 0 !important}
+.t-catalog__prod-popup__price{
+  display:flex !important;align-items:baseline;gap:7px;margin:0 !important}
+.t-catalog__prod-popup__price-value{
+  font-size:var(--sa-h2) !important;font-weight:800 !important;
+  line-height:1 !important;color:#141210 !important;letter-spacing:-.015em}
+.t-catalog__prod-popup__price-currency{
+  font-size:var(--sa-body) !important;font-weight:500 !important;
+  color:#6B655E !important}
+.sa-tp--own-price .js-catalog-price-wrapper{display:none !important}
+
+.sa-tp__price{display:flex;align-items:baseline;gap:7px;
+  margin-top:clamp(16px,2.4vh,22px)}
+.sa-tp__ot{font-size:var(--sa-small);color:#8A837B}
+.sa-tp__num{font-size:var(--sa-h2);font-weight:800;line-height:1;
+  color:#141210;letter-spacing:-.015em}
+.sa-tp__unit{font-size:var(--sa-body);font-weight:500;color:#6B655E}
+.sa-tp__note{font-size:var(--sa-small);line-height:1.45;color:#8A837B;
+  margin-top:9px;max-width:46ch}
+
+.sa-tp__chars{margin-top:clamp(18px,2.8vh,26px);border-top:1px solid #E6E1DB}
+.sa-tp__row{display:grid;grid-template-columns:minmax(0,38%) minmax(0,1fr);
+  gap:16px;padding:13px 0;border-bottom:1px solid #E6E1DB}
+.sa-tp__k{font-size:var(--sa-body);line-height:1.5;color:#6B655E}
+.sa-tp__v{font-size:var(--sa-body);line-height:1.5;color:#141210}
+@media screen and (max-width:599px){
+  .sa-tp__row{grid-template-columns:minmax(0,1fr);gap:3px;padding:12px 0}
+  .sa-tp__k{font-size:var(--sa-small)}
+}
+
+.sa-tp__src{font-size:var(--sa-small);line-height:1.45;color:#8A837B;
+  margin-top:12px}
+
+.sa-tp--semena .t-catalog__prod-popup__col-left .t-img,
+.sa-tp--semena .t-catalog__prod-popup__col-left img.js-product-img{
+  width:100% !important;aspect-ratio:1/1;object-fit:cover;
+  border-radius:var(--sa-r-card)}
+
+.sa-tp__btns{display:flex;align-items:center;flex-wrap:wrap;
+  gap:clamp(14px,2vw,24px);margin-top:clamp(20px,3vh,28px)}
+.sa-tp__btn{display:inline-flex;align-items:center;justify-content:center;
+  height:var(--sa-btn-h);padding:0 var(--sa-btn-px);border-radius:var(--sa-r-ctrl);
+  background:#D93800;color:#fff !important;font-size:var(--sa-body);
+  font-weight:700;text-decoration:none !important;white-space:nowrap;
+  transition:background var(--sa-t) var(--sa-ease)}
+.sa-tp__arr{margin-left:8px;transition:transform var(--sa-t) var(--sa-ease)}
+.sa-tp__dl{display:inline-flex;align-items:center;gap:9px;
+  min-height:44px;color:#141210 !important;font-size:var(--sa-body);
+  font-weight:600;text-decoration:none !important;
+  transition:color var(--sa-t) var(--sa-ease)}
+.sa-tp__dl svg{width:18px;height:18px;flex:0 0 auto;fill:none;
+  stroke:currentColor;stroke-width:1.8;stroke-linecap:round;
+  stroke-linejoin:round}
+@media (hover:hover){
+  .sa-tp__btn:hover{background:#C23100}
+  .sa-tp__btn:hover .sa-tp__arr{transform:translateX(3px)}
+  .sa-tp__dl:hover{color:#D93800 !important}
+}
+@media screen and (max-width:599px){
+  .sa-tp__btns{flex-direction:column;align-items:stretch}
+  .sa-tp__btn{width:100%}
+  .sa-tp__dl{justify-content:center}
+}
+
+#sa-tp-cta .sa-tp-cta__in{
+  max-width:min(1240px,90vw) !important;padding-left:0;padding-right:0}
+</style>
+
+<script>
+
+(function(){
+  var PRAYS = 'https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf';
+
+  function naTovare(){ return /\/tproduct\//.test(location.pathname); }
+
+  function razdel(){
+    var sc = document.scripts;
+    for(var i=0;i<sc.length;i++){
+      var t = sc[i].textContent;
+      if(!t || t.indexOf('breadcrumbs') < 0) continue;
+      var m = t.match(/breadcrumbs\s*=\s*"(\[[\s\S]*?\])"/);
+      if(!m) continue;
+      try{
+        var a = JSON.parse(m[1].replace(/\\"/g,'"').replace(/\\\//g,'/'));
+        for(var j=a.length-1;j>=0;j--){
+          if(a[j] && a[j].root === false && a[j].title) return a[j].title;
+        }
+      }catch(e){}
+    }
+    return '';
+  }
+
+  function tovar(){
+    if(window.__saTpD) return window.__saTpD;
+    var d = null;
+    var sc = document.scripts;
+    for(var i=0;i<sc.length;i++){
+      var t = sc[i].textContent;
+
+      if(!t || t.indexOf('var product') < 0) continue;
+      var a = t.match(/"descr"\s*:\s*"((?:[^"\\]|\\.)*)"/);
+      if(!a) continue;
+      d = {descr: a[1].replace(/\\"/g,'"').replace(/\\\//g,'/'), price:''};
+      var b = t.match(/"price"\s*:\s*(?:"([^"]*)"|null)/);
+      if(b) d.price = b[1] || '';
+      break;
+    }
+    if(d) window.__saTpD = d;
+    return d;
+  }
+
+  var SKRYT = {'Культура':1, 'Тип':1, 'Оригинатор':1};
+
+  function tablica(root){
+    var pod = root.querySelector('.t-catalog__prod-popup__brand');
+    var POD = pod ? pod.textContent.trim() : '';
+    var box = root.querySelector('.js-catalog-prod-all-charcs');
+    if(!box || box.getAttribute('data-sa') === 'ok') return;
+    var p = box.querySelectorAll('p.js-catalog-prod-charcs');
+    if(!p.length) return;
+
+    var imena = [], znach = {};
+    for(var i=0;i<p.length;i++){
+      var s = (p[i].textContent || '').replace(/\s+/g,' ').trim();
+      if(!s) continue;
+      var k = s, v = '', d = s.indexOf(':');
+      if(d > 0){ k = s.slice(0,d).trim(); v = s.slice(d+1).trim(); }
+
+      if(SKRYT[k]) continue;
+
+      if(k === 'Действующее вещество' && ravno(v) === ravno(POD)) continue;
+      if(!(k in znach)){ imena.push(k); znach[k] = []; }
+      if(v) znach[k].push(v);
+    }
+
+    var t = document.createElement('div');
+    t.className = 'sa-tp__chars';
+    for(var j=0;j<imena.length;j++){
+      var r  = document.createElement('div'); r.className  = 'sa-tp__row';
+      var kk = document.createElement('div'); kk.className = 'sa-tp__k';
+      var vv = document.createElement('div'); vv.className = 'sa-tp__v';
+      kk.textContent = imena[j];
+      vv.textContent = znach[imena[j]].join(' · ');
+      r.appendChild(kk); r.appendChild(vv); t.appendChild(r);
+    }
+    if(!t.children.length) return;
+    box.textContent = '';
+    box.appendChild(t);
+    box.setAttribute('data-sa','ok');
+  }
+
+  var RE_CENA = /^(от\s+)?([0-9][0-9\s  .,]*?)\s*(₽(?:\s*\/\s*[^\s(.,·]+)?)\s*([\s\S]*)$/;
+
+  function cena(root){
+    var el = root.querySelector('.js-catalog-prod-all-text');
+    if(!el || el.getAttribute('data-sa-cena')) return;
+    var html = el.innerHTML;
+    var i = html.indexOf('Цена:');
+    if(i < 0) return;
+
+    var hvost = html.slice(i).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
+                    .replace(/^Цена:\s*/, '');
+
+    var j = hvost.search(/При\s+100\s*%/), vyr, uslovie = '';
+    if(j > 0){
+      vyr = hvost.slice(0, j).replace(/[.\s]+$/, '');
+      uslovie = hvost.slice(j).trim();
+    } else {
+      var k = hvost.indexOf('.');
+      vyr = k > 0 ? hvost.slice(0, k) : hvost;
+      uslovie = k > 0 ? hvost.slice(k + 1).trim() : '';
+    }
+
+    var m = vyr.match(RE_CENA);
+    if(!m) return;
+
+    el.innerHTML = html.slice(0, i).replace(/(?:\s|<br\s*\/?>)+$/i, '');
+    el.setAttribute('data-sa-cena', 'ok');
+
+    var box = document.createElement('div');
+    box.className = 'sa-tp__price';
+    if(m[1]){
+      var ot = document.createElement('span');
+      ot.className = 'sa-tp__ot'; ot.textContent = 'от';
+      box.appendChild(ot);
+    }
+    var num = document.createElement('span');
+    num.className = 'sa-tp__num';
+    num.textContent = m[2].trim();
+    var ed = document.createElement('span');
+    ed.className = 'sa-tp__unit';
+    ed.textContent = m[3].replace(/\s+/g, '');
+    box.appendChild(num); box.appendChild(ed);
+    el.parentNode.insertBefore(box, el.nextSibling);
+
+    var ostatok = (m[4] || '').trim().replace(/[.\s]+$/, '');
+    var nizh = [ostatok, uslovie.replace(/[.\s]+$/, '')]
+                 .filter(function(x){ return x; }).join('. ');
+    if(nizh){
+      var n = document.createElement('div');
+      n.className = 'sa-tp__note';
+      n.textContent = nizh;
+      box.parentNode.insertBefore(n, box.nextSibling);
+    }
+    root.classList.add('sa-tp--own-price');
+  }
+
+  var TRANSLIT = {'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'e',
+    'ж':'zh','з':'z','и':'i','й':'i','к':'k','л':'l','м':'m','н':'n',
+    'о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h',
+    'ц':'c','ч':'ch','ш':'sh','щ':'sh','ъ':'','ы':'y','ь':'','э':'e',
+    'ю':'yu','я':'ya'};
+  function ravno(t){
+    return (t || '').toLowerCase().replace(/[^a-zа-яё0-9]+/g, '')
+      .replace(/[а-яё]/g, function(c){ return TRANSLIT[c] !== undefined ? TRANSLIT[c] : c; });
+  }
+
+  function dorisovat(){
+    if(!naTovare() || !document.body) return;
+    var root = document.querySelector('.t-catalog__product-snippet');
+    if(!root) return;
+
+    var brend = root.querySelector('.t-catalog__prod-popup__brand');
+
+    if(razdel() === 'Семена') root.classList.add('sa-tp--semena');
+
+    var MERA = /\d\s*(?:г|мг|кг|мл)\s*\/\s*(?:л|кг|т|га)/i;
+    var dan = tovar();
+    var tw = root.querySelector('.t-catalog__prod-popup__title-wrapper');
+    if(dan && tw && !tw.querySelector('.sa-tp__cats')){
+      var bt = brend ? ravno(brend.textContent) : '';
+      var chasti = (dan.descr || '').split('·'), plashki = [], podpis = [];
+      for(var ci=0;ci<chasti.length;ci++){
+        var ch = chasti[ci].trim();
+        if(!ch || (bt && ravno(ch) === bt)) continue;
+        if(ch.length <= 26 && !MERA.test(ch)) plashki.push(ch); else podpis.push(ch);
+      }
+      if(!plashki.length){ var rz = razdel(); if(rz) plashki.push(rz); }
+      if(plashki.length){
+        var box = document.createElement('div');
+        box.className = 'sa-tp__cats';
+        for(var pi=0;pi<plashki.length;pi++){
+          var c = document.createElement('div');
+          c.className = 'sa-tp__cat' + (pi ? ' sa-tp__cat--out' : '');
+          c.textContent = plashki[pi];
+          box.appendChild(c);
+        }
+        tw.insertBefore(box, tw.firstChild);
+      }
+
+      if(brend && !brend.textContent.trim() && podpis.length){
+        brend.textContent = podpis.join(' · ');
+      }
+    }
+
+    tablica(root);
+    cena(root);
+
+    var info = root.querySelector('.t-catalog__prod-popup__info');
+
+    if(info && root.classList.contains('sa-tp--semena') &&
+       !info.querySelector('.sa-tp__src') && info.querySelector('.sa-tp__chars')){
+      var src = document.createElement('div');
+      src.className = 'sa-tp__src';
+      src.textContent = 'Данные оригинатора и Госсорткомиссии';
+      info.appendChild(src);
+    }
+
+    if(dan && info && !info.querySelector('.sa-tp__btns')){
+
+      var zovut = (dan && dan.price) ? 'Оставить заявку' : 'Запросить цену';
+      var b = document.createElement('div');
+      b.className = 'sa-tp__btns';
+      b.innerHTML =
+        '<a class="sa-tp__btn" href="/home#contacts">' + zovut +
+        '<span class="sa-tp__arr" aria-hidden="true">→</span></a>' +
+        '<a class="sa-tp__dl" href="' + PRAYS + '" target="_blank" rel="noopener">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>' +
+        'Скачать прайс</a>';
+      info.appendChild(b);
+    }
+  }
+
+  function vse(){ try{ dorisovat(); }catch(e){} }
+  vse();
+  document.addEventListener('DOMContentLoaded', vse);
+  window.addEventListener('load', vse);
+
+  if(window.MutationObserver){
+    new MutationObserver(function(){
+      clearTimeout(window.__saTpT);
+      window.__saTpT = setTimeout(vse, 120);
+    }).observe(document.documentElement, {childList:true, subtree:true});
+  }
+})();
+</script>
+
+<style>
+
+:root{
+
+  --sa-h1:    clamp(28px, 1.442vw + 13.23px, 34px);
+  --sa-h2:    clamp(24px, 1.442vw +  9.23px, 30px);
+  --sa-h3:    clamp(16px, 0.481vw + 11.08px, 18px);
+  --sa-lead:  clamp(15px, 0.240vw + 12.54px, 16px);
+  --sa-body:  clamp(14px, 0.240vw + 11.54px, 15px);
+  --sa-small: 13px;
+  --sa-cap:   12px;
+  --sa-kick:  clamp(11px, 0.240vw +  8.54px, 12px);
+
+  --sa-h1-lh: 1.08;
+  --sa-h2-lh: 1.15;
+
+  --sa-btn-h:  clamp(46px, 1.442vw + 31.23px, 52px);
+  --sa-btn-px: clamp(20px, 1.442vw +  5.23px, 26px);
+  --sa-fld-h:  clamp(46px, 1.442vw + 31.23px, 52px);
+  --sa-chip-h: clamp(32px, 0.962vw + 22.15px, 36px);
+
+  --sa-sec-y: clamp(48px, 7.692vw - 30.77px, 80px);
+  --sa-gap-l: clamp(28px, 2.885vw -  1.54px, 40px);
+  --sa-gap-m: clamp(20px, 1.923vw +  0.31px, 28px);
+  --sa-gap-s: clamp(12px, 0.962vw +  2.15px, 16px);
+
+  --sa-t: .18s;
+  --sa-ease: cubic-bezier(.2,.6,.2,1);
+
+  --sa-r-card: 22px;
+  --sa-r-ctrl: 12px;
+  --sa-r-pill: 999px;
+}
+
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
+  outline:2px solid #FF4200;outline-offset:3px;border-radius:4px}
+
+:where(.sa-hero,.sa-ag,.sa-geo,.sa-ct,.sa-hd,.sa-kc,#sa-tp-cta)
+  :where(a,button,input,summary,[tabindex]):focus-visible{
+  outline-color:#fff}
+
+.t-catalog__sort-select:focus-visible,
+.t-catalog__filter__btn:focus-visible,
+.t-catalog__filter__input:focus-visible,
+.js-catalog-filter-search:focus-visible{
+  outline:2px solid #FF4200 !important;outline-offset:2px !important}
+
+.sa-hd{--ink:#141210;--acc:#FF4200;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
+  position:fixed;top:0;left:0;right:0;z-index:9000;background:var(--ink)}
+.sa-hd *{box-sizing:border-box;margin:0;padding:0}
+
+.sa-hd__in{max-width:min(1240px,90vw);margin:0 auto;padding:14px 20px;height:72px;
+  display:flex;align-items:center}
+.sa-hd__logo{display:block;flex:0 0 auto}
+.sa-hd__logo img{display:block;width:103px;height:36px;object-fit:contain}
+.sa-hd__nav{display:flex;align-items:center;gap:32px;margin-left:48px}
+.sa-hd__nav a{font-size:var(--sa-body);font-weight:600;color:#B5B0AA;
+  text-decoration:none;white-space:nowrap}
+.sa-hd__right{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.sa-hd__tel,.sa-hd__mail{display:inline-flex;align-items:center;gap:8px;
+  text-decoration:none;white-space:nowrap}
+.sa-hd__tel{font-size:var(--sa-lead);font-weight:700;color:#fff;line-height:1.25}
+.sa-hd__mail{font-size:var(--sa-small);font-weight:400;color:#B5B0AA;line-height:1.25}
+.sa-hd__tel svg,.sa-hd__mail svg{flex:0 0 auto;width:15px;height:15px;fill:none;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sa-hd__tel svg{stroke:#fff}
+
+.sa-hd a[href^="tel:"],
+.sa-hd__ovc a[href^="tel:"]{color:#fff;-webkit-text-fill-color:#fff}
+.sa-hd a[href^="tel:"] svg{stroke:#fff}
+.sa-hd__mail svg{stroke:#8A837C;width:14px;height:14px}
+.sa-hd__icons{display:none;margin-left:auto;gap:4px}
+.sa-hd__ib{width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  background:none;border:0;cursor:pointer;color:#fff;text-decoration:none}
+.sa-hd__ib svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+
+@media (hover:hover){
+  .sa-hd a:hover{color:#fff}
+  .sa-hd__nav a:hover{color:#fff}
+
+  .sa-hd a.sa-hd__tel:hover,
+  .sa-hd a.sa-hd__mail:hover{color:var(--acc);-webkit-text-fill-color:var(--acc)}
+  .sa-hd a.sa-hd__tel:hover svg,
+  .sa-hd a.sa-hd__mail:hover svg{stroke:var(--acc)}
+
+  .sa-hd__ov a:hover{color:#fff}
+}
+.sa-hd__sp{height:72px}
+
+.sa-hd__ov{position:fixed;inset:0;z-index:9001;background:#141210;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
+  display:none;flex-direction:column;padding:0 20px 40px;overflow-y:auto}
+.sa-hd__ov *{box-sizing:border-box;margin:0;padding:0}
+.sa-hd__ov.is-open{display:flex}
+.sa-hd__ovtop{height:64px;display:flex;align-items:center;flex:0 0 auto;
+  padding:10px 0;margin:0 -20px 0 0;padding-right:0}
+.sa-hd__ovtop img{display:block;width:80px;height:28px;object-fit:contain}
+.sa-hd__ovtop .sa-hd__ib{margin-left:auto}
+.sa-hd__ovnav{display:flex;flex-direction:column;margin-top:24px}
+.sa-hd__ovnav a{font-size:24px;font-weight:700;color:#fff;text-decoration:none;
+  padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.sa-hd__ovc{margin-top:32px;display:flex;flex-direction:column;gap:4px}
+.sa-hd__ovc a{color:#fff;text-decoration:none;min-height:44px;display:flex;
+  align-items:center;font-size:var(--sa-h3);font-weight:700}
+.sa-hd__ovc a.sa-hd__ovm{font-size:var(--sa-body);font-weight:400;color:#B5B0AA}
+@media (hover:hover){
+  .sa-hd__nav a:hover{color:#fff}
+  .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}
+  .sa-hd__ovnav a:hover{color:#FF4200}
+}
+
+@media (max-width:1024px){
+  .sa-hd__mail{display:none}
+  .sa-hd__tel{font-size:15px;min-height:44px;align-items:center}
+  .sa-hd__tel::after{top:0;bottom:0}
+
+  .sa-hd__nav a[href$="#contacts"]{display:none}
+}
+@media (max-width:959px){
+  .sa-hd__nav{gap:24px;margin-left:32px}
+  .sa-hd__nav a{font-size:14px}
+}
+@media (max-width:767px){
+  .sa-hd__in{height:64px;padding:10px 20px}
+  .sa-hd__logo img{width:80px;height:28px}
+  .sa-hd__nav,.sa-hd__right{display:none}
+  .sa-hd__icons{display:flex}
+  .sa-hd__sp{height:64px}
+}
+
+html{scroll-behavior:auto}
+#seeds,#service,#contacts,#geo,#docs,#results{scroll-margin-top:72px}
+@media (max-width:767px){
+  #seeds,#service,#contacts,#geo,#docs,#results{scroll-margin-top:64px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.sa-hd__logo,.sa-hd__nav a,.sa-hd__tel,.sa-hd__mail{position:relative}
+.sa-hd__logo::after,.sa-hd__nav a::after{content:"";position:absolute;left:-8px;right:-8px;
+  top:50%;height:44px;transform:translateY(-50%)}
+.sa-hd__tel::after{content:"";position:absolute;left:-8px;right:-8px;top:-6px;bottom:-4px}
+.sa-hd__mail::after{content:"";position:absolute;left:-8px;right:-8px;top:-4px;bottom:-8px}
+.sa-ft{--ink:#141210;--acc:#FF4200;--mut:#6B6560;--cap:#766F68;--line:#E7E3DE;--lin2:#EDE9E4;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#fff;padding:56px 0 0}
+.sa-ft *{box-sizing:border-box;margin:0;padding:0}
+
+.sa-ft__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+
+.sa-ft__cols{display:grid;min-width:0;
+  grid-template-columns:300fr 196fr 274fr 290fr;gap:40px}
+
+.sa-ft__logo{display:inline-block;position:relative}
+.sa-ft__logo::after{content:"";position:absolute;left:0;right:0;top:50%;
+  height:44px;transform:translateY(-50%)}
+.sa-ft__logo img{display:block;width:98px;height:34px;object-fit:contain}
+.sa-ft__about{font-size:var(--sa-small);font-weight:400;line-height:1.6;color:var(--mut);
+  max-width:240px;margin-top:16px}
+.sa-ft__h{font-size:var(--sa-small);font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  margin-bottom:12px}
+.sa-ft__links{display:flex;flex-direction:column}
+.sa-ft__links a{font-size:var(--sa-body);font-weight:400;line-height:1.4;color:var(--mut);
+  text-decoration:none;padding:6px 0}
+.sa-ft__row{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px}
+.sa-ft__row svg{flex:0 0 16px;width:16px;height:16px;margin-top:4px;stroke:var(--acc);
+  fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sa-ft__row a{font-size:var(--sa-body);font-weight:600;color:var(--ink);text-decoration:none}
+.sa-ft__row span{font-size:var(--sa-body);font-weight:400;line-height:1.4;color:var(--mut)}
+.sa-ft__req{font-size:var(--sa-small);font-weight:400;line-height:1.6;color:var(--mut)}
+.sa-ft__req+.sa-ft__req{margin-top:10px}
+
+.sa-ft__btn{display:inline-flex;align-items:center;gap:10px;font-size:var(--sa-body);
+  font-weight:700;color:var(--ink);text-decoration:none;margin-top:20px}
+.sa-ft__btn svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.sa-ft__bot{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  margin-top:24px;padding:24px 0 40px;border-top:1px solid var(--lin2);
+  font-size:13px;font-weight:400;color:var(--cap)}
+.sa-ft__bot a{color:var(--cap);text-decoration:underline;
+  text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:rgba(118,111,104,.5)}
+.sa-ft__legal{display:flex;gap:8px;align-items:center}
+.sa-ft__mcol,.sa-ft__mnav,.sa-ft__mbtns,.sa-ft__mhr{display:none}
+@media (hover:hover){
+  .sa-ft__links a:hover,.sa-ft__row a:hover,.sa-ft__bot a:hover{color:var(--acc)}
+  .sa-ft__btn:hover{color:var(--acc)}
+  .sa-ft__btn:hover svg{stroke:var(--acc)}
+}
+
+@media (max-width:1023px){
+  .sa-ft{padding-top:56px}
+  .sa-ft__in{padding:0 32px}
+  .sa-ft__cols{grid-template-columns:1fr 1fr;gap:40px 48px}
+  .sa-ft__bot{display:block;padding-bottom:56px}
+  .sa-ft__legal{margin-top:10px;white-space:nowrap}
+}
+
+@media (max-width:767px){
+
+  .sa-ft{padding-top:36px}
+  .sa-ft__in{padding:0 20px}
+  .sa-ft__cols{display:block}
+  .sa-ft__c2,.sa-ft__c4{display:none}
+  .sa-ft__about{font-size:14px;color:var(--cap);max-width:none;margin-top:10px}
+  .sa-ft__c3 .sa-ft__h{display:none}
+  .sa-ft__c3{margin-top:16px}
+
+  .sa-ft__row{margin-bottom:0;min-height:36px;align-items:stretch;padding:0}
+  .sa-ft__row svg{margin-top:0;align-self:center}
+  .sa-ft__row a,.sa-ft__row span{display:flex;align-items:center;min-height:36px;
+    padding:0;flex:1}
+  .sa-ft__row a::after{top:-4px;bottom:-4px}
+  .sa-ft__mhr{display:block;height:1px;background:var(--lin2);margin:14px 0}
+
+  .sa-ft__mnav a,.sa-ft__mnav summary,.sa-ft__mnav details p,
+  .sa-ft__bot>div:first-child,.sa-ft__legal a{padding-left:26px}
+  .sa-ft__mnav{display:flex;flex-direction:column}
+  .sa-ft__mnav a,.sa-ft__mnav summary{display:flex;align-items:center;
+    justify-content:space-between;min-height:44px;font-size:var(--sa-body);font-weight:600;
+    color:var(--ink);text-decoration:none;border-bottom:1px solid var(--lin2);
+    list-style:none;cursor:pointer}
+  .sa-ft__mnav summary::-webkit-details-marker{display:none}
+  .sa-ft__mnav i{font-style:normal;color:var(--cap)}
+  .sa-ft__mnav details[open] i{transform:rotate(180deg);display:inline-block}
+  .sa-ft__mnav details p{font-size:13px;font-weight:400;line-height:20.8px;
+    color:var(--mut);padding:12px 0}
+
+  .sa-ft__mbtns{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+  .sa-ft__mbtns a{display:flex;align-items:center;justify-content:center;gap:10px;
+    min-height:48px;border:1px solid var(--line);border-radius:var(--sa-r-ctrl);
+    font-size:15px;font-weight:700;color:var(--ink);text-decoration:none;
+    transition:border-color var(--sa-t) var(--sa-ease),
+               color var(--sa-t) var(--sa-ease)}
+  .sa-ft__mbtns svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
+    stroke-linecap:round;stroke-linejoin:round}
+  .sa-ft__btn{display:none}
+  .sa-ft__bot{display:block;margin-top:14px;padding:16px 0 24px;font-size:12px}
+  .sa-ft__legal{display:block;margin-top:6px;white-space:normal}
+  .sa-ft__legal a::after{top:-5px;bottom:-5px}
+
+  .sa-ft__legal a{display:flex;align-items:center;min-height:34px;
+    white-space:normal;overflow-wrap:anywhere}
+  .sa-ft__legal i{display:none}
+}
+
+.sa-ft__links a,.sa-ft__row a,.sa-ft__legal a,.sa-ft__btn{position:relative}
+
+.sa-ft__links a::after,.sa-ft__row a::after,.sa-ft__legal a::after,
+.sa-ft__btn::after{
+  content:"";position:absolute;left:0;right:0;top:50%;height:44px;
+  transform:translateY(-50%)}
+
+#sa-tp-cta,#sa-tp-cta *{box-sizing:border-box}
+#sa-tp-cta{background:#141210;color:#fff;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif}
+#sa-tp-cta .sa-tp-cta__in{max-width:1240px;margin:0 auto;padding:56px 20px}
+#sa-tp-cta .sa-tp-cta__t{font-size:28px;font-weight:800;line-height:1.15;
+  overflow-wrap:break-word}
+#sa-tp-cta .sa-tp-cta__x{font-size:15px;font-weight:400;line-height:22.5px;
+  color:#B5B0AA;margin-top:10px;max-width:560px}
+#sa-tp-cta .sa-tp-cta__b{display:flex;align-items:center;gap:20px;margin-top:28px;
+  flex-wrap:wrap}
+#sa-tp-cta .sa-tp-cta__btn{display:inline-flex;align-items:center;justify-content:center;
+  height:var(--sa-btn-h);padding:0 28px;border-radius:var(--sa-r-ctrl);
+  background:#D93800;color:#fff;
+  text-decoration:none;font-size:16px;font-weight:700}
+#sa-tp-cta .sa-tp-cta__tel{color:#fff;text-decoration:none;font-size:16px;font-weight:700;
+  min-height:44px;display:inline-flex;align-items:center}
+@media (hover:hover){
+  #sa-tp-cta .sa-tp-cta__btn:hover{background:#C23100}
+  #sa-tp-cta .sa-tp-cta__tel:hover{color:#FF4200}
+}
+@media (max-width:767px){
+  #sa-tp-cta .sa-tp-cta__in{padding:40px 20px}
+  #sa-tp-cta .sa-tp-cta__t{font-size:clamp(20px,6.4vw,24px)}
+  #sa-tp-cta .sa-tp-cta__b{flex-direction:column;align-items:stretch;gap:12px}
+  #sa-tp-cta .sa-tp-cta__btn{width:100%}
+  #sa-tp-cta .sa-tp-cta__tel{justify-content:center}
+}
+
+#sa-ck{position:fixed;right:34px;bottom:34px;z-index:9500;width:360px;max-width:calc(100vw - 40px);
+  background:#1E1B18;color:#fff;border-radius:16px;padding:24px;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
+  box-shadow:0 12px 40px rgba(0,0,0,.35)}
+#sa-ck .sa-ck__t{font-size:16px;font-weight:700;line-height:1.3}
+#sa-ck .sa-ck__x{font-size:13px;font-weight:400;line-height:19.5px;color:#B5B0AA;margin-top:10px}
+#sa-ck .sa-ck__x a{color:#FF4200;text-decoration:none}
+#sa-ck .sa-ck__b{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+#sa-ck button{min-height:44px;border-radius:10px;border:0;cursor:pointer;
+  font-family:inherit;font-size:14px;font-weight:600;padding:10px 16px}
+#sa-ck button[data-sa-ck=all]{background:#D93800;color:#fff}
+#sa-ck button[data-sa-ck=none]{background:transparent;color:#fff;border:1px solid #B5B0AA}
+@media (hover:hover){
+  #sa-ck button[data-sa-ck=all]:hover{background:#C23100}
+  #sa-ck button[data-sa-ck=none]:hover{border-color:#FF4200;color:#FF4200}
+}
+@media (max-width:640px){
+  #sa-ck{right:12px;left:12px;bottom:12px;width:auto;padding:18px}
+}
+</style>
+
+<script>
+
+(function(){
+  var HD = "<div class=\"sa-hd\">\n  <div class=\"sa-hd__in\">\n    <a class=\"sa-hd__logo\" href=\"/home\" aria-label=\"Сатурн — на главную\"><img src=\"https://static.tildacdn.com/tild6233-3132-4339-b431-333131313764/saturn-logo-white.png\" alt=\"Сатурн\"></a>\n    <nav class=\"sa-hd__nav\">\n      <a href=\"/catalog\">Каталог</a>\n      <a href=\"/home#seeds\">Семена</a>\n      <a href=\"/home#service\">Агросопровождение</a>\n      <a href=\"/home#contacts\">Контакты</a>\n    </nav>\n    <div class=\"sa-hd__right\">\n      <a class=\"sa-hd__tel\" href=\"tel:+79609534888\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5.2 2.2 6.6 5 5.3 6.3a8 8 0 0 0 4.4 4.4L11 9.4l2.8 1.4v2.4a1 1 0 0 1-1.1 1C6.9 13.8 2.2 9.1 1.7 3.3a1 1 0 0 1 1-1.1h2.5z\"/></svg>+7 (960) 953-48-88</a>\n      <a class=\"sa-hd__mail\" href=\"mailto:nilov@sssaturn.ru\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><rect x=\"1.5\" y=\"3.5\" width=\"13\" height=\"9\" rx=\"1.5\"/><path d=\"m2 4.5 6 4 6-4\"/></svg>nilov@sssaturn.ru</a>\n    </div>\n    <div class=\"sa-hd__icons\">\n      <a class=\"sa-hd__ib\" href=\"mailto:nilov@sssaturn.ru\" aria-label=\"Написать на почту\"><svg viewBox=\"0 0 24 24\"><rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"2.5\"/><path d=\"M3 7l9 6 9-6\"/></svg></a>\n      <a class=\"sa-hd__ib\" href=\"tel:+79609534888\" aria-label=\"Позвонить\"><svg viewBox=\"0 0 24 24\"><path d=\"M5 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2 2 2 0 0 1 5 3z\"/></svg></a>\n      <button class=\"sa-hd__ib\" type=\"button\" aria-label=\"Открыть меню\" onclick=\"document.getElementById('sa-hd-ov').classList.add('is-open');document.documentElement.style.overflow='hidden'\"><svg viewBox=\"0 0 24 24\"><path d=\"M3 6h18M3 12h18M3 18h18\"/></svg></button>\n    </div>\n  </div>\n</div>\n<div class=\"sa-hd__sp\"></div>\n\n<div class=\"sa-hd__ov\" id=\"sa-hd-ov\">\n  <div class=\"sa-hd__ovtop\">\n    <img src=\"https://static.tildacdn.com/tild6233-3132-4339-b431-333131313764/saturn-logo-white.png\" alt=\"Сатурн\">\n    <button class=\"sa-hd__ib\" type=\"button\" aria-label=\"Закрыть меню\" onclick=\"document.getElementById('sa-hd-ov').classList.remove('is-open');document.documentElement.style.overflow=''\"><svg viewBox=\"0 0 24 24\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button>\n  </div>\n  <nav class=\"sa-hd__ovnav\" onclick=\"document.getElementById('sa-hd-ov').classList.remove('is-open');document.documentElement.style.overflow=''\">\n    <a href=\"/catalog\">Каталог</a>\n    <a href=\"/home#seeds\">Семена</a>\n    <a href=\"/home#service\">Агросопровождение</a>\n    <a href=\"/home#contacts\">Контакты</a>\n  </nav>\n  <div class=\"sa-hd__ovc\">\n    <a href=\"tel:+79609534888\">+7 (960) 953-48-88</a>\n    <a class=\"sa-hd__ovm\" href=\"mailto:nilov@sssaturn.ru\">nilov@sssaturn.ru</a>\n  </div>\n</div>";
+  var FT = "<div class=\"sa-ft\">\n  <div class=\"sa-ft__in\">\n    <div class=\"sa-ft__cols\">\n\n      <div class=\"sa-ft__c1\">\n        <a class=\"sa-ft__logo\" href=\"/home\" aria-label=\"Сатурн — на главную\"><img src=\"https://static.tildacdn.com/tild3764-3938-4833-a639-396437636430/saturn-logo-color.png\" alt=\"Сатурн\"></a>\n        <p class=\"sa-ft__about\">Поставщик удобрений, СЗР и семян для профессионального земледелия.</p>\n        <a class=\"sa-ft__btn\" href=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf\" target=\"_blank\" rel=\"noopener\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 3v12M7 11l5 5 5-5M4 20h16\"/></svg>Скачать прайс</a>\n      </div>\n\n      <div class=\"sa-ft__c2\">\n        <div class=\"sa-ft__h\">Разделы</div>\n        <nav class=\"sa-ft__links\">\n          <a href=\"/catalog\">Каталог</a>\n          <a href=\"/home#seeds\">Семена</a>\n          <a href=\"/home#service\">Агросопровождение</a>\n          <a href=\"/home#contacts\">Контакты</a>\n        </nav>\n      </div>\n\n      <div class=\"sa-ft__c3\">\n        <div class=\"sa-ft__h\">Контакты</div>\n        <div class=\"sa-ft__row\"><svg viewBox=\"0 0 24 24\"><path d=\"M5 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2 2 2 0 0 1 5 3z\"/></svg><a href=\"tel:+79609534888\">+7 (960) 953-48-88</a></div>\n        <div class=\"sa-ft__row\"><svg viewBox=\"0 0 24 24\"><rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"2.5\"/><path d=\"M3 7l9 6 9-6\"/></svg><a href=\"mailto:nilov@sssaturn.ru\">nilov@sssaturn.ru</a></div>\n        <div class=\"sa-ft__row\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/></svg><span>г. Барнаул, пр. Ленина 56 / Шевченко 52А, пом. Н13</span></div>\n        <div class=\"sa-ft__row\"><svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3.5 2\"/></svg><span>Пн–Пт 9:00–18:00 · Сб–Вс выходной</span></div>\n      </div>\n\n      <div class=\"sa-ft__c4\">\n        <div class=\"sa-ft__h\">Реквизиты</div>\n        <p class=\"sa-ft__req\">ООО «Сатурн» · ИНН 2801274078 · КПП 222501001 · ОГРН 1232800002709</p>\n        <p class=\"sa-ft__req\">Юр. адрес: 656056, Алтайский край, г. Барнаул, пл. им. В.Н. Баварина, д. 2, пом./офис Н58/11/09</p>\n        <a class=\"sa-ft__btn\" href=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-rekvizity.pdf\" target=\"_blank\" rel=\"noopener\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 3v12M7 11l5 5 5-5M4 20h16\"/></svg>Скачать реквизиты</a>\n      </div>\n\n    </div>\n\n    <div class=\"sa-ft__mhr\"></div>\n    <nav class=\"sa-ft__mnav\">\n      <a href=\"/catalog\">Каталог</a>\n      <a href=\"/home#seeds\">Семена</a>\n      <a href=\"/home#service\">Агросопровождение</a>\n      <a href=\"/home#contacts\">Контакты</a>\n      <details><summary>Реквизиты <i>▾</i></summary>\n        <p>ООО «Сатурн» · ИНН 2801274078 · КПП 222501001 · ОГРН 1232800002709<br>Юр. адрес: 656056, Алтайский край, г. Барнаул, пл. им. В.Н. Баварина, д. 2, пом./офис Н58/11/09</p>\n      </details>\n    </nav>\n    <div class=\"sa-ft__mbtns\">\n      <a href=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf\" target=\"_blank\" rel=\"noopener\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 3v12M7 11l5 5 5-5M4 20h16\"/></svg>Скачать прайс</a>\n      <a href=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-rekvizity.pdf\" target=\"_blank\" rel=\"noopener\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 3v12M7 11l5 5 5-5M4 20h16\"/></svg>Скачать реквизиты</a>\n    </div>\n\n    <div class=\"sa-ft__bot\">\n      <div>© 2026 ООО «Сатурн». Все права защищены.</div>\n      <div class=\"sa-ft__legal\">\n        <a href=\"/privacy\">Политика обработки персональных данных</a><i>·</i>\n        <a href=\"/consent\">Согласие на обработку персональных данных</a>\n      </div>\n    </div>\n\n  </div>\n</div>";
+  function onProductPage(){ return /\/tproduct\//.test(location.pathname); }
+  function draw(){
+    if(!document.body) return;
+    if(!onProductPage()) return;
+    if(document.querySelector('.sa-hd')) return;
+    if(document.getElementById('sa-tp-chrome')) return;
+    var top = document.createElement('div');
+    top.id = 'sa-tp-chrome';
+    top.innerHTML = HD;
+    document.body.insertBefore(top, document.body.firstChild);
+
+    var cta = document.createElement('div');
+    cta.id = 'sa-tp-cta';
+    cta.innerHTML =
+      '<div class="sa-tp-cta__in">' +
+      '<div class="sa-tp-cta__t">Нужна цена или подбор под вашу культуру?</div>' +
+      '<div class="sa-tp-cta__x">Ответим в течение рабочего дня, подберём решение под хозяйство</div>' +
+      '<div class="sa-tp-cta__b">' +
+      '<a class="sa-tp-cta__btn" href="/home#contacts">Получить предложение</a>' +
+      '<a class="sa-tp-cta__tel" href="tel:+79609534888">+7 (960) 953-48-88</a>' +
+      '</div></div>';
+    document.body.appendChild(cta);
+
+    var cp = document.getElementById('tildacopy');
+    if (!cp) {
+
+      var a = document.querySelector('body a[href*="tilda.cc"]');
+      cp = a ? a.closest('div') || a : null;
+    }
+
+    var bot = document.createElement('div');
+    bot.innerHTML = FT;
+    if (cp && cp.parentNode === document.body) {
+      document.body.insertBefore(cta, cp);
+      document.body.insertBefore(bot, cp);
+    } else {
+      document.body.appendChild(bot);
+    }
+  }
+
+  function ck(n){
+
+    var parts = document.cookie.split(';');
+    for (var i = 0; i < parts.length; i++) {
+      var t = parts[i].replace(/^ +/, '');
+      if (t.indexOf(n + '=') === 0) return t.slice(n.length + 1);
+    }
+    return '';
+  }
+  function setCk(n,v){
+    var d = new Date(); d.setTime(d.getTime() + 365*24*60*60*1000);
+    document.cookie = n + '=' + v + ';expires=' + d.toUTCString() + ';path=/';
+  }
+
+  function perevodCookie(){
+    var SLOVA = {'Disabled':'Выключено', 'Enabled':'Включено',
+                 'Settings':'Настройки', 'Accept all':'Принять все',
+                 'Reject all':'Отклонить все'};
+    document.querySelectorAll('.t972__toggle-txt,.t972 .t-btn,.t972 button')
+      .forEach(function(el){
+        if(el.children.length) return;
+        var t = (el.textContent || '').trim();
+        if(SLOVA[t]) el.textContent = SLOVA[t];
+      });
+  }
+
+  function cookieBanner(){
+    if(!document.body) return;
+    if(!onProductPage()) return;
+    if(document.querySelector('.t972')) return;
+    if(document.getElementById('sa-ck')) return;
+    if(ck('t_cookiesConsentGiven') || ck('t_cookiesRejectAll')) return;
+    var b = document.createElement('div');
+    b.id = 'sa-ck';
+    b.innerHTML =
+      '<div class="sa-ck__t">Файлы cookie</div>' +
+      '<div class="sa-ck__x">Мы используем файлы cookie и Яндекс Метрику, чтобы сайт работал удобнее. ' +
+      'Подробнее — в <a href="/privacy">политике обработки персональных данных</a>.</div>' +
+      '<div class="sa-ck__b">' +
+      '<button type="button" data-sa-ck="all">Принять все</button>' +
+      '<button type="button" data-sa-ck="none">Отклонить необязательные</button>' +
+      '</div>';
+    b.addEventListener('click', function(e){
+      var a = e.target.getAttribute && e.target.getAttribute('data-sa-ck');
+      if(!a) return;
+      setCk('t_cookiesConsentGiven','true');
+      if(a === 'all'){ setCk('t_cookiesCategories', encodeURIComponent('["analytics"]')); }
+      else { setCk('t_cookiesCategories', encodeURIComponent('[]')); setCk('t_cookiesRejectAll','true'); }
+      b.remove();
+    });
+    document.body.appendChild(b);
+  }
+
+  function vse(){ draw(); cookieBanner(); perevodCookie(); }
+  vse();
+  document.addEventListener('DOMContentLoaded', vse);
+  window.addEventListener('load', vse);
+
+  if (window.MutationObserver) {
+    new MutationObserver(function(){
+      clearTimeout(window.__saCkT);
+      window.__saCkT = setTimeout(perevodCookie, 120);
+    }).observe(document.documentElement, {childList:true, subtree:true});
+  }
+
+  setInterval(function(){
+    if(!onProductPage()){
+      var c = document.getElementById('sa-tp-chrome');
+      if(c){ c.remove(); }
+    } else { draw(); }
+  }, 600);
+})();
+</script>
