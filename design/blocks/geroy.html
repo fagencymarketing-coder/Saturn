@@ -62,22 +62,29 @@
    Теперь отсчёт от левого края фото с отступом, а путь подобран так,
    чтобы правый край знака не дошёл до правого края снимка.
    Заказчик 04.10.2026. */
-.sa-hero__em{position:absolute;top:50%;left:28px;width:104px;height:104px;z-index:2;
-  animation:sa-float 26s ease-in-out infinite}
+.sa-hero__em{position:absolute;top:50%;left:36px;width:104px;height:104px;z-index:2;
+  animation:sa-float 14s ease-in-out infinite;will-change:transform}
 .sa-hero__em img{display:block;width:104px;height:104px;object-fit:contain;
   filter:drop-shadow(0 8px 24px rgba(20,18,16,.18))}
-/* Знак не качается на месте, а медленно перекатывается по полю: идёт
-   вправо и обратно, слегка проседая и приподнимаясь, и подкручивается
-   в ту же сторону, куда едет. Поворот небольшой — у круга диаметром 104
-   полный оборот приходится на 327 px пути, а путь здесь 64, то есть
-   честные 70°. 26 секунд: движение должно читаться боковым зрением,
-   а не отвлекать от заголовка. */
+/* 04.10, по замечанию заказчицы: «зависает на одном месте и уходит за
+   пределы фотографии». Оба на совести прежней анимации.
+
+   Зависал — из-за ease-in-out на 26 секундах: у такой кривой почти вся
+   пауза приходится на края, и знак подолгу стоял в крайних точках.
+
+   Уходил за край — из-за поворота. Квадрат 104×104, повёрнутый на 37°,
+   занимает по горизонтали 145 px: углы вылезали за кромку снимка, хотя
+   сам знак формально был внутри. Плюс путь вправо на 64 px.
+
+   Теперь движение простое: знак тихо всплывает и опускается на месте,
+   без поворота и без хода вбок. Выйти за снимок ему больше нечем, а
+   8 пикселей за 14 секунд читаются боковым зрением и не отвлекают.
+   Для браузера это самая дешёвая анимация из возможных — только
+   transform, без пересчёта раскладки; на скорость сайта не влияет. */
 @keyframes sa-float{
-  0%  {transform:translate(0,-50%) rotate(0deg)}
-  25% {transform:translate(34px,calc(-50% - 10px)) rotate(37deg)}
-  50% {transform:translate(64px,calc(-50% + 6px)) rotate(70deg)}
-  75% {transform:translate(30px,calc(-50% + 14px)) rotate(33deg)}
-  100%{transform:translate(0,-50%) rotate(0deg)}
+  0%  {transform:translate(0,-50%)}
+  50% {transform:translate(0,calc(-50% - 8px))}
+  100%{transform:translate(0,-50%)}
 }
 .sa-hero__em{transform:translate(0,-50%)}
 @media (prefers-reduced-motion:reduce){.sa-hero__em{animation:none}}
