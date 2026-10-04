@@ -11,7 +11,13 @@
 .sa-hero *{box-sizing:border-box;margin:0;padding:0}
 /* контейнер 1200 внутри max-width 1240: при 1440 контент идёт от 120 до 1320 —
    как в макете, где заголовок стоит на 120, а фото начинается на 713 */
-.sa-hero__in{width:100%;max-width:1240px;margin:0 auto;
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-hero__in{width:100%;max-width:min(1240px,90vw);margin:0 auto;
   padding:clamp(24px,5vh,56px) 20px;position:relative;
   display:grid;grid-template-columns:560px minmax(0,1fr);gap:32px;
   align-items:stretch}
@@ -50,7 +56,13 @@
   height:100%;min-height:360px;
   border-radius:var(--sa-r-card) 0 0 var(--sa-r-card);
   width:calc(100% + max(20px,(100vw - 1200px)/2))}
-.sa-hero__em{position:absolute;top:50%;left:0;width:104px;height:104px;z-index:2;
+/* Знак катается ВНУТРИ фотографии и за её край не выезжает. Раньше
+   он стоял центром на левой кромке снимка (left:0 плюс сдвиг на
+   половину), то есть половиной лежал на белом поле рядом с текстом.
+   Теперь отсчёт от левого края фото с отступом, а путь подобран так,
+   чтобы правый край знака не дошёл до правого края снимка.
+   Заказчик 04.10.2026. */
+.sa-hero__em{position:absolute;top:50%;left:28px;width:104px;height:104px;z-index:2;
   animation:sa-float 26s ease-in-out infinite}
 .sa-hero__em img{display:block;width:104px;height:104px;object-fit:contain;
   filter:drop-shadow(0 8px 24px rgba(20,18,16,.18))}
@@ -61,13 +73,13 @@
    честные 70°. 26 секунд: движение должно читаться боковым зрением,
    а не отвлекать от заголовка. */
 @keyframes sa-float{
-  0%  {transform:translate(-50%,-50%) rotate(0deg)}
-  25% {transform:translate(calc(-50% + 34px),calc(-50% - 10px)) rotate(37deg)}
-  50% {transform:translate(calc(-50% + 64px),calc(-50% + 6px)) rotate(70deg)}
-  75% {transform:translate(calc(-50% + 30px),calc(-50% + 14px)) rotate(33deg)}
-  100%{transform:translate(-50%,-50%) rotate(0deg)}
+  0%  {transform:translate(0,-50%) rotate(0deg)}
+  25% {transform:translate(34px,calc(-50% - 10px)) rotate(37deg)}
+  50% {transform:translate(64px,calc(-50% + 6px)) rotate(70deg)}
+  75% {transform:translate(30px,calc(-50% + 14px)) rotate(33deg)}
+  100%{transform:translate(0,-50%) rotate(0deg)}
 }
-.sa-hero__em{transform:translate(-50%,-50%)}
+.sa-hero__em{transform:translate(0,-50%)}
 @media (prefers-reduced-motion:reduce){.sa-hero__em{animation:none}}
 /* Короткое окно на большом экране. Нижняя граница первого экрана была
    560 px, и в окно высотой меньше 577 герой не влезал: полоса цифр

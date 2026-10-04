@@ -4,15 +4,30 @@
 <style>
 /* было 128px снизу — под формой зияла пустая полоса в треть экрана,
    из-за неё подвал выглядел оторванным. Заказчик заметил 03.10.2026. */
-.uc-saturn-form{background:#141210;padding:0 0 56px}
+/* Блок формы сверху и снизу имел собственные поля Тильды, и между
+   контактами и карточкой зияло 170 px пустоты — форма выглядела
+   оторванной от секции, хотя на холсте она её часть. Поля убраны,
+   карточка подтянута к контактам. Заказчик 04.10.2026. */
+.uc-saturn-form{background:#141210;padding:0 0 64px;margin-top:-24px}
+.uc-saturn-form .t-section__container,
+.uc-saturn-form .t-container{padding-top:0 !important}
+.uc-saturn-form .t-form__submit{margin-top:0}
 .uc-saturn-form .t-container,
 .uc-saturn-form .t-col{font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif}
 
 /* Карточка формы. Раньше на ПК формы просто не было видно: прозрачные
    поля с рамкой в 15% белого на почти чёрном фоне читались как пустота.
    Теперь форма стоит на своей подложке — так она отделяется от страницы
-   и сразу видно, что это форма. Заказчик заметил 04.10.2026. */
-.uc-saturn-form .t-form{background:#1E1B18;border-radius:22px;padding:28px}
+   и сразу видно, что это форма. Заказчик заметил 04.10.2026.
+   Поля карточки по холсту: 40 сверху и снизу, 40 по бокам. */
+.uc-saturn-form .t-form{background:#1E1B18;border-radius:var(--sa-r-card);
+  padding:40px}
+/* Заголовок карточки — на холсте он есть, в блоке формы Тильды его
+   завести нечем, поэтому вставляем узлом (см. скрипт ниже). */
+.uc-saturn-form .sa-fh{font-size:var(--sa-h3);font-weight:800;line-height:1.25;
+  color:#fff;margin:0 0 6px}
+.uc-saturn-form .sa-fx{font-size:var(--sa-body);font-weight:400;line-height:1.5;
+  color:#B5B0AA;margin:0 0 24px}
 .uc-saturn-form .t-input-group{margin-bottom:12px}
 
 /* поля: кегль ровно 16 — иначе Safari на iPhone приближает страницу */
@@ -59,11 +74,12 @@
   font-family:Montserrat,sans-serif !important;border:0 !important;
   transition:background var(--sa-t) var(--sa-ease)}
 .uc-saturn-form .t-submit:hover{background:#C23100 !important}
-/* Пока согласие не отмечено, кнопка приглушена — но остаётся оранжевой
-   и читается как кнопка. Серая #2A2A2A на тёмном фоне пропадала совсем,
-   и главное действие страницы выглядело сломанным. */
-.uc-saturn-form .t-submit.sa-off{background:#6B2410 !important;
-  color:rgba(255,255,255,.7) !important;cursor:not-allowed}
+/* Приглушение кнопки убрано совсем. На холсте она оранжевая всегда,
+   а тускло-красная читалась как сломанная — заказчик так её и описал.
+   Согласие всё равно обязательно: без галочки Тильда не отправит
+   и покажет свою подсказку. */
+.uc-saturn-form .t-submit.sa-off{background:#D93800 !important;
+  color:#fff !important}
 
 /* сообщение после отправки */
 .uc-saturn-form .t-form__successbox{background:#1E1B18 !important;color:#fff !important;
@@ -83,6 +99,20 @@
 (function(){
   function wire(){
     document.querySelectorAll('.uc-saturn-form form').forEach(function(f){
+      /* Заголовок карточки. На холсте он есть, а блок формы Тильды
+         своего заголовка не имеет — поля там только для инпутов.
+         Поэтому вставляем узлом в начало формы: разметку Тильды это
+         не ломает, отправку тоже. */
+      if(!f.querySelector('.sa-fh')){
+        var h = document.createElement('div');
+        h.className = 'sa-fh';
+        h.textContent = 'Оставьте номер — перезвоним';
+        var x = document.createElement('div');
+        x.className = 'sa-fx';
+        x.textContent = 'Ответим в течение рабочего дня';
+        f.insertBefore(x, f.firstChild);
+        f.insertBefore(h, f.firstChild);
+      }
       if(f.dataset.saWired) return;
       var cb = f.querySelector('input[type=checkbox]');
       var btn = f.querySelector('.t-submit');

@@ -4,7 +4,13 @@
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff;
   background:#141210;padding:clamp(44px,5.6vh,64px) 0}
 .sa-geo *{box-sizing:border-box;margin:0;padding:0}
-.sa-geo__in{max-width:1240px;margin:0 auto;padding:0 20px}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-geo__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
 .sa-geo__top{display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
 .sa-geo__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:#8A837C;line-height:1}
@@ -21,12 +27,21 @@
 .sa-geo__pin{width:14px;height:14px;flex:0 0 14px;border-radius:999px;
   border:2px solid #fff;position:relative}
 .sa-geo__pin::after{content:"";position:absolute;inset:3px;border-radius:999px;background:#fff}
-.sa-geo__map{margin-top:clamp(16px,2.4vh,24px)}
+/* Карта выходит за колонку на всю ширину окна: это главный и
+   единственный «вау» этой секции, и в колонке 1200 она выглядела
+   картинкой в рамке. Приём обычный — отрицательные поля на полразницы
+   между окном и контейнером. Заказчик 04.10.2026. */
+.sa-geo__map{margin-top:clamp(16px,2.4vh,24px);
+  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 /* карта — самый высокий элемент страницы: при ширине 1160 её родная
    пропорция 1408×762 даёт 628px, и секция переставала помещаться
    в экран. Ограничиваем высоту, ширина подстраивается. */
 .sa-geo__map img{display:block;width:100%;height:auto;
-  max-height:clamp(380px,56vh,520px);object-fit:contain}
+  /* contain, а не cover: обрезка съедала низ карты вместе с
+     «Новосибирской», «Кемеровской» и «Алтайским краем» — то есть
+     ровно с домашним регионом. Потолок 900 держит карту в разумных
+     пределах на очень больших мониторах. */
+  height:auto;max-height:900px;object-fit:contain;object-position:center}
 .sa-geo__map img.sa-geo__m{display:none}
 @media (max-width:1023px){
   .sa-geo{padding:64px 0}

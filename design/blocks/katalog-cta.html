@@ -6,7 +6,13 @@
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
   background:var(--ink);color:#fff;padding:64px 0}
 .sa-kc *{box-sizing:border-box;margin:0;padding:0}
-.sa-kc__in{max-width:1240px;margin:0 auto;padding:0 20px;
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-kc__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px;
   display:flex;align-items:center;justify-content:space-between;gap:40px}
 .sa-kc__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);letter-spacing:-.01em}
 .sa-kc__sub{font-size:var(--sa-lead);font-weight:400;line-height:1.5;color:var(--mut);

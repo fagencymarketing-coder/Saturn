@@ -324,6 +324,11 @@ img.js-product-img,
        заливается той же плашкой, что и у остальных карточек, с эмблемой
        по центру. Это не прячет проблему: фотографии всё равно нужны,
        но пока их нет, каталог не выглядит недоделанным. */
+/* Место под фотографию держится всегда, даже когда фотографии нет:
+   иначе у такой карточки название и цена уезжают вверх и ряд теряет
+   общую линию. Пропорция та же, что у карточек с фото. */
+.t-catalog__card__bgimg,
+.t-catalog__card [class*="imgwrapper"]{aspect-ratio:355/266;min-height:0}
 .t-catalog__card__bgimg[style*="url()"],
 .t-catalog__card__bgimg:not([style*="url("]){
   background-color:#F0EDE9 !important;
@@ -461,7 +466,13 @@ img.js-product-img,
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
   position:fixed;top:0;left:0;right:0;z-index:9000;background:var(--ink)}
 .sa-hd *{box-sizing:border-box;margin:0;padding:0}
-.sa-hd__in{max-width:1240px;margin:0 auto;padding:14px 20px;height:72px;
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-hd__in{max-width:min(1240px,90vw);margin:0 auto;padding:14px 20px;height:72px;
   display:flex;align-items:center}
 .sa-hd__logo{display:block;flex:0 0 auto}
 .sa-hd__logo img{display:block;width:103px;height:36px;object-fit:contain}
@@ -561,7 +572,13 @@ html{scroll-behavior:smooth}
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
   background:#fff;padding:56px 0 0}
 .sa-ft *{box-sizing:border-box;margin:0;padding:0}
-.sa-ft__in{max-width:1240px;margin:0 auto;padding:0 20px}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-ft__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
 .sa-ft__cols{display:grid;min-width:0;grid-template-columns:329fr 235fr 235fr 282fr;gap:40px}
 /* Логотип — ссылка на главную, то есть цель нажатия: с полями
    по 5 px она дотягивает до 44. */
@@ -643,8 +660,12 @@ html{scroll-behavior:smooth}
     stroke-linecap:round;stroke-linejoin:round}
   .sa-ft__btn{display:none}
   .sa-ft__bot{display:block;margin-top:20px;padding:20px 0 32px;font-size:12px}
-  .sa-ft__legal{display:block;margin-top:10px}
-  .sa-ft__legal a{display:flex;align-items:center;min-height:44px}
+  .sa-ft__legal{display:block;margin-top:10px;white-space:normal}
+  /* «Согласие на обработку персональных данных» одной строкой не
+     влезает в 320 и давала странице горизонтальную прокрутку в 7 px.
+     На телефоне строка переносится. */
+  .sa-ft__legal a{display:flex;align-items:center;min-height:44px;
+    white-space:normal;overflow-wrap:anywhere}
   .sa-ft__legal i{display:none}
 }
 

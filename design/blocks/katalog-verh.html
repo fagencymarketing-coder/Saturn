@@ -12,7 +12,13 @@
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
   background:#fff;padding:40px 0 24px}
 .sa-kv *{box-sizing:border-box;margin:0;padding:0}
-.sa-kv__in{max-width:1240px;margin:0 auto;padding:0 20px}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-kv__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
 /* Свои хлебные крошки: штатные у Тильды лежат внутри блока каталога,
    то есть ниже этого блока, и там им не место. Кегль 13 против 40 у
    заголовка — крошки служебные и спорить с ним не должны. */
@@ -357,12 +363,36 @@
       if (o >= 2 && o <= 4 && (s < 10 || s >= 20)) return 'позиции';
       return 'позиций';
     }
+    /* Считать карточки на странице нельзя: их всегда максимум 36,
+       остальное подгружается кнопкой. Поэтому спрашиваем магазин —
+       у него есть точное число найденного с учётом раздела, запроса
+       и выбранной культуры. Адрес собираем из текущих параметров
+       страницы, чтобы счётчик совпадал с тем, что человек видит. */
+    var REC = '4384406801', MAGAZIN = '527746460323';
+    function adresApi(){
+      var p = new URLSearchParams(location.search);
+      var u = 'https://store.tildaapi.com/api/getproductslist/?storepartuid=' +
+              MAGAZIN + '&recid=' + REC + '&c=' + Date.now() + '&size=1';
+      var razdel = p.get('tfc_storepartnav[' + REC + ']');
+      if (razdel) u = u.replace('storepartuid=' + MAGAZIN, 'storepartuid=' + razdel);
+      var zapros = p.get('tfc_query[' + REC + ']');
+      if (zapros) u += '&filters[query]=' + encodeURIComponent(zapros);
+      p.forEach(function(v, k){
+        var m = k.match(/^tfc_charact:(\d+)\[/);
+        if (m) u += '&filters[charact:' + m[1] + ']=' + encodeURIComponent(v);
+      });
+      return u;
+    }
+    var posledniy = '';
     function schitat(){
-      var vsego = document.querySelector('.js-store-products-count,.t-catalog__products-count');
-      var n = vsego ? parseInt((vsego.textContent||'').replace(/\D/g,''), 10) : NaN;
-      if (!n || isNaN(n)) n = document.querySelectorAll('.t-catalog__card').length;
-      if (!n) return;
-      mesto.textContent = n + ' ' + sklonenie(n);
+      var u = adresApi();
+      if (u.replace(/&c=\d+/, '') === posledniy) return;
+      posledniy = u.replace(/&c=\d+/, '');
+      fetch(u).then(function(r){ return r.json(); }).then(function(d){
+        var n = d && d.total;
+        if (!n) return;
+        mesto.textContent = n + ' ' + sklonenie(n);
+      }).catch(function(){});
     }
     schitat();
     window.addEventListener('load', schitat);

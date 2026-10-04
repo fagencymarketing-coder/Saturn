@@ -17,7 +17,13 @@
 .sa-ag__bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(20,18,16,.55) 0%,rgba(20,18,16,.82) 45%,
     rgba(20,18,16,.92) 100%)}
-.sa-ag__in{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 20px}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-ag__in{position:relative;z-index:1;max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
 .sa-ag__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;color:rgba(255,255,255,.45);line-height:1}
 /* оранжевая риска перед надзаголовком — есть на утверждённом холсте

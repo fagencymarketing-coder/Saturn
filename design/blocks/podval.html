@@ -4,7 +4,13 @@
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
   background:#fff;padding:56px 0 0}
 .sa-ft *{box-sizing:border-box;margin:0;padding:0}
-.sa-ft__in{max-width:1240px;margin:0 auto;padding:0 20px}
+/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
+   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
+   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
+   переставал быть «колонкой на странице» и занимал почти весь экран —
+   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
+   Заказчик 04.10.2026. */
+.sa-ft__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
 .sa-ft__cols{display:grid;min-width:0;grid-template-columns:329fr 235fr 235fr 282fr;gap:40px}
 /* Логотип — ссылка на главную, то есть цель нажатия: с полями
    по 5 px она дотягивает до 44. */
@@ -86,8 +92,12 @@
     stroke-linecap:round;stroke-linejoin:round}
   .sa-ft__btn{display:none}
   .sa-ft__bot{display:block;margin-top:20px;padding:20px 0 32px;font-size:12px}
-  .sa-ft__legal{display:block;margin-top:10px}
-  .sa-ft__legal a{display:flex;align-items:center;min-height:44px}
+  .sa-ft__legal{display:block;margin-top:10px;white-space:normal}
+  /* «Согласие на обработку персональных данных» одной строкой не
+     влезает в 320 и давала странице горизонтальную прокрутку в 7 px.
+     На телефоне строка переносится. */
+  .sa-ft__legal a{display:flex;align-items:center;min-height:44px;
+    white-space:normal;overflow-wrap:anywhere}
   .sa-ft__legal i{display:none}
 }
 
