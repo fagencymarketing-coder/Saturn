@@ -108,65 +108,57 @@
 </div>
 
 <script>
-/* Поиск и чипы не изобретают свой фильтр, а управляют штатным
-   каталогом Tilda: пишут в его поле поиска и щёлкают его чекбоксы
-   культуры. Так результат всегда совпадает с тем, что показывает
-   сам магазин, и ничего не ломается, если Tilda поменяет адреса.
-   Штатные поиск и сортировка при этом спрятаны — см. catalog-fix. */
+/* Поиск и чипы не изобретают свой фильтр, а управляют штатным каталогом
+   Tilda: пишут в его поле поиска и щёлкают его чекбоксы культуры. Так
+   результат всегда совпадает с тем, что показывает сам магазин.
+
+   Селекторы и поведение сняты с живой страницы 04.10.2026, а не угаданы:
+
+   - поле поиска  input.js-catalog-filter-search, name="query";
+   - на input, change, keyup и keydown Тильда не реагирует вовсе.
+     Поиск запускает только keypress с keyCode 13 либо клик по лупе
+     .js-catalog-filter-search-btn. Берём клик по лупе — он надёжнее
+     и не зависит от того, как собрано событие;
+   - поиск серверный, ответ приходит примерно через 600 мс;
+   - чекбокс культуры  input.js-catalog-filter-opt-chb, атрибут name
+     равен названию культуры — искать по подписи не нужно;
+   - скрытое стилями поле остаётся в разметке и продолжает работать:
+     проверено на живой странице с display:none. Поэтому штатный блок
+     поиска прячет наш CSS (catalog-fix), а не галка Тильды —
+     про галку неизвестно, прячет она или вырезает. */
 (function(){
-  function tilda(){ return document.querySelector('[id^="rec"] .t-catalog, .t-catalog'); }
+  var POLE  = 'input.js-catalog-filter-search';
+  var LUPA  = '.js-catalog-filter-search-btn';
+  var KROPK = 'input.js-catalog-filter-opt-chb';
 
-  function nativeSearch(){
-    var k = tilda(); if (!k) return null;
-    var list = k.querySelectorAll('input[type="search"],input[type="text"]');
-    for (var i = 0; i < list.length; i++){
-      if (!list[i].closest('.sa-kv')) return list[i];
-    }
-    return null;
-  }
-
-  function setVal(el, v){
-    var proto = Object.getPrototypeOf(el);
+  function iskat(znach){
+    var pole = document.querySelector(POLE);
+    var lupa = document.querySelector(LUPA);
+    if (!pole || !lupa) return;
+    var proto = Object.getPrototypeOf(pole);
     var d = Object.getOwnPropertyDescriptor(proto, 'value');
-    if (d && d.set) d.set.call(el, v); else el.value = v;
-    el.dispatchEvent(new Event('input', {bubbles:true}));
-    el.dispatchEvent(new Event('change', {bubbles:true}));
-    el.dispatchEvent(new KeyboardEvent('keyup', {bubbles:true, key:'Enter'}));
+    if (d && d.set) d.set.call(pole, znach); else pole.value = znach;
+    lupa.dispatchEvent(new MouseEvent('click', {bubbles:true}));
   }
 
-  var pole = document.querySelector('.sa-kv__input');
-  if (pole){
+  var nashe = document.querySelector('.sa-kv__input');
+  if (nashe){
     var t;
-    pole.addEventListener('input', function(){
+    /* Запрос уходит на сервер, поэтому ждём паузы в наборе, а не шлём
+       на каждую букву. 450 мс — чуть больше, чем ответ каталога. */
+    nashe.addEventListener('input', function(){
       clearTimeout(t);
-      t = setTimeout(function(){
-        var n = nativeSearch();
-        if (n) setVal(n, pole.value);
-      }, 250);
+      var v = nashe.value;
+      t = setTimeout(function(){ iskat(v); }, 450);
+    });
+    nashe.addEventListener('keydown', function(e){
+      if (e.key === 'Enter'){ e.preventDefault(); clearTimeout(t); iskat(nashe.value); }
     });
   }
 
-  /* чекбокс культуры в штатном фильтре ищем по подписи */
-  function cropBox(name){
-    var k = tilda(); if (!k) return null;
-    var labels = k.querySelectorAll('label,span,div');
-    for (var i = 0; i < labels.length; i++){
-      var el = labels[i];
-      if (el.children.length) continue;
-      if ((el.textContent||'').trim() !== name) continue;
-      var box = el.closest('label') || el.parentElement;
-      var inp = box && box.querySelector('input[type="checkbox"]');
-      if (inp) return inp;
-    }
-    return null;
-  }
-
   function snyat(){
-    var k = tilda(); if (!k) return;
-    var all = k.querySelectorAll('input[type="checkbox"]');
-    for (var i = 0; i < all.length; i++){
-      if (all[i].checked) all[i].click();
-    }
+    var all = document.querySelectorAll(KROPK);
+    for (var i = 0; i < all.length; i++) if (all[i].checked) all[i].click();
   }
 
   var chips = document.querySelectorAll('.sa-kv__chip');
@@ -176,10 +168,9 @@
       this.setAttribute('aria-pressed','true');
       var crop = this.getAttribute('data-crop');
       snyat();
-      if (crop){
-        var b = cropBox(crop);
-        if (b && !b.checked) b.click();
-      }
+      if (!crop) return;
+      var b = document.querySelector(KROPK + '[name="' + crop + '"]');
+      if (b && !b.checked) b.click();
     });
   }
 
