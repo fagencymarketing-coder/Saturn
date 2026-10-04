@@ -370,10 +370,12 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
     margin-top:clamp(18px,3vh,26px) !important}
 }
 
+.sa-tp__cats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 .sa-tp__cat{display:inline-block;background:#F0EDE9;color:#6B655E;
   font-size:var(--sa-kick);font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;padding:7px 14px;border-radius:var(--sa-r-pill);
-  margin:0 0 14px}
+  text-transform:uppercase;padding:7px 14px;border-radius:var(--sa-r-pill)}
+
+.sa-tp__cat--out{background:transparent;box-shadow:inset 0 0 0 1px #DDD7D0}
 h1.t-catalog__prod-popup__name{
   font-size:var(--sa-h2) !important;font-weight:800 !important;
   line-height:var(--sa-h2-lh) !important;color:#141210 !important;
@@ -384,8 +386,6 @@ h1.t-catalog__prod-popup__name{
 .t-catalog__prod-popup__brand:empty{display:none}
 
 .t-catalog__prod-popup__sku{display:none !important}
-
-.sa-tp--brand-v-nazvanii .t-catalog__prod-popup__brand{display:none !important}
 
 .js-catalog-prod-text{
   font-size:var(--sa-body) !important;line-height:1.55 !important;
@@ -423,6 +423,14 @@ h1.t-catalog__prod-popup__name{
   .sa-tp__k{font-size:var(--sa-small)}
 }
 
+.sa-tp__src{font-size:var(--sa-small);line-height:1.45;color:#8A837B;
+  margin-top:12px}
+
+.sa-tp--semena .t-catalog__prod-popup__col-left .t-img,
+.sa-tp--semena .t-catalog__prod-popup__col-left img.js-product-img{
+  width:100% !important;aspect-ratio:1/1;object-fit:cover;
+  border-radius:var(--sa-r-card)}
+
 .sa-tp__btns{display:flex;align-items:center;flex-wrap:wrap;
   gap:clamp(14px,2vw,24px);margin-top:clamp(20px,3vh,28px)}
 .sa-tp__btn{display:inline-flex;align-items:center;justify-content:center;
@@ -430,6 +438,7 @@ h1.t-catalog__prod-popup__name{
   background:#D93800;color:#fff !important;font-size:var(--sa-body);
   font-weight:700;text-decoration:none !important;white-space:nowrap;
   transition:background var(--sa-t) var(--sa-ease)}
+.sa-tp__arr{margin-left:8px;transition:transform var(--sa-t) var(--sa-ease)}
 .sa-tp__dl{display:inline-flex;align-items:center;gap:9px;
   min-height:44px;color:#141210 !important;font-size:var(--sa-body);
   font-weight:600;text-decoration:none !important;
@@ -439,6 +448,7 @@ h1.t-catalog__prod-popup__name{
   stroke-linejoin:round}
 @media (hover:hover){
   .sa-tp__btn:hover{background:#C23100}
+  .sa-tp__btn:hover .sa-tp__arr{transform:translateX(3px)}
   .sa-tp__dl:hover{color:#D93800 !important}
 }
 @media screen and (max-width:599px){
@@ -475,7 +485,30 @@ h1.t-catalog__prod-popup__name{
     return '';
   }
 
+  function tovar(){
+    if(window.__saTpD) return window.__saTpD;
+    var d = null;
+    var sc = document.scripts;
+    for(var i=0;i<sc.length;i++){
+      var t = sc[i].textContent;
+
+      if(!t || t.indexOf('var product') < 0) continue;
+      var a = t.match(/"descr"\s*:\s*"((?:[^"\\]|\\.)*)"/);
+      if(!a) continue;
+      d = {descr: a[1].replace(/\\"/g,'"').replace(/\\\//g,'/'), price:''};
+      var b = t.match(/"price"\s*:\s*(?:"([^"]*)"|null)/);
+      if(b) d.price = b[1] || '';
+      break;
+    }
+    if(d) window.__saTpD = d;
+    return d;
+  }
+
+  var SKRYT = {'Культура':1, 'Тип':1, 'Оригинатор':1};
+
   function tablica(root){
+    var pod = root.querySelector('.t-catalog__prod-popup__brand');
+    var POD = pod ? pod.textContent.trim() : '';
     var box = root.querySelector('.js-catalog-prod-all-charcs');
     if(!box || box.getAttribute('data-sa') === 'ok') return;
     var p = box.querySelectorAll('p.js-catalog-prod-charcs');
@@ -487,6 +520,10 @@ h1.t-catalog__prod-popup__name{
       if(!s) continue;
       var k = s, v = '', d = s.indexOf(':');
       if(d > 0){ k = s.slice(0,d).trim(); v = s.slice(d+1).trim(); }
+
+      if(SKRYT[k]) continue;
+
+      if(k === 'Действующее вещество' && ravno(v) === ravno(POD)) continue;
       if(!(k in znach)){ imena.push(k); znach[k] = []; }
       if(v) znach[k].push(v);
     }
@@ -552,7 +589,8 @@ h1.t-catalog__prod-popup__name{
     el.parentNode.insertBefore(box, el.nextSibling);
 
     var ostatok = (m[4] || '').trim().replace(/[.\s]+$/, '');
-    var nizh = ostatok;
+    var nizh = [ostatok, uslovie.replace(/[.\s]+$/, '')]
+                 .filter(function(x){ return x; }).join('. ');
     if(nizh){
       var n = document.createElement('div');
       n.className = 'sa-tp__note';
@@ -577,34 +615,60 @@ h1.t-catalog__prod-popup__name{
     var root = document.querySelector('.t-catalog__product-snippet');
     if(!root) return;
 
-    tablica(root);
-
     var brend = root.querySelector('.t-catalog__prod-popup__brand');
-    var imya  = root.querySelector('.t-catalog__prod-popup__name');
-    if(brend && imya && !root.classList.contains('sa-tp--brand-v-nazvanii')){
-      var b = ravno(brend.textContent), n = ravno(imya.textContent);
-      if(b && n.indexOf(b) >= 0) root.classList.add('sa-tp--brand-v-nazvanii');
-    }
 
+    if(razdel() === 'Семена') root.classList.add('sa-tp--semena');
+
+    var MERA = /\d\s*(?:г|мг|кг|мл)\s*\/\s*(?:л|кг|т|га)/i;
+    var dan = tovar();
     var tw = root.querySelector('.t-catalog__prod-popup__title-wrapper');
-    if(tw && !tw.querySelector('.sa-tp__cat')){
-      var nazv = razdel();
-      if(nazv){
-        var c = document.createElement('div');
-        c.className = 'sa-tp__cat';
-        c.textContent = nazv;
-        tw.insertBefore(c, tw.firstChild);
+    if(dan && tw && !tw.querySelector('.sa-tp__cats')){
+      var bt = brend ? ravno(brend.textContent) : '';
+      var chasti = (dan.descr || '').split('·'), plashki = [], podpis = [];
+      for(var ci=0;ci<chasti.length;ci++){
+        var ch = chasti[ci].trim();
+        if(!ch || (bt && ravno(ch) === bt)) continue;
+        if(ch.length <= 26 && !MERA.test(ch)) plashki.push(ch); else podpis.push(ch);
+      }
+      if(!plashki.length){ var rz = razdel(); if(rz) plashki.push(rz); }
+      if(plashki.length){
+        var box = document.createElement('div');
+        box.className = 'sa-tp__cats';
+        for(var pi=0;pi<plashki.length;pi++){
+          var c = document.createElement('div');
+          c.className = 'sa-tp__cat' + (pi ? ' sa-tp__cat--out' : '');
+          c.textContent = plashki[pi];
+          box.appendChild(c);
+        }
+        tw.insertBefore(box, tw.firstChild);
+      }
+
+      if(brend && !brend.textContent.trim() && podpis.length){
+        brend.textContent = podpis.join(' · ');
       }
     }
 
+    tablica(root);
     cena(root);
 
     var info = root.querySelector('.t-catalog__prod-popup__info');
-    if(info && !info.querySelector('.sa-tp__btns')){
+
+    if(info && root.classList.contains('sa-tp--semena') &&
+       !info.querySelector('.sa-tp__src') && info.querySelector('.sa-tp__chars')){
+      var src = document.createElement('div');
+      src.className = 'sa-tp__src';
+      src.textContent = 'Данные оригинатора и Госсорткомиссии';
+      info.appendChild(src);
+    }
+
+    if(dan && info && !info.querySelector('.sa-tp__btns')){
+
+      var zovut = (dan && dan.price) ? 'Оставить заявку' : 'Запросить цену';
       var b = document.createElement('div');
       b.className = 'sa-tp__btns';
       b.innerHTML =
-        '<a class="sa-tp__btn" href="/home#contacts">Оставить заявку</a>' +
+        '<a class="sa-tp__btn" href="/home#contacts">' + zovut +
+        '<span class="sa-tp__arr" aria-hidden="true">→</span></a>' +
         '<a class="sa-tp__dl" href="' + PRAYS + '" target="_blank" rel="noopener">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>' +
         'Скачать прайс</a>';

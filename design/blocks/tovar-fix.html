@@ -122,10 +122,13 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
 
 /* 6. Заголовок, раздел, артикул. Раздел — та самая плашка с холста;
       откуда берётся текст, написано в скрипте ниже. */
+.sa-tp__cats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 .sa-tp__cat{display:inline-block;background:#F0EDE9;color:#6B655E;
   font-size:var(--sa-kick);font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;padding:7px 14px;border-radius:var(--sa-r-pill);
-  margin:0 0 14px}
+  text-transform:uppercase;padding:7px 14px;border-radius:var(--sa-r-pill)}
+/* вторая плашка на холсте обведённая, а не залитая: так видно, что
+   это не второй раздел, а уточнение к первому — «гибрид F1», «РС 1» */
+.sa-tp__cat--out{background:transparent;box-shadow:inset 0 0 0 1px #DDD7D0}
 h1.t-catalog__prod-popup__name{
   font-size:var(--sa-h2) !important;font-weight:800 !important;
   line-height:var(--sa-h2-lh) !important;color:#141210 !important;
@@ -139,10 +142,11 @@ h1.t-catalog__prod-popup__name{
    выглядит как служебная запись. В разметке он остаётся — поисковики
    читают его из itemprop="sku". */
 .t-catalog__prod-popup__sku{display:none !important}
-/* Производитель прячется, только если он уже стоит в названии:
-   у «FERTIKA Листовое» строка «Фертика» — повтор, а у «Микромака»
-   «Волски Биохим» единственное упоминание, и его надо оставить. */
-.sa-tp--brand-v-nazvanii .t-catalog__prod-popup__brand{display:none !important}
+/* Производителя больше не прячем. Раньше строка «Фертика» под
+   «FERTIKA Листовое» считалась повтором, но на холсте 1a она стоит:
+   это подпись к названию, и без неё заголовок висит в воздухе.
+   У СЗР производителя в магазине нет — туда скрипт ставит
+   действующее вещество, как на холсте 1b. */
 
 /* 7. Описание. Длина строки ограничена: на широком мониторе правая
       колонка — это 700 px, и строка в 120 знаков читается плохо. */
@@ -198,6 +202,21 @@ h1.t-catalog__prod-popup__name{
   .sa-tp__k{font-size:var(--sa-small)}
 }
 
+/* 9a. Подпись под таблицей. На холсте у семян под характеристиками
+       стоит строка «Данные оригинатора и Госсорткомиссии» — сортовые
+       цифры не наши, и подписать их источник обязательно. */
+.sa-tp__src{font-size:var(--sa-small);line-height:1.45;color:#8A837B;
+  margin-top:12px}
+
+/* 9b. Фотография. У препарата это упаковка на светлой подложке —
+       её нельзя обрезать, поэтому вписываем целиком. У семян это
+       снимок поля: его, наоборот, надо заполнить кадром, иначе
+       внутри квадрата остаются поля и карточка выглядит пустой. */
+.sa-tp--semena .t-catalog__prod-popup__col-left .t-img,
+.sa-tp--semena .t-catalog__prod-popup__col-left img.js-product-img{
+  width:100% !important;aspect-ratio:1/1;object-fit:cover;
+  border-radius:var(--sa-r-card)}
+
 /* 10. Кнопки. Пара с холста: заявка и прайс. */
 .sa-tp__btns{display:flex;align-items:center;flex-wrap:wrap;
   gap:clamp(14px,2vw,24px);margin-top:clamp(20px,3vh,28px)}
@@ -206,6 +225,7 @@ h1.t-catalog__prod-popup__name{
   background:#D93800;color:#fff !important;font-size:var(--sa-body);
   font-weight:700;text-decoration:none !important;white-space:nowrap;
   transition:background var(--sa-t) var(--sa-ease)}
+.sa-tp__arr{margin-left:8px;transition:transform var(--sa-t) var(--sa-ease)}
 .sa-tp__dl{display:inline-flex;align-items:center;gap:9px;
   min-height:44px;color:#141210 !important;font-size:var(--sa-body);
   font-weight:600;text-decoration:none !important;
@@ -215,6 +235,7 @@ h1.t-catalog__prod-popup__name{
   stroke-linejoin:round}
 @media (hover:hover){
   .sa-tp__btn:hover{background:#C23100}
+  .sa-tp__btn:hover .sa-tp__arr{transform:translateX(3px)}
   .sa-tp__dl:hover{color:#D93800 !important}
 }
 @media screen and (max-width:599px){
@@ -259,12 +280,45 @@ h1.t-catalog__prod-popup__name{
     return '';
   }
 
+  /* Описание-подпись («Рапс яровой · гибрид F1», «Фертика · удобрения»)
+     и цену Tilda в разметку карточки не кладёт — они есть только в
+     объекте product в скрипте страницы. Оттуда и берём: это её
+     собственные данные, а не разбор названия. */
+  /* Возвращаем ноль, пока скрипта товара на странице ещё нет: Tilda
+     дописывает его позже, и первый проход (он идёт сразу при разборе
+     страницы) данных не застаёт. Запомнить пустой ответ нельзя —
+     тогда плашки навсегда останутся не собранными. */
+  function tovar(){
+    if(window.__saTpD) return window.__saTpD;
+    var d = null;
+    var sc = document.scripts;
+    for(var i=0;i<sc.length;i++){
+      var t = sc[i].textContent;
+      /* «var product» встречается и в библиотеке магазина, там полей
+         товара нет. Берём только тот скрипт, где есть и описание:
+         это и есть объект товара этой страницы. */
+      if(!t || t.indexOf('var product') < 0) continue;
+      var a = t.match(/"descr"\s*:\s*"((?:[^"\\]|\\.)*)"/);
+      if(!a) continue;
+      d = {descr: a[1].replace(/\\"/g,'"').replace(/\\\//g,'/'), price:''};
+      var b = t.match(/"price"\s*:\s*(?:"([^"]*)"|null)/);
+      if(b) d.price = b[1] || '';
+      break;
+    }
+    if(d) window.__saTpD = d;
+    return d;
+  }
+
   /* Плоский список абзацев → таблица. Делим по первому двоеточию:
      «Урожайность: 12,5–15 ц/га (+11% к стандарту)». Двоеточия внутри
      значения на деление не влияют. Если двоеточия нет вовсе, строка
      целиком уходит в левую колонку и правая остаётся пустой — так
      видно, что у товара заполнено не до конца. */
+  var SKRYT = {'Культура':1, 'Тип':1, 'Оригинатор':1};
+
   function tablica(root){
+    var pod = root.querySelector('.t-catalog__prod-popup__brand');
+    var POD = pod ? pod.textContent.trim() : '';
     var box = root.querySelector('.js-catalog-prod-all-charcs');
     if(!box || box.getAttribute('data-sa') === 'ok') return;
     var p = box.querySelectorAll('p.js-catalog-prod-charcs');
@@ -280,6 +334,13 @@ h1.t-catalog__prod-popup__name{
       if(!s) continue;
       var k = s, v = '', d = s.indexOf(':');
       if(d > 0){ k = s.slice(0,d).trim(); v = s.slice(d+1).trim(); }
+      /* «Культура», «Тип» и «Оригинатор» на холсте в таблице не стоят:
+         первые два вынесены плашками над названием, третий — подписью
+         под ним. Повторять их строкой ниже незачем. */
+      if(SKRYT[k]) continue;
+      /* У СЗР действующее вещество стоит подписью под названием —
+         строкой ниже оно было бы ровно тем же текстом. */
+      if(k === 'Действующее вещество' && ravno(v) === ravno(POD)) continue;
       if(!(k in znach)){ imena.push(k); znach[k] = []; }
       if(v) znach[k].push(v);
     }
@@ -369,13 +430,13 @@ h1.t-catalog__prod-popup__name{
     box.appendChild(num); box.appendChild(ed);
     el.parentNode.insertBefore(box, el.nextSibling);
 
-    /* Условие продажи («При 100% предоплате…») заказчица 04.10 просила
-       с карточки убрать: оно одинаково у всех позиций и в карточке
-       товара только шумит. Уточнение к цене — «(рассрочка 735 ₽/л)»,
-       «(МКР) · 54 ₽/кг» — оставляем: оно у каждой позиции своё и
-       относится к самой цене. */
+    /* Под ценой на холсте 1a стоит серая строка «При 100% предоплате.
+       Доставка и хранение включены» — условие продажи. Уточнение к
+       самой цене («рассрочка 735 ₽/л», «(МКР) · 54 ₽/кг») у каждой
+       позиции своё, поэтому идёт первым, а общее условие за ним. */
     var ostatok = (m[4] || '').trim().replace(/[.\s]+$/, '');
-    var nizh = ostatok;
+    var nizh = [ostatok, uslovie.replace(/[.\s]+$/, '')]
+                 .filter(function(x){ return x; }).join('. ');
     if(nizh){
       var n = document.createElement('div');
       n.className = 'sa-tp__note';
@@ -404,37 +465,84 @@ h1.t-catalog__prod-popup__name{
     var root = document.querySelector('.t-catalog__product-snippet');
     if(!root) return;
 
-    tablica(root);
-
-    /* Повтор производителя в названии. Сравниваем, приведя кириллицу к
-       латинским двойникам: «Фертика» и «FERTIKA» — одно слово,
-       написанное разными алфавитами, и простое сравнение их не ловит. */
     var brend = root.querySelector('.t-catalog__prod-popup__brand');
-    var imya  = root.querySelector('.t-catalog__prod-popup__name');
-    if(brend && imya && !root.classList.contains('sa-tp--brand-v-nazvanii')){
-      var b = ravno(brend.textContent), n = ravno(imya.textContent);
-      if(b && n.indexOf(b) >= 0) root.classList.add('sa-tp--brand-v-nazvanii');
-    }
 
+    /* Семена отличаются от препаратов не оформлением, а содержанием:
+       цены у них нет (её запрашивают), снимок — поле, а не упаковка,
+       и цифры по сорту взяты из чужих реестров. Поэтому у карточки
+       свой признак, от которого работают три правила ниже. */
+    if(razdel() === 'Семена') root.classList.add('sa-tp--semena');
+
+    /* Плашки над названием. На холсте у семян их две — «РАПС ЯРОВОЙ»
+       и «ГИБРИД F1», у препарата одна — «УДОБРЕНИЯ». И то и другое
+       лежит в описании-подписи товара: «Рапс яровой · гибрид F1»,
+       «Фертика · удобрения». Берём её части; ту, что повторяет
+       производителя, пропускаем — он и так стоит строкой ниже.
+
+       Часть, которая на плашку не годится (у СЗР это «фомесафен
+       250 г/л» — формула, а не раздел), уходит подписью под название,
+       а плашкой встаёт раздел из крошек: «Гербициды». */
+    var MERA = /\d\s*(?:г|мг|кг|мл)\s*\/\s*(?:л|кг|т|га)/i;
+    var dan = tovar();
     var tw = root.querySelector('.t-catalog__prod-popup__title-wrapper');
-    if(tw && !tw.querySelector('.sa-tp__cat')){
-      var nazv = razdel();
-      if(nazv){
-        var c = document.createElement('div');
-        c.className = 'sa-tp__cat';
-        c.textContent = nazv;
-        tw.insertBefore(c, tw.firstChild);
+    if(dan && tw && !tw.querySelector('.sa-tp__cats')){
+      var bt = brend ? ravno(brend.textContent) : '';
+      var chasti = (dan.descr || '').split('·'), plashki = [], podpis = [];
+      for(var ci=0;ci<chasti.length;ci++){
+        var ch = chasti[ci].trim();
+        if(!ch || (bt && ravno(ch) === bt)) continue;
+        if(ch.length <= 26 && !MERA.test(ch)) plashki.push(ch); else podpis.push(ch);
+      }
+      if(!plashki.length){ var rz = razdel(); if(rz) plashki.push(rz); }
+      if(plashki.length){
+        var box = document.createElement('div');
+        box.className = 'sa-tp__cats';
+        for(var pi=0;pi<plashki.length;pi++){
+          var c = document.createElement('div');
+          c.className = 'sa-tp__cat' + (pi ? ' sa-tp__cat--out' : '');
+          c.textContent = plashki[pi];
+          box.appendChild(c);
+        }
+        tw.insertBefore(box, tw.firstChild);
+      }
+      /* у СЗР производителя в магазине нет — ставим туда то, что не
+         поместилось в плашку, чтобы строка под названием не пустовала */
+      if(brend && !brend.textContent.trim() && podpis.length){
+        brend.textContent = podpis.join(' · ');
       }
     }
 
+    /* Таблицу собираем после плашек и подписи: из неё убираются те
+       строки, которые уже встали выше, и для этого надо знать, что
+       именно там оказалось. */
+    tablica(root);
     cena(root);
 
     var info = root.querySelector('.t-catalog__prod-popup__info');
-    if(info && !info.querySelector('.sa-tp__btns')){
+
+    /* Откуда цифры по сорту. Спелость, вегетационный период,
+       урожайность и качество взяты из реестра оригинатора и отчётов
+       Госсорткомиссии — не наши измерения, и подписать источник надо
+       там же, где цифры. На холсте эта строка стоит между таблицей и
+       кнопками, у семян. */
+    if(info && root.classList.contains('sa-tp--semena') &&
+       !info.querySelector('.sa-tp__src') && info.querySelector('.sa-tp__chars')){
+      var src = document.createElement('div');
+      src.className = 'sa-tp__src';
+      src.textContent = 'Данные оригинатора и Госсорткомиссии';
+      info.appendChild(src);
+    }
+
+    if(dan && info && !info.querySelector('.sa-tp__btns')){
+      /* У позиции с ценой зовём оставить заявку, у позиции без цены —
+         запросить цену: на холсте у семян кнопка подписана именно так,
+         и это честнее, чем общее «оставить заявку» там, где цены нет. */
+      var zovut = (dan && dan.price) ? 'Оставить заявку' : 'Запросить цену';
       var b = document.createElement('div');
       b.className = 'sa-tp__btns';
       b.innerHTML =
-        '<a class="sa-tp__btn" href="/home#contacts">Оставить заявку</a>' +
+        '<a class="sa-tp__btn" href="/home#contacts">' + zovut +
+        '<span class="sa-tp__arr" aria-hidden="true">→</span></a>' +
         '<a class="sa-tp__dl" href="' + PRAYS + '" target="_blank" rel="noopener">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>' +
         'Скачать прайс</a>';
