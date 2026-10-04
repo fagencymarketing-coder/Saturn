@@ -194,9 +194,20 @@ img.js-product-img,
        шире экрана на 20 px, и страница на секунду разъезжалась вбок.
        Замерено на живом сайте 04.10. Сетку карточек это не трогает:
        правило действует только на контейнер заготовок. */
+/* Правка 05.10 по второму замеру: одного max-width:100% мало.
+   У элемента box-sizing:content-box и поля 0 20px, то есть сто
+   процентов считаются по содержимому, а поля прибавляются сверху —
+   ширина выходит 100% + 40. overflow-x:clip прячет содержимое, но
+   сам элемент остаётся шире окна, и страница едет вбок на 20px.
+   Видно только пока карточки грузятся: scrollX=20, документ 788 при
+   окне 768 и 980 при 960. Лечится box-sizing. */
 [class*="catalog__grid-cont-preloader"],
-[class*="catalog-grid-cont-preloader"]{
-  max-width:100% !important;overflow-x:clip}
+[class*="catalog-grid-cont-preloader"],
+[class*="catalog__grid-cont-preloader"] > *,
+[class*="catalog-grid-cont-preloader"] > *{
+  box-sizing:border-box !important;max-width:100% !important}
+[class*="catalog__grid-cont-preloader"],
+[class*="catalog-grid-cont-preloader"]{overflow-x:clip}
 
 /* 15. Товар без фотографии. Семь позиций из 112 в магазине без снимка
        (проверено по API 04.10), и в плитке на их месте оставалась белая

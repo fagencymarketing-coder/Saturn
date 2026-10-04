@@ -226,8 +226,12 @@ img.js-product-img,
 }
 
 [class*="catalog__grid-cont-preloader"],
-[class*="catalog-grid-cont-preloader"]{
-  max-width:100% !important;overflow-x:clip}
+[class*="catalog-grid-cont-preloader"],
+[class*="catalog__grid-cont-preloader"] > *,
+[class*="catalog-grid-cont-preloader"] > *{
+  box-sizing:border-box !important;max-width:100% !important}
+[class*="catalog__grid-cont-preloader"],
+[class*="catalog-grid-cont-preloader"]{overflow-x:clip}
 
 .t-catalog__card__imgwrapper{
   aspect-ratio:355/266;
