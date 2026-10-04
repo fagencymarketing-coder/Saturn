@@ -708,8 +708,10 @@ h1.t-catalog__prod-popup__name{
   .sa-hd a:hover{color:#fff}
   .sa-hd__nav a:hover{color:#fff}
 
-  .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}
-  .sa-hd__tel:hover svg,.sa-hd__mail:hover svg{stroke:var(--acc)}
+  .sa-hd a.sa-hd__tel:hover,
+  .sa-hd a.sa-hd__mail:hover{color:var(--acc);-webkit-text-fill-color:var(--acc)}
+  .sa-hd a.sa-hd__tel:hover svg,
+  .sa-hd a.sa-hd__mail:hover svg{stroke:var(--acc)}
 
   .sa-hd__ov a:hover{color:#fff}
 }
