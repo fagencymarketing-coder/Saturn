@@ -66,7 +66,13 @@
 .uc-saturn-form .t-inputphonemask__options{background:#fff !important;color:#141210 !important;
   border:1px solid #E0DAD2 !important;border-radius:12px !important}
 .uc-saturn-form .t-inputphonemask__option:hover{background:#F0EDE9 !important}
-.uc-saturn-form .t-input:focus{border-color:#FF4200 !important;outline:none !important}
+/* Фокус был виден только сменой цвета рамки на 1px — с клавиатуры
+   почти незаметно. Добавляю кольцо: рамка основного цвета и тень 3px,
+   без смены размеров поля. */
+.uc-saturn-form .t-input:focus{border-color:#D93800 !important;outline:none !important;
+  box-shadow:0 0 0 3px rgba(217,56,0,.18) !important}
+.uc-saturn-form .t-submit:focus-visible{outline:2px solid #141210 !important;
+  outline-offset:2px}
 
 /* текст согласия */
 .uc-saturn-form .t-checkbox__control,
@@ -77,8 +83,19 @@
   color:#6B655E !important}
 .uc-saturn-form .t-checkbox__control a,
 .uc-saturn-form .t-form__lock-text a{color:#141210 !important;text-decoration:underline}
-.uc-saturn-form .t-checkbox__indicator{border-radius:4px !important;width:18px !important;
-  height:18px !important;border:1px solid #C9C3BB !important;background:#fff !important}
+/* Квадрат согласия. Было задано 18, а на живой странице меряется 13:
+   правило Тильды сидит на более длинном селекторе и выигрывает.
+   Поднимаю вес тегом поля и ставлю 20, а зону нажатия довожу до 44
+   псевдоэлементом — согласие обязательное, и промахиваться по нему
+   пальцем человек не должен. Замер живого сайта 04.10. */
+.uc-saturn-form .t-checkbox__wrapper .t-checkbox__indicator,
+.uc-saturn-form .t-checkbox__indicator{position:relative;border-radius:4px !important;
+  width:20px !important;height:20px !important;min-height:20px !important;
+  max-height:20px !important;flex:0 0 20px !important;box-sizing:border-box !important;
+  border:1px solid #C9C3BB !important;background:#fff !important}
+.uc-saturn-form .t-checkbox__indicator::after{content:"";position:absolute;
+  left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
+.uc-saturn-form .t-checkbox__control{cursor:pointer}
 .uc-saturn-form .t-checkbox:checked+.t-checkbox__indicator,
 .uc-saturn-form .t-checkbox__indicator_checked{background:#FF4200 !important;
   border-color:#FF4200 !important}
@@ -86,7 +103,7 @@
 /* кнопка */
 .uc-saturn-form .t-submit{
   height:var(--sa-btn-h) !important;border-radius:var(--sa-r-ctrl) !important;background:#D93800 !important;
-  color:#fff !important;font-size:16px !important;font-weight:700 !important;
+  color:#fff !important;font-size:15px !important;font-weight:600 !important;
   font-family:Montserrat,sans-serif !important;border:0 !important;
   transition:background var(--sa-t) var(--sa-ease)}
 .uc-saturn-form .t-submit:hover{background:#C23100 !important}
@@ -96,6 +113,25 @@
    и покажет свою подсказку. */
 .uc-saturn-form .t-submit.sa-off{background:#D93800 !important;
   color:#fff !important}
+
+/* Состояние ошибки. Тильда рисует его чистым #FF0000, которого в
+   палитре нет, а плашку «заполните все обязательные поля» — лососевым
+   прямоугольником без скругления внутри карточки с радиусом 22.
+   Экран ошибки видит каждый, кто торопится, и сейчас он единственный
+   на сайте выглядит чужим. Перекрашиваю в основной цвет и скругляю;
+   сами подписи у полей оставляю — они говорят по делу. */
+.uc-saturn-form [class*="t-input-error"]{color:#D93800 !important;
+  font-size:13px !important;font-weight:400 !important;
+  font-family:Montserrat,sans-serif !important;margin-top:6px !important}
+.uc-saturn-form .t-input[style*="FF0000" i],
+.uc-saturn-form .t-input[style*="255, 0, 0"],
+.uc-saturn-form .t-input.t-input_has-error,
+.uc-saturn-form .t-input_has-error{border-color:#D93800 !important;
+  box-shadow:0 0 0 3px rgba(217,56,0,.12) !important}
+.uc-saturn-form [class*="t-form__errorbox"]{background:#F0EDE9 !important;
+  color:#141210 !important;border-radius:var(--sa-r-ctrl) !important;
+  font-family:Montserrat,sans-serif !important;font-size:14px !important;
+  text-align:left !important;padding:14px 16px !important}
 
 /* сообщение после отправки */
 .uc-saturn-form .t-form__successbox{background:#F7F5F2 !important;color:#141210 !important;
@@ -108,6 +144,8 @@
 @media (max-width:767px){
   .uc-saturn-form{padding-bottom:72px}
   .uc-saturn-form .t-form{padding:20px}
+  /* на 390 кнопка меряется 46 — ниже, чем все остальные на сайте */
+  .uc-saturn-form .t-submit{height:52px !important}
 }
 </style>
 
