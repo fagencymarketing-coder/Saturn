@@ -24,8 +24,7 @@
 /* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
 .sa-res__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh)5;margin-top:20px;max-width:720px;
   letter-spacing:-.01em}
-.sa-res__nums{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-  margin-top:clamp(24px,3.6vh,40px)}
+.sa-res__nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sa-gap-m);align-items:start;margin-top:var(--sa-gap-m)}
 .sa-res__num b{display:block;font-size:28px;font-weight:800;line-height:1.1}
 .sa-res__num span{display:block;font-size:var(--sa-small);font-weight:400;color:var(--mut);margin-top:8px}
 .sa-res__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;

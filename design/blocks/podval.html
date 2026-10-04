@@ -72,12 +72,24 @@
   .sa-ft__about{font-size:14px;color:var(--cap);max-width:none;margin-top:10px}
   .sa-ft__c3 .sa-ft__h{display:none}
   .sa-ft__c3{margin-top:16px}
-  .sa-ft__row{margin-bottom:0;min-height:44px;align-items:stretch;padding:0}
+  /* 04.10: «между почтой и номером слишком большое расстояние».
+     Строки были ровно по 44 px — это минимум под палец, ниже нельзя.
+     Поэтому ужимаем ВИД до 36, а зону нажатия оставляем прежней:
+     её добирает прозрачный ::after, растянутый за края строки.
+     Палец попадает в те же 44, глаз видит плотнее. */
+  .sa-ft__row{margin-bottom:0;min-height:36px;align-items:stretch;padding:0}
   .sa-ft__row svg{margin-top:0;align-self:center}
-  /* ссылка занимает всю строку: зона нажатия пальцем не меньше 44 */
-  .sa-ft__row a,.sa-ft__row span{display:flex;align-items:center;min-height:44px;
-    padding:6px 0;flex:1}
+  .sa-ft__row a,.sa-ft__row span{display:flex;align-items:center;min-height:36px;
+    padding:0;flex:1}
+  .sa-ft__row a::after{top:-4px;bottom:-4px}
   .sa-ft__mhr{display:block;height:1px;background:var(--lin2);margin:14px 0}
+  /* «Подвал нужно выровнять». По левому краю всё и так на 40 px, но у
+     контактов текст начинается после значка — с 66, а пункты меню с
+     40, и колонка текста выглядела рваной. Сдвигаем всё, у чего нет
+     значка, на те же 26 px: значки висят в поле слева, текст идёт
+     одной линией. */
+  .sa-ft__mnav a,.sa-ft__mnav summary,.sa-ft__mnav details p,
+  .sa-ft__bot>div:first-child,.sa-ft__legal a{padding-left:26px}
   .sa-ft__mnav{display:flex;flex-direction:column}
   .sa-ft__mnav a,.sa-ft__mnav summary{display:flex;align-items:center;
     justify-content:space-between;min-height:44px;font-size:var(--sa-body);font-weight:600;
@@ -88,18 +100,27 @@
   .sa-ft__mnav details[open] i{transform:rotate(180deg);display:inline-block}
   .sa-ft__mnav details p{font-size:13px;font-weight:400;line-height:20.8px;
     color:var(--mut);padding:12px 0}
-  .sa-ft__mbtns{display:flex;flex-direction:column;margin-top:4px}
-  .sa-ft__mbtns a{display:flex;align-items:center;gap:10px;min-height:44px;
-    font-size:15px;font-weight:600;color:var(--ink);text-decoration:none}
+  /* «Скачать прайс и скачать реквизиты можно кнопками оформить» —
+     заказчица 04.10. На холсте это ссылки, но там они на ПК, в
+     четырёх колонках, где и так много опоры. На телефоне в столбик
+     они терялись среди пунктов меню. Делаем рамочные кнопки: заметно,
+     но тише сплошной оранжевой — на подвал кричать нечем. */
+  .sa-ft__mbtns{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+  .sa-ft__mbtns a{display:flex;align-items:center;justify-content:center;gap:10px;
+    min-height:48px;border:1px solid var(--line);border-radius:var(--sa-r-ctrl);
+    font-size:15px;font-weight:700;color:var(--ink);text-decoration:none;
+    transition:border-color var(--sa-t) var(--sa-ease),
+               color var(--sa-t) var(--sa-ease)}
   .sa-ft__mbtns svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
     stroke-linecap:round;stroke-linejoin:round}
   .sa-ft__btn{display:none}
   .sa-ft__bot{display:block;margin-top:14px;padding:16px 0 24px;font-size:12px}
-  .sa-ft__legal{display:block;margin-top:10px;white-space:normal}
+  .sa-ft__legal{display:block;margin-top:6px;white-space:normal}
+  .sa-ft__legal a::after{top:-5px;bottom:-5px}
   /* «Согласие на обработку персональных данных» одной строкой не
      влезает в 320 и давала странице горизонтальную прокрутку в 7 px.
      На телефоне строка переносится. */
-  .sa-ft__legal a{display:flex;align-items:center;min-height:44px;
+  .sa-ft__legal a{display:flex;align-items:center;min-height:34px;
     white-space:normal;overflow-wrap:anywhere}
   .sa-ft__legal i{display:none}
 }
@@ -130,9 +151,9 @@
         <div class="sa-ft__h">Разделы</div>
         <nav class="sa-ft__links">
           <a href="/catalog">Каталог</a>
-          <a href="/#seeds">Семена</a>
-          <a href="/#service">Агросопровождение</a>
-          <a href="/#contacts">Контакты</a>
+          <a href="/home#seeds">Семена</a>
+          <a href="/home#service">Агросопровождение</a>
+          <a href="/home#contacts">Контакты</a>
         </nav>
       </div>
 
@@ -156,9 +177,9 @@
     <div class="sa-ft__mhr"></div>
     <nav class="sa-ft__mnav">
       <a href="/catalog">Каталог</a>
-      <a href="/#seeds">Семена</a>
-      <a href="/#service">Агросопровождение</a>
-      <a href="/#contacts">Контакты</a>
+      <a href="/home#seeds">Семена</a>
+      <a href="/home#service">Агросопровождение</a>
+      <a href="/home#contacts">Контакты</a>
       <details><summary>Реквизиты <i>▾</i></summary>
         <p>ООО «Сатурн» · ИНН 2801274078 · КПП 222501001 · ОГРН 1232800002709<br>Юр. адрес: 656056, Алтайский край, г. Барнаул, пл. им. В.Н. Баварина, д. 2, пом./офис Н58/11/09</p>
       </details>

@@ -43,25 +43,40 @@
 /* иконка 32px, оранжевая */
 .sa-ag__ico{width:32px;height:32px;margin-top:16px;
   transition:transform var(--sa-t) var(--sa-ease),filter var(--sa-t) var(--sa-ease)}
-.sa-ag__ico svg{width:32px;height:32px;stroke:var(--acc);fill:none;stroke-width:1.6;
+.sa-ag__ico svg{width:32px;height:32px;stroke:var(--acc);fill:none;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
 
 /* нить цикла: узлы 01…04 на тонкой линии, линия только между узлами */
 .sa-ag__rail{position:relative;height:8px;margin-top:18px}
 .sa-ag__dot{position:absolute;left:0;top:0;width:8px;height:8px;border-radius:999px;
   background:var(--acc);box-shadow:0 0 12px rgba(255,66,0,.55)}
+/* 04.10: заказчица сравнила с холстом — «линия и иконки были лучше».
+   На холсте нить читается как сплошная оранжевая, у нас она была в
+   треть силы и терялась на фотографии заката. Подняли до .6 и усилили
+   свечение; обводка значков с 1,6 до 1,8. */
 .sa-ag__step:not(:last-child) .sa-ag__rail::after{content:"";position:absolute;
   left:4px;right:calc(-1 * (var(--gap) + 4px));top:50%;height:1px;
-  background:rgba(255,66,0,.35);box-shadow:0 0 8px rgba(255,66,0,.25)}
+  background:rgba(255,66,0,.6);box-shadow:0 0 10px rgba(255,66,0,.45);
+  transition:background var(--sa-t) var(--sa-ease),
+             box-shadow var(--sa-t) var(--sa-ease)}
 
 .sa-ag__sh{font-size:var(--sa-h3);font-weight:700;line-height:1.25;margin-top:18px}
 .sa-ag__st{font-size:13px;font-weight:500;line-height:18.2px;color:rgba(255,255,255,.55);
   margin-top:6px}
 .sa-ag__step{transition:transform var(--sa-t) var(--sa-ease)}
+/* Наведение подсвечивает весь шаг целиком, а не один значок: узел
+   разгорается, нить до следующего шага светлеет. Раньше откликался
+   только значок, и отклик было почти не видно. */
+.sa-ag__dot{transition:box-shadow var(--sa-t) var(--sa-ease),
+            transform var(--sa-t) var(--sa-ease)}
 @media (hover:hover){
   .sa-ag__step:hover{transform:translateY(-4px)}
   .sa-ag__step:hover .sa-ag__ico{transform:scale(1.08);
-    filter:drop-shadow(0 0 10px rgba(255,66,0,.6))}
+    filter:drop-shadow(0 0 12px rgba(255,66,0,.75))}
+  .sa-ag__step:hover .sa-ag__dot{transform:scale(1.35);
+    box-shadow:0 0 18px rgba(255,66,0,.9)}
+  .sa-ag__step:hover .sa-ag__rail::after{background:rgba(255,66,0,.9);
+    box-shadow:0 0 14px rgba(255,66,0,.6)}
 }
 
 /* тонкая линия над кнопкой — есть на утверждённом холсте ПК,
@@ -164,6 +179,11 @@
 /* длинные слова в заголовке не должны расталкивать страницу на узком экране */
 .sa-ag__h{overflow-wrap:break-word}
 @media (max-width:374px){
-  .sa-ag__h{font-size:clamp(20px,7vw,28px);line-height:1.15}
+  /* «Агросопровождение» — 17 знаков, самое длинное слово на сайте.
+     Замерено на живом телефоне: при 28px слово занимает 331px, а
+     места 311 — и оно рвалось посередине. Кегль привязан к ширине
+     экрана так, чтобы слово всегда помещалось в строку: на 390 выйдет
+     26px, на 320 — 20px, на планшете упрётся в 28. */
+  .sa-ag__h{font-size:clamp(18px,calc(8.4vw - 6.8px),28px);line-height:1.15}
 }
 </style>

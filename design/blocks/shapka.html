@@ -45,9 +45,12 @@
 @media (hover:hover){
   .sa-hd a:hover{color:#fff}
   .sa-hd__nav a:hover{color:#fff}
-  .sa-hd__mail:hover{color:#B5B0AA}
-  .sa-hd__mail:hover svg{stroke:#B5B0AA}
-  .sa-hd__tel:hover svg{stroke:#fff}
+  /* 04.10: почта при наведении подсвечивалась, телефон нет — у почты
+     срабатывало чужое правило, у телефона своего не было вовсе.
+     Задаём обоим явно и одинаково: оранжевый, вместе со значком.
+     Это единственный отзывчивый цвет на сайте. */
+  .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}
+  .sa-hd__tel:hover svg,.sa-hd__mail:hover svg{stroke:var(--acc)}
   .sa-hd a[href^="tel:"]:hover{color:#fff;-webkit-text-fill-color:#fff}
   .sa-hd__ov a:hover{color:#fff}
 }
@@ -113,9 +116,9 @@ html{scroll-behavior:smooth}
     <a class="sa-hd__logo" href="/" aria-label="Сатурн — на главную"><img src="https://static.tildacdn.com/tild6233-3132-4339-b431-333131313764/saturn-logo-white.png" alt="Сатурн"></a>
     <nav class="sa-hd__nav">
       <a href="/catalog">Каталог</a>
-      <a href="/#seeds">Семена</a>
-      <a href="/#service">Агросопровождение</a>
-      <a href="/#contacts">Контакты</a>
+      <a href="/home#seeds">Семена</a>
+      <a href="/home#service">Агросопровождение</a>
+      <a href="/home#contacts">Контакты</a>
     </nav>
     <div class="sa-hd__right">
       <a class="sa-hd__tel" href="tel:+79609534888"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.2 2.2 6.6 5 5.3 6.3a8 8 0 0 0 4.4 4.4L11 9.4l2.8 1.4v2.4a1 1 0 0 1-1.1 1C6.9 13.8 2.2 9.1 1.7 3.3a1 1 0 0 1 1-1.1h2.5z"/></svg>+7 (960) 953-48-88</a>
@@ -137,9 +140,9 @@ html{scroll-behavior:smooth}
   </div>
   <nav class="sa-hd__ovnav" onclick="document.getElementById('sa-hd-ov').classList.remove('is-open');document.documentElement.style.overflow=''">
     <a href="/catalog">Каталог</a>
-    <a href="/#seeds">Семена</a>
-    <a href="/#service">Агросопровождение</a>
-    <a href="/#contacts">Контакты</a>
+    <a href="/home#seeds">Семена</a>
+    <a href="/home#service">Агросопровождение</a>
+    <a href="/home#contacts">Контакты</a>
   </nav>
   <div class="sa-hd__ovc">
     <a href="tel:+79609534888">+7 (960) 953-48-88</a>
