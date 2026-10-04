@@ -262,6 +262,24 @@ img.js-product-img,
   background-repeat:no-repeat !important;
   opacity:.5}
 
+/* 17. Один оранжевый у кнопки. Замер каталога 04.10: тридцать семь
+       кнопок «Оставить заявку» на карточках, «Загрузить ещё» и кнопка
+       на странице товара залиты марочным #FF4200, а «Получить
+       предложение» и «Показать товары» — кнопочным #D93800. Два
+       оттенка в одной роли на одном экране: марочный перестаёт быть
+       редким, а кнопки перестают читаться как одна вещь.
+       Марочный остаётся узлу, значку и выделенному слову.
+       Баннер cookie не трогаю — его цвет Дарья решает отдельно. */
+.t-catalog__card__btn,
+.t-catalog__load-more-btn,
+.t-catalog__prod-popup__btn{background-color:#D93800 !important}
+@media (hover:hover){
+  .t-catalog__card__btn:hover,
+  .t-catalog__load-more-btn:hover,
+  .t-catalog__prod-popup__btn:hover{background-color:#C23100 !important}
+}
+</style>
+
 <script>
 (function(){
   function fix(){
@@ -312,21 +330,3 @@ img.js-product-img,
   new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true});
 })();
 </script>
-
-/* 17. Один оранжевый у кнопки. Замер каталога 04.10: тридцать семь
-       кнопок «Оставить заявку» на карточках, «Загрузить ещё» и кнопка
-       на странице товара залиты марочным #FF4200, а «Получить
-       предложение» и «Показать товары» — кнопочным #D93800. Два
-       оттенка в одной роли на одном экране: марочный перестаёт быть
-       редким, а кнопки перестают читаться как одна вещь.
-       Марочный остаётся узлу, значку и выделенному слову.
-       Баннер cookie не трогаю — его цвет Дарья решает отдельно. */
-.t-catalog__card__btn,
-.t-catalog__load-more-btn,
-.t-catalog__prod-popup__btn{background-color:#D93800 !important}
-@media (hover:hover){
-  .t-catalog__card__btn:hover,
-  .t-catalog__load-more-btn:hover,
-  .t-catalog__prod-popup__btn:hover{background-color:#C23100 !important}
-}
-</style>

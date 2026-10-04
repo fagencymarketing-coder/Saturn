@@ -22,7 +22,7 @@
    дышать. Одна и та же формула у «Результатов», «Географии» и
    «Документов», чтобы ритм страницы оставался общим. */
 /* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
-.sa-res__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh)5;margin-top:20px;max-width:720px;
+.sa-res__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);margin-top:20px;max-width:720px;
   letter-spacing:-.01em}
 .sa-res__nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sa-gap-m);align-items:start;margin-top:var(--sa-gap-m)}
 .sa-res__num b{display:block;font-size:28px;font-weight:800;line-height:1.1}
@@ -71,7 +71,7 @@
 @media (max-width:1023px){
   .sa-res{padding:64px 0 56px}
   .sa-res__in{padding:0 32px}
-  .sa-res__h{font-size:28px;line-height:32px;margin-top:24px}
+  .sa-res__h{line-height:var(--sa-h2-lh);margin-top:24px}
   .sa-res__nums{gap:12px;margin-top:40px}
   .sa-res__num b{font-size:26px}
 }

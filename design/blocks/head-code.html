@@ -259,6 +259,16 @@ img.js-product-img,
   background-repeat:no-repeat !important;
   opacity:.5}
 
+.t-catalog__card__btn,
+.t-catalog__load-more-btn,
+.t-catalog__prod-popup__btn{background-color:#D93800 !important}
+@media (hover:hover){
+  .t-catalog__card__btn:hover,
+  .t-catalog__load-more-btn:hover,
+  .t-catalog__prod-popup__btn:hover{background-color:#C23100 !important}
+}
+</style>
+
 <script>
 (function(){
   function fix(){
@@ -301,16 +311,6 @@ img.js-product-img,
   new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true});
 })();
 </script>
-
-.t-catalog__card__btn,
-.t-catalog__load-more-btn,
-.t-catalog__prod-popup__btn{background-color:#D93800 !important}
-@media (hover:hover){
-  .t-catalog__card__btn:hover,
-  .t-catalog__load-more-btn:hover,
-  .t-catalog__prod-popup__btn:hover{background-color:#C23100 !important}
-}
-</style>
 
 <style>
 
