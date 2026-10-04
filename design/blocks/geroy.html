@@ -98,7 +98,7 @@
 @media (min-width:1024px) and (max-height:640px){
   .sa-hero{min-height:calc(100dvh - var(--hd))}
   .sa-hero__in{padding:clamp(12px,2.6vh,24px) 20px}
-  .sa-hero__h{font-size:clamp(28px,4.4vh,38px);line-height:1.1}
+  .sa-hero__h{font-size:var(--sa-h1);line-height:1.1}
   .sa-hero__sub{font-size:15px;line-height:22px;margin-top:10px}
   .sa-hero__btns{margin-top:18px}
   .sa-hero__nums{margin-top:18px}
@@ -155,7 +155,10 @@
   .sa-hero__col{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 20px 28px}
   /* самое длинное слово «сельхозпроизводителей» = 13,65em,
      поэтому кегль привязан к ширине экрана и слово никогда не рвётся */
-  .sa-hero__h{font-size:clamp(22px,calc(2.646vw + 19.68px),40px);line-height:1.15;
+  /* Своё правило героя убрано: оно давало на планшете 40, тогда как
+     токен на ноутбуке выдавал 28, и буквы на планшете были крупнее,
+     чем на ПК. Теперь заголовок везде идёт по --sa-h1. */
+  .sa-hero__h{font-size:var(--sa-h1);line-height:1.15;
     color:#fff;overflow-wrap:break-word}
   .sa-hero__sub{font-size:15px;line-height:22.5px;color:rgba(255,255,255,.8);margin-top:14px}
   .sa-hero__btns{gap:10px;margin-top:22px;flex-wrap:nowrap}
