@@ -225,8 +225,14 @@ img.js-product-img,
     background:#D8D3CE;border-radius:999px}
 }
 
-.t-catalog__card__bgimg,
-.t-catalog__card [class*="imgwrapper"]{aspect-ratio:355/266;min-height:0}
+.t-catalog__card__imgwrapper{
+  aspect-ratio:355/266;
+  padding-bottom:0 !important;
+  height:auto !important;
+  min-height:0}
+.t-catalog__card__bgimg{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  height:auto !important}
 .t-catalog__card__bgimg[style*="url()"],
 .t-catalog__card__bgimg:not([style*="url("]){
   background-color:#F0EDE9 !important;

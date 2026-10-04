@@ -125,8 +125,12 @@
      фото с текстом тянется, полоса стоит под ним — вместе ровно один экран */
   .sa-hero{background:var(--ink);--hd:64px;flex-direction:column;
     min-height:calc(100dvh - var(--hd))}
+  /* 04.10: в невысоком окне полоса цифр не влезала в первый экран —
+     фотография забирала 420 px независимо от высоты окна. Теперь она
+     отдаёт место: берёт 46% высоты окна, но не больше 420 и не
+     меньше 260, и полоса остаётся видна. */
   .sa-hero__in{display:block;padding:0;max-width:none;
-    flex:1 1 auto;height:auto;min-height:420px}
+    flex:1 1 auto;height:auto;min-height:clamp(260px,46dvh,420px)}
   .sa-hero__pic{position:absolute;inset:0;z-index:0}
   .sa-hero__pic img{width:100%;height:100%;object-position:38% center;border-radius:0}
   .sa-hero__pic::after{content:"";position:absolute;inset:0;
@@ -143,8 +147,10 @@
   .sa-hero__btns{gap:10px;margin-top:22px;flex-wrap:nowrap}
   .sa-hero__b1,.sa-hero__b2{height:52px;font-size:15px;font-weight:600;padding:0 16px;
     white-space:nowrap}
-  .sa-hero__b1{flex:1 1 auto}
-  .sa-hero__b2{flex:0 0 auto;border-color:rgba(255,255,255,.25);color:#fff}
+  /* кнопки делят строку поровну: «Каталог» был вдвое у́же соседа и
+     читался как приписка, хотя ведёт в главный раздел сайта */
+  .sa-hero__b1,.sa-hero__b2{flex:1 1 0;min-width:0}
+  .sa-hero__b2{border-color:rgba(255,255,255,.25);color:#fff}
   .sa-hero__long{display:none}
   .sa-hero__short{display:inline}
   .sa-hero__nums{display:none}

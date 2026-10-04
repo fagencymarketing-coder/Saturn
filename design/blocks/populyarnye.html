@@ -118,9 +118,16 @@
   .sa-pop__band{order:2;display:flex;flex-direction:column-reverse;
     align-items:stretch;gap:20px;min-width:0}
   .sa-pop__grid{order:4}
-  .sa-pop__acts{order:5;display:flex;flex-direction:column;gap:10px;margin-top:28px}
+  /* На телефоне тут стояли три одинаковые кнопки подряд: «Весь
+     каталог», «Скачать прайс» и «Получить предложение». Три призыва
+     одного веса спорят друг с другом и выглядят шумно. Оставляем
+     кнопками два действия, а прайс делаем обычной ссылкой со
+     значком — ровно так он выглядит в подвале. */
+  .sa-pop__acts{order:5;display:flex;flex-direction:column;gap:4px;margin-top:28px}
   .sa-pop__cta{order:6}
-  .sa-pop__a1,.sa-pop__a2{width:100%}
+  .sa-pop__a1{width:100%}
+  .sa-pop__a2{width:100%;background:transparent;height:auto;min-height:44px;
+    font-weight:600;border-radius:0}
   /* min-width:0 обязателен: без него флекс-элемент с неразрывным
      содержимым раздувается по контенту, и на 320 полоса логотипов
      вылезала за экран вместе с чипами. */

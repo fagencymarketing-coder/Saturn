@@ -197,9 +197,24 @@ img.js-product-img,
        но пока их нет, каталог не выглядит недоделанным. */
 /* Место под фотографию держится всегда, даже когда фотографии нет:
    иначе у такой карточки название и цена уезжают вверх и ряд теряет
-   общую линию. Пропорция та же, что у карточек с фото. */
-.t-catalog__card__bgimg,
-.t-catalog__card [class*="imgwrapper"]{aspect-ratio:355/266;min-height:0}
+   общую линию. Пропорция та же, что у карточек с фото.
+
+   04.10, после публикации: первая версия этого правила ставила
+   aspect-ratio и обёртке, и картинке внутри — и высоты сложились.
+   Обёртка у Тильды резервирует место старым способом, через
+   padding-bottom:100% (класс imgwrapper_1-1), поэтому к её 198 px
+   прибавлялись наши 148, выходило 346, и под фотографией зияла
+   бежевая пустота в целую карточку. Замерено на живом сайте.
+   Теперь пропорцию задаём только обёртке и тут же гасим её
+   padding-bottom, а картинка внутри просто растягивается по ней. */
+.t-catalog__card__imgwrapper{
+  aspect-ratio:355/266;
+  padding-bottom:0 !important;
+  height:auto !important;
+  min-height:0}
+.t-catalog__card__bgimg{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  height:auto !important}
 .t-catalog__card__bgimg[style*="url()"],
 .t-catalog__card__bgimg:not([style*="url("]){
   background-color:#F0EDE9 !important;
