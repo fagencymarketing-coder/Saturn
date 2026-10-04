@@ -57,6 +57,20 @@ FASOVKA = {
  'FERTIKA Эко Калий':'МКР 800 кг / мешки 25 кг',
 }
 
+# 5. НОРМА РАСХОДА — решение заказчицы 04.10: берём значения таблицы.
+# По трём позициям прайс подтверждает то, что стояло на сайте
+# (Реликт М Сера и Цинк — 0,3–1,5 л/га, Моно-Медь — 0,2–1,0), у
+# Моно-Бора расходятся все три источника. Записано сознательно.
+NORMA = {
+ 'Реликт М Сера':'0,5 л/га листовая подкормка (рапс — фазы розетка, стеблевание, бутонизация)',
+ 'Реликт М Цинк':'0,43–1,0 л/га листовая подкормка',
+ 'Волски Моно-Медь':'0,5–1,0 л/га. Рабочий раствор 100–300 л/га',
+ 'Волски Моно-Бор':'0,5 л/га, 1–2 обработки (до 1 л/га при низком содержании бора). Рабочий раствор 100–300 л/га',
+}
+
+# 6. СНЯТЬ С САЙТА — позиции, которых в таблице 04.10 больше нет
+UBRAT = ['Волски Аминатор']
+
 rows = list(csv.DictReader(io.open(SRC, encoding='utf-8-sig'), delimiter=';'))
 cols = list(rows[0].keys())
 log = []
@@ -83,11 +97,15 @@ for r in rows:
     if t in SOSTAV:  setcell(r, 'Characteristics:Состав', SOSTAV[t], 'состав')
     if t in SPEKTR:  setcell(r, 'Characteristics:Спектр действия', SPEKTR[t], 'спектр действия')
     if t in FASOVKA: setcell(r, 'Characteristics:Фасовка', FASOVKA[t], 'фасовка')
+    if t in NORMA:   setcell(r, 'Characteristics:Норма расхода', NORMA[t], 'норма расхода')
+
+ubrano = [r['Title'] for r in rows if r['Title'] in UBRAT]
+rows = [r for r in rows if r['Title'] not in UBRAT]
 
 with io.open(DST, 'w', encoding='utf-8-sig', newline='') as f:
     w = csv.DictWriter(f, fieldnames=cols, delimiter=';', quoting=csv.QUOTE_MINIMAL)
     w.writeheader(); w.writerows(rows)
 
-print('строк:', len(rows), '· правок:', len(log))
+print('строк:', len(rows), '· правок:', len(log), '· снято с сайта:', ubrano)
 for t, why, o, n in log:
     print('  %-42s %-18s %s  →  %s' % (t[:42], why, o[:60], n[:60]))
