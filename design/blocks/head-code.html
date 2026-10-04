@@ -596,9 +596,7 @@ h1.t-catalog__prod-popup__name{
     box.appendChild(num); box.appendChild(ed);
     el.parentNode.insertBefore(box, el.nextSibling);
 
-    var ostatok = (m[4] || '').trim().replace(/[.\s]+$/, '');
-    var nizh = [ostatok, uslovie.replace(/[.\s]+$/, '')]
-                 .filter(function(x){ return x; }).join('. ');
+    var nizh = (m[4] || '').trim().replace(/[.\s]+$/, '');
     if(nizh){
       var n = document.createElement('div');
       n.className = 'sa-tp__note';
