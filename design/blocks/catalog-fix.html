@@ -60,10 +60,13 @@ img.js-product-img,
    штатный боковой отступ Tilda 10px — он и даёт переполнение */
 .t-catalog__prod-popup__col-right{margin-left:0 !important;margin-right:0 !important}
 
-/* 7. Подстановка «Цена по запросу» (сам текст ставит скрипт) */
+/* 7. Строка цены там, где цены нет, убирается совсем. Раньше мы
+      подставляли «Цена по запросу» — заказчик 04.10.2026 попросил убрать:
+      у 112 товаров из 112 цены в магазине нет, и одинаковая серая строка
+      под каждой карточкой читалась как брак, а не как условие продажи.
+      Пустая обёртка схлопывается, карточка становится короче. */
 .t-catalog__card__price-wrapper[data-sa-ask],
-.js-catalog-price-wrapper[data-sa-ask]{
-  display:block !important;font-size:14px;font-weight:400;color:#766F68}
+.js-catalog-price-wrapper[data-sa-ask]{display:none !important}
 
 /* 8. Вертикальный ритм страницы каталога.
       У блока ST340F собственные 135px сверху и снизу плюс 90px под
@@ -151,6 +154,26 @@ img.js-product-img,
 .t-catalog__filter__search-and-sort,
 .t-catalog__filter__sort{display:none !important}
 
+
+/* 14. Боковая панель не уезжает вверх при прокрутке. Заказчик 04.10.2026:
+       «при скроллинге каталога вниз меню слева не должно исчезать»,
+       и на холсте Клод Дизайна оно действительно стоит на месте.
+       Липкость даём своим стилем, а не галкой «закрепить» в Тильде:
+       её закрепление заводит панели собственную полосу прокрутки на всю
+       высоту. Здесь панель прокручивается только если сама не влезает,
+       а отступ сверху 88 = высота шапки 72 плюс 16 воздуха.
+       Селектор снят с живой страницы: колонка фильтра — это
+       .t-catalog__filter-wrapper, внутри .js-sidebar-filters. */
+@media screen and (min-width:961px){
+  .t-catalog__filter-wrapper{
+    position:sticky !important;top:88px;align-self:flex-start;
+    max-height:calc(100vh - 104px);overflow-y:auto;overscroll-behavior:contain;
+    scrollbar-width:thin;scrollbar-color:#D8D3CE transparent}
+  .t-catalog__filter-wrapper::-webkit-scrollbar{width:6px}
+  .t-catalog__filter-wrapper::-webkit-scrollbar-thumb{
+    background:#D8D3CE;border-radius:999px}
+}
+
 </style>
 
 <script>
@@ -165,7 +188,7 @@ img.js-product-img,
         if (/^\s*Load more\s*$/.test(el.textContent)) el.textContent = 'Загрузить ещё';
       });
 
-    /* A. «Цена по запросу» там, где цены нет.
+    /* A. Карточка без цены не показывает строку цены вовсе.
           Обёртка НЕ пустая: Тильда всегда рисует два значка валюты «р.»,
           поэтому проверяем наличие цифр внутри блока самой цены. */
     document.querySelectorAll('.t-catalog__card__price-wrapper,.js-catalog-price-wrapper')
@@ -174,13 +197,8 @@ img.js-product-img,
         var val = el.querySelector('.js-product-price,.js-catalog-prod-price-val');
         var hasPrice = val && /\d/.test(val.textContent);
         if(!hasPrice){
-          el.textContent = 'Цена по запросу';
           el.setAttribute('data-sa-ask','1');
-          /* Tilda вешает инлайновый visibility:hidden, когда цены нет.
-             Инлайновый стиль перебивается только через setProperty + important. */
-          el.style.setProperty('visibility','visible','important');
-          el.style.setProperty('display','block','important');
-          el.style.fontFamily = 'Montserrat,-apple-system,Segoe UI,Roboto,sans-serif';
+          el.style.setProperty('display','none','important');
         }
         el.dataset.saFixed = '1';
       });
