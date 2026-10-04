@@ -46,18 +46,42 @@
   border-radius:22px 0 0 22px;
   width:calc(100% + max(20px,(100vw - 1200px)/2))}
 .sa-hero__em{position:absolute;top:50%;left:0;width:104px;height:104px;z-index:2;
-  animation:sa-float 7s ease-in-out infinite}
+  animation:sa-float 26s ease-in-out infinite}
 .sa-hero__em img{display:block;width:104px;height:104px;object-fit:contain;
   filter:drop-shadow(0 8px 24px rgba(20,18,16,.18))}
-@keyframes sa-float{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 8px))}}
+/* Знак не качается на месте, а медленно перекатывается по полю: идёт
+   вправо и обратно, слегка проседая и приподнимаясь, и подкручивается
+   в ту же сторону, куда едет. Поворот небольшой — у круга диаметром 104
+   полный оборот приходится на 327 px пути, а путь здесь 64, то есть
+   честные 70°. 26 секунд: движение должно читаться боковым зрением,
+   а не отвлекать от заголовка. */
+@keyframes sa-float{
+  0%  {transform:translate(-50%,-50%) rotate(0deg)}
+  25% {transform:translate(calc(-50% + 34px),calc(-50% - 10px)) rotate(37deg)}
+  50% {transform:translate(calc(-50% + 64px),calc(-50% + 6px)) rotate(70deg)}
+  75% {transform:translate(calc(-50% + 30px),calc(-50% + 14px)) rotate(33deg)}
+  100%{transform:translate(-50%,-50%) rotate(0deg)}
+}
 .sa-hero__em{transform:translate(-50%,-50%)}
 @media (prefers-reduced-motion:reduce){.sa-hero__em{animation:none}}
 @media (hover:hover){
   .sa-hero__b1:hover{background:#C23100}
   .sa-hero__b2:hover{border-color:var(--ink)}
 }
-@keyframes sa-floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes sa-floatX{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-8px)}}
+@keyframes sa-floatY{
+  0%  {transform:translate(0,0) rotate(0deg)}
+  25% {transform:translate(-20px,8px) rotate(-22deg)}
+  50% {transform:translate(-38px,-4px) rotate(-42deg)}
+  75% {transform:translate(-18px,-12px) rotate(-20deg)}
+  100%{transform:translate(0,0) rotate(0deg)}
+}
+@keyframes sa-floatX{
+  0%  {transform:translate(-50%,0) rotate(0deg)}
+  25% {transform:translate(calc(-50% + 22px),-7px) rotate(26deg)}
+  50% {transform:translate(calc(-50% + 40px),4px) rotate(48deg)}
+  75% {transform:translate(calc(-50% + 19px),10px) rotate(23deg)}
+  100%{transform:translate(-50%,0) rotate(0deg)}
+}
 /* телефон и планшет: фото на весь экран, текст поверх — так на холсте
    и на 390, и на 768 */
 @media (max-width:1023px){
@@ -72,7 +96,7 @@
   .sa-hero__pic::after{content:"";position:absolute;inset:0;
     background:linear-gradient(to top,rgba(20,18,16,.96) 0%,rgba(20,18,16,.88) 42%,rgba(20,18,16,.08) 82%)}
   .sa-hero__em{left:50%;right:auto;top:16%;width:64px;height:64px;
-    transform:translateX(-50%);animation:sa-floatX 7s ease-in-out infinite}
+    transform:translateX(-50%);animation:sa-floatX 24s ease-in-out infinite}
   .sa-hero__em img{width:64px;height:64px}
   .sa-hero__col{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 20px 28px}
   /* самое длинное слово «сельхозпроизводителей» = 13,65em,
@@ -108,7 +132,7 @@
   .sa-hero__strip{padding:24px 32px}
   .sa-hero__strip .sa-hero__n b{font-size:24px}
   .sa-hero__em{top:24px;left:auto;right:32px;transform:none;
-    animation:sa-floatY 7s ease-in-out infinite}
+    animation:sa-floatY 24s ease-in-out infinite}
 }
 </style>
 

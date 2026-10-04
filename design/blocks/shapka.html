@@ -19,6 +19,15 @@
 .sa-hd__tel svg,.sa-hd__mail svg{flex:0 0 auto;width:15px;height:15px;fill:none;
   stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .sa-hd__tel svg{stroke:#fff}
+/* Телефон в шапке был не виден, пока на него не наведёшь: у Тильды есть
+   своё правило на ссылки вида href="tel:", и по весу селектора оно
+   перебивает наш класс. Почта на mailto: под него не попадает — потому
+   и была видна. Лечится не !important, а весом: класс + атрибут + тег.
+   -webkit-text-fill-color задаём рядом: он сильнее color и в Тильде
+   встречается. Замерено на живой странице 04.10.2026: было rgb(0,0,0). */
+.sa-hd a[href^="tel:"],
+.sa-hd__ovc a[href^="tel:"]{color:#fff;-webkit-text-fill-color:#fff}
+.sa-hd a[href^="tel:"] svg{stroke:#fff}
 .sa-hd__mail svg{stroke:#8A837C;width:14px;height:14px}
 .sa-hd__icons{display:none;margin-left:auto;gap:4px}
 .sa-hd__ib{width:44px;height:44px;display:flex;align-items:center;justify-content:center;
@@ -33,6 +42,7 @@
   .sa-hd__mail:hover{color:#B5B0AA}
   .sa-hd__mail:hover svg{stroke:#B5B0AA}
   .sa-hd__tel:hover svg{stroke:#fff}
+  .sa-hd a[href^="tel:"]:hover{color:#fff;-webkit-text-fill-color:#fff}
   .sa-hd__ov a:hover{color:#fff}
 }
 .sa-hd__sp{height:72px}

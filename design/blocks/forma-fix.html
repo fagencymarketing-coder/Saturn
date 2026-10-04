@@ -8,8 +8,11 @@
 .uc-saturn-form .t-container,
 .uc-saturn-form .t-col{font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif}
 
-/* карточка формы */
-.uc-saturn-form .t-form{background:transparent}
+/* Карточка формы. Раньше на ПК формы просто не было видно: прозрачные
+   поля с рамкой в 15% белого на почти чёрном фоне читались как пустота.
+   Теперь форма стоит на своей подложке — так она отделяется от страницы
+   и сразу видно, что это форма. Заказчик заметил 04.10.2026. */
+.uc-saturn-form .t-form{background:#1E1B18;border-radius:22px;padding:28px}
 .uc-saturn-form .t-input-group{margin-bottom:12px}
 
 /* поля: кегль ровно 16 — иначе Safari на iPhone приближает страницу */
@@ -17,10 +20,21 @@
 .uc-saturn-form input.t-input,
 .uc-saturn-form textarea.t-input{
   height:52px !important;border-radius:12px !important;padding:0 18px !important;
-  background:transparent !important;border:1px solid rgba(255,255,255,.15) !important;
+  background:rgba(255,255,255,.05) !important;
+  border:1px solid rgba(255,255,255,.28) !important;
   color:#fff !important;font-size:16px !important;font-weight:500 !important;
   font-family:Montserrat,sans-serif !important}
-.uc-saturn-form .t-input::placeholder{color:rgba(255,255,255,.4) !important}
+.uc-saturn-form .t-input::placeholder{color:rgba(255,255,255,.55) !important}
+/* Виджет телефона Тильды рисует флаг и код отдельными элементами, мимо
+   .t-input, и на тёмном фоне они оставались светлыми пятнами. */
+.uc-saturn-form .t-inputphonemask__wrap,
+.uc-saturn-form .t-inputphonemask__select{
+  background:rgba(255,255,255,.05) !important;
+  border:1px solid rgba(255,255,255,.28) !important;
+  border-radius:12px !important;height:52px !important;color:#fff !important}
+.uc-saturn-form .t-inputphonemask__options{background:#1E1B18 !important;color:#fff !important;
+  border:1px solid rgba(255,255,255,.2) !important;border-radius:12px !important}
+.uc-saturn-form .t-inputphonemask__option:hover{background:rgba(255,255,255,.08) !important}
 .uc-saturn-form .t-input:focus{border-color:#FF4200 !important;outline:none !important}
 
 /* текст согласия */
@@ -45,9 +59,11 @@
   font-family:Montserrat,sans-serif !important;border:0 !important;
   transition:background .15s}
 .uc-saturn-form .t-submit:hover{background:#C23100 !important}
-/* пока согласие не отмечено — кнопка видимо неактивна */
-.uc-saturn-form .t-submit.sa-off{background:#2A2A2A !important;color:#6E6862 !important;
-  cursor:not-allowed}
+/* Пока согласие не отмечено, кнопка приглушена — но остаётся оранжевой
+   и читается как кнопка. Серая #2A2A2A на тёмном фоне пропадала совсем,
+   и главное действие страницы выглядело сломанным. */
+.uc-saturn-form .t-submit.sa-off{background:#6B2410 !important;
+  color:rgba(255,255,255,.7) !important;cursor:not-allowed}
 
 /* сообщение после отправки */
 .uc-saturn-form .t-form__successbox{background:#1E1B18 !important;color:#fff !important;
@@ -55,7 +71,7 @@
 
 @media (max-width:1023px){
   .uc-saturn-form{padding-bottom:96px}
-  .uc-saturn-form .t-form{background:#1E1B18;border-radius:22px;padding:24px}
+  .uc-saturn-form .t-form{padding:24px}
 }
 @media (max-width:767px){
   .uc-saturn-form{padding-bottom:72px}

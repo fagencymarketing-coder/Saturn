@@ -25,14 +25,25 @@
 .sa-pop__a2{background:#fff;color:var(--ink);font-weight:700}
 .sa-pop__a2 svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
-.sa-pop__logos{display:flex;align-items:center;gap:32px;margin-top:40px;flex-wrap:wrap}
-.sa-pop__logos img{display:block;height:48px;width:auto;object-fit:contain}
-.sa-pop__chips{display:flex;gap:12px;margin-top:40px;overflow-x:auto;
+/* Логотипы и чипы раньше шли двумя строками одна под другой, обе
+   прижатые влево, и справа оставалась пустая треть экрана — заказчик
+   справедливо назвал это дисгармонией. Теперь это одна полоса: слева
+   фильтр, справа поставщики. Пустота заполнилась, блок стал на строку
+   короче, а два «служебных» ряда перестали спорить с заголовком. */
+.sa-pop__band{display:flex;align-items:center;justify-content:space-between;
+  gap:32px;margin-top:36px;flex-wrap:wrap}
+.sa-pop__logos{display:flex;align-items:center;gap:32px;flex-wrap:wrap;order:2}
+.sa-pop__logos img{display:block;height:36px;width:auto;object-fit:contain;
+  opacity:.85}
+.sa-pop__chips{display:flex;gap:8px;overflow-x:auto;order:1;
   scrollbar-width:none;-ms-overflow-style:none}
 .sa-pop__chips::-webkit-scrollbar{display:none}
-.sa-pop__chip{display:inline-flex;align-items:center;height:44px;padding:0 20px;
+/* Чипы были 44 px при заголовке в 40 — крупнее того, что они
+   обслуживают. Теперь 36: вспомогательный элемент и выглядит как
+   вспомогательный. */
+.sa-pop__chip{display:inline-flex;align-items:center;height:36px;padding:0 16px;
   border-radius:999px;border:1px solid var(--line);background:transparent;
-  color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap;
+  color:var(--ink);text-decoration:none;font-size:13px;font-weight:600;white-space:nowrap;
   flex:0 0 auto}
 .sa-pop__chip_on{background:var(--ink);border-color:var(--ink);color:#fff}
 .sa-pop__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
@@ -69,9 +80,10 @@
   .sa-pop__top{display:block}
   .sa-pop__h{font-size:28px;line-height:33px}
   .sa-pop__acts{margin-left:0;padding-top:20px;gap:12px}
-  .sa-pop__logos{gap:24px;margin-top:32px}
-  .sa-pop__logos img{height:40px}
-  .sa-pop__chips{margin-top:32px;gap:10px}
+  .sa-pop__band{gap:20px;margin-top:28px}
+  .sa-pop__logos{gap:24px}
+  .sa-pop__logos img{height:30px}
+  .sa-pop__chips{gap:8px}
   .sa-pop__chip{height:40px;padding:0 16px}
   .sa-pop__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
   .sa-pop__name{font-size:16px;line-height:20px}
@@ -88,8 +100,8 @@
   .sa-pop__in{display:flex;flex-direction:column}
   .sa-pop__top{display:contents}
   .sa-pop__top>div:first-child{order:1}
-  .sa-pop__logos{order:2}
-  .sa-pop__chips{order:3}
+  .sa-pop__band{order:2;display:flex;flex-direction:column-reverse;
+    align-items:stretch;gap:20px}
   .sa-pop__grid{order:4}
   .sa-pop__acts{order:5;display:flex;flex-direction:column;gap:10px;margin-top:28px}
   .sa-pop__cta{order:6}
@@ -97,8 +109,8 @@
   .sa-pop__logos{flex-wrap:nowrap;overflow-x:auto;gap:20px;
     scrollbar-width:none;-ms-overflow-style:none}
   .sa-pop__logos::-webkit-scrollbar{display:none}
-  .sa-pop__logos img{height:32px;flex:0 0 auto}
-  .sa-pop__chip{height:36px;font-size:13px;padding:0 14px}
+  .sa-pop__logos img{height:28px;flex:0 0 auto}
+  .sa-pop__chip{height:34px;font-size:13px;padding:0 14px}
   .sa-pop__cta{margin-top:32px}
   .sa-pop__cta a{min-width:0;width:100%}
   .sa-pop__card{padding:12px;border-radius:16px}
@@ -126,6 +138,8 @@
       </div>
     </div>
 
+    <div class="sa-pop__band">
+
     <div class="sa-pop__logos">
       <img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/fertika.png" alt="Fertika">
       <img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/volsky.png" alt="Волски Биохим">
@@ -140,6 +154,8 @@
      проверено по API магазина. -->
       <a class="sa-pop__chip" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::" data-section="СЗР">СЗР</a>
       <a class="sa-pop__chip" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=316570233513&tfc_div=:::" data-section="Семена">Семена</a>
+    </div>
+
     </div>
 
     <div class="sa-pop__grid">
