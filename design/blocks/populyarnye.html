@@ -90,7 +90,8 @@
   .sa-pop__logos{gap:24px}
   .sa-pop__logos img{height:30px}
   .sa-pop__chips{gap:8px}
-  .sa-pop__chip{height:40px;padding:0 16px}
+  /* Планшет — тоже палец, значит те же 44 px. */
+  .sa-pop__chip{height:44px;padding:0 16px}
   .sa-pop__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
   .sa-pop__name{font-size:16px;line-height:20px}
   .sa-pop__price b{font-size:20px}
@@ -116,7 +117,9 @@
     scrollbar-width:none;-ms-overflow-style:none}
   .sa-pop__logos::-webkit-scrollbar{display:none}
   .sa-pop__logos img{height:28px;flex:0 0 auto}
-  .sa-pop__chip{height:34px;font-size:13px;padding:0 14px}
+  /* На телефоне чип — цель нажатия, а не надпись: 44 px минимум,
+     иначе палец промахивается. Проверяется tools/audit/dostup.js. */
+  .sa-pop__chip{height:44px;font-size:13px;padding:0 16px}
   .sa-pop__cta{margin-top:32px}
   .sa-pop__cta a{min-width:0;width:100%}
   .sa-pop__card{padding:12px;border-radius:16px}

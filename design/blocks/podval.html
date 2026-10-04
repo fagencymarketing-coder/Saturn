@@ -6,6 +6,9 @@
 .sa-ft *{box-sizing:border-box;margin:0;padding:0}
 .sa-ft__in{max-width:1240px;margin:0 auto;padding:0 20px}
 .sa-ft__cols{display:grid;min-width:0;grid-template-columns:329fr 235fr 235fr 282fr;gap:40px}
+/* Логотип — ссылка на главную, то есть цель нажатия: с полями
+   по 5 px она дотягивает до 44. */
+.sa-ft__logo{display:inline-block;padding:5px 0}
 .sa-ft__logo img{display:block;width:98px;height:34px;object-fit:contain}
 .sa-ft__about{font-size:var(--sa-small);font-weight:400;line-height:1.6;color:var(--mut);
   max-width:240px;margin-top:16px}
@@ -66,7 +69,7 @@
   .sa-ft__mhr{display:block;height:1px;background:var(--lin2);margin:20px 0}
   .sa-ft__mnav{display:flex;flex-direction:column}
   .sa-ft__mnav a,.sa-ft__mnav summary{display:flex;align-items:center;
-    justify-content:space-between;min-height:40px;font-size:15px;font-weight:600;
+    justify-content:space-between;min-height:44px;font-size:var(--sa-body);font-weight:600;
     color:var(--ink);text-decoration:none;border-bottom:1px solid var(--lin2);
     list-style:none;cursor:pointer}
   .sa-ft__mnav summary::-webkit-details-marker{display:none}
@@ -89,7 +92,11 @@
 /* Зона нажатия 44px. Псевдоэлемент не влияет на поток и на подчёркивания —
    поэтому ни один отступ и ни одна линия в вёрстке не сдвигаются. */
 .sa-ft__links a,.sa-ft__row a,.sa-ft__legal a,.sa-ft__btn{position:relative}
-.sa-ft__links a::after,.sa-ft__row a::after,.sa-ft__legal a::after{
+/* «Скачать прайс» и «Скачать реквизиты» — ссылки высотой 19 px:
+   на холсте это строка, а не кнопка, и менять её нельзя. Зона
+   нажатия добавляется псевдоэлементом — вёрстка не сдвигается. */
+.sa-ft__links a::after,.sa-ft__row a::after,.sa-ft__legal a::after,
+.sa-ft__btn::after{
   content:"";position:absolute;left:0;right:0;top:50%;height:44px;
   transform:translateY(-50%)}
 </style>
