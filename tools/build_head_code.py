@@ -40,6 +40,51 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 {catalog}
 
 <style>
+/* ===== Шкала сайта =======================================================
+   Один слой на весь «Сатурн». Блоки не держат своих чисел — только эти
+   переменные. Меняем здесь — меняется согласованно везде.
+
+   Каждая величина не число, а отрезок: от окна 1024 до окна 1440 растёт
+   линейно, выше 1440 замирает на холстовом значении, ниже 1024 — на
+   нижнем. Поэтому между ступенями ничего не прыгает.
+
+   Кегли уменьшены относительно холста по решению заказчика 04.10.2026:
+   заголовок секции 40 → 30, заголовок героя 42 → 34. Причина — «тихая
+   дороговизна»: отношение заголовка к тексту стало 2,0 вместо 2,7.
+   Дорогое впечатление даёт воздух, а не размер букв. Холст в этой части
+   перебит сознательно, как иконки в шапке и мелкие логотипы партнёров.
+   ========================================================================= */
+:root{{
+  /* типографика: 1024 → 1440 */
+  --sa-h1:    clamp(28px, 1.442vw + 13.23px, 34px);
+  --sa-h2:    clamp(24px, 1.442vw +  9.23px, 30px);
+  --sa-h3:    clamp(16px, 0.481vw + 11.08px, 18px);
+  --sa-lead:  clamp(15px, 0.240vw + 12.54px, 16px);
+  --sa-body:  clamp(14px, 0.240vw + 11.54px, 15px);
+  --sa-small: 13px;
+  --sa-cap:   12px;
+  --sa-kick:  clamp(11px, 0.240vw +  8.54px, 12px);
+
+  /* межстрочное — отдельными числами, чтобы заголовки не разъезжались */
+  --sa-h1-lh: 1.08;
+  --sa-h2-lh: 1.15;
+
+  /* органы управления */
+  --sa-btn-h:  clamp(48px, 1.923vw + 28.31px, 56px);
+  --sa-fld-h:  clamp(46px, 1.442vw + 31.23px, 52px);
+  --sa-chip-h: clamp(32px, 0.962vw + 22.15px, 36px);
+
+  /* ритм */
+  --sa-sec-y: clamp(48px, 7.692vw - 30.77px, 80px);
+  --sa-gap-l: clamp(28px, 2.885vw -  1.54px, 40px);
+  --sa-gap-m: clamp(20px, 1.923vw +  0.31px, 28px);
+  --sa-gap-s: clamp(12px, 0.962vw +  2.15px, 16px);
+
+  /* форма */
+  --sa-r-card: 22px;
+  --sa-r-ctrl: 12px;
+  --sa-r-pill: 999px;
+}}
 {hd_css}
 {ft_css}
 
@@ -55,7 +100,8 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 #sa-tp-cta .sa-tp-cta__b{{display:flex;align-items:center;gap:20px;margin-top:28px;
   flex-wrap:wrap}}
 #sa-tp-cta .sa-tp-cta__btn{{display:inline-flex;align-items:center;justify-content:center;
-  height:52px;padding:0 28px;border-radius:12px;background:#D93800;color:#fff;
+  height:var(--sa-btn-h);padding:0 28px;border-radius:var(--sa-r-ctrl);
+  background:#D93800;color:#fff;
   text-decoration:none;font-size:16px;font-weight:700}}
 #sa-tp-cta .sa-tp-cta__tel{{color:#fff;text-decoration:none;font-size:16px;font-weight:700;
   min-height:44px;display:inline-flex;align-items:center}}

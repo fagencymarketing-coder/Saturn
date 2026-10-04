@@ -24,12 +24,8 @@
    у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
 .sa-ag__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
   background:#FF4200}
-/* Кегль заголовка плавно уменьшается на узком десктопе. Холст рисовался
-   под 1440, а у ноутбука и у экрана с масштабом Windows 150% окно
-   выходит около 1263 — там 40 px при той же ширине колонки читаются
-   как «всё гигантское». От 1024 до 1440 кегль идёт от 34 к 40,
-   на 1440 и выше остаётся ровно холстовым. */
-.sa-ag__h{font-size:clamp(34px,2.78vw,40px);font-weight:800;line-height:1.1;margin-top:20px;letter-spacing:-.01em}
+/* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
+.sa-ag__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);margin-top:20px;letter-spacing:-.01em}
 .sa-ag__sub{font-size:18px;font-weight:500;line-height:27px;color:rgba(255,255,255,.7);
   margin-top:12px;max-width:900px}
 .sa-ag__steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
@@ -66,7 +62,8 @@
    у нас её не было. Решение заказчика 03.10.2026. */
 .sa-ag__cta{display:flex;align-items:center;gap:28px;margin-top:40px;flex-wrap:wrap;
   border-top:1px solid rgba(255,255,255,.12);padding-top:40px}
-.sa-ag__btn{display:inline-flex;align-items:center;justify-content:center;height:60px;
+.sa-ag__btn{display:inline-flex;align-items:center;justify-content:center;
+  height:var(--sa-btn-h);
   padding:0 32px;border-radius:12px;background:#D93800;color:#fff;text-decoration:none;
   font-size:16px;font-weight:700}
 @media (hover:hover){

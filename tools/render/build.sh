@@ -43,6 +43,15 @@ cat > "$WORK/t2.html" <<'HEAD'
 html,body{margin:0;padding:0}
 </style></head><body>
 HEAD
+# Шкала сайта живёт в :root кода HEAD, а блоки только ею пользуются.
+# Без неё стенд показывал бы кегль по умолчанию, то есть 16px у всего.
+python3 - "$BLOCKS/head-code.html" >> "$WORK/t2.html" <<'TOK'
+import re, sys
+h = open(sys.argv[1], encoding='utf-8').read()
+m = re.search(r':root\{.*?\n\}', h, re.S)
+print('<style>' + (m.group(0) if m else '') + '</style>')
+TOK
+
 for f in $FILES; do sed "s#$RAW/##g" "$f" >> "$WORK/t2.html"; done
 echo '</body></html>' >> "$WORK/t2.html"
 echo "собрано: $WORK/t2.html"
