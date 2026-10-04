@@ -25,8 +25,19 @@
    Теперь форма стоит на своей подложке — так она отделяется от страницы
    и сразу видно, что это форма. Заказчик заметил 04.10.2026.
    Поля карточки по холсту: 40 сверху и снизу, 40 по бокам. */
+/* 04.10: «узкое поле, выровнять по левому краю, сразу под
+   контактами». Форма во всю ширину смотрелась пустой: три поля
+   растянуты на 1240 px, между ними воздух, который ничего не
+   значит. Узкая карточка слева читается как продолжение колонки
+   контактов, а не как отдельный экран. Поля в ней идут столбиком:
+   так видно, что заполнять, и палец не ищет их по горизонтали. */
 .uc-saturn-form .t-form{background:#F7F5F2;border-radius:var(--sa-r-card);
-  padding:40px}
+  padding:32px;max-width:min(560px,100%);margin:0}
+.uc-saturn-form .t-form__inputsbox{display:block !important}
+.uc-saturn-form .t-input-group{width:100% !important;max-width:none !important;
+  float:none !important;padding:0 !important;margin:0 0 12px !important}
+.uc-saturn-form .t-form__submit{width:100%;margin-top:4px}
+.uc-saturn-form .t-submit{width:100% !important}
 /* Заголовок карточки — на холсте он есть, в блоке формы Тильды его
    завести нечем, поэтому вставляем узлом (см. скрипт ниже). */
 .uc-saturn-form .sa-fh{font-size:var(--sa-h3);font-weight:800;line-height:1.25;

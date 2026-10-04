@@ -52,6 +52,15 @@ m = re.search(r':root\{.*?\n\}', h, re.S)
 print('<style>' + (m.group(0) if m else '') + '</style>')
 TOK
 
-for f in $FILES; do sed "s#$RAW/##g" "$f" >> "$WORK/t2.html"; done
+# Картинки переехали на static.tildacdn.com, и прежняя замена по
+# адресу гитхаба перестала их находить: стенд рисовался без единой
+# картинки, а я этого не замечал и мерил пустые блоки. Срезаем
+# каталожную часть у обоих адресов — остаётся имя файла, а файлы
+# лежат рядом, в $WORK.
+for f in $FILES; do
+  sed -e "s#$RAW/##g" \
+      -e "s#https://static\.tildacdn\.com/[^\"')]*/##g" \
+      "$f" >> "$WORK/t2.html"
+done
 echo '</body></html>' >> "$WORK/t2.html"
 echo "собрано: $WORK/t2.html"

@@ -11,7 +11,12 @@
    отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
    Заказчик 04.10.2026. */
 .sa-ft__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
-.sa-ft__cols{display:grid;min-width:0;grid-template-columns:329fr 235fr 235fr 282fr;gap:40px}
+/* Доли взяты с холста, но контейнер у нас уже — min(1240px,90vw), и
+   на ноутбуке 1263 адрес «пом. Н13» срывался на третью строку, а
+   график работы на вторую. Отдаём контактам то, что забираем у
+   «Разделов»: там четыре коротких слова, лишнее место им ни к чему. */
+.sa-ft__cols{display:grid;min-width:0;
+  grid-template-columns:300fr 196fr 274fr 290fr;gap:40px}
 /* Логотип — ссылка на главную, то есть цель нажатия: с полями
    по 5 px она дотягивает до 44. */
 .sa-ft__logo{display:inline-block;position:relative}
