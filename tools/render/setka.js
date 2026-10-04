@@ -8,7 +8,7 @@
 // Лист нужен, чтобы смотреть все ширины разом, а не по одной в день.
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 const SHIRINY = [390, 768, 1024, 1263, 1366, 1440, 1680, 1920];
-const VYSOTA  = 1100;          // сколько показываем от верха страницы
+const VYSOTA  = 820;          // реальная высота окна ноутбука, а не выдуманная
 const MASHTAB = 0.42;          // чтобы восемь колонок влезли в один кадр
 
 const [ist = '/tmp/blk/t2.html', out = '/tmp/blk/setka.png'] = process.argv.slice(2);

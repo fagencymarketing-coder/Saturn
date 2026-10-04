@@ -6,14 +6,15 @@
   background:#fff;overflow:hidden;
   /* первый экран = ровно один экран: не ниже 560, чтобы не схлопнулся,
      и не выше 900, чтобы на большом мониторе не пустовал */
-  min-height:clamp(560px,calc(100dvh - var(--hd)),900px);
+  min-height:clamp(560px,calc(100dvh - var(--hd)),760px);
   display:flex;align-items:center}
 .sa-hero *{box-sizing:border-box;margin:0;padding:0}
 /* контейнер 1200 внутри max-width 1240: при 1440 контент идёт от 120 до 1320 —
    как в макете, где заголовок стоит на 120, а фото начинается на 713 */
 .sa-hero__in{width:100%;max-width:1240px;margin:0 auto;
   padding:clamp(24px,5vh,56px) 20px;position:relative;
-  display:grid;grid-template-columns:560px minmax(0,1fr);gap:32px;align-items:center}
+  display:grid;grid-template-columns:560px minmax(0,1fr);gap:32px;
+  align-items:stretch}
 /* Трекинг -.02em, а не -.01em, ради одного слова: «сельхозпроизводителей»
    при 42px и -.01em занимает 563px, а колонка заголовка по холсту 560.
    Трёх пикселей не хватало, и раньше их лечили мягким переносом &shy; —
@@ -24,28 +25,30 @@
   letter-spacing:-.02em}
 @media (min-width:768px){.sa-hero__w{white-space:nowrap}}
 .sa-hero__h em{font-style:normal;color:var(--acc)}
-.sa-hero__sub{font-size:20px;font-weight:400;line-height:30px;color:var(--mut);
-  max-width:460px;margin-top:24px}
-.sa-hero__btns{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+.sa-hero__sub{font-size:var(--sa-lead);font-weight:400;line-height:1.5;
+  color:var(--mut);max-width:440px;margin-top:var(--sa-gap-m)}
+.sa-hero__btns{display:flex;flex-wrap:wrap;gap:var(--sa-gap-s);margin-top:var(--sa-gap-l)}
 .sa-hero__b1,.sa-hero__b2{display:inline-flex;align-items:center;justify-content:center;
   height:var(--sa-btn-h);padding:0 28px;border-radius:var(--sa-r-ctrl);
   text-decoration:none;font-size:var(--sa-lead)}
 .sa-hero__b1{background:#D93800;color:#fff;font-weight:700}
 .sa-hero__b2{border:1px solid var(--line);color:var(--ink);font-weight:600}
-.sa-hero__nums{display:flex;max-width:541px;margin-top:32px}
+.sa-hero__nums{display:flex;max-width:541px;margin-top:var(--sa-gap-l)}
 .sa-hero__n{flex:1;padding-right:32px}
 .sa-hero__n+.sa-hero__n{padding-left:32px;border-left:1px solid var(--lin2)}
-.sa-hero__n b{display:block;font-size:34px;font-weight:800;line-height:34px;white-space:nowrap}
+.sa-hero__n b{display:block;font-size:28px;font-weight:800;line-height:1.1;white-space:nowrap}
 .sa-hero__n b i{font-style:normal;font-size:14px;font-weight:700;margin-left:4px}
-.sa-hero__n span{display:block;font-size:14px;font-weight:500;line-height:18px;color:var(--mut);margin-top:8px}
+.sa-hero__n span{display:block;font-size:var(--sa-small);font-weight:400;
+  line-height:1.35;color:var(--mut);margin-top:8px}
 .sa-hero__strip{display:none}
 .sa-hero__short{display:none}
-.sa-hero__pic{position:relative}
+.sa-hero__col{align-self:center}
+.sa-hero__pic{position:relative;display:flex}
 /* в макете фото 808×750 и доходит до правого края экрана.
    Высота тянется за окном, чтобы первый экран оставался цельным. */
 .sa-hero__pic img{display:block;object-fit:cover;object-position:35% center;
-  height:clamp(400px,calc(100dvh - 250px),750px);
-  border-radius:22px 0 0 22px;
+  height:100%;min-height:360px;
+  border-radius:var(--sa-r-card) 0 0 var(--sa-r-card);
   width:calc(100% + max(20px,(100vw - 1200px)/2))}
 .sa-hero__em{position:absolute;top:50%;left:0;width:104px;height:104px;z-index:2;
   animation:sa-float 26s ease-in-out infinite}
