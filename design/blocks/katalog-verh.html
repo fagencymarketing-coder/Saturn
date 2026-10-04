@@ -13,6 +13,16 @@
   background:#fff;padding:40px 0 24px}
 .sa-kv *{box-sizing:border-box;margin:0;padding:0}
 .sa-kv__in{max-width:1240px;margin:0 auto;padding:0 20px}
+/* Свои хлебные крошки: штатные у Тильды лежат внутри блока каталога,
+   то есть ниже этого блока, и там им не место. Кегль 13 против 40 у
+   заголовка — крошки служебные и спорить с ним не должны. */
+.sa-kv__crumbs{display:flex;align-items:center;gap:8px;font-size:13px;
+  line-height:18px;color:#8A837C;margin-bottom:12px}
+.sa-kv__crumbs a{color:#8A837C;text-decoration:none}
+.sa-kv__crumbs b{font-weight:400;color:#B5B0AA}
+.sa-kv__crumbs span{color:#C9C3BD}
+@media (hover:hover){.sa-kv__crumbs a:hover{color:#141210}}
+@media (max-width:767px){.sa-kv__crumbs{font-size:12px;margin-bottom:10px}}
 .sa-kv__top{display:flex;align-items:center;justify-content:space-between;gap:24px}
 .sa-kv__h{font-size:40px;font-weight:800;line-height:46px;letter-spacing:-.01em}
 .sa-kv__price{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;
@@ -68,8 +78,18 @@
 }
 </style>
 
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Главная","item":"https://sssaturn.ru/"},
+{"@type":"ListItem","position":2,"name":"Каталог","item":"https://sssaturn.ru/catalog"}]}
+</script>
+
 <div class="sa-kv">
   <div class="sa-kv__in">
+
+    <nav class="sa-kv__crumbs" aria-label="Вы здесь">
+      <a href="/">Главная</a><span aria-hidden="true">/</span><b>Каталог</b>
+    </nav>
 
     <div class="sa-kv__top">
       <h1 class="sa-kv__h">Каталог</h1>
