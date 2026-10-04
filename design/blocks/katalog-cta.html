@@ -1,0 +1,46 @@
+<!-- Блок «Не нашли нужное?» — ставится внизу страницы «Каталог»,
+     между блоком каталога ST340F и подвалом. Есть на холсте каталога.
+     Блок T123. -->
+<style>
+.sa-kc{--ink:#141210;--acc:#FF4200;--btn:#D93800;--mut:#B5B0AA;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--ink);color:#fff;padding:64px 0}
+.sa-kc *{box-sizing:border-box;margin:0;padding:0}
+.sa-kc__in{max-width:1240px;margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px}
+.sa-kc__h{font-size:36px;font-weight:800;line-height:42px;letter-spacing:-.01em}
+.sa-kc__sub{font-size:16px;font-weight:400;line-height:24px;color:var(--mut);
+  margin-top:10px;max-width:620px}
+/* Кнопка ровно та же, что у «Заказать диагностику» и «Подобрать решение»:
+   одна высота, одно скругление, один цвет. Разные кнопки на одном сайте —
+   самый быстрый способ его удешевить. */
+.sa-kc__btn{display:inline-flex;align-items:center;justify-content:center;
+  flex:0 0 auto;height:60px;padding:0 32px;border-radius:12px;
+  background:var(--btn);color:#fff;text-decoration:none;
+  font-size:16px;font-weight:700;white-space:nowrap}
+@media (hover:hover){
+  .sa-kc__btn:hover{background:#C23100}
+}
+@media (max-width:1023px){
+  .sa-kc{padding:52px 0}
+  .sa-kc__in{padding:0 32px;gap:28px}
+  .sa-kc__h{font-size:28px;line-height:32px}
+  .sa-kc__sub{font-size:15px;line-height:22.5px}
+}
+@media (max-width:767px){
+  .sa-kc{padding:44px 0}
+  .sa-kc__in{padding:0 20px;flex-direction:column;align-items:stretch;gap:24px}
+  .sa-kc__h{font-size:24px;line-height:28px}
+  .sa-kc__btn{height:52px;width:100%}
+}
+</style>
+
+<div class="sa-kc">
+  <div class="sa-kc__in">
+    <div>
+      <h2 class="sa-kc__h">Не нашли нужное?</h2>
+      <p class="sa-kc__sub">Подберём препарат под культуру и задачу — ответим в течение дня</p>
+    </div>
+    <a class="sa-kc__btn" href="/#contacts">Получить предложение</a>
+  </div>
+</div>
