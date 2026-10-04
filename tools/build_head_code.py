@@ -101,6 +101,14 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 :where(.sa-hero,.sa-ag,.sa-geo,.sa-ct,.sa-hd,.sa-kc,#sa-tp-cta)
   :where(a,button,input,summary,[tabindex]):focus-visible{{
   outline-color:#fff}}
+/* Тильда принудительно снимает обводку на трёх элементах каталога:
+   селекте сортировки, кнопке фильтра и поле поиска. Без явного
+   возврата наше правило их не перебьёт — нашёл агент 04.10. */
+.t-catalog__sort-select:focus-visible,
+.t-catalog__filter__btn:focus-visible,
+.t-catalog__filter__input:focus-visible,
+.js-catalog-filter-search:focus-visible{{
+  outline:2px solid #FF4200 !important;outline-offset:2px !important}}
 
 {hd_css}
 {ft_css}
@@ -235,6 +243,23 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
     var d = new Date(); d.setTime(d.getTime() + 365*24*60*60*1000);
     document.cookie = n + '=' + v + ';expires=' + d.toUTCString() + ';path=/';
   }}
+  /* Штатный баннер cookie Тильды переведён не до конца: в окне
+     настроек у переключателя категории «Аналитические» подпись
+     «Disabled» по-английски, у «Обязательных» пустая. Нашёл агент
+     04.10. Правим текст на месте — окно настроек рисуется по щелчку,
+     поэтому смотрим за разметкой, а не правим один раз при загрузке. */
+  function perevodCookie(){{
+    var SLOVA = {{'Disabled':'Выключено', 'Enabled':'Включено',
+                 'Settings':'Настройки', 'Accept all':'Принять все',
+                 'Reject all':'Отклонить все'}};
+    document.querySelectorAll('.t972__toggle-txt,.t972 .t-btn,.t972 button')
+      .forEach(function(el){{
+        if(el.children.length) return;
+        var t = (el.textContent || '').trim();
+        if(SLOVA[t]) el.textContent = SLOVA[t];
+      }});
+  }}
+
   function cookieBanner(){{
     if(!document.body) return;
     if(!onProductPage()) return;
@@ -262,9 +287,18 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
     document.body.appendChild(b);
   }}
 
-  draw(); cookieBanner();
-  document.addEventListener('DOMContentLoaded', function(){{ draw(); cookieBanner(); }});
-  window.addEventListener('load', function(){{ draw(); cookieBanner(); }});
+  function vse(){{ draw(); cookieBanner(); perevodCookie(); }}
+  vse();
+  document.addEventListener('DOMContentLoaded', vse);
+  window.addEventListener('load', vse);
+  /* Окно настроек cookie рисуется по щелчку, поэтому перевод вешаем
+     и на наблюдателя: иначе «Disabled» успеет мелькнуть. */
+  if (window.MutationObserver) {{
+    new MutationObserver(function(){{
+      clearTimeout(window.__saCkT);
+      window.__saCkT = setTimeout(perevodCookie, 120);
+    }}).observe(document.documentElement, {{childList:true, subtree:true}});
+  }}
   /* каталог меняет адрес без перезагрузки — следим за переходами */
   setInterval(function(){{
     if(!onProductPage()){{

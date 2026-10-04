@@ -253,23 +253,37 @@ img.js-product-img,
        «Инсектициды», «Десиканты». Нашёл агент при прогоне 03.10.2026,
        замерено наведением: #333333 → #d93800.
 
-       Задаём наведение явно, как требует правило проекта. Цвет при
-       наведении не меняем — отклик даёт подчёркивание, как у разделов
-       и фильтров в остальном каталоге: box-shadow inset, а не
-       text-decoration и не border. Так раздел не выглядит выбранным,
-       пока по нему не щёлкнули. */
+       Задаём наведение явно, как требует правило проекта.
+
+       04.10 отклик переделан. Было подчёркивание — заказчику не
+       понравилось, и справедливо: у подразделов Тильда рисует свою
+       линию, наша ложилась поверх, а выбранный подраздел ещё и
+       краснел. Получалась мешанина из линии, цвета и жирности.
+       Теперь отклик один и тихий: при наведении текст темнеет,
+       выбранный раздел — тёмный и насыщенностью 700. Ни линий, ни
+       красного. */
 .t-catalog__parts-sidebar-item,
 .t-catalog__parts-sidebar-item a,
 .t-catalog__parts-sidebar__list a{
-  color:#141210;
-  transition:box-shadow var(--sa-t) var(--sa-ease)}
+  color:#6B6560;box-shadow:none !important;
+  text-decoration:none !important;border-bottom:0 !important;
+  transition:color var(--sa-t) var(--sa-ease)}
 .t-catalog__parts-sidebar-item:hover,
 .t-catalog__parts-sidebar-item a:hover,
 .t-catalog__parts-sidebar__list a:hover,
 #allrecords .t-catalog__parts-sidebar-item a:hover,
 #allrecords .t-catalog__parts-sidebar__list a:hover{
-  color:#141210;
-  box-shadow:inset 0 -1px 0 0 #141210}
+  color:#141210;box-shadow:none !important}
+/* Выбранный раздел и подраздел: тёмный и жирный, без цвета и линии.
+   Тильда помечает его классами с «active» и собственным красным. */
+.t-catalog__parts-sidebar-item_active,
+.t-catalog__parts-sidebar-item_active a,
+.t-catalog__parts-sidebar__list a.t-active,
+[class*="parts-sidebar"] [class*="active"],
+[class*="parts-sidebar"] [class*="active"] a{
+  color:#141210 !important;font-weight:700 !important;
+  box-shadow:none !important;text-decoration:none !important;
+  border-bottom:0 !important}
 
 /* 13. Штатные поиск и сортировка Тильды спрятаны: сверху каталога стоит
        наш блок с полем и чипами культур по холсту, два поиска подряд
@@ -302,6 +316,22 @@ img.js-product-img,
   .t-catalog__filter-wrapper::-webkit-scrollbar-thumb{
     background:#D8D3CE;border-radius:999px}
 }
+
+
+/* 15. Товар без фотографии. Семь позиций из 112 в магазине без снимка
+       (проверено по API 04.10), и в плитке на их месте оставалась белая
+       дыра — сетка выглядела сломанной. Теперь место фотографии
+       заливается той же плашкой, что и у остальных карточек, с эмблемой
+       по центру. Это не прячет проблему: фотографии всё равно нужны,
+       но пока их нет, каталог не выглядит недоделанным. */
+.t-catalog__card__bgimg[style*="url()"],
+.t-catalog__card__bgimg:not([style*="url("]){
+  background-color:#F0EDE9 !important;
+  background-image:url("https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-emblem.png") !important;
+  background-size:56px auto !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  opacity:.5}
 
 </style>
 
@@ -418,6 +448,14 @@ img.js-product-img,
 :where(.sa-hero,.sa-ag,.sa-geo,.sa-ct,.sa-hd,.sa-kc,#sa-tp-cta)
   :where(a,button,input,summary,[tabindex]):focus-visible{
   outline-color:#fff}
+/* Тильда принудительно снимает обводку на трёх элементах каталога:
+   селекте сортировки, кнопке фильтра и поле поиска. Без явного
+   возврата наше правило их не перебьёт — нашёл агент 04.10. */
+.t-catalog__sort-select:focus-visible,
+.t-catalog__filter__btn:focus-visible,
+.t-catalog__filter__input:focus-visible,
+.js-catalog-filter-search:focus-visible{
+  outline:2px solid #FF4200 !important;outline-offset:2px !important}
 
 .sa-hd{--ink:#141210;--acc:#FF4200;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
@@ -751,6 +789,23 @@ html{scroll-behavior:smooth}
     var d = new Date(); d.setTime(d.getTime() + 365*24*60*60*1000);
     document.cookie = n + '=' + v + ';expires=' + d.toUTCString() + ';path=/';
   }
+  /* Штатный баннер cookie Тильды переведён не до конца: в окне
+     настроек у переключателя категории «Аналитические» подпись
+     «Disabled» по-английски, у «Обязательных» пустая. Нашёл агент
+     04.10. Правим текст на месте — окно настроек рисуется по щелчку,
+     поэтому смотрим за разметкой, а не правим один раз при загрузке. */
+  function perevodCookie(){
+    var SLOVA = {'Disabled':'Выключено', 'Enabled':'Включено',
+                 'Settings':'Настройки', 'Accept all':'Принять все',
+                 'Reject all':'Отклонить все'};
+    document.querySelectorAll('.t972__toggle-txt,.t972 .t-btn,.t972 button')
+      .forEach(function(el){
+        if(el.children.length) return;
+        var t = (el.textContent || '').trim();
+        if(SLOVA[t]) el.textContent = SLOVA[t];
+      });
+  }
+
   function cookieBanner(){
     if(!document.body) return;
     if(!onProductPage()) return;
@@ -778,9 +833,18 @@ html{scroll-behavior:smooth}
     document.body.appendChild(b);
   }
 
-  draw(); cookieBanner();
-  document.addEventListener('DOMContentLoaded', function(){ draw(); cookieBanner(); });
-  window.addEventListener('load', function(){ draw(); cookieBanner(); });
+  function vse(){ draw(); cookieBanner(); perevodCookie(); }
+  vse();
+  document.addEventListener('DOMContentLoaded', vse);
+  window.addEventListener('load', vse);
+  /* Окно настроек cookie рисуется по щелчку, поэтому перевод вешаем
+     и на наблюдателя: иначе «Disabled» успеет мелькнуть. */
+  if (window.MutationObserver) {
+    new MutationObserver(function(){
+      clearTimeout(window.__saCkT);
+      window.__saCkT = setTimeout(perevodCookie, 120);
+    }).observe(document.documentElement, {childList:true, subtree:true});
+  }
   /* каталог меняет адрес без перезагрузки — следим за переходами */
   setInterval(function(){
     if(!onProductPage()){
