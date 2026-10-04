@@ -314,16 +314,20 @@ img.js-product-img,
 
 <style>
 
-body:has(.t-catalog__prod-snippet__container){background:#F7F5F2 !important}
-.t-rec:has(> .t-catalog__prod-snippet__container){background:#F7F5F2 !important}
+body:has(.t-catalog__prod-snippet__container),
+body:has(.t-catalog__prod-popup__container){background:#F7F5F2 !important}
+.t-rec:has(> .t-catalog__prod-snippet__container),
+.t-rec:has(> .t-catalog__prod-popup__container){background:#F7F5F2 !important}
 
-.t-catalog__prod-snippet__container{
+.t-catalog__prod-snippet__container,
+.t-catalog__prod-popup__container{
   max-width:min(1240px,90vw) !important;
   margin:0 auto !important;
   padding:clamp(18px,2.6vh,28px) 0 clamp(40px,6vh,64px) !important;
   position:relative}
 
-.t-catalog__prod-snippet__container .t-popup__close{display:none !important}
+.t-catalog__prod-snippet__container .t-popup__close,
+.t-catalog__prod-popup__container .t-popup__close{display:none !important}
 .t-catalog__prod-popup__close-txt-wr{
   position:static !important;margin:0 0 clamp(12px,2vh,18px) !important}
 a.js-catalog-close-text{
@@ -337,48 +341,64 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
 @media (hover:hover){a.js-catalog-close-text:hover{color:#141210 !important}}
 
 .t-catalog__prod-snippet__container,
-.t-catalog__prod-snippet__container *{box-sizing:border-box}
-.t-catalog__product-snippet .t-container{
+.t-catalog__prod-popup__container,
+.t-catalog__prod-snippet__container *,
+.t-catalog__prod-popup__container *{box-sizing:border-box}
+.t-catalog__product-snippet .t-container,
+.t-catalog__product-popup .t-container{
   width:100% !important;max-width:none !important;
   background:#fff;border-radius:var(--sa-r-card);
   padding:clamp(18px,2.4vw,32px);
   box-shadow:0 1px 2px rgba(20,18,16,.04),0 14px 44px rgba(20,18,16,.07)}
 
 .t-catalog__product-snippet .t-catalog__prod-popup__col-left,
-.t-catalog__product-snippet .t-catalog__prod-popup__col-right{
+.t-catalog__product-popup .t-catalog__prod-popup__col-left,
+.t-catalog__product-snippet .t-catalog__prod-popup__col-right,
+.t-catalog__product-popup .t-catalog__prod-popup__col-right{
   width:auto !important;max-width:none !important;
   margin:0 !important;padding:0 !important;float:none !important}
-.t-catalog__product-snippet .t-catalog__prod-popup__col-left{
+.t-catalog__product-snippet .t-catalog__prod-popup__col-left,
+.t-catalog__product-popup .t-catalog__prod-popup__col-left{
   background:#F0EDE9 url("https://static.tildacdn.com/tild3762-3461-4635-b161-643835316538/saturn-emblem.png")
     center / 64px auto no-repeat;
   border-radius:18px;overflow:hidden}
 
-.t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+.t-catalog__product-snippet:has(meta[itemprop="image"][content=""]),
+.t-catalog__product-popup:has(meta[itemprop="image"][content=""])
   .t-catalog__prod-popup__col-left{display:none !important}
 
 @media screen and (min-width:960px){
 
-  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-left,
+  .t-catalog__product-popup .t-catalog__prod-popup__col-left{
     position:sticky;top:104px}
-  .t-catalog__product-snippet .t-container > div{
+  .t-catalog__product-snippet .t-container > div,
+  .t-catalog__product-popup .t-container > div{
     display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
     align-items:start;column-gap:clamp(28px,3vw,44px);row-gap:0}
 
-  .t-catalog__product-snippet .t-catalog__prod-popup__breadcrumbs{
+  .t-catalog__product-snippet .t-catalog__prod-popup__breadcrumbs,
+  .t-catalog__product-popup .t-catalog__prod-popup__breadcrumbs{
     grid-column:1 / -1}
-  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{grid-column:1}
-  .t-catalog__product-snippet .t-catalog__prod-popup__col-right{grid-column:2}
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-left,
+  .t-catalog__product-popup .t-catalog__prod-popup__col-left{grid-column:1}
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-right,
+  .t-catalog__product-popup .t-catalog__prod-popup__col-right{grid-column:2}
 
-  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]),
+  .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
     .t-container{max-width:calc(720px + 2 * clamp(18px,2.4vw,32px)) !important;
     margin:0 auto}
-  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]),
+  .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
     .t-container > div{grid-template-columns:minmax(0,1fr)}
-  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]),
+  .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
     .t-catalog__prod-popup__col-right{grid-column:1}
 }
 @media screen and (max-width:959px){
-  .t-catalog__product-snippet .t-catalog__prod-popup__col-right{
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-right,
+  .t-catalog__product-popup .t-catalog__prod-popup__col-right{
     margin-top:clamp(18px,3vh,26px) !important}
 }
 
@@ -404,7 +424,8 @@ h1.t-catalog__prod-popup__name{
   color:#4A453F !important;margin-top:clamp(14px,2vh,18px) !important}
 .js-catalog-prod-all-text{max-width:60ch}
 
-.t-catalog__product-snippet .js-catalog-price-wrapper{
+.t-catalog__product-snippet .js-catalog-price-wrapper,
+.t-catalog__product-popup .js-catalog-price-wrapper{
   margin:clamp(16px,2.4vh,22px) 0 0 !important}
 .t-catalog__prod-popup__price{
   display:flex !important;align-items:baseline;gap:7px;margin:0 !important}
@@ -478,7 +499,9 @@ h1.t-catalog__prod-popup__name{
 (function(){
   var PRAYS = 'https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf';
 
-  function naTovare(){ return /\/tproduct\//.test(location.pathname); }
+  function naTovare(){
+    return !!document.querySelector('.t-catalog__product-snippet, .t-catalog__product-popup');
+  }
 
   function razdel(){
     var sc = document.scripts;
@@ -498,12 +521,13 @@ h1.t-catalog__prod-popup__name{
   }
 
   function tovar(){
-    if(window.__saTpD) return window.__saTpD;
+    var uid = (location.pathname.match(/\/tproduct\/(\d+)/) || [])[1] || '';
+    if(window.__saTpD && window.__saTpD.uid === uid) return window.__saTpD;
     var d = null;
+
     var sc = document.scripts;
     for(var i=0;i<sc.length;i++){
       var t = sc[i].textContent;
-
       if(!t || t.indexOf('var product') < 0) continue;
       var a = t.match(/"descr"\s*:\s*"((?:[^"\\]|\\.)*)"/);
       if(!a) continue;
@@ -512,7 +536,21 @@ h1.t-catalog__prod-popup__name{
       if(b) d.price = b[1] || '';
       break;
     }
-    if(d) window.__saTpD = d;
+
+    if(!d){
+
+      var card = uid ? document.querySelector('.t-catalog__card[data-product-uid="' + uid + '"]') : null;
+      if(!card) card = window.__saTpCard || null;
+      if(card){
+        var ds = card.querySelector('.js-catalog-prod-descr');
+        var pr = card.querySelector('.js-catalog-prod-price-val, .js-product-price');
+        d = {descr: ds ? ds.textContent.replace(/\s+/g,' ').trim() : '',
+             price: pr ? pr.textContent.replace(/[^0-9.,]/g,'') : ''};
+      }
+    }
+
+    if(d){ d.uid = uid; window.__saTpD = d; }
+
     return d;
   }
 
@@ -622,7 +660,7 @@ h1.t-catalog__prod-popup__name{
 
   function dorisovat(){
     if(!naTovare() || !document.body) return;
-    var root = document.querySelector('.t-catalog__product-snippet');
+    var root = document.querySelector('.t-catalog__product-snippet, .t-catalog__product-popup');
     if(!root) return;
 
     var brend = root.querySelector('.t-catalog__prod-popup__brand');
@@ -685,6 +723,21 @@ h1.t-catalog__prod-popup__name{
       info.appendChild(b);
     }
   }
+
+  document.addEventListener('click', function(e){
+    if(window.innerWidth > 767) return;
+    var c = e.target && e.target.closest && e.target.closest('.t-catalog__card');
+    if(!c) return;
+    var u = c.getAttribute('data-product-url');
+    if(!u) return;
+    e.preventDefault(); e.stopPropagation();
+    location.href = u;
+  }, true);
+
+  document.addEventListener('click', function(e){
+    var c = e.target && e.target.closest && e.target.closest('.t-catalog__card');
+    if(c){ window.__saTpCard = c; window.__saTpD = null; }
+  }, true);
 
   function vse(){ try{ dorisovat(); }catch(e){} }
   vse();
