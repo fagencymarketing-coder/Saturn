@@ -126,8 +126,7 @@
 </script>
 
 <style>
-/* 1. Убрать оранжевые линии под разделами и фильтрами.
-      Это не text-decoration и не border, а внутренняя тень. */
+
 .js-catalog-parts-switcher,
 .t-catalog__parts-switch-btn,
 .t-catalog__parts-button-base,
@@ -139,35 +138,21 @@
   border-bottom:0 !important;
 }
 
-/* 2. Фото товара вписывается целиком на светлую подложку */
 .t-catalog__card__imgwrapper{background:#F0EDE9 !important;border-radius:12px;overflow:hidden}
 .t-catalog__card__bgimg,
 .js-product-img.t-bgimg{background-size:contain !important;background-position:center !important;
   background-repeat:no-repeat !important}
-/* на странице товара фото — это <img>, а не фон */
+
 img.js-product-img,
 .t-catalog__prod-popup__columns img.js-product-img{object-fit:contain !important;background:#F0EDE9}
 
-/* 3. Кнопка «Оставить заявку» убрана из плитки каталога.
-      На утверждённом холсте в карточке только название, описание и
-      цифра — красной кнопки под каждым товаром нет. Она остаётся там,
-      где нужна: на странице товара. Решение заказчика 03.10.2026.
-
-      Классы различаются, и это важно:
-        t-catalog__card__btn      — кнопка в плитке, её прячем;
-        t-catalog__prod-popup__btn — кнопка на странице товара, не трогаем.
-      Прячем вместе с обёрткой, иначе от неё останется пустая полоса. */
 .t-catalog__card__btn,
 .t-catalog__card__btns-wrapper,
 .js-catalog-prod-btn{display:none !important}
 
-/* 4. Название товара — не длиннее двух строк, чтобы карточки не прыгали */
 .t-catalog__card__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
   overflow:hidden}
 
-/* 5. Три карточки в ряд на планшете.
-      Ширину задаёт .t-catalog__stretch-col, медиазапрос Тильды перебивает _25,
-      поэтому нужен !important. column-gap на этих ширинах — 10px. */
 @media screen and (min-width:768px) and (max-width:960px){
   .t-catalog__card-list > .js-product,
   .t-catalog__card-list .t-catalog__stretch-col{
@@ -175,25 +160,14 @@ img.js-product-img,
   }
 }
 
-/* 6. Карточка товара не должна уезжать вбок на планшетной ширине:
-      слайдер Tilda шире вьюпорта, а блок с описанием — на 10px шире экрана */
 .t-catalog__prod-popup__info{max-width:100% !important;box-sizing:border-box}
 .t-slds__items-wrapper{overflow:hidden}
-/* ширина колонки уже равна 100% контейнера, но у .t-col остаётся
-   штатный боковой отступ Tilda 10px — он и даёт переполнение */
+
 .t-catalog__prod-popup__col-right{margin-left:0 !important;margin-right:0 !important}
 
-/* 7. Строка цены там, где цены нет, убирается совсем. Раньше мы
-      подставляли «Цена по запросу» — заказчик 04.10.2026 попросил убрать:
-      у 112 товаров из 112 цены в магазине нет, и одинаковая серая строка
-      под каждой карточкой читалась как брак, а не как условие продажи.
-      Пустая обёртка схлопывается, карточка становится короче. */
 .t-catalog__card__price-wrapper[data-sa-ask],
 .js-catalog-price-wrapper[data-sa-ask]{display:none !important}
 
-/* 8. Вертикальный ритм страницы каталога.
-      У блока ST340F собственные 135px сверху и снизу плюс 90px под
-      подзаголовком — из-за этого страница распадается на пустые экраны. */
 .t-rec[data-record-type="2861"]{padding-top:40px !important;padding-bottom:72px !important}
 .t-catalog__grid-cont .t-section__title{margin-bottom:20px !important}
 .t-catalog__grid-cont .t-section__descr{margin-bottom:36px !important}
@@ -205,25 +179,9 @@ img.js-product-img,
   .t-catalog__grid-cont .t-section__descr{margin-bottom:28px !important}
 }
 
-/* 9. Хлебные крошки Тильды скрыты, но сами крошки остались — свои.
-      03.10 их убрали совсем: на холсте каталога их нет. 04.10 заказчик
-      вернул, и правильно: по ним поисковики показывают структуру сайта
-      прямо в выдаче, а на странице товара путь «Главная / Каталог /
-      Ампир Экстра» настоящий и полезный.
-      Но штатные крошки Тильды живут ВНУТРИ блока каталога, то есть
-      ниже нашего верхнего блока с поиском и чипами — получалось бы
-      «Каталог / поиск / чипы / Главная-Каталог / товары». Поэтому
-      штатные прячем, а свои ставим первой строкой в katalog-verh.html,
-      там же и разметка для поисковиков.
-      Заодно прячем штатный заголовок блока: «Каталог» теперь наш,
-      в одной строке со «Скачать прайс», как на холсте. */
 [class*="t-catalog__breadcrumb"],[class*="t-breadcrumb"]{display:none !important}
 #rec4384406801 .js-block-header{display:none !important}
 
-/* 10. Разделы над товарами — пустые плитки без картинок, занимают полтора
-       экрана. На ПК они дублируют боковую панель, поэтому скрыты;
-       на телефоне панель прячется в «Фильтры», поэтому разделы остаются,
-       но без пустых кружков-заглушек. */
 @media screen and (min-width:961px){
   [id^="parts-above-id-"]{display:none !important}
 }
@@ -232,36 +190,6 @@ img.js-product-img,
   [id^="parts-above-id-"] [class*="card"]{min-height:0 !important}
 }
 
-/* 11. Страница товара по прямому адресу /tproduct/: у Тильды описание
-       уходит под фотографию, и правая половина экрана остаётся пустой. */
-@media screen and (min-width:960px){
-  .t-catalog__product-snippet .t-container > div{
-    display:flex;align-items:flex-start;gap:40px}
-  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{
-    flex:0 0 auto;width:46%;max-width:520px;margin:0}
-  .t-catalog__product-snippet .t-catalog__prod-popup__col-right{
-    flex:1 1 auto;max-width:none;width:auto;margin:0;padding-top:0}
-}
-
-/* 12. Разделы в боковой панели краснели при наведении. Глобальное
-       правило Тильды оказалось не просто a:hover, а списком селекторов
-       её типографики — .t-text a:hover, .t-descr a:hover, .t-title a:hover
-       и так далее, цвет #d93800. Самодельные блоки sa-* под него не
-       попадают, а вот девять ссылок боковой панели попали: «Все»,
-       «Семена», «Гербициды», «Удобрения и листовые подкормки»,
-       «Адъюванты», «Обработка семян и протравители», «Фунгициды»,
-       «Инсектициды», «Десиканты». Нашёл агент при прогоне 03.10.2026,
-       замерено наведением: #333333 → #d93800.
-
-       Задаём наведение явно, как требует правило проекта.
-
-       04.10 отклик переделан. Было подчёркивание — заказчику не
-       понравилось, и справедливо: у подразделов Тильда рисует свою
-       линию, наша ложилась поверх, а выбранный подраздел ещё и
-       краснел. Получалась мешанина из линии, цвета и жирности.
-       Теперь отклик один и тихий: при наведении текст темнеет,
-       выбранный раздел — тёмный и насыщенностью 700. Ни линий, ни
-       красного. */
 .t-catalog__parts-sidebar-item,
 .t-catalog__parts-sidebar-item a,
 .t-catalog__parts-sidebar__list a{
@@ -274,8 +202,7 @@ img.js-product-img,
 #allrecords .t-catalog__parts-sidebar-item a:hover,
 #allrecords .t-catalog__parts-sidebar__list a:hover{
   color:#141210;box-shadow:none !important}
-/* Выбранный раздел и подраздел: тёмный и жирный, без цвета и линии.
-   Тильда помечает его классами с «active» и собственным красным. */
+
 .t-catalog__parts-sidebar-item_active,
 .t-catalog__parts-sidebar-item_active a,
 .t-catalog__parts-sidebar__list a.t-active,
@@ -285,28 +212,9 @@ img.js-product-img,
   box-shadow:none !important;text-decoration:none !important;
   border-bottom:0 !important}
 
-/* 13. Штатные поиск и сортировка Тильды спрятаны: сверху каталога стоит
-       наш блок с полем и чипами культур по холсту, два поиска подряд
-       не нужны. Прячем стилем, а не галкой «Спрятать поиск и
-       сортировку» в настройках блока: наше поле не ищет само, оно
-       пишет в штатный input и щёлкает его лупу. Скрытое стилями поле
-       остаётся в разметке и работает — проверено на живой странице
-       04.10.2026. Что делает галка, вырезает она разметку или прячет,
-       неизвестно, и выяснять это ценой сломанного поиска незачем.
-       Сама Тильда ниже 961 px прячет этот блок тем же способом. */
 .t-catalog__filter__search-and-sort,
 .t-catalog__filter__sort{display:none !important}
 
-
-/* 14. Боковая панель не уезжает вверх при прокрутке. Заказчик 04.10.2026:
-       «при скроллинге каталога вниз меню слева не должно исчезать»,
-       и на холсте Клод Дизайна оно действительно стоит на месте.
-       Липкость даём своим стилем, а не галкой «закрепить» в Тильде:
-       её закрепление заводит панели собственную полосу прокрутки на всю
-       высоту. Здесь панель прокручивается только если сама не влезает,
-       а отступ сверху 88 = высота шапки 72 плюс 16 воздуха.
-       Селектор снят с живой страницы: колонка фильтра — это
-       .t-catalog__filter-wrapper, внутри .js-sidebar-filters. */
 @media screen and (min-width:961px){
   .t-catalog__filter-wrapper{
     position:sticky !important;top:88px;align-self:flex-start;
@@ -317,16 +225,6 @@ img.js-product-img,
     background:#D8D3CE;border-radius:999px}
 }
 
-
-/* 15. Товар без фотографии. Семь позиций из 112 в магазине без снимка
-       (проверено по API 04.10), и в плитке на их месте оставалась белая
-       дыра — сетка выглядела сломанной. Теперь место фотографии
-       заливается той же плашкой, что и у остальных карточек, с эмблемой
-       по центру. Это не прячет проблему: фотографии всё равно нужны,
-       но пока их нет, каталог не выглядит недоделанным. */
-/* Место под фотографию держится всегда, даже когда фотографии нет:
-   иначе у такой карточки название и цена уезжают вверх и ряд теряет
-   общую линию. Пропорция та же, что у карточек с фото. */
 .t-catalog__card__bgimg,
 .t-catalog__card [class*="imgwrapper"]{aspect-ratio:355/266;min-height:0}
 .t-catalog__card__bgimg[style*="url()"],
@@ -343,18 +241,12 @@ img.js-product-img,
 <script>
 (function(){
   function fix(){
-    /* 0. «Load more» → «Загрузить ещё».
-          Поля для этой надписи в настройках блока нет — агент искал его
-          в трёх разделах и не нашёл. Тильда рисует её из шаблона
-          button_loadmore_<recid>, латиницей, и меняется она только так. */
+
     document.querySelectorAll('.js-catalog-load-more-btn-text')
       .forEach(function(el){
         if (/^\s*Load more\s*$/.test(el.textContent)) el.textContent = 'Загрузить ещё';
       });
 
-    /* A. Карточка без цены не показывает строку цены вовсе.
-          Обёртка НЕ пустая: Тильда всегда рисует два значка валюты «р.»,
-          поэтому проверяем наличие цифр внутри блока самой цены. */
     document.querySelectorAll('.t-catalog__card__price-wrapper,.js-catalog-price-wrapper')
       .forEach(function(el){
         if(el.dataset.saFixed) return;
@@ -367,8 +259,6 @@ img.js-product-img,
         el.dataset.saFixed = '1';
       });
 
-    /* B. Двенадцать строк «Культура» → одна строка через запятую.
-          Фильтр это не ломает: он читает данные товара, а не видимый текст. */
     document.querySelectorAll('.js-catalog-prod-all-charcs').forEach(function(box){
       if(box.dataset.saCrops) return;
       var rows = [].slice.call(box.querySelectorAll('p.t-typography__characteristics'))
@@ -386,28 +276,320 @@ img.js-product-img,
   fix();
   document.addEventListener('DOMContentLoaded', fix);
   window.addEventListener('load', fix);
-  /* каталог дорисовывает карточки и открывает товар без перезагрузки */
+
   new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true});
 })();
 </script>
 
 <style>
-/* ===== Шкала сайта =======================================================
-   Один слой на весь «Сатурн». Блоки не держат своих чисел — только эти
-   переменные. Меняем здесь — меняется согласованно везде.
 
-   Каждая величина не число, а отрезок: от окна 1024 до окна 1440 растёт
-   линейно, выше 1440 замирает на холстовом значении, ниже 1024 — на
-   нижнем. Поэтому между ступенями ничего не прыгает.
+body:has(.t-catalog__prod-snippet__container){background:#F7F5F2 !important}
+.t-rec:has(> .t-catalog__prod-snippet__container){background:#F7F5F2 !important}
 
-   Кегли уменьшены относительно холста по решению заказчика 04.10.2026:
-   заголовок секции 40 → 30, заголовок героя 42 → 34. Причина — «тихая
-   дороговизна»: отношение заголовка к тексту стало 2,0 вместо 2,7.
-   Дорогое впечатление даёт воздух, а не размер букв. Холст в этой части
-   перебит сознательно, как иконки в шапке и мелкие логотипы партнёров.
-   ========================================================================= */
+.t-catalog__prod-snippet__container{
+  max-width:min(1240px,90vw) !important;
+  margin:0 auto !important;
+  padding:clamp(18px,2.6vh,28px) 0 clamp(40px,6vh,64px) !important;
+  position:relative}
+
+.t-catalog__prod-snippet__container .t-popup__close{display:none !important}
+.t-catalog__prod-popup__close-txt-wr{
+  position:static !important;margin:0 0 clamp(12px,2vh,18px) !important}
+a.js-catalog-close-text{
+  position:relative;display:inline-flex;align-items:center;gap:8px;
+  font-size:var(--sa-small) !important;color:#6B655E !important;
+  text-decoration:none !important;
+  transition:color var(--sa-t) var(--sa-ease)}
+a.js-catalog-close-text::before{content:"←";font-size:15px;line-height:1}
+
+a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
+@media (hover:hover){a.js-catalog-close-text:hover{color:#141210 !important}}
+
+.t-catalog__prod-snippet__container,
+.t-catalog__prod-snippet__container *{box-sizing:border-box}
+.t-catalog__product-snippet .t-container{
+  width:100% !important;max-width:none !important;
+  background:#fff;border-radius:var(--sa-r-card);
+  padding:clamp(18px,2.4vw,32px);
+  box-shadow:0 1px 2px rgba(20,18,16,.04),0 14px 44px rgba(20,18,16,.07)}
+
+.t-catalog__product-snippet .t-catalog__prod-popup__col-left,
+.t-catalog__product-snippet .t-catalog__prod-popup__col-right{
+  width:auto !important;max-width:none !important;
+  margin:0 !important;padding:0 !important;float:none !important}
+.t-catalog__product-snippet .t-catalog__prod-popup__col-left{
+  background:#F0EDE9 url("https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-emblem.png")
+    center / 64px auto no-repeat;
+  border-radius:18px;overflow:hidden}
+
+.t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+  .t-catalog__prod-popup__col-left{display:none !important}
+
+@media screen and (min-width:960px){
+  .t-catalog__product-snippet .t-container > div{
+    display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
+    align-items:start;column-gap:clamp(28px,3vw,44px);row-gap:0}
+
+  .t-catalog__product-snippet .t-catalog__prod-popup__breadcrumbs{
+    grid-column:1 / -1}
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{grid-column:1}
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-right{grid-column:2}
+
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+    .t-container{max-width:calc(720px + 2 * clamp(18px,2.4vw,32px)) !important;
+    margin:0 auto}
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+    .t-container > div{grid-template-columns:minmax(0,1fr)}
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""])
+    .t-catalog__prod-popup__col-right{grid-column:1}
+}
+@media screen and (max-width:959px){
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-right{
+    margin-top:clamp(18px,3vh,26px) !important}
+}
+
+.sa-tp__cat{display:inline-block;background:#F0EDE9;color:#6B655E;
+  font-size:var(--sa-kick);font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:7px 14px;border-radius:var(--sa-r-pill);
+  margin:0 0 14px}
+h1.t-catalog__prod-popup__name{
+  font-size:var(--sa-h2) !important;font-weight:800 !important;
+  line-height:var(--sa-h2-lh) !important;color:#141210 !important;
+  margin:0 !important;letter-spacing:-.01em}
+.t-catalog__prod-popup__brand{
+  font-size:var(--sa-body) !important;color:#6B655E !important;
+  margin-top:8px !important}
+.t-catalog__prod-popup__brand:empty{display:none}
+.t-catalog__prod-popup__sku{
+  font-size:var(--sa-small) !important;color:#8A837B !important;
+  margin-top:10px !important}
+
+.js-catalog-prod-text{
+  font-size:var(--sa-body) !important;line-height:1.55 !important;
+  color:#4A453F !important;margin-top:clamp(14px,2vh,18px) !important}
+.js-catalog-prod-all-text{max-width:60ch}
+
+.t-catalog__product-snippet .js-catalog-price-wrapper{
+  margin:clamp(16px,2.4vh,22px) 0 0 !important}
+.t-catalog__prod-popup__price{
+  display:flex !important;align-items:baseline;gap:7px;margin:0 !important}
+.t-catalog__prod-popup__price-value{
+  font-size:var(--sa-h2) !important;font-weight:800 !important;
+  line-height:1 !important;color:#141210 !important;letter-spacing:-.015em}
+.t-catalog__prod-popup__price-currency{
+  font-size:var(--sa-body) !important;font-weight:500 !important;
+  color:#6B655E !important}
+.sa-tp--own-price .js-catalog-price-wrapper{display:none !important}
+
+.sa-tp__price{display:flex;align-items:baseline;gap:7px;
+  margin-top:clamp(16px,2.4vh,22px)}
+.sa-tp__ot{font-size:var(--sa-small);color:#8A837B}
+.sa-tp__num{font-size:var(--sa-h2);font-weight:800;line-height:1;
+  color:#141210;letter-spacing:-.015em}
+.sa-tp__unit{font-size:var(--sa-body);font-weight:500;color:#6B655E}
+.sa-tp__note{font-size:var(--sa-small);line-height:1.45;color:#8A837B;
+  margin-top:9px;max-width:46ch}
+
+.sa-tp__chars{margin-top:clamp(18px,2.8vh,26px);border-top:1px solid #E6E1DB}
+.sa-tp__row{display:grid;grid-template-columns:minmax(0,38%) minmax(0,1fr);
+  gap:16px;padding:13px 0;border-bottom:1px solid #E6E1DB}
+.sa-tp__k{font-size:var(--sa-body);line-height:1.5;color:#6B655E}
+.sa-tp__v{font-size:var(--sa-body);line-height:1.5;color:#141210}
+@media screen and (max-width:599px){
+  .sa-tp__row{grid-template-columns:minmax(0,1fr);gap:3px;padding:12px 0}
+  .sa-tp__k{font-size:var(--sa-small)}
+}
+
+.sa-tp__btns{display:flex;align-items:center;flex-wrap:wrap;
+  gap:clamp(14px,2vw,24px);margin-top:clamp(20px,3vh,28px)}
+.sa-tp__btn{display:inline-flex;align-items:center;justify-content:center;
+  height:var(--sa-btn-h);padding:0 28px;border-radius:var(--sa-r-ctrl);
+  background:#D93800;color:#fff !important;font-size:var(--sa-body);
+  font-weight:700;text-decoration:none !important;white-space:nowrap;
+  transition:background var(--sa-t) var(--sa-ease)}
+.sa-tp__dl{display:inline-flex;align-items:center;gap:9px;
+  min-height:44px;color:#141210 !important;font-size:var(--sa-body);
+  font-weight:600;text-decoration:none !important;
+  transition:color var(--sa-t) var(--sa-ease)}
+.sa-tp__dl svg{width:18px;height:18px;flex:0 0 auto;fill:none;
+  stroke:currentColor;stroke-width:1.8;stroke-linecap:round;
+  stroke-linejoin:round}
+@media (hover:hover){
+  .sa-tp__btn:hover{background:#C23100}
+  .sa-tp__dl:hover{color:#D93800 !important}
+}
+@media screen and (max-width:599px){
+  .sa-tp__btns{flex-direction:column;align-items:stretch}
+  .sa-tp__btn{width:100%}
+  .sa-tp__dl{justify-content:center}
+}
+
+#sa-tp-cta .sa-tp-cta__in{
+  max-width:min(1240px,90vw) !important;padding-left:0;padding-right:0}
+</style>
+
+<script>
+
+(function(){
+  var PRAYS = 'https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf';
+
+  function naTovare(){ return /\/tproduct\//.test(location.pathname); }
+
+  function razdel(){
+    var sc = document.scripts;
+    for(var i=0;i<sc.length;i++){
+      var t = sc[i].textContent;
+      if(!t || t.indexOf('breadcrumbs') < 0) continue;
+      var m = t.match(/breadcrumbs\s*=\s*"(\[[\s\S]*?\])"/);
+      if(!m) continue;
+      try{
+        var a = JSON.parse(m[1].replace(/\\"/g,'"').replace(/\\\//g,'/'));
+        for(var j=a.length-1;j>=0;j--){
+          if(a[j] && a[j].root === false && a[j].title) return a[j].title;
+        }
+      }catch(e){}
+    }
+    return '';
+  }
+
+  function tablica(root){
+    var box = root.querySelector('.js-catalog-prod-all-charcs');
+    if(!box || box.getAttribute('data-sa') === 'ok') return;
+    var p = box.querySelectorAll('p.js-catalog-prod-charcs');
+    if(!p.length) return;
+
+    var imena = [], znach = {};
+    for(var i=0;i<p.length;i++){
+      var s = (p[i].textContent || '').replace(/\s+/g,' ').trim();
+      if(!s) continue;
+      var k = s, v = '', d = s.indexOf(':');
+      if(d > 0){ k = s.slice(0,d).trim(); v = s.slice(d+1).trim(); }
+      if(!(k in znach)){ imena.push(k); znach[k] = []; }
+      if(v) znach[k].push(v);
+    }
+
+    var t = document.createElement('div');
+    t.className = 'sa-tp__chars';
+    for(var j=0;j<imena.length;j++){
+      var r  = document.createElement('div'); r.className  = 'sa-tp__row';
+      var kk = document.createElement('div'); kk.className = 'sa-tp__k';
+      var vv = document.createElement('div'); vv.className = 'sa-tp__v';
+      kk.textContent = imena[j];
+      vv.textContent = znach[imena[j]].join(' · ');
+      r.appendChild(kk); r.appendChild(vv); t.appendChild(r);
+    }
+    if(!t.children.length) return;
+    box.textContent = '';
+    box.appendChild(t);
+    box.setAttribute('data-sa','ok');
+  }
+
+  var RE_CENA = /^(от\s+)?([0-9][0-9\s  .,]*?)\s*(₽(?:\s*\/\s*[^\s(.,·]+)?)\s*([\s\S]*)$/;
+
+  function cena(root){
+    var el = root.querySelector('.js-catalog-prod-all-text');
+    if(!el || el.getAttribute('data-sa-cena')) return;
+    var html = el.innerHTML;
+    var i = html.indexOf('Цена:');
+    if(i < 0) return;
+
+    var hvost = html.slice(i).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
+                    .replace(/^Цена:\s*/, '');
+
+    var j = hvost.search(/При\s+100\s*%/), vyr, uslovie = '';
+    if(j > 0){
+      vyr = hvost.slice(0, j).replace(/[.\s]+$/, '');
+      uslovie = hvost.slice(j).trim();
+    } else {
+      var k = hvost.indexOf('.');
+      vyr = k > 0 ? hvost.slice(0, k) : hvost;
+      uslovie = k > 0 ? hvost.slice(k + 1).trim() : '';
+    }
+
+    var m = vyr.match(RE_CENA);
+    if(!m) return;
+
+    el.innerHTML = html.slice(0, i).replace(/(?:\s|<br\s*\/?>)+$/i, '');
+    el.setAttribute('data-sa-cena', 'ok');
+
+    var box = document.createElement('div');
+    box.className = 'sa-tp__price';
+    if(m[1]){
+      var ot = document.createElement('span');
+      ot.className = 'sa-tp__ot'; ot.textContent = 'от';
+      box.appendChild(ot);
+    }
+    var num = document.createElement('span');
+    num.className = 'sa-tp__num';
+    num.textContent = m[2].trim();
+    var ed = document.createElement('span');
+    ed.className = 'sa-tp__unit';
+    ed.textContent = m[3].replace(/\s+/g, '');
+    box.appendChild(num); box.appendChild(ed);
+    el.parentNode.insertBefore(box, el.nextSibling);
+
+    var ostatok = (m[4] || '').trim().replace(/[.\s]+$/, '');
+    var nizh = ostatok ? (uslovie ? ostatok + '. ' + uslovie : ostatok) : uslovie;
+    if(nizh){
+      var n = document.createElement('div');
+      n.className = 'sa-tp__note';
+      n.textContent = nizh;
+      box.parentNode.insertBefore(n, box.nextSibling);
+    }
+    root.classList.add('sa-tp--own-price');
+  }
+
+  function dorisovat(){
+    if(!naTovare() || !document.body) return;
+    var root = document.querySelector('.t-catalog__product-snippet');
+    if(!root) return;
+
+    tablica(root);
+
+    var tw = root.querySelector('.t-catalog__prod-popup__title-wrapper');
+    if(tw && !tw.querySelector('.sa-tp__cat')){
+      var nazv = razdel();
+      if(nazv){
+        var c = document.createElement('div');
+        c.className = 'sa-tp__cat';
+        c.textContent = nazv;
+        tw.insertBefore(c, tw.firstChild);
+      }
+    }
+
+    cena(root);
+
+    var info = root.querySelector('.t-catalog__prod-popup__info');
+    if(info && !info.querySelector('.sa-tp__btns')){
+      var b = document.createElement('div');
+      b.className = 'sa-tp__btns';
+      b.innerHTML =
+        '<a class="sa-tp__btn" href="/#contacts">Оставить заявку</a>' +
+        '<a class="sa-tp__dl" href="' + PRAYS + '" target="_blank" rel="noopener">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>' +
+        'Скачать прайс</a>';
+      info.appendChild(b);
+    }
+  }
+
+  function vse(){ try{ dorisovat(); }catch(e){} }
+  vse();
+  document.addEventListener('DOMContentLoaded', vse);
+  window.addEventListener('load', vse);
+
+  if(window.MutationObserver){
+    new MutationObserver(function(){
+      clearTimeout(window.__saTpT);
+      window.__saTpT = setTimeout(vse, 120);
+    }).observe(document.documentElement, {childList:true, subtree:true});
+  }
+})();
+</script>
+
+<style>
+
 :root{
-  /* типографика: 1024 → 1440 */
+
   --sa-h1:    clamp(28px, 1.442vw + 13.23px, 34px);
   --sa-h2:    clamp(24px, 1.442vw +  9.23px, 30px);
   --sa-h3:    clamp(16px, 0.481vw + 11.08px, 18px);
@@ -417,45 +599,33 @@ img.js-product-img,
   --sa-cap:   12px;
   --sa-kick:  clamp(11px, 0.240vw +  8.54px, 12px);
 
-  /* межстрочное — отдельными числами, чтобы заголовки не разъезжались */
   --sa-h1-lh: 1.08;
   --sa-h2-lh: 1.15;
 
-  /* органы управления */
   --sa-btn-h:  clamp(48px, 1.923vw + 28.31px, 56px);
   --sa-fld-h:  clamp(46px, 1.442vw + 31.23px, 52px);
   --sa-chip-h: clamp(32px, 0.962vw + 22.15px, 36px);
 
-  /* ритм */
   --sa-sec-y: clamp(48px, 7.692vw - 30.77px, 80px);
   --sa-gap-l: clamp(28px, 2.885vw -  1.54px, 40px);
   --sa-gap-m: clamp(20px, 1.923vw +  0.31px, 28px);
   --sa-gap-s: clamp(12px, 0.962vw +  2.15px, 16px);
 
-  /* движение: одна длительность на весь сайт */
   --sa-t: .18s;
   --sa-ease: cubic-bezier(.2,.6,.2,1);
 
-  /* форма */
   --sa-r-card: 22px;
   --sa-r-ctrl: 12px;
   --sa-r-pill: 999px;
 }
-/* ===== Фокус с клавиатуры ===============================================
-   Человек, который ходит по сайту клавишей Tab — а это и доступность,
-   и просто те, у кого не работает мышь, — до сих пор не видел, где
-   находится: правило не было задано ни в одном из тринадцати блоков.
-   :focus-visible, а не :focus, чтобы обводка не вспыхивала от мыши.
-   Обводка снаружи элемента, поэтому вёрстка не сдвигается. */
+
 :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
   outline:2px solid #FF4200;outline-offset:3px;border-radius:4px}
-/* На тёмном фоне оранжевый по чёрному читается плохо — там белая. */
+
 :where(.sa-hero,.sa-ag,.sa-geo,.sa-ct,.sa-hd,.sa-kc,#sa-tp-cta)
   :where(a,button,input,summary,[tabindex]):focus-visible{
   outline-color:#fff}
-/* Тильда принудительно снимает обводку на трёх элементах каталога:
-   селекте сортировки, кнопке фильтра и поле поиска. Без явного
-   возврата наше правило их не перебьёт — нашёл агент 04.10. */
+
 .t-catalog__sort-select:focus-visible,
 .t-catalog__filter__btn:focus-visible,
 .t-catalog__filter__input:focus-visible,
@@ -466,12 +636,7 @@ img.js-product-img,
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
   position:fixed;top:0;left:0;right:0;z-index:9000;background:var(--ink)}
 .sa-hd *{box-sizing:border-box;margin:0;padding:0}
-/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
-   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
-   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
-   переставал быть «колонкой на странице» и занимал почти весь экран —
-   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
-   Заказчик 04.10.2026. */
+
 .sa-hd__in{max-width:min(1240px,90vw);margin:0 auto;padding:14px 20px;height:72px;
   display:flex;align-items:center}
 .sa-hd__logo{display:block;flex:0 0 auto}
@@ -487,12 +652,7 @@ img.js-product-img,
 .sa-hd__tel svg,.sa-hd__mail svg{flex:0 0 auto;width:15px;height:15px;fill:none;
   stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .sa-hd__tel svg{stroke:#fff}
-/* Телефон в шапке был не виден, пока на него не наведёшь: у Тильды есть
-   своё правило на ссылки вида href="tel:", и по весу селектора оно
-   перебивает наш класс. Почта на mailto: под него не попадает — потому
-   и была видна. Лечится не !important, а весом: класс + атрибут + тег.
-   -webkit-text-fill-color задаём рядом: он сильнее color и в Тильде
-   встречается. Замерено на живой странице 04.10.2026: было rgb(0,0,0). */
+
 .sa-hd a[href^="tel:"],
 .sa-hd__ovc a[href^="tel:"]{color:#fff;-webkit-text-fill-color:#fff}
 .sa-hd a[href^="tel:"] svg{stroke:#fff}
@@ -502,8 +662,7 @@ img.js-product-img,
   background:none;border:0;cursor:pointer;color:#fff;text-decoration:none}
 .sa-hd__ib svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
-/* Наведение. Обязательно задавать явно: у Тильды есть глобальное
-   a:hover{color:#d93800}, и оно перебивает класс по весу селектора. */
+
 @media (hover:hover){
   .sa-hd a:hover{color:#fff}
   .sa-hd__nav a:hover{color:#fff}
@@ -514,7 +673,7 @@ img.js-product-img,
   .sa-hd__ov a:hover{color:#fff}
 }
 .sa-hd__sp{height:72px}
-/* оверлей-меню */
+
 .sa-hd__ov{position:fixed;inset:0;z-index:9001;background:#141210;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
   display:none;flex-direction:column;padding:0 20px 40px;overflow-y:auto}
@@ -536,8 +695,7 @@ img.js-product-img,
   .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}
   .sa-hd__ovnav a:hover{color:#FF4200}
 }
-/* 960–1024: пальцем по двум строкам контактов не попасть.
-   Оставляем только телефон одной строкой высотой 44. */
+
 @media (max-width:1024px){
   .sa-hd__mail{display:none}
   .sa-hd__tel{font-size:15px;min-height:44px;align-items:center}
@@ -554,7 +712,7 @@ img.js-product-img,
   .sa-hd__icons{display:flex}
   .sa-hd__sp{height:64px}
 }
-/* якоря: закреплённая шапка не должна перекрывать заголовок секции */
+
 html{scroll-behavior:smooth}
 #seeds,#service,#contacts,#geo,#docs,#results{scroll-margin-top:72px}
 @media (max-width:767px){
@@ -562,7 +720,6 @@ html{scroll-behavior:smooth}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-/* Зона нажатия. Псевдоэлемент не влияет на поток и на выравнивание. */
 .sa-hd__logo,.sa-hd__nav a,.sa-hd__tel,.sa-hd__mail{position:relative}
 .sa-hd__logo::after,.sa-hd__nav a::after{content:"";position:absolute;left:-8px;right:-8px;
   top:50%;height:44px;transform:translateY(-50%)}
@@ -572,16 +729,10 @@ html{scroll-behavior:smooth}
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
   background:#fff;padding:56px 0 0}
 .sa-ft *{box-sizing:border-box;margin:0;padding:0}
-/* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
-   и шире ничего не меняется: 90vw там больше 1240, работает потолок.
-   А на узком десктопе (ноутбук, масштаб Windows 150%) контент
-   переставал быть «колонкой на странице» и занимал почти весь экран —
-   отсюда и ощущение «всё крупное». Теперь поля растут вместе с окном.
-   Заказчик 04.10.2026. */
+
 .sa-ft__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
 .sa-ft__cols{display:grid;min-width:0;grid-template-columns:329fr 235fr 235fr 282fr;gap:40px}
-/* Логотип — ссылка на главную, то есть цель нажатия: с полями
-   по 5 px она дотягивает до 44. */
+
 .sa-ft__logo{display:inline-block;position:relative}
 .sa-ft__logo::after{content:"";position:absolute;left:0;right:0;top:50%;
   height:44px;transform:translateY(-50%)}
@@ -600,9 +751,7 @@ html{scroll-behavior:smooth}
 .sa-ft__row span{font-size:var(--sa-body);font-weight:400;line-height:1.4;color:var(--mut)}
 .sa-ft__req{font-size:var(--sa-small);font-weight:400;line-height:1.6;color:var(--mut)}
 .sa-ft__req+.sa-ft__req{margin-top:10px}
-/* На холсте «Скачать прайс» и «Скачать реквизиты» — не кнопки в рамке,
-   а обычные ссылки со значком загрузки. Рамки спорили с настоящими
-   кнопками страницы и делали подвал пёстрым. Заказчик 04.10.2026. */
+
 .sa-ft__btn{display:inline-flex;align-items:center;gap:10px;font-size:var(--sa-body);
   font-weight:700;color:var(--ink);text-decoration:none;margin-top:20px}
 .sa-ft__btn svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
@@ -620,7 +769,7 @@ html{scroll-behavior:smooth}
   .sa-ft__btn:hover{color:var(--acc)}
   .sa-ft__btn:hover svg{stroke:var(--acc)}
 }
-/* планшет 2×2 */
+
 @media (max-width:1023px){
   .sa-ft{padding-top:56px}
   .sa-ft__in{padding:0 32px}
@@ -628,7 +777,7 @@ html{scroll-behavior:smooth}
   .sa-ft__bot{display:block;padding-bottom:56px}
   .sa-ft__legal{margin-top:10px;white-space:nowrap}
 }
-/* телефон — один столбец */
+
 @media (max-width:767px){
   .sa-ft{padding-top:48px}
   .sa-ft__in{padding:0 20px}
@@ -639,7 +788,7 @@ html{scroll-behavior:smooth}
   .sa-ft__c3{margin-top:24px}
   .sa-ft__row{margin-bottom:0;min-height:44px;align-items:stretch;padding:0}
   .sa-ft__row svg{margin-top:0;align-self:center}
-  /* ссылка занимает всю строку: зона нажатия пальцем не меньше 44 */
+
   .sa-ft__row a,.sa-ft__row span{display:flex;align-items:center;min-height:44px;
     padding:6px 0;flex:1}
   .sa-ft__mhr{display:block;height:1px;background:var(--lin2);margin:20px 0}
@@ -661,26 +810,19 @@ html{scroll-behavior:smooth}
   .sa-ft__btn{display:none}
   .sa-ft__bot{display:block;margin-top:20px;padding:20px 0 32px;font-size:12px}
   .sa-ft__legal{display:block;margin-top:10px;white-space:normal}
-  /* «Согласие на обработку персональных данных» одной строкой не
-     влезает в 320 и давала странице горизонтальную прокрутку в 7 px.
-     На телефоне строка переносится. */
+
   .sa-ft__legal a{display:flex;align-items:center;min-height:44px;
     white-space:normal;overflow-wrap:anywhere}
   .sa-ft__legal i{display:none}
 }
 
-/* Зона нажатия 44px. Псевдоэлемент не влияет на поток и на подчёркивания —
-   поэтому ни один отступ и ни одна линия в вёрстке не сдвигаются. */
 .sa-ft__links a,.sa-ft__row a,.sa-ft__legal a,.sa-ft__btn{position:relative}
-/* «Скачать прайс» и «Скачать реквизиты» — ссылки высотой 19 px:
-   на холсте это строка, а не кнопка, и менять её нельзя. Зона
-   нажатия добавляется псевдоэлементом — вёрстка не сдвигается. */
+
 .sa-ft__links a::after,.sa-ft__row a::after,.sa-ft__legal a::after,
 .sa-ft__btn::after{
   content:"";position:absolute;left:0;right:0;top:50%;height:44px;
   transform:translateY(-50%)}
 
-/* Полоса заявки на страницах товаров */
 #sa-tp-cta,#sa-tp-cta *{box-sizing:border-box}
 #sa-tp-cta{background:#141210;color:#fff;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif}
@@ -709,7 +851,6 @@ html{scroll-behavior:smooth}
   #sa-tp-cta .sa-tp-cta__tel{justify-content:center}
 }
 
-/* Баннер cookie для страниц товаров */
 #sa-ck{position:fixed;right:34px;bottom:34px;z-index:9500;width:360px;max-width:calc(100vw - 40px);
   background:#1E1B18;color:#fff;border-radius:16px;padding:24px;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
@@ -732,24 +873,21 @@ html{scroll-behavior:smooth}
 </style>
 
 <script>
-/* Шапка и подвал на страницах товаров.
-   Tilda рендерит на /<страница>/tproduct/<id> только блок каталога,
-   поэтому шапку и подвал там дорисовываем сами. */
+
 (function(){
   var HD = "<div class=\"sa-hd\">\n  <div class=\"sa-hd__in\">\n    <a class=\"sa-hd__logo\" href=\"/\" aria-label=\"Сатурн — на главную\"><img src=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-logo-white.png\" alt=\"Сатурн\"></a>\n    <nav class=\"sa-hd__nav\">\n      <a href=\"/catalog\">Каталог</a>\n      <a href=\"/#seeds\">Семена</a>\n      <a href=\"/#service\">Агросопровождение</a>\n      <a href=\"/#contacts\">Контакты</a>\n    </nav>\n    <div class=\"sa-hd__right\">\n      <a class=\"sa-hd__tel\" href=\"tel:+79609534888\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5.2 2.2 6.6 5 5.3 6.3a8 8 0 0 0 4.4 4.4L11 9.4l2.8 1.4v2.4a1 1 0 0 1-1.1 1C6.9 13.8 2.2 9.1 1.7 3.3a1 1 0 0 1 1-1.1h2.5z\"/></svg>+7 (960) 953-48-88</a>\n      <a class=\"sa-hd__mail\" href=\"mailto:nilov@sssaturn.ru\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><rect x=\"1.5\" y=\"3.5\" width=\"13\" height=\"9\" rx=\"1.5\"/><path d=\"m2 4.5 6 4 6-4\"/></svg>nilov@sssaturn.ru</a>\n    </div>\n    <div class=\"sa-hd__icons\">\n      <a class=\"sa-hd__ib\" href=\"mailto:nilov@sssaturn.ru\" aria-label=\"Написать на почту\"><svg viewBox=\"0 0 24 24\"><rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"2.5\"/><path d=\"M3 7l9 6 9-6\"/></svg></a>\n      <a class=\"sa-hd__ib\" href=\"tel:+79609534888\" aria-label=\"Позвонить\"><svg viewBox=\"0 0 24 24\"><path d=\"M5 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2 2 2 0 0 1 5 3z\"/></svg></a>\n      <button class=\"sa-hd__ib\" type=\"button\" aria-label=\"Открыть меню\" onclick=\"document.getElementById('sa-hd-ov').classList.add('is-open');document.documentElement.style.overflow='hidden'\"><svg viewBox=\"0 0 24 24\"><path d=\"M3 6h18M3 12h18M3 18h18\"/></svg></button>\n    </div>\n  </div>\n</div>\n<div class=\"sa-hd__sp\"></div>\n\n<div class=\"sa-hd__ov\" id=\"sa-hd-ov\">\n  <div class=\"sa-hd__ovtop\">\n    <img src=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-logo-white.png\" alt=\"Сатурн\">\n    <button class=\"sa-hd__ib\" type=\"button\" aria-label=\"Закрыть меню\" onclick=\"document.getElementById('sa-hd-ov').classList.remove('is-open');document.documentElement.style.overflow=''\"><svg viewBox=\"0 0 24 24\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button>\n  </div>\n  <nav class=\"sa-hd__ovnav\" onclick=\"document.getElementById('sa-hd-ov').classList.remove('is-open');document.documentElement.style.overflow=''\">\n    <a href=\"/catalog\">Каталог</a>\n    <a href=\"/#seeds\">Семена</a>\n    <a href=\"/#service\">Агросопровождение</a>\n    <a href=\"/#contacts\">Контакты</a>\n  </nav>\n  <div class=\"sa-hd__ovc\">\n    <a href=\"tel:+79609534888\">+7 (960) 953-48-88</a>\n    <a class=\"sa-hd__ovm\" href=\"mailto:nilov@sssaturn.ru\">nilov@sssaturn.ru</a>\n  </div>\n</div>";
   var FT = "<div class=\"sa-ft\">\n  <div class=\"sa-ft__in\">\n    <div class=\"sa-ft__cols\">\n\n      <div class=\"sa-ft__c1\">\n        <a class=\"sa-ft__logo\" href=\"/\" aria-label=\"Сатурн — на главную\"><img src=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-logo-color.png\" alt=\"Сатурн\"></a>\n        <p class=\"sa-ft__about\">Поставщик удобрений, СЗР и семян для профессионального земледелия.</p>\n        <a class=\"sa-ft__btn\" href=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf\" target=\"_blank\" rel=\"noopener\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 3v12M7 11l5 5 5-5M4 20h16\"/></svg>Скачать прайс</a>\n      </div>\n\n      <div class=\"sa-ft__c2\">\n        <div class=\"sa-ft__h\">Разделы</div>\n        <nav class=\"sa-ft__links\">\n          <a href=\"/catalog\">Каталог</a>\n          <a href=\"/#seeds\">Семена</a>\n          <a href=\"/#service\">Агросопровождение</a>\n          <a href=\"/#contacts\">Контакты</a>\n        </nav>\n      </div>\n\n      <div class=\"sa-ft__c3\">\n        <div class=\"sa-ft__h\">Контакты</div>\n        <div class=\"sa-ft__row\"><svg viewBox=\"0 0 24 24\"><path d=\"M5 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2 2 2 0 0 1 5 3z\"/></svg><a href=\"tel:+79609534888\">+7 (960) 953-48-88</a></div>\n        <div class=\"sa-ft__row\"><svg viewBox=\"0 0 24 24\"><rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"2.5\"/><path d=\"M3 7l9 6 9-6\"/></svg><a href=\"mailto:nilov@sssaturn.ru\">nilov@sssaturn.ru</a></div>\n        <div class=\"sa-ft__row\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/></svg><span>г. Барнаул, пр. Ленина 56 / Шевченко 52А, пом. Н13</span></div>\n        <div class=\"sa-ft__row\"><svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3.5 2\"/></svg><span>Пн–Пт 9:00–18:00 · Сб–Вс выходной</span></div>\n      </div>\n\n      <div class=\"sa-ft__c4\">\n        <div class=\"sa-ft__h\">Реквизиты</div>\n        <p class=\"sa-ft__req\">ООО «Сатурн» · ИНН 2801274078 · КПП 222501001 · ОГРН 1232800002709</p>\n        <p class=\"sa-ft__req\">Юр. адрес: 656056, Алтайский край, г. Барнаул, пл. им. В.Н. Баварина, д. 2, пом./офис Н58/11/09</p>\n        <a class=\"sa-ft__btn\" href=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-rekvizity.pdf\" target=\"_blank\" rel=\"noopener\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 3v12M7 11l5 5 5-5M4 20h16\"/></svg>Скачать реквизиты</a>\n      </div>\n\n    </div>\n\n    <div class=\"sa-ft__mhr\"></div>\n    <nav class=\"sa-ft__mnav\">\n      <a href=\"/catalog\">Каталог</a>\n      <a href=\"/#seeds\">Семена</a>\n      <a href=\"/#service\">Агросопровождение</a>\n      <a href=\"/#contacts\">Контакты</a>\n      <details><summary>Реквизиты <i>▾</i></summary>\n        <p>ООО «Сатурн» · ИНН 2801274078 · КПП 222501001 · ОГРН 1232800002709<br>Юр. адрес: 656056, Алтайский край, г. Барнаул, пл. им. В.Н. Баварина, д. 2, пом./офис Н58/11/09</p>\n      </details>\n    </nav>\n    <div class=\"sa-ft__mbtns\">\n      <a href=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf\" target=\"_blank\" rel=\"noopener\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 3v12M7 11l5 5 5-5M4 20h16\"/></svg>Скачать прайс</a>\n      <a href=\"https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-rekvizity.pdf\" target=\"_blank\" rel=\"noopener\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 3v12M7 11l5 5 5-5M4 20h16\"/></svg>Скачать реквизиты</a>\n    </div>\n\n    <div class=\"sa-ft__bot\">\n      <div>© 2026 ООО «Сатурн». Все права защищены.</div>\n      <div class=\"sa-ft__legal\">\n        <a href=\"/privacy\">Политика обработки персональных данных</a><i>·</i>\n        <a href=\"/consent\">Согласие на обработку персональных данных</a>\n      </div>\n    </div>\n\n  </div>\n</div>";
   function onProductPage(){ return /\/tproduct\//.test(location.pathname); }
   function draw(){
-    if(!document.body) return;            /* скрипт стоит в <head>: body ещё нет */
+    if(!document.body) return;
     if(!onProductPage()) return;
-    if(document.querySelector('.sa-hd')) return;      /* шапка блоком уже есть */
+    if(document.querySelector('.sa-hd')) return;
     if(document.getElementById('sa-tp-chrome')) return;
     var top = document.createElement('div');
     top.id = 'sa-tp-chrome';
     top.innerHTML = HD;
     document.body.insertBefore(top, document.body.firstChild);
-    /* полоса заявки: на странице товара своей кнопки у Tilda нет,
-       а именно сюда приходят из поиска и по пересланным ссылкам */
+
     var cta = document.createElement('div');
     cta.id = 'sa-tp-cta';
     cta.innerHTML =
@@ -762,25 +900,9 @@ html{scroll-behavior:smooth}
       '</div></div>';
     document.body.appendChild(cta);
 
-    /* Значок «Made on Tilda» стоит сразу после карточки товара, и если
-       просто дописать подвал в конец body, значок окажется в середине
-       страницы. Поэтому не двигаем его, а ставим свои блоки ПЕРЕД ним:
-       значок остаётся последним, как и задумано платформой.
-
-       Раньше здесь было document.body.appendChild(cp), то есть значок
-       переносился вниз. Tilda это ломает намеренно: после сохранения
-       кода она заменяет в слове tildacopy латинскую «o» на кириллическую,
-       и обращение перестаёт находить элемент (проверено агентом дважды
-       03.10.2026). Обходить защиту мы не будем — лейбл убирается
-       легально, годовым тарифом. Текущий способ в защиту не упирается:
-       мы не трогаем чужой элемент, а расставляем свои. */
     var cp = document.getElementById('tildacopy');
     if (!cp) {
-      /* Запасной способ найти значок: Tilda портит именно это слово в
-         коде, поэтому обращение по id после сохранения может не
-         сработать. Значок — единственная ссылка на tilda.cc в body.
-         Ищем её только чтобы понять, куда поставить СВОИ блоки.
-         Сам значок не трогаем, не прячем и не переносим. */
+
       var a = document.querySelector('body a[href*="tilda.cc"]');
       cp = a ? a.closest('div') || a : null;
     }
@@ -794,11 +916,9 @@ html{scroll-behavior:smooth}
       document.body.appendChild(bot);
     }
   }
-  /* Баннер cookie на страницах товаров: блока T972 там нет,
-     поэтому показываем свой. Пишет те же cookie, что и Tilda,
-     поэтому выбор, сделанный здесь, виден и на остальных страницах. */
+
   function ck(n){
-    /* без регулярного выражения: в строковом литерале JS «\s» схлопывается в «s» */
+
     var parts = document.cookie.split(';');
     for (var i = 0; i < parts.length; i++) {
       var t = parts[i].replace(/^ +/, '');
@@ -810,11 +930,7 @@ html{scroll-behavior:smooth}
     var d = new Date(); d.setTime(d.getTime() + 365*24*60*60*1000);
     document.cookie = n + '=' + v + ';expires=' + d.toUTCString() + ';path=/';
   }
-  /* Штатный баннер cookie Тильды переведён не до конца: в окне
-     настроек у переключателя категории «Аналитические» подпись
-     «Disabled» по-английски, у «Обязательных» пустая. Нашёл агент
-     04.10. Правим текст на месте — окно настроек рисуется по щелчку,
-     поэтому смотрим за разметкой, а не правим один раз при загрузке. */
+
   function perevodCookie(){
     var SLOVA = {'Disabled':'Выключено', 'Enabled':'Включено',
                  'Settings':'Настройки', 'Accept all':'Принять все',
@@ -830,7 +946,7 @@ html{scroll-behavior:smooth}
   function cookieBanner(){
     if(!document.body) return;
     if(!onProductPage()) return;
-    if(document.querySelector('.t972')) return;          /* штатный баннер есть */
+    if(document.querySelector('.t972')) return;
     if(document.getElementById('sa-ck')) return;
     if(ck('t_cookiesConsentGiven') || ck('t_cookiesRejectAll')) return;
     var b = document.createElement('div');
@@ -858,15 +974,14 @@ html{scroll-behavior:smooth}
   vse();
   document.addEventListener('DOMContentLoaded', vse);
   window.addEventListener('load', vse);
-  /* Окно настроек cookie рисуется по щелчку, поэтому перевод вешаем
-     и на наблюдателя: иначе «Disabled» успеет мелькнуть. */
+
   if (window.MutationObserver) {
     new MutationObserver(function(){
       clearTimeout(window.__saCkT);
       window.__saCkT = setTimeout(perevodCookie, 120);
     }).observe(document.documentElement, {childList:true, subtree:true});
   }
-  /* каталог меняет адрес без перезагрузки — следим за переходами */
+
   setInterval(function(){
     if(!onProductPage()){
       var c = document.getElementById('sa-tp-chrome');

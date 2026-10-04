@@ -109,16 +109,10 @@ img.js-product-img,
   [id^="parts-above-id-"] [class*="card"]{min-height:0 !important}
 }
 
-/* 11. Страница товара по прямому адресу /tproduct/: у Тильды описание
-       уходит под фотографию, и правая половина экрана остаётся пустой. */
-@media screen and (min-width:960px){
-  .t-catalog__product-snippet .t-container > div{
-    display:flex;align-items:flex-start;gap:40px}
-  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{
-    flex:0 0 auto;width:46%;max-width:520px;margin:0}
-  .t-catalog__product-snippet .t-catalog__prod-popup__col-right{
-    flex:1 1 auto;max-width:none;width:auto;margin:0;padding-top:0}
-}
+/* 11. Страница товара /tproduct/ целиком переехала в tovar-fix.html:
+       там не только две колонки, но и плашка раздела, таблица
+       характеристик, цена и кнопки по холсту holst-tovar.png.
+       Здесь правило убрано, чтобы два места не спорили за одну сетку. */
 
 /* 12. Разделы в боковой панели краснели при наведении. Глобальное
        правило Тильды оказалось не просто a:hover, а списком селекторов
