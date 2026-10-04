@@ -345,6 +345,9 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
   .t-catalog__prod-popup__col-left{display:none !important}
 
 @media screen and (min-width:960px){
+
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{
+    position:sticky;top:104px}
   .t-catalog__product-snippet .t-container > div{
     display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
     align-items:start;column-gap:clamp(28px,3vw,44px);row-gap:0}
@@ -379,9 +382,10 @@ h1.t-catalog__prod-popup__name{
   font-size:var(--sa-body) !important;color:#6B655E !important;
   margin-top:8px !important}
 .t-catalog__prod-popup__brand:empty{display:none}
-.t-catalog__prod-popup__sku{
-  font-size:var(--sa-small) !important;color:#8A837B !important;
-  margin-top:10px !important}
+
+.t-catalog__prod-popup__sku{display:none !important}
+
+.sa-tp--brand-v-nazvanii .t-catalog__prod-popup__brand{display:none !important}
 
 .js-catalog-prod-text{
   font-size:var(--sa-body) !important;line-height:1.55 !important;
@@ -548,7 +552,7 @@ h1.t-catalog__prod-popup__name{
     el.parentNode.insertBefore(box, el.nextSibling);
 
     var ostatok = (m[4] || '').trim().replace(/[.\s]+$/, '');
-    var nizh = ostatok ? (uslovie ? ostatok + '. ' + uslovie : ostatok) : uslovie;
+    var nizh = ostatok;
     if(nizh){
       var n = document.createElement('div');
       n.className = 'sa-tp__note';
@@ -558,12 +562,29 @@ h1.t-catalog__prod-popup__name{
     root.classList.add('sa-tp--own-price');
   }
 
+  var TRANSLIT = {'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'e',
+    'ж':'zh','з':'z','и':'i','й':'i','к':'k','л':'l','м':'m','н':'n',
+    'о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h',
+    'ц':'c','ч':'ch','ш':'sh','щ':'sh','ъ':'','ы':'y','ь':'','э':'e',
+    'ю':'yu','я':'ya'};
+  function ravno(t){
+    return (t || '').toLowerCase().replace(/[^a-zа-яё0-9]+/g, '')
+      .replace(/[а-яё]/g, function(c){ return TRANSLIT[c] !== undefined ? TRANSLIT[c] : c; });
+  }
+
   function dorisovat(){
     if(!naTovare() || !document.body) return;
     var root = document.querySelector('.t-catalog__product-snippet');
     if(!root) return;
 
     tablica(root);
+
+    var brend = root.querySelector('.t-catalog__prod-popup__brand');
+    var imya  = root.querySelector('.t-catalog__prod-popup__name');
+    if(brend && imya && !root.classList.contains('sa-tp--brand-v-nazvanii')){
+      var b = ravno(brend.textContent), n = ravno(imya.textContent);
+      if(b && n.indexOf(b) >= 0) root.classList.add('sa-tp--brand-v-nazvanii');
+    }
 
     var tw = root.querySelector('.t-catalog__prod-popup__title-wrapper');
     if(tw && !tw.querySelector('.sa-tp__cat')){

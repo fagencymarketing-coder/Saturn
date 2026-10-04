@@ -88,6 +88,12 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
   .t-catalog__prod-popup__col-left{display:none !important}
 
 @media screen and (min-width:960px){
+  /* Описание и характеристики длиннее фотографии, и под снимком
+     оставалась пустая половина карточки высотой с экран. Колонка со
+     снимком едет вместе с прокруткой: фотография остаётся перед
+     глазами, пока читают состав и нормы, а пустоты нет. */
+  .t-catalog__product-snippet .t-catalog__prod-popup__col-left{
+    position:sticky;top:104px}
   .t-catalog__product-snippet .t-container > div{
     display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
     align-items:start;column-gap:clamp(28px,3vw,44px);row-gap:0}
@@ -128,9 +134,15 @@ h1.t-catalog__prod-popup__name{
   font-size:var(--sa-body) !important;color:#6B655E !important;
   margin-top:8px !important}
 .t-catalog__prod-popup__brand:empty{display:none}
-.t-catalog__prod-popup__sku{
-  font-size:var(--sa-small) !important;color:#8A837B !important;
-  margin-top:10px !important}
+/* Артикул убран по решению заказчицы 04.10: покупателю он ничего не
+   говорит, а строка «fertika-listovoe-18-18-18» под названием
+   выглядит как служебная запись. В разметке он остаётся — поисковики
+   читают его из itemprop="sku". */
+.t-catalog__prod-popup__sku{display:none !important}
+/* Производитель прячется, только если он уже стоит в названии:
+   у «FERTIKA Листовое» строка «Фертика» — повтор, а у «Микромака»
+   «Волски Биохим» единственное упоминание, и его надо оставить. */
+.sa-tp--brand-v-nazvanii .t-catalog__prod-popup__brand{display:none !important}
 
 /* 7. Описание. Длина строки ограничена: на широком мониторе правая
       колонка — это 700 px, и строка в 120 знаков читается плохо. */
@@ -357,8 +369,13 @@ h1.t-catalog__prod-popup__name{
     box.appendChild(num); box.appendChild(ed);
     el.parentNode.insertBefore(box, el.nextSibling);
 
+    /* Условие продажи («При 100% предоплате…») заказчица 04.10 просила
+       с карточки убрать: оно одинаково у всех позиций и в карточке
+       товара только шумит. Уточнение к цене — «(рассрочка 735 ₽/л)»,
+       «(МКР) · 54 ₽/кг» — оставляем: оно у каждой позиции своё и
+       относится к самой цене. */
     var ostatok = (m[4] || '').trim().replace(/[.\s]+$/, '');
-    var nizh = ostatok ? (uslovie ? ostatok + '. ' + uslovie : ostatok) : uslovie;
+    var nizh = ostatok;
     if(nizh){
       var n = document.createElement('div');
       n.className = 'sa-tp__note';
@@ -368,12 +385,36 @@ h1.t-catalog__prod-popup__name{
     root.classList.add('sa-tp--own-price');
   }
 
+  /* Кириллица → латиница по звучанию, а не по начертанию: «Фертика»
+     и «FERTIKA» — одно слово в двух алфавитах, и сравнить их можно
+     только так. Первая версия подставляла похожие по виду буквы
+     («р» → «p»), и «фертика» превращалась в «feptuka» — не совпало. */
+  var TRANSLIT = {'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'e',
+    'ж':'zh','з':'z','и':'i','й':'i','к':'k','л':'l','м':'m','н':'n',
+    'о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h',
+    'ц':'c','ч':'ch','ш':'sh','щ':'sh','ъ':'','ы':'y','ь':'','э':'e',
+    'ю':'yu','я':'ya'};
+  function ravno(t){
+    return (t || '').toLowerCase().replace(/[^a-zа-яё0-9]+/g, '')
+      .replace(/[а-яё]/g, function(c){ return TRANSLIT[c] !== undefined ? TRANSLIT[c] : c; });
+  }
+
   function dorisovat(){
     if(!naTovare() || !document.body) return;
     var root = document.querySelector('.t-catalog__product-snippet');
     if(!root) return;
 
     tablica(root);
+
+    /* Повтор производителя в названии. Сравниваем, приведя кириллицу к
+       латинским двойникам: «Фертика» и «FERTIKA» — одно слово,
+       написанное разными алфавитами, и простое сравнение их не ловит. */
+    var brend = root.querySelector('.t-catalog__prod-popup__brand');
+    var imya  = root.querySelector('.t-catalog__prod-popup__name');
+    if(brend && imya && !root.classList.contains('sa-tp--brand-v-nazvanii')){
+      var b = ravno(brend.textContent), n = ravno(imya.textContent);
+      if(b && n.indexOf(b) >= 0) root.classList.add('sa-tp--brand-v-nazvanii');
+    }
 
     var tw = root.querySelector('.t-catalog__prod-popup__title-wrapper');
     if(tw && !tw.querySelector('.sa-tp__cat')){
