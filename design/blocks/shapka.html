@@ -51,7 +51,11 @@
      Это единственный отзывчивый цвет на сайте. */
   .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}
   .sa-hd__tel:hover svg,.sa-hd__mail:hover svg{stroke:var(--acc)}
-  .sa-hd a[href^="tel:"]:hover{color:#fff;-webkit-text-fill-color:#fff}
+  /* Это правило ставилось, чтобы Тильда не красила телефон в
+     красный при наведении. Но оно же гасило и наш собственный
+     отклик: у него выше вес, чем у .sa-hd__tel:hover, и телефон
+     оставался белым, пока почта светлела. Теперь отклик задаёт
+     только наше правило выше, оранжевым. */
   .sa-hd__ov a:hover{color:#fff}
 }
 .sa-hd__sp{height:72px}
@@ -96,7 +100,14 @@
   .sa-hd__sp{height:64px}
 }
 /* якоря: закреплённая шапка не должна перекрывать заголовок секции */
-html{scroll-behavior:smooth}
+/* 04.10, замер агента: плавная прокрутка не доезжала. Переход к
+   «Контактам» останавливался на «Популярных позициях» — до цели
+   оставалось 5 674 px. Причина не в адресе: пока идёт анимация,
+   страница подрастает от догружающихся картинок, и браузер обрывает
+   её на полпути. С мгновенным переходом блок встаёт ровно в 72 px
+   под шапкой — проверено на живом сайте. Плавность стоила нам
+   работающей кнопки заявки, поэтому её снимаем. */
+html{scroll-behavior:auto}
 #seeds,#service,#contacts,#geo,#docs,#results{scroll-margin-top:72px}
 @media (max-width:767px){
   #seeds,#service,#contacts,#geo,#docs,#results{scroll-margin-top:64px}
@@ -113,7 +124,7 @@ html{scroll-behavior:smooth}
 
 <div class="sa-hd">
   <div class="sa-hd__in">
-    <a class="sa-hd__logo" href="/" aria-label="Сатурн — на главную"><img src="https://static.tildacdn.com/tild6233-3132-4339-b431-333131313764/saturn-logo-white.png" alt="Сатурн"></a>
+    <a class="sa-hd__logo" href="/home" aria-label="Сатурн — на главную"><img src="https://static.tildacdn.com/tild6233-3132-4339-b431-333131313764/saturn-logo-white.png" alt="Сатурн"></a>
     <nav class="sa-hd__nav">
       <a href="/catalog">Каталог</a>
       <a href="/home#seeds">Семена</a>
