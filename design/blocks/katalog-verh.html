@@ -16,7 +16,7 @@
 /* Свои хлебные крошки: штатные у Тильды лежат внутри блока каталога,
    то есть ниже этого блока, и там им не место. Кегль 13 против 40 у
    заголовка — крошки служебные и спорить с ним не должны. */
-.sa-kv__crumbs{display:flex;align-items:center;gap:8px;font-size:13px;
+.sa-kv__crumbs{display:flex;align-items:center;gap:8px;font-size:var(--sa-small);
   line-height:18px;color:#8A837C;margin-bottom:12px}
 .sa-kv__crumbs a{color:#8A837C;text-decoration:none}
 .sa-kv__crumbs b{font-weight:400;color:#B5B0AA}
@@ -48,7 +48,8 @@
   border-radius:999px;border:1px solid var(--line);background:transparent;
   font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);
   text-decoration:none;cursor:pointer;white-space:nowrap;
-  transition:background .15s ease,border-color .15s ease,color .15s ease}
+  transition:background var(--sa-t) var(--sa-ease),
+    border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease)}
 @media (hover:hover){.sa-kv__chip:hover{border-color:var(--ink);color:var(--ink)}}
 .sa-kv__chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 

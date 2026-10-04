@@ -262,7 +262,7 @@ img.js-product-img,
 .t-catalog__parts-sidebar-item a,
 .t-catalog__parts-sidebar__list a{
   color:#141210;
-  transition:box-shadow .15s ease}
+  transition:box-shadow var(--sa-t) var(--sa-ease)}
 .t-catalog__parts-sidebar-item:hover,
 .t-catalog__parts-sidebar-item a:hover,
 .t-catalog__parts-sidebar__list a:hover,
@@ -397,11 +397,28 @@ img.js-product-img,
   --sa-gap-m: clamp(20px, 1.923vw +  0.31px, 28px);
   --sa-gap-s: clamp(12px, 0.962vw +  2.15px, 16px);
 
+  /* движение: одна длительность на весь сайт */
+  --sa-t: .18s;
+  --sa-ease: cubic-bezier(.2,.6,.2,1);
+
   /* форма */
   --sa-r-card: 22px;
   --sa-r-ctrl: 12px;
   --sa-r-pill: 999px;
 }
+/* ===== Фокус с клавиатуры ===============================================
+   Человек, который ходит по сайту клавишей Tab — а это и доступность,
+   и просто те, у кого не работает мышь, — до сих пор не видел, где
+   находится: правило не было задано ни в одном из тринадцати блоков.
+   :focus-visible, а не :focus, чтобы обводка не вспыхивала от мыши.
+   Обводка снаружи элемента, поэтому вёрстка не сдвигается. */
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
+  outline:2px solid #FF4200;outline-offset:3px;border-radius:4px}
+/* На тёмном фоне оранжевый по чёрному читается плохо — там белая. */
+:where(.sa-hero,.sa-ag,.sa-geo,.sa-ct,.sa-hd,.sa-kc,#sa-tp-cta)
+  :where(a,button,input,summary,[tabindex]):focus-visible{
+  outline-color:#fff}
+
 .sa-hd{--ink:#141210;--acc:#FF4200;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
   position:fixed;top:0;left:0;right:0;z-index:9000;background:var(--ink)}
@@ -411,13 +428,13 @@ img.js-product-img,
 .sa-hd__logo{display:block;flex:0 0 auto}
 .sa-hd__logo img{display:block;width:103px;height:36px;object-fit:contain}
 .sa-hd__nav{display:flex;align-items:center;gap:32px;margin-left:48px}
-.sa-hd__nav a{font-size:15px;font-weight:600;color:#B5B0AA;
+.sa-hd__nav a{font-size:var(--sa-body);font-weight:600;color:#B5B0AA;
   text-decoration:none;white-space:nowrap}
 .sa-hd__right{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
 .sa-hd__tel,.sa-hd__mail{display:inline-flex;align-items:center;gap:8px;
   text-decoration:none;white-space:nowrap}
-.sa-hd__tel{font-size:16px;font-weight:700;color:#fff;line-height:20px}
-.sa-hd__mail{font-size:13px;font-weight:500;color:#B5B0AA;line-height:16px}
+.sa-hd__tel{font-size:var(--sa-lead);font-weight:700;color:#fff;line-height:1.25}
+.sa-hd__mail{font-size:var(--sa-small);font-weight:400;color:#B5B0AA;line-height:1.25}
 .sa-hd__tel svg,.sa-hd__mail svg{flex:0 0 auto;width:15px;height:15px;fill:none;
   stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .sa-hd__tel svg{stroke:#fff}
@@ -463,8 +480,8 @@ img.js-product-img,
   padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12)}
 .sa-hd__ovc{margin-top:32px;display:flex;flex-direction:column;gap:4px}
 .sa-hd__ovc a{color:#fff;text-decoration:none;min-height:44px;display:flex;
-  align-items:center;font-size:17px;font-weight:700}
-.sa-hd__ovc a.sa-hd__ovm{font-size:15px;font-weight:500;color:#B5B0AA}
+  align-items:center;font-size:var(--sa-h3);font-weight:700}
+.sa-hd__ovc a.sa-hd__ovm{font-size:var(--sa-body);font-weight:400;color:#B5B0AA}
 @media (hover:hover){
   .sa-hd__nav a:hover{color:#fff}
   .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}
@@ -509,24 +526,24 @@ html{scroll-behavior:smooth}
 .sa-ft__in{max-width:1240px;margin:0 auto;padding:0 20px}
 .sa-ft__cols{display:grid;min-width:0;grid-template-columns:329fr 235fr 235fr 282fr;gap:40px}
 .sa-ft__logo img{display:block;width:98px;height:34px;object-fit:contain}
-.sa-ft__about{font-size:14px;font-weight:400;line-height:22.4px;color:var(--mut);
+.sa-ft__about{font-size:var(--sa-small);font-weight:400;line-height:1.6;color:var(--mut);
   max-width:240px;margin-top:16px}
-.sa-ft__h{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+.sa-ft__h{font-size:var(--sa-small);font-weight:700;text-transform:uppercase;letter-spacing:.04em;
   margin-bottom:12px}
 .sa-ft__links{display:flex;flex-direction:column}
-.sa-ft__links a{font-size:15px;font-weight:400;line-height:21px;color:var(--mut);
+.sa-ft__links a{font-size:var(--sa-body);font-weight:400;line-height:1.4;color:var(--mut);
   text-decoration:none;padding:6px 0}
 .sa-ft__row{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px}
 .sa-ft__row svg{flex:0 0 16px;width:16px;height:16px;margin-top:4px;stroke:var(--acc);
   fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.sa-ft__row a{font-size:15px;font-weight:600;color:var(--ink);text-decoration:none}
-.sa-ft__row span{font-size:15px;font-weight:400;line-height:21px;color:var(--mut)}
-.sa-ft__req{font-size:14px;font-weight:400;line-height:22.4px;color:var(--mut)}
+.sa-ft__row a{font-size:var(--sa-body);font-weight:600;color:var(--ink);text-decoration:none}
+.sa-ft__row span{font-size:var(--sa-body);font-weight:400;line-height:1.4;color:var(--mut)}
+.sa-ft__req{font-size:var(--sa-small);font-weight:400;line-height:1.6;color:var(--mut)}
 .sa-ft__req+.sa-ft__req{margin-top:10px}
 /* На холсте «Скачать прайс» и «Скачать реквизиты» — не кнопки в рамке,
    а обычные ссылки со значком загрузки. Рамки спорили с настоящими
    кнопками страницы и делали подвал пёстрым. Заказчик 04.10.2026. */
-.sa-ft__btn{display:inline-flex;align-items:center;gap:10px;font-size:15px;
+.sa-ft__btn{display:inline-flex;align-items:center;gap:10px;font-size:var(--sa-body);
   font-weight:700;color:var(--ink);text-decoration:none;margin-top:20px}
 .sa-ft__btn svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}

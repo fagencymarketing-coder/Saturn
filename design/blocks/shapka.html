@@ -9,13 +9,13 @@
 .sa-hd__logo{display:block;flex:0 0 auto}
 .sa-hd__logo img{display:block;width:103px;height:36px;object-fit:contain}
 .sa-hd__nav{display:flex;align-items:center;gap:32px;margin-left:48px}
-.sa-hd__nav a{font-size:15px;font-weight:600;color:#B5B0AA;
+.sa-hd__nav a{font-size:var(--sa-body);font-weight:600;color:#B5B0AA;
   text-decoration:none;white-space:nowrap}
 .sa-hd__right{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
 .sa-hd__tel,.sa-hd__mail{display:inline-flex;align-items:center;gap:8px;
   text-decoration:none;white-space:nowrap}
-.sa-hd__tel{font-size:16px;font-weight:700;color:#fff;line-height:20px}
-.sa-hd__mail{font-size:13px;font-weight:500;color:#B5B0AA;line-height:16px}
+.sa-hd__tel{font-size:var(--sa-lead);font-weight:700;color:#fff;line-height:1.25}
+.sa-hd__mail{font-size:var(--sa-small);font-weight:400;color:#B5B0AA;line-height:1.25}
 .sa-hd__tel svg,.sa-hd__mail svg{flex:0 0 auto;width:15px;height:15px;fill:none;
   stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .sa-hd__tel svg{stroke:#fff}
@@ -61,8 +61,8 @@
   padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12)}
 .sa-hd__ovc{margin-top:32px;display:flex;flex-direction:column;gap:4px}
 .sa-hd__ovc a{color:#fff;text-decoration:none;min-height:44px;display:flex;
-  align-items:center;font-size:17px;font-weight:700}
-.sa-hd__ovc a.sa-hd__ovm{font-size:15px;font-weight:500;color:#B5B0AA}
+  align-items:center;font-size:var(--sa-h3);font-weight:700}
+.sa-hd__ovc a.sa-hd__ovm{font-size:var(--sa-body);font-weight:400;color:#B5B0AA}
 @media (hover:hover){
   .sa-hd__nav a:hover{color:#fff}
   .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}

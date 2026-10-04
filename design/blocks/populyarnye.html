@@ -10,7 +10,7 @@
 .sa-pop *{box-sizing:border-box;margin:0;padding:0}
 .sa-pop__in{max-width:1240px;margin:0 auto;padding:0 20px}
 .sa-pop__top{display:flex;align-items:flex-start;gap:24px}
-.sa-pop__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.08em;
+.sa-pop__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--mut);line-height:1}
 /* оранжевая риска перед надзаголовком — есть на утверждённом холсте
    у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
@@ -20,7 +20,8 @@
 .sa-pop__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh)5;margin-top:16px;letter-spacing:-.01em}
 .sa-pop__acts{margin-left:auto;display:flex;gap:12px;flex:0 0 auto;padding-top:22px}
 .sa-pop__a1,.sa-pop__a2{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  height:52px;padding:0 22px;border-radius:12px;text-decoration:none;font-size:15px;
+  height:var(--sa-btn-h);padding:0 22px;border-radius:var(--sa-r-ctrl);
+  text-decoration:none;font-size:var(--sa-body);
   white-space:nowrap}
 .sa-pop__a1{background:var(--ink);color:#fff;font-weight:600}
 .sa-pop__a2{background:#fff;color:var(--ink);font-weight:700}
@@ -51,27 +52,31 @@
 .sa-pop__cta{display:flex;justify-content:center;margin-top:52px}
 .sa-pop__cta a{display:inline-flex;align-items:center;justify-content:center;
   min-width:274px;height:52px;padding:0 24px;border-radius:12px;background:#D93800;
-  color:#fff;text-decoration:none;font-size:16px;font-weight:700}
-.sa-pop__card{display:flex;flex-direction:column;background:#fff;border-radius:22px;
+  color:#fff;text-decoration:none;font-size:var(--sa-lead);font-weight:700}
+.sa-pop__card{display:flex;flex-direction:column;background:#fff;
+  border-radius:var(--sa-r-card);transition:transform var(--sa-t) var(--sa-ease),
+    box-shadow var(--sa-t) var(--sa-ease),border-color var(--sa-t) var(--sa-ease),
+    color var(--sa-t) var(--sa-ease);
   padding:16px;text-decoration:none;color:inherit}
 .sa-pop__ph{position:relative;background:var(--tile);border-radius:12px;aspect-ratio:355/266}
 .sa-pop__ph img{position:absolute;inset:18px;width:calc(100% - 36px);height:calc(100% - 36px);
   object-fit:contain;display:block}
 .sa-pop__body{padding:20px 6px 6px;display:flex;flex-direction:column;gap:8px;flex:1}
-.sa-pop__name{font-size:18px;font-weight:700;line-height:22.5px;
+.sa-pop__name{font-size:var(--sa-h3);font-weight:700;line-height:1.25;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.sa-pop__sig{font-size:13px;font-weight:500;line-height:18.2px;color:var(--mut);
+.sa-pop__sig{font-size:var(--sa-small);font-weight:400;line-height:1.4;color:var(--mut);
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .sa-pop__price{display:flex;align-items:baseline;gap:4px;margin-top:auto;padding-top:4px}
-.sa-pop__price i{font-style:normal;font-size:14px;font-weight:400;color:var(--mut)}
-.sa-pop__price b{font-size:24px;font-weight:700;line-height:1}
-.sa-pop__price_ask{font-size:14px;font-weight:400;color:var(--mut)}
+.sa-pop__price i{font-style:normal;font-size:var(--sa-small);font-weight:400;color:var(--mut)}
+.sa-pop__price b{font-size:22px;font-weight:700;line-height:1}
+.sa-pop__price_ask{font-size:var(--sa-small);font-weight:400;color:var(--mut)}
 @media (hover:hover){
   .sa-pop__a1:hover{background:#2a2622}
   .sa-pop__a2:hover{background:#F0EDE9}
   .sa-pop__cta a:hover{background:#C23100}
   .sa-pop__chip:hover{border-color:var(--ink)}
   .sa-pop__chip_on:hover{background:#2a2622}
+  .sa-pop__card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,18,16,.08)}
   .sa-pop__card:hover .sa-pop__name{color:var(--acc)}
 }
 /* планшет */
@@ -142,9 +147,9 @@
     <div class="sa-pop__band">
 
     <div class="sa-pop__logos">
-      <img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/fertika.png" alt="Fertika">
-      <img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/volsky.png" alt="Волски Биохим">
-      <img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/relict-organics.png" alt="Реликт">
+      <img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/fertika.png" alt="Fertika" loading="lazy" decoding="async">
+      <img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/volsky.png" alt="Волски Биохим" loading="lazy" decoding="async">
+      <img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/relict-organics.png" alt="Реликт" loading="lazy" decoding="async">
     </div>
 
     <div class="sa-pop__chips">
@@ -162,7 +167,7 @@
     <div class="sa-pop__grid">
 
       <a class="sa-pop__card" href="/catalog/tproduct/382077388723-fertika-listovoe-18-18-18" data-sku="fertika-listovoe-18-18-18">
-        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/fertika-listovoe-18-18-18.png" alt="FERTIKA Листовое 18-18-18"></div>
+        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/fertika-listovoe-18-18-18.png" alt="FERTIKA Листовое 18-18-18" loading="lazy" decoding="async"></div>
         <div class="sa-pop__body">
           <div class="sa-pop__name">FERTIKA Листовое 18-18-18</div>
           <div class="sa-pop__sig">Фертика · удобрения</div>
@@ -171,7 +176,7 @@
       </a>
 
       <a class="sa-pop__card" href="/catalog/tproduct/270536558683-strada-n" data-sku="strada-n">
-        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/strada-n.png" alt="Страда N"></div>
+        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/strada-n.png" alt="Страда N" loading="lazy" decoding="async"></div>
         <div class="sa-pop__body">
           <div class="sa-pop__name">Страда N</div>
           <div class="sa-pop__sig">Волски Биохим · листовые подкормки</div>
@@ -180,7 +185,7 @@
       </a>
 
       <a class="sa-pop__card" href="/catalog/tproduct/544267401313-ampir-ekstra-vr" data-sku="ampir-ekstra-vr">
-        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/ampir-ekstra-vr.png" alt="Ампир Экстра, ВР"></div>
+        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/ampir-ekstra-vr.png" alt="Ампир Экстра, ВР" loading="lazy" decoding="async"></div>
         <div class="sa-pop__body">
           <div class="sa-pop__name">Ампир Экстра, ВР</div>
           <div class="sa-pop__sig">Глифосат (калийная соль) 540 г/л</div>
@@ -189,7 +194,7 @@
       </a>
 
       <a class="sa-pop__card" href="/catalog/tproduct/149195796403-chellendzher-vrk" data-sku="chellendzher-vrk">
-        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/chellendzher-vrk.png" alt="Челленджер, ВРК"></div>
+        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/chellendzher-vrk.png" alt="Челленджер, ВРК" loading="lazy" decoding="async"></div>
         <div class="sa-pop__body">
           <div class="sa-pop__name">Челленджер, ВРК</div>
           <div class="sa-pop__sig">Имазамокс 33 г/л + имазапир 15 г/л</div>
@@ -198,7 +203,7 @@
       </a>
 
       <a class="sa-pop__card" href="/catalog/tproduct/591143215253-kvs-akvilon" data-sku="kvs-akvilon">
-        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/kvs-akvilon.jpg" alt="КВС Аквилон"></div>
+        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/kvs-akvilon.jpg" alt="КВС Аквилон" loading="lazy" decoding="async"></div>
         <div class="sa-pop__body">
           <div class="sa-pop__name">КВС Аквилон</div>
           <div class="sa-pop__sig">Пшеница яровая · РС 1</div>
@@ -207,7 +212,7 @@
       </a>
 
       <a class="sa-pop__card" href="/catalog/tproduct/135486451973-ampir-10-express" data-sku="ampir-10-express">
-        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/ampir-10-express.jpg" alt="Ampir 10 Express"></div>
+        <div class="sa-pop__ph"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/ampir-10-express.jpg" alt="Ampir 10 Express" loading="lazy" decoding="async"></div>
         <div class="sa-pop__body">
           <div class="sa-pop__name">Ampir 10 Express</div>
           <div class="sa-pop__sig">Подсолнечник · гибрид F1</div>

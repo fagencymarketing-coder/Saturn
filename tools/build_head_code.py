@@ -80,11 +80,28 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
   --sa-gap-m: clamp(20px, 1.923vw +  0.31px, 28px);
   --sa-gap-s: clamp(12px, 0.962vw +  2.15px, 16px);
 
+  /* движение: одна длительность на весь сайт */
+  --sa-t: .18s;
+  --sa-ease: cubic-bezier(.2,.6,.2,1);
+
   /* форма */
   --sa-r-card: 22px;
   --sa-r-ctrl: 12px;
   --sa-r-pill: 999px;
 }}
+/* ===== Фокус с клавиатуры ===============================================
+   Человек, который ходит по сайту клавишей Tab — а это и доступность,
+   и просто те, у кого не работает мышь, — до сих пор не видел, где
+   находится: правило не было задано ни в одном из тринадцати блоков.
+   :focus-visible, а не :focus, чтобы обводка не вспыхивала от мыши.
+   Обводка снаружи элемента, поэтому вёрстка не сдвигается. */
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{{
+  outline:2px solid #FF4200;outline-offset:3px;border-radius:4px}}
+/* На тёмном фоне оранжевый по чёрному читается плохо — там белая. */
+:where(.sa-hero,.sa-ag,.sa-geo,.sa-ct,.sa-hd,.sa-kc,#sa-tp-cta)
+  :where(a,button,input,summary,[tabindex]):focus-visible{{
+  outline-color:#fff}}
+
 {hd_css}
 {ft_css}
 

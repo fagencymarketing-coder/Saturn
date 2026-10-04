@@ -5,7 +5,7 @@
   background:#F6F5F3;padding:clamp(44px,5.6vh,64px) 0;margin:0}
 .sa-docs *{box-sizing:border-box;margin:0;padding:0}
 .sa-docs__in{max-width:1240px;margin:0 auto;padding:0 20px}
-.sa-docs__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.08em;
+.sa-docs__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--mut);line-height:1}
 /* оранжевая риска перед надзаголовком — есть на утверждённом холсте
    у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
@@ -13,23 +13,25 @@
   background:#FF4200}
 /* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
 .sa-docs__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh)5;margin-top:20px;letter-spacing:-.01em}
-.sa-docs__sub{font-size:17px;font-weight:400;line-height:27px;color:var(--mut);
+.sa-docs__sub{font-size:var(--sa-lead);font-weight:400;line-height:1.55;color:var(--mut);
   margin-top:16px;max-width:640px}
 .sa-docs__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;
   margin-top:clamp(20px,2.8vh,32px)}
 .sa-docs__card{display:flex;flex-direction:column;background:#fff;border-radius:22px;
   padding:16px 16px 24px;text-decoration:none;color:inherit;
-  transition:transform .2s ease,box-shadow .2s ease}
+  transition:transform var(--sa-t) var(--sa-ease),
+    box-shadow var(--sa-t) var(--sa-ease),border-color var(--sa-t) var(--sa-ease),
+    color var(--sa-t) var(--sa-ease)}
 .sa-docs__pic{background:var(--tile);border-radius:12px;overflow:hidden;aspect-ratio:355/278}
 .sa-docs__pic img{display:block;width:100%;height:100%;object-fit:cover}
 .sa-docs__meta{display:block;font-size:13px;font-weight:400;line-height:18.2px;color:var(--mut);margin-top:6px}
-.sa-docs__name{font-size:16px;font-weight:700;line-height:21.6px;margin-top:14px}
+.sa-docs__name{font-size:var(--sa-body);font-weight:700;line-height:1.35;margin-top:14px}
 .sa-docs__btnwrap{display:flex;justify-content:center;margin-top:clamp(18px,2.4vh,28px)}
 .sa-docs__btn{display:inline-flex;align-items:center;justify-content:center;
   height:var(--sa-btn-h);
   padding:0 28px;border:1px solid var(--line);border-radius:12px;background:transparent;
-  font-size:15px;font-weight:700;color:var(--ink);text-decoration:none;cursor:pointer;
-  transition:border-color .2s ease,color .2s ease}
+  font-size:var(--sa-body);font-weight:700;color:var(--ink);text-decoration:none;cursor:pointer;
+  transition:border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease)}
 @media (hover:hover){
   .sa-docs__card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,18,16,.08)}
   .sa-docs__btn:hover{border-color:var(--acc);color:var(--acc)}

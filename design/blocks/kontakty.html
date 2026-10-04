@@ -8,7 +8,7 @@
   background:#141210;padding:80px 0 24px}
 .sa-ct *{box-sizing:border-box;margin:0;padding:0}
 .sa-ct__in{max-width:1240px;margin:0 auto;padding:0 20px}
-.sa-ct__kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.08em;
+.sa-ct__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:#8A837C;line-height:1}
 /* оранжевая риска перед надзаголовком — есть на утверждённом холсте
    у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
@@ -16,20 +16,20 @@
   background:#FF4200}
 /* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
 .sa-ct__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh)5;margin-top:16px;letter-spacing:-.01em}
-.sa-ct__sub{font-size:16px;font-weight:400;line-height:24px;color:#B5B0AA;
+.sa-ct__sub{font-size:var(--sa-lead);font-weight:400;line-height:1.5;color:#B5B0AA;
   margin-top:12px;max-width:560px}
 .sa-ct__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 40px;
   margin-top:48px}
 .sa-ct__role{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   color:var(--mut)}
-.sa-ct__name{font-size:16px;font-weight:700;line-height:20.8px;margin-top:6px}
+.sa-ct__name{font-size:var(--sa-lead);font-weight:700;line-height:1.3;margin-top:6px}
 /* значки у телефона и почты — как в подвале, где они уже были.
    В секции контактов их не было, заказчик заметил 03.10.2026. */
-.sa-ct__tel{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;
+.sa-ct__tel{display:inline-flex;align-items:center;gap:8px;font-size:var(--sa-body);font-weight:600;
   line-height:21px;color:#fff;text-decoration:none;margin-top:6px}
 .sa-ct__tel svg{flex:0 0 auto;width:15px;height:15px;fill:none;stroke:#fff;
   stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.sa-ct__mail{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:400;
+.sa-ct__mail{display:inline-flex;align-items:center;gap:8px;font-size:var(--sa-small);font-weight:400;
   line-height:19.5px;color:#B5B0AA;text-decoration:none;margin-top:4px}
 .sa-ct__mail svg{flex:0 0 auto;width:14px;height:14px;fill:none;stroke:#8A837C;
   stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -52,7 +52,7 @@
   .sa-ct__sum .sa-ct__name{margin-top:2px;font-size:15px}
   .sa-ct__arr{margin-left:auto;flex:0 0 18px;width:18px;height:18px;
     stroke:rgba(255,255,255,.6);fill:none;stroke-width:2;stroke-linecap:round;
-    stroke-linejoin:round;transition:transform .2s}
+    stroke-linejoin:round;transition:transform var(--sa-t) var(--sa-ease)}
   .sa-ct__item[open] .sa-ct__arr{transform:rotate(180deg)}
   .sa-ct__links{padding-bottom:12px;display:flex;flex-direction:column}
   .sa-ct__links a{display:flex;align-items:center;min-height:44px;text-decoration:none}
