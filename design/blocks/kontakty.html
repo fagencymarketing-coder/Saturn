@@ -14,7 +14,12 @@
    у каждой секции, у нас её не было ни в одной. Решение заказчика 03.10.2026. */
 .sa-ct__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
   background:#FF4200}
-.sa-ct__h{font-size:40px;font-weight:800;line-height:46px;margin-top:16px;letter-spacing:-.01em}
+/* Кегль заголовка плавно уменьшается на узком десктопе. Холст рисовался
+   под 1440, а у ноутбука и у экрана с масштабом Windows 150% окно
+   выходит около 1263 — там 40 px при той же ширине колонки читаются
+   как «всё гигантское». От 1024 до 1440 кегль идёт от 34 к 40,
+   на 1440 и выше остаётся ровно холстовым. */
+.sa-ct__h{font-size:clamp(34px,2.78vw,40px);font-weight:800;line-height:1.15;margin-top:16px;letter-spacing:-.01em}
 .sa-ct__sub{font-size:16px;font-weight:400;line-height:24px;color:#B5B0AA;
   margin-top:12px;max-width:560px}
 .sa-ct__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 40px;

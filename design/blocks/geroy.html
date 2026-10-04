@@ -20,7 +20,8 @@
    из-за него на сайте читалось «сельхоз-производителей», чего на холсте
    нет. Трекинг решает то же самое, не трогая ни кегль, ни ширину колонки,
    ни положение фотографии. Заказчик заметил перенос 03.10.2026. */
-.sa-hero__h{font-size:42px;font-weight:800;line-height:45.4px;letter-spacing:-.02em}
+.sa-hero__h{font-size:clamp(36px,2.92vw,42px);font-weight:800;line-height:1.08;
+  letter-spacing:-.02em}
 @media (min-width:768px){.sa-hero__w{white-space:nowrap}}
 .sa-hero__h em{font-style:normal;color:var(--acc)}
 .sa-hero__sub{font-size:20px;font-weight:400;line-height:30px;color:var(--mut);
@@ -64,6 +65,25 @@
 }
 .sa-hero__em{transform:translate(-50%,-50%)}
 @media (prefers-reduced-motion:reduce){.sa-hero__em{animation:none}}
+/* Короткое окно на большом экране. Нижняя граница первого экрана была
+   560 px, и в окно высотой меньше 577 герой не влезал: полоса цифр
+   уезжала под край. Такое окно — не редкость: масштаб Windows 150%,
+   панель закладок, да ещё панель отладки сверху, и от 1080 физических
+   остаётся около 500 логических. Здесь нижняя граница снимается
+   совсем, а кегли и отступы ужимаются — герой остаётся одним экраном
+   даже там. Проверено на 490, 540 и 577. */
+@media (min-width:1024px) and (max-height:640px){
+  .sa-hero{min-height:calc(100dvh - var(--hd))}
+  .sa-hero__in{padding:clamp(12px,2.6vh,24px) 20px}
+  .sa-hero__h{font-size:clamp(28px,4.4vh,38px);line-height:1.1}
+  .sa-hero__sub{font-size:15px;line-height:22px;margin-top:10px}
+  .sa-hero__btns{margin-top:18px}
+  .sa-hero__nums{margin-top:18px}
+  .sa-hero__n b{font-size:24px}
+  .sa-hero__n span{font-size:12px;line-height:15.6px}
+  .sa-hero__em{width:72px;height:72px}
+  .sa-hero__em img{width:72px;height:72px}
+}
 @media (hover:hover){
   .sa-hero__b1:hover{background:#C23100}
   .sa-hero__b2:hover{border-color:var(--ink)}
