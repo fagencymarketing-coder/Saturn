@@ -224,6 +224,24 @@ img.js-product-img,
 .t-catalog__card__bgimg{
   position:absolute;top:0;left:0;right:0;bottom:0;
   height:auto !important}
+
+/* А у семи позиций без снимка Тильда блок картинки не рисует вовсе —
+   агент проверил разметку 04.10: элемента imgwrapper в карточке просто
+   нет, красить нечего, и название с ценой задраны вверх на 118 px
+   относительно соседей по строке. Поэтому место держим самой карточкой:
+   рисуем его псевдоэлементом там, где картинки не нашлось. Появится
+   фотография — правило перестанет срабатывать само.
+   Эмблема приглушена верхним слоем того же бежевого: прозрачность
+   нельзя задать отдельному слою фона, а гасить весь блок нельзя —
+   поблёкла бы и плашка. */
+.t-catalog__card:not(:has([class*="imgwrapper"]))::before{
+  content:"";display:block;width:100%;aspect-ratio:355/266;
+  border-radius:12px;
+  background:
+    linear-gradient(rgba(240,237,233,.55), rgba(240,237,233,.55)),
+    url("https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-emblem.png")
+      center / 56px auto no-repeat,
+    #F0EDE9}
 .t-catalog__card__bgimg[style*="url()"],
 .t-catalog__card__bgimg:not([style*="url("]){
   background-color:#F0EDE9 !important;
