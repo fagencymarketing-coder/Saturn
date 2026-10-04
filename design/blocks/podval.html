@@ -8,7 +8,9 @@
 .sa-ft__cols{display:grid;min-width:0;grid-template-columns:329fr 235fr 235fr 282fr;gap:40px}
 /* Логотип — ссылка на главную, то есть цель нажатия: с полями
    по 5 px она дотягивает до 44. */
-.sa-ft__logo{display:inline-block;padding:5px 0}
+.sa-ft__logo{display:inline-block;position:relative}
+.sa-ft__logo::after{content:"";position:absolute;left:0;right:0;top:50%;
+  height:44px;transform:translateY(-50%)}
 .sa-ft__logo img{display:block;width:98px;height:34px;object-fit:contain}
 .sa-ft__about{font-size:var(--sa-small);font-weight:400;line-height:1.6;color:var(--mut);
   max-width:240px;margin-top:16px}

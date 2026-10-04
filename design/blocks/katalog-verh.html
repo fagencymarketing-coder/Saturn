@@ -17,12 +17,21 @@
    то есть ниже этого блока, и там им не место. Кегль 13 против 40 у
    заголовка — крошки служебные и спорить с ним не должны. */
 .sa-kv__crumbs{display:flex;align-items:center;gap:8px;font-size:var(--sa-small);
-  line-height:18px;color:#8A837C;margin-bottom:12px}
-.sa-kv__crumbs a{color:#8A837C;text-decoration:none}
-.sa-kv__crumbs b{font-weight:400;color:#B5B0AA}
-.sa-kv__crumbs span{color:#C9C3BD}
+  line-height:18px;color:#6B6560;margin-bottom:12px}
+/* Цвета подняты до нормы контраста 4,5:1 — на светлом фоне #8A837C
+   давал 3,74, а серо-серый «Каталог» вовсе 2,15. Текущий раздел
+   отличается от ссылки не бледностью, а тем, что он не ссылка. */
+.sa-kv__crumbs a{color:#6B6560;text-decoration:none;
+  display:inline-flex;align-items:center;min-height:44px}
+.sa-kv__crumbs b{font-weight:400;color:#141210}
+.sa-kv__crumbs span{color:#6B6560}
 @media (hover:hover){.sa-kv__crumbs a:hover{color:#141210}}
 @media (max-width:767px){.sa-kv__crumbs{font-size:12px;margin-bottom:10px}}
+/* Счётчик позиций: человек сразу понимает масштаб каталога, а после
+   фильтра видит, сколько осталось. Число не вписано руками — его
+   ставит скрипт по тому, что показывает сам магазин, иначе оно
+   разойдётся с правдой в первый же день. */
+.sa-kv__count{font-size:var(--sa-body);font-weight:400;color:#6B6560;margin-top:6px}
 .sa-kv__top{display:flex;align-items:center;justify-content:space-between;gap:24px}
 /* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
 .sa-kv__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh)5;letter-spacing:-.01em}
@@ -44,7 +53,9 @@
 .sa-kv__input:focus{border-color:var(--acc)}
 
 .sa-kv__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.sa-kv__chip{display:inline-flex;align-items:center;height:40px;padding:0 14px;
+/* 44 — цель нажатия на планшете и телефоне; на ПК столько же,
+   чтобы чип не менял рост при смене ширины. */
+.sa-kv__chip{display:inline-flex;align-items:center;height:44px;padding:0 16px;
   border-radius:999px;border:1px solid var(--line);background:transparent;
   font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);
   text-decoration:none;cursor:pointer;white-space:nowrap;
@@ -70,13 +81,55 @@
   .sa-kv__chips{margin-top:14px;flex-wrap:nowrap;overflow-x:auto;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
   .sa-kv__chips::-webkit-scrollbar{display:none}
-  .sa-kv__chip{height:36px;flex:0 0 auto;font-size:14px}
+  .sa-kv__chip{height:44px;flex:0 0 auto;font-size:14px}
   /* кнопка «Разделы» — только на телефоне: боковой панели там нет */
-  .sa-kv__parts{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;
+  /* Кнопка «Фильтры» — цель нажатия, значит 44, как и чипы рядом. */
+  .sa-kv__parts{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px;
     border-radius:999px;background:#fff;border:1px solid var(--ink);
     font-family:inherit;font-size:14px;font-weight:700;color:var(--ink);
     cursor:pointer;flex:0 0 auto}
   .sa-kv__parts svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2}
+}
+
+/* ===== Шторка фильтров (телефон и планшет) ============================== */
+.sa-kv__dr,.sa-kv__ov{--ink:#141210;--acc:#FF4200;--mut:#6B6560;
+  --line:#E7E3DE;--lin2:#EDE9E4}
+.sa-kv__dr *{box-sizing:border-box;margin:0;padding:0}
+.sa-kv__ov{position:fixed;inset:0;z-index:9000;background:rgba(20,18,16,.5);
+  opacity:0;transition:opacity var(--sa-t) var(--sa-ease)}
+.sa-kv__ov.is-on{opacity:1}
+.sa-kv__dr{position:fixed;z-index:9001;left:0;right:0;bottom:0;max-height:86dvh;
+  display:flex;flex-direction:column;background:#fff;
+  border-radius:var(--sa-r-card) var(--sa-r-card) 0 0;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  transform:translateY(100%);transition:transform .24s var(--sa-ease)}
+.sa-kv__dr.is-on{transform:translateY(0)}
+.sa-kv__drtop{display:flex;align-items:center;justify-content:space-between;
+  padding:18px 20px;border-bottom:1px solid var(--line)}
+.sa-kv__drtop b{font-size:var(--sa-h3);font-weight:800}
+.sa-kv__drx{width:44px;height:44px;margin-right:-10px;display:flex;align-items:center;
+  justify-content:center;background:none;border:0;cursor:pointer;color:var(--ink)}
+.sa-kv__drx svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round}
+.sa-kv__drbody{overflow-y:auto;overscroll-behavior:contain;padding:4px 20px 20px}
+.sa-kv__drh{font-size:var(--sa-kick);font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:#6B6560;margin:20px 0 10px}
+.sa-kv__drlist{display:flex;flex-direction:column}
+.sa-kv__drlist a{display:flex;align-items:center;min-height:48px;
+  font-size:var(--sa-body);font-weight:600;color:var(--ink);text-decoration:none;
+  border-bottom:1px solid var(--lin2)}
+.sa-kv__drchips{display:flex;flex-wrap:wrap;gap:8px}
+.sa-kv__drbot{padding:14px 20px calc(14px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--line)}
+.sa-kv__drok{width:100%;height:var(--sa-btn-h);border:0;border-radius:var(--sa-r-ctrl);
+  background:#D93800;color:#fff;font-family:inherit;font-size:var(--sa-lead);
+  font-weight:700;cursor:pointer}
+/* На ПК шторки нет: там боковая панель каталога. */
+@media (min-width:1024px){
+  .sa-kv__ov,.sa-kv__dr{display:none !important}
+}
+@media (prefers-reduced-motion:reduce){
+  .sa-kv__ov,.sa-kv__dr{transition:none}
 }
 </style>
 
@@ -94,7 +147,10 @@
     </nav>
 
     <div class="sa-kv__top">
-      <h1 class="sa-kv__h">Каталог</h1>
+      <div>
+        <h1 class="sa-kv__h">Каталог</h1>
+        <div class="sa-kv__count" id="sa-kv-count">112 позиций</div>
+      </div>
       <a class="sa-kv__price"
          href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf"
          target="_blank" rel="noopener">
@@ -109,8 +165,9 @@
     </div>
 
     <div class="sa-kv__chips" role="group" aria-label="Фильтр по культуре">
-      <button class="sa-kv__parts" type="button" aria-expanded="false">Разделы
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="sa-kv__parts" type="button" aria-expanded="false"
+              aria-controls="sa-kv-dr">Фильтры
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
       <button class="sa-kv__chip" type="button" aria-pressed="true" data-crop="">Все культуры</button>
       <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Рапс">Рапс</button>
       <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Подсолнечник">Подсолнечник</button>
@@ -128,6 +185,56 @@
 
   </div>
 </div>
+
+
+<!-- Шторка фильтров для телефона и планшета. На ПК не показывается:
+     там есть боковая панель. Ниже 961 Тильда прячет и панель, и свой
+     фильтр культур собственным правилом — то есть с телефона каталог
+     нечем было отфильтровать вообще. Разделы здесь свои, обычными
+     ссылками: так они работают и без скрипта. Культуры щёлкают те же
+     штатные чекбоксы, что и чипы наверху. -->
+<div class="sa-kv__ov" id="sa-kv-ov" hidden></div>
+<aside class="sa-kv__dr" id="sa-kv-dr" hidden aria-label="Фильтры каталога">
+  <div class="sa-kv__drtop">
+    <b>Фильтры</b>
+    <button class="sa-kv__drx" type="button" aria-label="Закрыть фильтры">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sa-kv__drbody">
+    <div class="sa-kv__drh">Разделы</div>
+    <nav class="sa-kv__drlist">
+      <a href="/catalog">Все</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=316570233513&tfc_div=:::">Семена</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=466293242973&tfc_div=:::">Удобрения и листовые подкормки</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::">СЗР</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=791646860813&tfc_div=:::">Гербициды</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=192022702253&tfc_div=:::">Фунгициды</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=151937579433&tfc_div=:::">Инсектициды</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=692860730693&tfc_div=:::">Десиканты</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=175342672383&tfc_div=:::">Обработка семян и протравители</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=337704283103&tfc_div=:::">Адъюванты</a>
+    </nav>
+    <div class="sa-kv__drh">Культура</div>
+    <div class="sa-kv__drchips">
+      <button class="sa-kv__chip" type="button" aria-pressed="true" data-crop="">Все культуры</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Рапс">Рапс</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Подсолнечник">Подсолнечник</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Соя">Соя</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Пшеница">Пшеница</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Ячмень">Ячмень</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Кукуруза">Кукуруза</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Картофель">Картофель</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Свёкла">Свёкла</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Горох">Горох</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Гречиха">Гречиха</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Лён">Лён</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Овощи">Овощи</button>
+    </div>
+  </div>
+  <div class="sa-kv__drbot">
+    <button class="sa-kv__drok" type="button">Показать товары</button>
+  </div>
+</aside>
 
 <script>
 /* Поиск и чипы не изобретают свой фильтр, а управляют штатным каталогом
@@ -196,17 +303,71 @@
     });
   }
 
-  /* «Разделы» на телефоне — открывает штатный список разделов Tilda,
-     он там уже есть, просто спрятан (см. catalog-fix, правило 10) */
-  var knopka = document.querySelector('.sa-kv__parts');
-  if (knopka){
-    knopka.addEventListener('click', function(){
-      var list = document.querySelector('[id^="parts-above-id-"]');
-      if (!list) return;
-      var open = list.getAttribute('data-sa-open') === '1';
-      list.setAttribute('data-sa-open', open ? '0' : '1');
-      knopka.setAttribute('aria-expanded', open ? 'false' : 'true');
+  /* Шторка фильтров. Открывается кнопкой «Фильтры», закрывается
+     крестиком, кнопкой «Показать товары», щелчком по затемнению и
+     клавишей Esc. Пока открыта — страница под ней не прокручивается,
+     иначе палец уводит фон вместо списка. */
+  (function(){
+    var knopka = document.querySelector('.sa-kv__parts');
+    var dver   = document.getElementById('sa-kv-dr');
+    var ten   = document.getElementById('sa-kv-ov');
+    if(!knopka || !dver || !ten) return;
+    var bylo = '';
+    function otkryt(){
+      ten.hidden = false; dver.hidden = false;
+      requestAnimationFrame(function(){
+        ten.classList.add('is-on'); dver.classList.add('is-on');
+      });
+      knopka.setAttribute('aria-expanded','true');
+      bylo = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      var first = dver.querySelector('.sa-kv__drx');
+      if(first) first.focus();
+    }
+    function zakryt(){
+      ten.classList.remove('is-on'); dver.classList.remove('is-on');
+      knopka.setAttribute('aria-expanded','false');
+      document.documentElement.style.overflow = bylo;
+      setTimeout(function(){ ten.hidden = true; dver.hidden = true; }, 240);
+      knopka.focus();
+    }
+    knopka.addEventListener('click', otkryt);
+    ten.addEventListener('click', zakryt);
+    dver.querySelector('.sa-kv__drx').addEventListener('click', zakryt);
+    dver.querySelector('.sa-kv__drok').addEventListener('click', zakryt);
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && !dver.hidden) zakryt();
     });
-  }
+    /* выбрал культуру — шторка закрывается сама, человек сразу видит товар */
+    dver.querySelectorAll('.sa-kv__chip').forEach(function(c){
+      c.addEventListener('click', function(){ setTimeout(zakryt, 120); });
+    });
+  })();
 })();
+
+  /* Счётчик позиций. Берём не из разметки, а из самого каталога:
+     у Тильды есть скрытое поле с общим числом найденного, а если его
+     нет — считаем карточки. Обновляется после поиска и фильтра. */
+  (function(){
+    var mesto = document.getElementById('sa-kv-count');
+    if(!mesto) return;
+    function sklonenie(n){
+      var o = n % 10, s = n % 100;
+      if (o === 1 && s !== 11) return 'позиция';
+      if (o >= 2 && o <= 4 && (s < 10 || s >= 20)) return 'позиции';
+      return 'позиций';
+    }
+    function schitat(){
+      var vsego = document.querySelector('.js-store-products-count,.t-catalog__products-count');
+      var n = vsego ? parseInt((vsego.textContent||'').replace(/\D/g,''), 10) : NaN;
+      if (!n || isNaN(n)) n = document.querySelectorAll('.t-catalog__card').length;
+      if (!n) return;
+      mesto.textContent = n + ' ' + sklonenie(n);
+    }
+    schitat();
+    window.addEventListener('load', schitat);
+    new MutationObserver(function(){ clearTimeout(window.__saKvT);
+      window.__saKvT = setTimeout(schitat, 400); })
+      .observe(document.documentElement, {childList:true, subtree:true});
+  })();
 </script>
