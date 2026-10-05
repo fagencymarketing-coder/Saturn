@@ -20,6 +20,32 @@
 .uc-saturn-form .t-container,
 .uc-saturn-form .t-col{font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif}
 
+/* Левый край карточки — это левый край колонки контактов. Заказчица
+   04.10: «выровнять по левому краю, сразу под контактами». CSS ниже
+   этого и просил (margin:0), но карточка всё равно стояла правее:
+   у штатного контейнера Тильды жёсткие 1200 px и колонка t-col_10 с
+   отступом-префиксом, а у контактов колонка — min(1240px, 90vw).
+   Замер живого сайта 05.10, левый край колонки → левый край карточки:
+   1920: 360 → 480 · 1440: 120 → 240 · 1280: 84 → 160 · 1024: 71 → 122 ·
+   768: 70 → 84. Сдвиг от 14 до 120 px, и карточка читалась не
+   продолжением колонки, а отдельным предметом.
+   Контейнер здесь приводится к той же формуле, что у .sa-ct__in, а
+   колонка и её префикс обнуляются. Только от 768: на телефоне карточка
+   стоит у краёв экрана, а поля внутри неё совпадают с текстом контактов
+   (20 + 20 = 40), там всё сошлось само. Ширину, цвет и поля карточки
+   не трогаю — их утвердила заказчица. */
+@media (min-width:768px){
+  .uc-saturn-form .t-container{box-sizing:border-box !important;width:100% !important;
+    max-width:min(1240px,90vw) !important;margin-left:auto !important;
+    margin-right:auto !important;padding:0 32px !important}
+  .uc-saturn-form .t-col{float:none !important;box-sizing:border-box !important;
+    width:100% !important;max-width:none !important;margin:0 !important;
+    padding:0 !important}
+}
+@media (min-width:1024px){
+  .uc-saturn-form .t-container{padding:0 20px !important}
+}
+
 /* Карточка формы. Раньше на ПК формы просто не было видно: прозрачные
    поля с рамкой в 15% белого на почти чёрном фоне читались как пустота.
    Теперь форма стоит на своей подложке — так она отделяется от страницы
