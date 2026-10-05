@@ -84,6 +84,15 @@
 .sa-docs__row i{font-style:normal;font-weight:400;font-size:13px;color:var(--mut);white-space:nowrap}
 @media (hover:hover){.sa-docs__row:hover{color:#D93800;box-shadow:0 8px 24px rgba(20,18,16,.08)}}
 @media (max-width:767px){.sa-docs__list{grid-template-columns:minmax(0,1fr)}}
+
+/* 05.10: блок целиком с кнопкой на экране ≈1280×593 */
+@media (min-width:1024px){
+  .sa-docs{padding:clamp(28px,5vh,64px) 0}
+  .sa-docs__sub{max-width:780px;margin-top:12px}
+  .sa-docs__h{margin-top:clamp(12px,2vh,20px)}
+  .sa-docs__pic{max-height:calc(100dvh - 490px);min-height:110px}
+  .sa-docs__btnwrap{margin-top:clamp(14px,2.2vh,28px)}
+}
 </style>
 
 <section class="sa-docs" id="docs">

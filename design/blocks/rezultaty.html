@@ -106,6 +106,16 @@
   .sa-res__num b{font-size:17px}
   .sa-res__num span{white-space:normal}
 }
+
+/* 05.10: блок целиком на экране ≈1280×593 */
+@media (min-width:1200px){
+  .sa-res{padding:clamp(28px,5.5vh,80px) 0 clamp(24px,4.5vh,64px)}
+  .sa-res__grid{margin-top:clamp(16px,3vh,40px)}
+  .sa-res__nums{margin-top:clamp(14px,2.5vh,var(--sa-gap-m))}
+  .sa-res__card{padding:clamp(20px,3.4vh,32px) 32px}
+  .sa-res__dh{margin-top:clamp(16px,2.6vh,28px)}
+  .sa-res__card_dark .sa-res__dt{margin-bottom:clamp(14px,2.4vh,24px)}
+}
 </style>
 
 <section class="sa-res" id="results">
