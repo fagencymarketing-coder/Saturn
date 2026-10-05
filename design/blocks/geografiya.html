@@ -2,7 +2,7 @@
 <style>
 .sa-geo{--acc:#FF4200;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff;
-  background:#141210;padding:clamp(44px,5.6vh,64px) 0}
+  background:#141210;padding:clamp(32px,4vh,48px) 0}
 .sa-geo *{box-sizing:border-box;margin:0;padding:0}
 /* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
    и шире ничего не меняется: 90vw там больше 1240, работает потолок.
@@ -74,7 +74,7 @@
    300 — заголовок, подзаголовок, легенда и отступы секции. */
 .sa-geo__map{margin:clamp(14px,2vh,20px) auto 0;
   width:100%;max-width:min(1240px,90vw);
-  max-height:calc(100dvh - 300px);aspect-ratio:1408/762;padding:0}
+  max-height:calc(100dvh - 180px);aspect-ratio:1408/762;padding:0}
 .sa-geo__map img{display:block;width:100%;height:100%;
   object-fit:contain;border-radius:var(--sa-r-card)}
 /* у телефонной карты своя пропорция — без этого её сплющивало
