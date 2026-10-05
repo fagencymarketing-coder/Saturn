@@ -881,6 +881,15 @@ h1.t-catalog__prod-popup__name{
   }
 }
 
+@media (min-width:1024px){
+  :root{
+    --sa-h1:29px; --sa-h2:26px; --sa-h3:16px; --sa-lead:14px; --sa-body:13.5px;
+    --sa-small:12px; --sa-cap:11px; --sa-kick:11px;
+    --sa-btn-h:44px; --sa-btn-px:22px; --sa-fld-h:44px; --sa-chip-h:32px;
+    --sa-sec-y:64px; --sa-gap-l:32px; --sa-gap-m:20px;
+  }
+}
+
 :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
   outline:2px solid #FF4200;outline-offset:3px;border-radius:4px}
 
@@ -1014,7 +1023,8 @@ html{scroll-behavior:auto}
 .sa-ft__logo img{display:block;width:98px;height:34px;object-fit:contain}
 .sa-ft__about{font-size:var(--sa-small);font-weight:400;line-height:1.6;color:var(--mut);
   max-width:240px;margin-top:16px}
-.sa-ft__h{font-size:var(--sa-small);font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+
+.sa-ft__h{font-size:var(--sa-kick);font-weight:600;text-transform:uppercase;letter-spacing:.08em;
   margin-bottom:12px}
 .sa-ft__links{display:flex;flex-direction:column}
 .sa-ft__links a{font-size:var(--sa-body);font-weight:400;line-height:1.4;color:var(--mut);
@@ -1028,7 +1038,7 @@ html{scroll-behavior:auto}
 .sa-ft__req+.sa-ft__req{margin-top:10px}
 
 .sa-ft__btn{display:inline-flex;align-items:center;gap:10px;font-size:var(--sa-body);
-  font-weight:700;color:var(--ink);text-decoration:none;margin-top:20px}
+  font-weight:600;color:var(--ink);text-decoration:none;margin-top:20px}
 .sa-ft__btn svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
 
