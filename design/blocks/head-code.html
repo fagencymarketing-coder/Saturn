@@ -15,7 +15,7 @@
    "url": "https://sssaturn.ru/",
    "logo": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-logo-color.png",
    "image": "https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-logo-color.png",
-   "description": "Поставщик удобрений, средств защиты растений и семян для сельхозпроизводителей Сибири. Агросопровождение от диагностики поля до уборки.",
+   "description": "Поставщик удобрений, средств защиты растений и семян для сельхозпроизводителей России. Агросопровождение от диагностики поля до уборки.",
    "telephone": "+7-960-953-48-88",
    "email": "nilov@sssaturn.ru",
    "taxID": "2801274078",
@@ -260,17 +260,56 @@ img.js-product-img,
   opacity:.5}
 
 .t-catalog__card__btn,
-.t-catalog__load-more-btn,
 .t-catalog__prod-popup__btn{background-color:#D93800 !important}
 @media (hover:hover){
   .t-catalog__card__btn:hover,
-  .t-catalog__load-more-btn:hover,
   .t-catalog__prod-popup__btn:hover{background-color:#C23100 !important}
 }
 
 .t-catalog__filter__item_checkbox{display:none !important}
 
 #sa-tp-cta .sa-tp-cta__tel{display:none !important}
+
+.t-catalog__load-more-btn,
+.t-catalog__load-more-btn.t-btn{
+  background-color:#fff !important;color:#141210 !important;
+  border:1px solid #E7E3DE !important;box-shadow:none !important;
+  border-radius:12px !important;font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-weight:700;transition:border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease)}
+.t-catalog__load-more-btn .t-btnflex__text,
+.t-catalog__load-more-btn .js-catalog-load-more-btn-text{color:inherit !important}
+@media (hover:hover){
+  .t-catalog__load-more-btn:hover{background-color:#fff !important;
+    border-color:#FF4200 !important;color:#FF4200 !important}
+}
+
+@media screen and (min-width:961px){
+  .t-catalog__cont-w-filter{
+    box-sizing:border-box !important;max-width:min(1240px,90vw) !important;
+    margin-left:auto !important;margin-right:auto !important;
+    padding-left:20px !important;padding-right:20px !important}
+  .t-catalog__filter-wrapper{padding-left:0 !important}
+}
+@media screen and (min-width:961px) and (max-width:1023px){
+  .t-catalog__cont-w-filter{padding-left:32px !important;padding-right:32px !important}
+}
+
+@media screen and (max-width:959px){
+  .js-catalog-parts-select-container,
+  .t-catalog__parts-above-single-shell,
+  .t-catalog__parts-above-scroll-arrow,
+  .t-catalog__parts-switch-wrapper,
+  .js-catalog-filter-mob-btn,
+  .js-catalog-search-mob-btn{display:none !important}
+  .t-catalog__filter__controls-wrapper{justify-content:flex-end}
+}
+
+.t-catalog__card{display:flex;flex-direction:column}
+.t-catalog__card__wrap_txt-and-btns,
+.t-catalog__card__wrap_txt-and-opts,
+.t-catalog__card__wrap_txt-and-opts > a,
+.t-catalog__card__textwrapper{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+.t-catalog__card__price-wrapper{margin-top:auto !important;padding-top:12px}
 </style>
 
 <script>
@@ -292,6 +331,18 @@ img.js-product-img,
           el.style.setProperty('display','none','important');
         }
         el.dataset.saFixed = '1';
+      });
+
+    document.querySelectorAll('.js-product-price,.js-catalog-prod-price-val').forEach(function(v){
+      var t = v.textContent, d = t.replace(/[\s\u00A0\u202F]/g,'');
+      if(/^\d{4,}$/.test(d)){
+        var f = d.replace(/\B(?=(\d{3})+$)/g,'\u202F');
+        if(t !== f) v.textContent = f;
+      }
+    });
+    document.querySelectorAll('.t-catalog__card__price-currency,.t-catalog__prod-popup__price-currency,.js-product-price-currency')
+      .forEach(function(c){
+        if(!c.children.length && /^\s*(р\.?|руб\.?|Р)\s*$/i.test(c.textContent) && c.textContent !== '₽') c.textContent = '₽';
       });
 
     document.querySelectorAll('.js-catalog-prod-all-charcs').forEach(function(box){
@@ -410,10 +461,11 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
 
 .sa-tp__cats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 .sa-tp__cat{display:inline-block;background:#F0EDE9;color:#6B655E;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.2;
   font-size:var(--sa-kick);font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;padding:7px 14px;border-radius:var(--sa-r-pill)}
 
-.sa-tp__cat--out{background:transparent;box-shadow:inset 0 0 0 1px #DDD7D0}
+.sa-tp__cat--out{background:#F0EDE9;box-shadow:none}
 h1.t-catalog__prod-popup__name{
   font-size:var(--sa-h2) !important;font-weight:800 !important;
   line-height:var(--sa-h2-lh) !important;color:#141210 !important;
@@ -466,7 +518,9 @@ h1.t-catalog__prod-popup__name{
   margin-top:12px}
 
 .sa-tp--semena .t-catalog__prod-popup__col-left .t-img,
-.sa-tp--semena .t-catalog__prod-popup__col-left img.js-product-img{
+.sa-tp--semena .t-catalog__prod-popup__col-left img.js-product-img,
+.sa-tp--photo .t-catalog__prod-popup__col-left .t-img,
+.sa-tp--photo .t-catalog__prod-popup__col-left img.js-product-img{
   width:100% !important;aspect-ratio:1/1;object-fit:cover;
   border-radius:var(--sa-r-card)}
 
@@ -640,7 +694,10 @@ h1.t-catalog__prod-popup__name{
     }
     var num = document.createElement('span');
     num.className = 'sa-tp__num';
-    num.textContent = m[2].trim();
+    var raw = m[2].trim();
+
+    if(/^\d{4,}$/.test(raw)) raw = raw.replace(/\B(?=(\d{3})+$)/g, '\u202F');
+    num.textContent = raw;
     var ed = document.createElement('span');
     ed.className = 'sa-tp__unit';
     ed.textContent = m[3].replace(/\s+/g, '');
@@ -675,6 +732,17 @@ h1.t-catalog__prod-popup__name{
     var brend = root.querySelector('.t-catalog__prod-popup__brand');
 
     if(razdel() === 'Семена') root.classList.add('sa-tp--semena');
+
+    var im0 = root.querySelector('.t-catalog__prod-popup__col-left [data-original],.t-catalog__prod-popup__col-left img');
+    var u0 = im0 && (im0.getAttribute('data-original') || im0.getAttribute('src') || im0.getAttribute('data-lazy-rule') || '');
+    if(/\.jpe?g(\?|$)/i.test(u0)) root.classList.add('sa-tp--photo');
+
+    var h1 = root.querySelector('h1.t-catalog__prod-popup__name');
+    if(h1 && !h1.getAttribute('data-sa-nb') && !h1.children.length){
+      h1.innerHTML = h1.textContent.replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/\d+(?:-\d+)+/g, function(t){ return '<span style="white-space:nowrap">' + t + '</span>'; });
+      h1.setAttribute('data-sa-nb','1');
+    }
 
     var MERA = /\d\s*(?:г|мг|кг|мл)\s*\/\s*(?:л|кг|т|га)/i;
     var dan = tovar();
