@@ -79,7 +79,15 @@
   object-fit:contain;border-radius:var(--sa-r-card)}
 /* у телефонной карты своя пропорция — без этого её сплющивало
    в пропорцию настольной */
-@media (max-width:767px){.sa-geo__map{aspect-ratio:1074/771;max-height:none}}
+/* На телефоне карту — во всю ширину экрана (просила заказчица 05.10):
+   выносим за боковые поля секции на 100vw, скругление убираем, чтобы
+   карта шла от края до края. Пропорция телефонной карты своя. */
+@media (max-width:767px){
+  .sa-geo__map{aspect-ratio:1074/771;max-height:none;
+    width:100vw;max-width:100vw;
+    margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+  .sa-geo__map img{border-radius:0}
+}
 .sa-geo__map img.sa-geo__m{display:none}
 .sa-geo__m{aspect-ratio:1074/771}
 @media (max-width:1023px){

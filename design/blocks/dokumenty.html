@@ -64,7 +64,10 @@
   .sa-docs__card{flex-direction:row;align-items:center;gap:14px;padding:10px;
     border-radius:16px;min-height:94px;min-width:0}
   .sa-docs__card>div{min-width:0}
-  .sa-docs__name,.sa-docs__meta{overflow-wrap:anywhere}
+  /* было overflow-wrap:anywhere — рвало по буквам: «Сертифика|т».
+   break-word переносит по словам и рвёт только то, что реально не
+   влезает целиком (длинные номера СГР). */
+  .sa-docs__name,.sa-docs__meta{overflow-wrap:break-word;word-break:normal;hyphens:none}
   .sa-docs__pic{flex:0 0 96px;width:96px;height:72px;border-radius:8px;aspect-ratio:auto}
   .sa-docs__name{font-size:15px;line-height:19.5px;margin-top:0}
   .sa-docs__btn{width:100%}
