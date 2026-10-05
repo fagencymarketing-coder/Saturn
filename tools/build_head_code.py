@@ -240,8 +240,15 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 #rec4481961301 .t-form__inputsbox,
 .t-popup .t-form__inputsbox{{display:block !important}}
 #rec4481961301 .t-input-group,
-.t-popup .t-input-group{{width:100% !important;max-width:none !important;
+.t-popup .t-input-group{{display:block !important;float:none !important;
+  width:100% !important;max-width:none !important;
   margin:0 0 14px !important;padding:0 !important}}
+/* Поле формы попапа — горизонтальный вариант Tilda (t-form__inputsbox_horizontal):
+   группы стоят display:table-cell и ужимаются в ряд (Имя/Телефон/согласие
+   рядом, по буквам). display:block выше ставит их в столбик. Снимаем и само
+   табличное поведение контейнера. Замер живого попапа 05.10 (rec4481417201). */
+#rec4481961301 .t-form__inputsbox_horizontal,
+.t-popup .t-form__inputsbox_horizontal{{display:block !important}}
 #rec4481961301 .t-input,
 .t-popup .t-input{{width:100% !important;height:54px !important;
   font-size:16px !important;border-radius:12px !important}}
