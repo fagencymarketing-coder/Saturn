@@ -163,13 +163,36 @@
 .uc-saturn-form .t-form__successbox{background:#F7F5F2 !important;color:#141210 !important;
   border-radius:22px !important;font-family:Montserrat,sans-serif !important}
 
+/* Планшет и телефон — по холсту maket-mobile-tablet-*.png, секция 9
+   «Контакты», замеры design/measurements (мобильные ширины 768 и 390).
+   Замер живого сайта 05.10.2026 против холста:
+                     390 холст / у нас      768 холст / у нас
+   отступ карточки      24 / 20                40 / 24
+   заголовок          20/700 / 16/800        24/700 / 17/800
+   зазор сверху         40 / 89                41 / 93
+   зазор снизу          64 / 105               64 / 105
+   Совпадало и осталось: ширина карточки на телефоне, поля 52 с шагом 12,
+   подпись 15, согласие 13, кнопка 52 во всю ширину карточки.
+   Цвет карточки не трогаю: на холсте она тёмная, но заказчица 04.10
+   вечером попросила светлую, и это решение старше холста.
+   Заголовок оставлен 800, а не 700 с холста: 800 — насыщенность
+   заголовков всего сайта.
+
+   Зазоры сверху и снизу не слушались классовых отступов: у блока формы
+   в редакторе Тильды вшит инлайн padding 105px, он сильнее любого
+   правила без !important. Отсюда 89 и 105 вместо 40 и 64 — и пустая
+   полоса под формой, на которую заказчица жаловалась 03.10. Зазор
+   сверху = нижний отступ секции контактов (36 на планшете, 32 на
+   телефоне) плюс то, что оставляем здесь. */
 @media (max-width:1023px){
-  .uc-saturn-form{padding-bottom:96px}
-  .uc-saturn-form .t-form{padding:24px}
+  .uc-saturn-form{margin-top:0;padding-top:5px !important;padding-bottom:64px !important}
+  .uc-saturn-form .t-form{padding:40px}
+  .uc-saturn-form .sa-fh{font-size:24px;line-height:1.25}
 }
 @media (max-width:767px){
-  .uc-saturn-form{padding-bottom:72px}
-  .uc-saturn-form .t-form{padding:20px}
+  .uc-saturn-form{padding-top:8px !important}
+  .uc-saturn-form .t-form{padding:24px}
+  .uc-saturn-form .sa-fh{font-size:20px}
   /* на 390 кнопка меряется 46 — ниже, чем все остальные на сайте */
   .uc-saturn-form .t-submit{height:52px !important}
 }
