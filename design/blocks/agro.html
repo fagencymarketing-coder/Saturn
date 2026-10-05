@@ -31,23 +31,28 @@
 .sa-ag__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;
   background:#FF4200}
 /* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
-.sa-ag__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);margin-top:20px;letter-spacing:-.01em}
+.sa-ag__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);margin-top:16px;letter-spacing:-.01em}
 .sa-ag__sub{font-size:var(--sa-body);font-weight:400;line-height:1.5;color:rgba(255,255,255,.72);
   margin-top:12px;max-width:900px}
 .sa-ag__steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:var(--gap);margin-top:40px}
+  gap:var(--gap);margin-top:56px}
 
-/* цифра-призрак отдельной верхней строкой, по левому краю колонки */
-.sa-ag__num{font-size:80px;font-weight:800;line-height:.9;color:rgba(255,255,255,.08);
+/* цифра-призрак отдельной верхней строкой, по левому краю колонки.
+   Холст ПК и его замеры (design/measurements, секция 4, 1440): 40/800
+   при rgba(255,255,255,.16). Раньше стояло 80px при .08 — размер
+   взят из словесного описания, а не с холста, это записанная
+   ошибка 03.10 (SVERKA-S-MAKETOM.md, «Правило сверки»). Исправлено
+   05.10.2026 по картинке эталона desktop-03.jpg. */
+.sa-ag__num{font-size:40px;font-weight:800;line-height:40px;color:rgba(255,255,255,.16);
   letter-spacing:-.02em}
 /* иконка 32px, оранжевая */
-.sa-ag__ico{width:32px;height:32px;margin-top:16px;
+.sa-ag__ico{width:32px;height:32px;margin-top:12px;
   transition:transform var(--sa-t) var(--sa-ease),filter var(--sa-t) var(--sa-ease)}
 .sa-ag__ico svg{width:32px;height:32px;stroke:var(--acc);fill:none;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
 
 /* нить цикла: узлы 01…04 на тонкой линии, линия только между узлами */
-.sa-ag__rail{position:relative;height:8px;margin-top:18px}
+.sa-ag__rail{position:relative;height:8px;margin-top:12px}
 .sa-ag__dot{position:absolute;left:0;top:0;width:8px;height:8px;border-radius:999px;
   background:var(--acc);box-shadow:0 0 12px rgba(255,66,0,.55)}
 /* 04.10: заказчица сравнила с холстом — «линия и иконки были лучше».
@@ -60,7 +65,7 @@
   transition:background var(--sa-t) var(--sa-ease),
              box-shadow var(--sa-t) var(--sa-ease)}
 
-.sa-ag__sh{font-size:var(--sa-h3);font-weight:700;line-height:1.25;margin-top:18px}
+.sa-ag__sh{font-size:var(--sa-h3);font-weight:700;line-height:1.25;margin-top:16px}
 .sa-ag__st{font-size:13px;font-weight:500;line-height:18.2px;color:rgba(255,255,255,.55);
   margin-top:6px}
 .sa-ag__step{transition:transform var(--sa-t) var(--sa-ease)}
@@ -81,8 +86,8 @@
 
 /* тонкая линия над кнопкой — есть на утверждённом холсте ПК,
    у нас её не было. Решение заказчика 03.10.2026. */
-.sa-ag__cta{display:flex;align-items:center;gap:28px;margin-top:40px;flex-wrap:wrap;
-  border-top:1px solid rgba(255,255,255,.12);padding-top:40px}
+.sa-ag__cta{display:flex;align-items:center;gap:28px;margin-top:72px;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.12);padding-top:48px}
 .sa-ag__btn{display:inline-flex;align-items:center;justify-content:center;
   height:var(--sa-btn-h);
   padding:0 32px;border-radius:12px;background:#D93800;color:#fff;text-decoration:none;
