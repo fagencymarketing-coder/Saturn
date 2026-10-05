@@ -1,0 +1,10 @@
+/* Вариант 1 для сравнения (05.10): шкала ПК ≈ −15%, чтобы 100% выглядело как утверждённые 80–85%.
+   Вставляется в HEAD ПОСЛЕ основного :root. Только для окон ≥1024. */
+@media (min-width:1024px){
+  :root{
+    --sa-h1:29px; --sa-h2:26px; --sa-h3:16px; --sa-lead:14px; --sa-body:13.5px;
+    --sa-small:12px; --sa-cap:11px; --sa-kick:11px;
+    --sa-btn-h:44px; --sa-btn-px:22px; --sa-fld-h:44px; --sa-chip-h:32px;
+    --sa-sec-y:64px; --sa-gap-l:32px; --sa-gap-m:20px;
+  }
+}
