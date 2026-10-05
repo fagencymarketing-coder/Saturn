@@ -108,7 +108,14 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
   .t-catalog__product-popup .t-catalog__prod-popup__col-left{
     position:sticky;top:104px}
   .t-catalog__product-snippet .t-container > div,
-  .t-catalog__product-popup .t-container > div{
+  .t-catalog__product-popup .t-container > div,
+  /* В попапе (клик по плитке в каталоге) колонки лежат не в
+     .t-container > div, как на странице товара, а прямо в
+     .t-container_fluid — другая обёртка Тильды. Без сетки здесь
+     фото-колонка (sticky) схлопывалась в ноль, а текст и фотография
+     наезжали друг на друга (фото уходило под текст фоном). Ловим
+     именно тот контейнер, где лежит колонка с фото. */
+  .t-catalog__product-popup .t-container_fluid:has(> .t-catalog__prod-popup__col-left){
     display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
     align-items:start;column-gap:clamp(28px,3vw,44px);row-gap:0}
   /* Кроме двух колонок Tilda кладёт сюда ещё и свои крошки — пустой
@@ -609,13 +616,13 @@ h1.t-catalog__prod-popup__name{
     }
   }
 
-  /* На телефоне попап Тильды характеристики не выводит вовсе —
-     коробки .js-catalog-prod-all-charcs в нём просто нет, и карточка
-     получается без состава, норм расхода и фасовки. Поэтому на узких
-     экранах ведём с плитки на полную страницу товара: там разметка
-     другая и всё на месте. Адрес страницы лежит в самой плитке. */
+  /* Клик по плитке в каталоге всегда ведёт на полную страницу
+     товара /tproduct/, а не в попап. Попап Тильды — это слайдер
+     галереи со своей разметкой: колонки в нём схлопываются, фото
+     уходит под текст, а на телефоне характеристик в нём нет вовсе.
+     Полная страница работает одинаково и красиво на всех ширинах,
+     все карточки единообразны. Адрес страницы лежит в самой плитке. */
   document.addEventListener('click', function(e){
-    if(window.innerWidth > 767) return;
     var c = e.target && e.target.closest && e.target.closest('.t-catalog__card');
     if(!c) return;
     var u = c.getAttribute('data-product-url');

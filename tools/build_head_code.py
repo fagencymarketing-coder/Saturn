@@ -261,7 +261,6 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
       '<div class="sa-tp-cta__x">Ответим в течение рабочего дня, подберём решение под хозяйство</div>' +
       '<div class="sa-tp-cta__b">' +
       '<a class="sa-tp-cta__btn" href="/home#contacts">Получить предложение</a>' +
-      '<a class="sa-tp-cta__tel" href="tel:+79609534888">+7 (960) 953-48-88</a>' +
       '</div></div>';
     document.body.appendChild(cta);
 
