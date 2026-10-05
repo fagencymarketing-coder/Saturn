@@ -236,6 +236,34 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
    карточка выглядит громоздко. Уменьшаем до размера подзаголовка. */
 #rec4481961301 .t1014__title,
 .t-popup [class*="__title"]{{font-size:26px !important;line-height:1.2 !important}}
+/* A7 05.10: чекбокс согласия в попапе — к виду основной формы (forma-fix):
+   текст 13px/#6B655E, ссылки подчёркнуты цветом текста, квадрат 20 со
+   скруглением 4 и зоной нажатия 44, отмеченное состояние #FF4200. Галочку
+   как поле формы добавляет агент в настройках попапа — CSS её лишь одевает. */
+#rec4481961301 .t-checkbox__control,
+.t-popup .t-checkbox__control,
+#rec4481961301 .t-checkbox__indicator+span,
+.t-popup .t-checkbox__indicator+span{{font-size:13px !important;font-weight:400 !important;
+  line-height:19.5px !important;color:#6B655E !important}}
+#rec4481961301 .t-checkbox__control a,
+.t-popup .t-checkbox__control a{{color:#141210 !important;text-decoration:underline !important;
+  text-decoration-color:currentColor !important;border-bottom:0 !important;box-shadow:none !important}}
+#rec4481961301 .t-checkbox__wrapper .t-checkbox__indicator,
+#rec4481961301 .t-checkbox__indicator,
+.t-popup .t-checkbox__wrapper .t-checkbox__indicator,
+.t-popup .t-checkbox__indicator{{position:relative;border-radius:4px !important;
+  width:20px !important;height:20px !important;min-height:20px !important;max-height:20px !important;
+  flex:0 0 20px !important;box-sizing:border-box !important;border:1px solid #C9C3BB !important;
+  background:#fff !important}}
+#rec4481961301 .t-checkbox__indicator::after,
+.t-popup .t-checkbox__indicator::after{{content:"";position:absolute;left:50%;top:50%;
+  width:44px;height:44px;transform:translate(-50%,-50%)}}
+#rec4481961301 .t-checkbox__control,
+.t-popup .t-checkbox__control{{cursor:pointer}}
+#rec4481961301 .t-checkbox:checked+.t-checkbox__indicator,
+.t-popup .t-checkbox:checked+.t-checkbox__indicator,
+#rec4481961301 .t-checkbox__indicator_checked,
+.t-popup .t-checkbox__indicator_checked{{background:#FF4200 !important;border-color:#FF4200 !important}}
 </style>
 
 <script>
