@@ -45,8 +45,16 @@
 .sa-pop__band{display:flex;align-items:center;justify-content:space-between;
   gap:32px;margin-top:36px;flex-wrap:wrap}
 .sa-pop__logos{display:flex;align-items:center;gap:32px;flex-wrap:wrap;order:2}
+/* Логотипы партнёров приглушены — серые на светлом фоне, как подпись,
+   а не как реклама. При наведении проявляется их цвет. Один отклик,
+   без подъёма и свечения: «тихая дороговизна» — одно изменение на
+   наведение. Только на устройствах с мышью. 05.10.2026. */
 .sa-pop__logos img{display:block;height:36px;width:auto;object-fit:contain;
-  opacity:.85}
+  filter:grayscale(1);opacity:.55;
+  transition:filter var(--sa-t) var(--sa-ease),opacity var(--sa-t) var(--sa-ease)}
+@media (hover:hover){
+  .sa-pop__logos img:hover{filter:grayscale(0);opacity:1}
+}
 .sa-pop__chips{display:flex;gap:8px;overflow-x:auto;order:1;
   scrollbar-width:none;-ms-overflow-style:none}
 .sa-pop__chips::-webkit-scrollbar{display:none}
