@@ -232,6 +232,10 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 #rec4481961301 .t-input:focus,
 .t-popup .t-input:focus{{border-color:#D93800 !important;
   box-shadow:0 0 0 3px rgba(217,56,0,.18) !important}}
+/* Заголовок попапа Тильда ставит 36px — для окна заявки это H1-кегль,
+   карточка выглядит громоздко. Уменьшаем до размера подзаголовка. */
+#rec4481961301 .t1014__title,
+.t-popup [class*="__title"]{{font-size:26px !important;line-height:1.2 !important}}
 </style>
 
 <script>

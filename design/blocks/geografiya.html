@@ -72,9 +72,14 @@
    окне упрётся в высоту, на широком — в ширину. Коробка пропорцией
    совпадает с картинкой, поэтому object-fit пустых полос не даёт.
    300 — заголовок, подзаголовок, легенда и отступы секции. */
+/* Карта шире контейнера контента: выносим её почти на всю ширину
+   экрана (94vw, до 1600), чтобы вокруг не оставалось широкой тёмной
+   рамки, а карта читалась крупно. Выход за боковые поля .sa-geo__in
+   через отрицательные margin. */
 .sa-geo__map{margin:clamp(14px,2vh,20px) auto 0;
-  width:100%;max-width:min(1240px,90vw);
-  max-height:calc(100dvh - 180px);aspect-ratio:1408/762;padding:0}
+  width:94vw;max-width:1600px;
+  margin-left:calc(50% - 47vw);margin-right:calc(50% - 47vw);
+  aspect-ratio:1408/762;padding:0}
 .sa-geo__map img{display:block;width:100%;height:100%;
   object-fit:contain;border-radius:var(--sa-r-card)}
 /* у телефонной карты своя пропорция — без этого её сплющивало
