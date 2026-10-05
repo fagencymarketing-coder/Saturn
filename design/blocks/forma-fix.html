@@ -82,16 +82,31 @@
   color:#141210 !important;font-size:16px !important;font-weight:500 !important;
   font-family:Montserrat,sans-serif !important}
 .uc-saturn-form .t-input::placeholder{color:#7A736B !important}
-/* Виджет телефона Тильды рисует флаг и код отдельными элементами, мимо
-   .t-input, и на тёмном фоне они оставались светлыми пятнами. */
-.uc-saturn-form .t-inputphonemask__wrap,
-.uc-saturn-form .t-inputphonemask__select{
-  background:#fff !important;
-  border:1px solid #E0DAD2 !important;
-  border-radius:12px !important;height:52px !important;color:#141210 !important}
-.uc-saturn-form .t-inputphonemask__options{background:#fff !important;color:#141210 !important;
+/* Виджет телефона Тильды: обёртка с флагом и кодом страны и ВНУТРИ неё
+   настоящее поле ввода. Оба носят класс .t-input, и общее правило выше
+   рисовало рамку и скругление дважды: поле в поле, внутреннее со
+   сдвигом. Классы виджета у Тильды пишутся с дефисом —
+   t-input-phonemask__*; здесь стояло t-inputphonemask__* без дефиса,
+   поэтому эти правила не срабатывали ни разу. Замер живой страницы
+   05.10.2026 на 390 и 1440: обёртка 310x52 с рамкой, внутри input
+   206x52 с ещё одной. Теперь рамка одна, на обёртке, а вложенное поле
+   без рамки, фона и скругления; фокус показывает обёртка. */
+.uc-saturn-form .t-input-phonemask__wrap{
+  background:#fff !important;border:1px solid #E0DAD2 !important;
+  border-radius:12px !important;height:52px !important;color:#141210 !important;
+  padding:0 !important;box-sizing:border-box !important}
+.uc-saturn-form .t-input-phonemask__select{
+  background:transparent !important;border:0 !important;height:50px !important;
+  color:#141210 !important}
+.uc-saturn-form .t-input-phonemask__wrap .t-input-phonemask,
+.uc-saturn-form .t-input-phonemask__wrap input.t-input{
+  border:0 !important;box-shadow:none !important;background:transparent !important;
+  border-radius:0 !important;height:50px !important;padding:0 18px 0 8px !important}
+.uc-saturn-form .t-input-phonemask__wrap:focus-within{
+  border-color:#D93800 !important;box-shadow:0 0 0 3px rgba(217,56,0,.18) !important}
+.uc-saturn-form .t-input-phonemask__options{background:#fff !important;color:#141210 !important;
   border:1px solid #E0DAD2 !important;border-radius:12px !important}
-.uc-saturn-form .t-inputphonemask__option:hover{background:#F0EDE9 !important}
+.uc-saturn-form .t-input-phonemask__option:hover{background:#F0EDE9 !important}
 /* Фокус был виден только сменой цвета рамки на 1px — с клавиатуры
    почти незаметно. Добавляю кольцо: рамка основного цвета и тень 3px,
    без смены размеров поля. */
@@ -154,10 +169,20 @@
 .uc-saturn-form .t-input.t-input_has-error,
 .uc-saturn-form .t-input_has-error{border-color:#D93800 !important;
   box-shadow:0 0 0 3px rgba(217,56,0,.12) !important}
-.uc-saturn-form [class*="t-form__errorbox"]{background:#F0EDE9 !important;
+/* Плашку красим только у самого окна ошибки. Раньше правило стояло на
+   [class*="t-form__errorbox"] и по подстроке цепляло ещё и служебный
+   пустой блок t-form__errorbox-bottom: он display:block, и на странице
+   без всякой ошибки между согласием и кнопкой стояла бежевая полоса
+   высотой 28 (14+14 отступа). Замер живой страницы 05.10.2026, 390 и
+   1440. Окно ошибки — .t-form__errorbox-wrapper, оно скрыто инлайном до
+   первой ошибки. */
+.uc-saturn-form .t-form__errorbox-wrapper{background:#F0EDE9 !important;
   color:#141210 !important;border-radius:var(--sa-r-ctrl) !important;
   font-family:Montserrat,sans-serif !important;font-size:14px !important;
   text-align:left !important;padding:14px 16px !important}
+.uc-saturn-form .t-form__errorbox-bottom,
+.uc-saturn-form .t-form__errorbox-middle{background:transparent !important;
+  padding:0 !important}
 
 /* сообщение после отправки */
 .uc-saturn-form .t-form__successbox{background:#F7F5F2 !important;color:#141210 !important;
