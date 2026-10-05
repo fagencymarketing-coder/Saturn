@@ -206,6 +206,32 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 @media (max-width:640px){{
   #sa-ck{{right:12px;left:12px;bottom:12px;width:auto;padding:18px}}
 }}
+
+/* Попап заявки (блок Тильды rec4481961301 на кнопках «Получить
+   предложение» / «Оставить заявку»). Приводим к нашему виду: поля в
+   столбик и крупные, кнопка — кнопочный #D93800, а не три разных
+   оранжевых из настроек блока. Таргетим и по id блока, и по .t-popup
+   на случай пересоздания блока. */
+#rec4481961301 .t-form__inputsbox,
+.t-popup .t-form__inputsbox{{display:block !important}}
+#rec4481961301 .t-input-group,
+.t-popup .t-input-group{{width:100% !important;max-width:none !important;
+  margin:0 0 14px !important;padding:0 !important}}
+#rec4481961301 .t-input,
+.t-popup .t-input{{width:100% !important;height:54px !important;
+  font-size:16px !important;border-radius:12px !important}}
+#rec4481961301 .t-submit,
+.t-popup .t-submit{{width:100% !important;height:54px !important;
+  background:#D93800 !important;border-radius:12px !important;
+  font-size:15px !important;font-weight:600 !important;
+  font-family:Montserrat,sans-serif !important}}
+@media (hover:hover){{
+  #rec4481961301 .t-submit:hover,
+  .t-popup .t-submit:hover{{background:#C23100 !important}}
+}}
+#rec4481961301 .t-input:focus,
+.t-popup .t-input:focus{{border-color:#D93800 !important;
+  box-shadow:0 0 0 3px rgba(217,56,0,.18) !important}}
 </style>
 
 <script>
