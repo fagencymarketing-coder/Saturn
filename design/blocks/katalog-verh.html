@@ -125,6 +125,10 @@
   font-size:var(--sa-body);font-weight:600;color:var(--ink);text-decoration:none;
   border-bottom:1px solid var(--lin2)}
 .sa-kv__drchips{display:flex;flex-wrap:wrap;gap:8px}
+/* Культура на мобиле — чипами на странице (как на десктопе), поэтому
+   из ящика «Фильтры» её убираем: иначе фильтр по культуре стоит дважды
+   (замечание заказчицы 05.10). В ящике остаются только разделы. */
+.sa-kv__drh--cult,.sa-kv__drh--cult + .sa-kv__drchips{display:none !important}
 .sa-kv__drbot{padding:14px 20px calc(14px + env(safe-area-inset-bottom));
   border-top:1px solid var(--line)}
 .sa-kv__drok{width:100%;height:var(--sa-btn-h);border:0;border-radius:var(--sa-r-ctrl);
@@ -220,7 +224,7 @@
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=175342672383&tfc_div=:::">Обработка семян и протравители</a>
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=337704283103&tfc_div=:::">Адъюванты</a>
     </nav>
-    <div class="sa-kv__drh">Культура</div>
+    <div class="sa-kv__drh sa-kv__drh--cult">Культура</div>
     <div class="sa-kv__drchips">
       <button class="sa-kv__chip" type="button" aria-pressed="true" data-crop="">Все культуры</button>
       <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Рапс">Рапс</button>

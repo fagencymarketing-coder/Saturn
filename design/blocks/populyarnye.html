@@ -50,10 +50,13 @@
    без подъёма и свечения: «тихая дороговизна» — одно изменение на
    наведение. Только на устройствах с мышью. 05.10.2026. */
 .sa-pop__logos img{display:block;height:36px;width:auto;object-fit:contain;
-  filter:grayscale(1);opacity:.55;
-  transition:filter var(--sa-t) var(--sa-ease),opacity var(--sa-t) var(--sa-ease)}
+  /* логотипы партнёров цветные всегда (решение заказчицы 05.10).
+     На телефоне наведения нет, поэтому серые по умолчанию там
+     оставались серыми навсегда. */
+  opacity:1;
+  transition:transform var(--sa-t) var(--sa-ease)}
 @media (hover:hover){
-  .sa-pop__logos img:hover{filter:grayscale(0);opacity:1}
+  .sa-pop__logos img:hover{transform:translateY(-2px)}
 }
 .sa-pop__chips{display:flex;gap:8px;overflow-x:auto;order:1;
   scrollbar-width:none;-ms-overflow-style:none}
