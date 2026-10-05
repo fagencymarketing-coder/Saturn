@@ -76,22 +76,19 @@
    экрана (94vw, до 1600), чтобы вокруг не оставалось широкой тёмной
    рамки, а карта читалась крупно. Выход за боковые поля .sa-geo__in
    через отрицательные margin. */
-.sa-geo__map{margin:clamp(14px,2vh,20px) auto 0;
-  width:94vw;max-width:1600px;
-  margin-left:calc(50% - 47vw);margin-right:calc(50% - 47vw);
-  aspect-ratio:1408/762;padding:0}
-.sa-geo__map img{display:block;width:100%;height:100%;
-  object-fit:contain;border-radius:var(--sa-r-card)}
-/* у телефонной карты своя пропорция — без этого её сплющивало
-   в пропорцию настольной */
-/* На телефоне карту — во всю ширину экрана (просила заказчица 05.10):
-   выносим за боковые поля секции на 100vw, скругление убираем, чтобы
-   карта шла от края до края. Пропорция телефонной карты своя. */
+/* 05.10: карта — карточка по колонке сайта, а не полотно шире неё
+   (было 94vw: края не совпадали ни с заголовком, ни с соседними блоками).
+   Фон карточки — цвет фона растра (#0C0A07, снят с пикселя), поэтому
+   внутренний отступ незаметен как рамка, но подписи по краям
+   (Краснодарский, Ставропольский, Амурская) больше не касаются края. */
+.sa-geo__map{margin:var(--sa-gap-m) 0 0;width:100%;background:#0C0A07;
+  border-radius:var(--sa-r-card);overflow:hidden;padding:clamp(12px,2vw,28px)}
+.sa-geo__map img{display:block;width:100%;height:auto;border-radius:0}
 @media (max-width:767px){
-  .sa-geo__map{aspect-ratio:1074/771;max-height:none;
-    width:100vw;max-width:100vw;
+  /* телефон: карта во весь экран — решение заказчицы 05.10; отступ 12
+     внутри, чтобы подписи не упирались в край */
+  .sa-geo__map{width:100vw;max-width:100vw;border-radius:0;padding:12px;
     margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
-  .sa-geo__map img{border-radius:0}
 }
 .sa-geo__map img.sa-geo__m{display:none}
 .sa-geo__m{aspect-ratio:1074/771}
@@ -108,12 +105,13 @@
   .sa-geo__top{display:block}
   .sa-geo__h{line-height:var(--sa-h2-lh)}
   .sa-geo__legend{margin-top:20px;gap:16px;flex-wrap:wrap;font-size:13px}
+  .sa-geo__map{padding:16px}
 }
 @media (max-width:767px){
   .sa-geo{padding:52px 0}
   .sa-geo__in{padding:0 20px}
   .sa-geo__legend{display:none}
-  .sa-geo__map{margin-top:24px}
+  .sa-geo__map{padding:12px}
   .sa-geo__map img.sa-geo__d{display:none}
   .sa-geo__map img.sa-geo__m{display:block}
 }
