@@ -94,8 +94,17 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
   border-radius:18px;overflow:hidden}
 /* Эмблема лежит на самой колонке, а фотография — на вложенном блоке
    поверх неё. Пока снимок грузится, место занято знаком, а не пустым
-   серым прямоугольником; загрузился — закрыл собой всё. */
-.t-catalog__product-snippet:has(meta[itemprop="image"][content=""]),
+   серым прямоугольником; загрузился — закрыл собой всё.
+
+   05.10.2026, ошибка в четырёх правилах «без фото» ниже: в списке
+   селекторов у первой половины не было хвоста (.t-container, колонка
+   и т.д.), он стоял только у второй. Из-за этого на отдельной
+   странице товара без снимка правило .t-catalog__product-snippet:has(…)
+   {display:none} прятало ВСЮ карточку, и человек видел пустую страницу
+   с одной ссылкой «Все товары». Шести товарам из 111: Зазофен,
+   Relict Макро N Mg+, Relict Макро PK, Микроэл Пивоваренный ячмень,
+   Атлант Супер, Вега Клей. Хвост достроен у всех четырёх правил. */
+.t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-catalog__prod-popup__col-left,
 .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
   .t-catalog__prod-popup__col-left{display:none !important}
 
@@ -131,14 +140,14 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
   .t-catalog__product-popup .t-catalog__prod-popup__col-right{grid-column:2}
   /* без фотографии сужается сама карточка, а не текст внутри широкой:
      на холсте 1b это карточка 720, стоящая по центру страницы */
-  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]),
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-container,
   .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
     .t-container{max-width:calc(720px + 2 * clamp(18px,2.4vw,32px)) !important;
     margin:0 auto}
-  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]),
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-container > div,
   .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
     .t-container > div{grid-template-columns:minmax(0,1fr)}
-  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]),
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-catalog__prod-popup__col-right,
   .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
     .t-catalog__prod-popup__col-right{grid-column:1}
 }
@@ -249,13 +258,19 @@ h1.t-catalog__prod-popup__name{
 /* 10. Кнопки. Пара с холста: заявка и прайс. */
 .sa-tp__btns{display:flex;align-items:center;flex-wrap:wrap;
   gap:clamp(14px,2vw,24px);margin-top:clamp(20px,3vh,28px)}
+/* Шрифт кнопке и ссылке «Скачать прайс» задан явно: они вставлены
+   скриптом ниже и своего шрифта не наследовали — браузер брал запасной
+   с засечками, «Оставить заявку» и «Скачать прайс» читались Times'ом
+   на фоне Montserrat. Замер живой страницы товара 05.10.2026. */
 .sa-tp__btn{display:inline-flex;align-items:center;justify-content:center;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
   height:var(--sa-btn-h);padding:0 var(--sa-btn-px);border-radius:var(--sa-r-ctrl);
   background:#D93800;color:#fff !important;font-size:var(--sa-body);
   font-weight:700;text-decoration:none !important;white-space:nowrap;
   transition:background var(--sa-t) var(--sa-ease)}
 .sa-tp__arr{margin-left:8px;transition:transform var(--sa-t) var(--sa-ease)}
 .sa-tp__dl{display:inline-flex;align-items:center;gap:9px;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
   min-height:44px;color:#141210 !important;font-size:var(--sa-body);
   font-weight:600;text-decoration:none !important;
   transition:color var(--sa-t) var(--sa-ease)}

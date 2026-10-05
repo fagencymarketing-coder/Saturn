@@ -155,7 +155,7 @@
     <div class="sa-kv__top">
       <div>
         <h1 class="sa-kv__h">Каталог</h1>
-        <div class="sa-kv__count" id="sa-kv-count">112 позиций</div>
+        <div class="sa-kv__count" id="sa-kv-count">111 позиций</div>
       </div>
       <a class="sa-kv__price"
          href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf"
@@ -266,7 +266,22 @@
   var LUPA  = '.js-catalog-filter-search-btn';
   var KROPK = 'input.js-catalog-filter-opt-chb';
 
+  /* Пустой запрос штатный поиск не принимает: после «Ничего не найдено»
+     очистка поля оставляла каталог пустым навсегда — адрес чистый, карточек
+     ноль, сообщения нет, Enter не помогает. Замер живой страницы 05.10.2026,
+     повторён с паузой 12 секунд. Поэтому при пустом поле убираем параметр
+     поиска из адреса сами и перезагружаем: фильтр по культуре в адресе
+     остаётся и применяется заново. */
+  function sbrosPoiska(){
+    var u = new URL(location.href), byl = false;
+    Array.from(u.searchParams.keys()).forEach(function(k){
+      if (k.indexOf('tfc_query[') === 0){ u.searchParams.delete(k); byl = true; }
+    });
+    if (byl) location.replace(u.toString());
+  }
+
   function iskat(znach){
+    if (znach === ''){ sbrosPoiska(); return; }
     var pole = document.querySelector(POLE);
     var lupa = document.querySelector(LUPA);
     if (!pole || !lupa) return;
@@ -308,6 +323,26 @@
       if (b && !b.checked) b.click();
     });
   }
+
+  /* Состояние берём из адреса. Раньше после возврата со страницы товара
+     кнопкой «назад», после обновления или по прямой ссылке список был
+     отфильтрован, а чип показывал «Все культуры» и поле поиска было пустым —
+     интерфейс врал о том, что на экране. Параметры у Тильды такие:
+     tfc_query[<блок>] — запрос, tfc_charact:<id>[<блок>] — культура. */
+  (function(){
+    var u = new URLSearchParams(location.search), q = '', crop = '';
+    u.forEach(function(v, k){
+      if (k.indexOf('tfc_query[') === 0) q = v;
+      if (k.indexOf('tfc_charact:') === 0 && !crop) crop = v.split(':::')[0];
+    });
+    if (q && nashe) nashe.value = q;
+    if (crop){
+      for (var j = 0; j < chips.length; j++){
+        chips[j].setAttribute('aria-pressed',
+          chips[j].getAttribute('data-crop') === crop ? 'true' : 'false');
+      }
+    }
+  })();
 
   /* Шторка фильтров. Открывается кнопкой «Фильтры», закрывается
      крестиком, кнопкой «Показать товары», щелчком по затемнению и
