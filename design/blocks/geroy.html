@@ -62,9 +62,10 @@
    Теперь отсчёт от левого края фото с отступом, а путь подобран так,
    чтобы правый край знака не дошёл до правого края снимка.
    Заказчик 04.10.2026. */
-.sa-hero__em{position:absolute;top:50%;left:36px;width:104px;height:104px;z-index:2;
-  animation:sa-float 14s ease-in-out infinite;will-change:transform}
+.sa-hero__em{position:absolute;top:calc(50% - 52px);left:36px;width:104px;height:104px;z-index:2;
+  animation:sa-emX 23s ease-in-out infinite;will-change:transform}
 .sa-hero__em img{display:block;width:104px;height:104px;object-fit:contain;
+  animation:sa-emY 17s ease-in-out infinite;will-change:transform;
   filter:drop-shadow(0 8px 24px rgba(20,18,16,.18))}
 /* 04.10, по замечанию заказчицы: «зависает на одном месте и уходит за
    пределы фотографии». Оба на совести прежней анимации.
@@ -81,12 +82,30 @@
    8 пикселей за 14 секунд читаются боковым зрением и не отвлекают.
    Для браузера это самая дешёвая анимация из возможных — только
    transform, без пересчёта раскладки; на скорость сайта не влияет. */
-@keyframes sa-float{
-  0%  {transform:translate(0,-50%)}
-  50% {transform:translate(0,calc(-50% - 8px))}
-  100%{transform:translate(0,-50%)}
+/* Плавание по зоне поля. Замер 05.10: фото-зона 608×546, эмблема
+   104, запас справа 468, сверху 217, снизу 225 — места много. Знак
+   водим по этой области двумя независимыми колебаниями с разным
+   периодом (23 и 17 с): их сумма даёт мягкую незамкнутую траекторию,
+   знак всё время плывёт и нигде не залипает. Амплитуда консервативная
+   (вправо до 150, по вертикали ±46) — до краёв снимка далеко, выйти
+   ему нечем. Без поворота: повёрнутый квадрат вылезал углами за кромку
+   (04.10). Только transform, раскладка не пересчитывается. */
+/* Горизонталь — на контейнере, вертикаль — на картинке внутри: два
+   разных элемента, их transform не перетирают друг друга (на одном
+   элементе две transform-анимации конфликтуют). Разный период 23 и 17
+   с даёт незамкнутую траекторию — знак всё время плывёт по зоне поля
+   и нигде не залипает. */
+@keyframes sa-emX{
+  0%  {transform:translateX(0)}
+  50% {transform:translateX(150px)}
+  100%{transform:translateX(0)}
 }
-.sa-hero__em{transform:translate(0,-50%)}
+@keyframes sa-emY{
+  0%  {transform:translateY(0)}
+  30% {transform:translateY(-46px)}
+  65% {transform:translateY(30px)}
+  100%{transform:translateY(0)}
+}
 @media (prefers-reduced-motion:reduce){.sa-hero__em{animation:none}}
 /* Короткое окно на большом экране. Нижняя граница первого экрана была
    560 px, и в окно высотой меньше 577 герой не влезал: полоса цифр

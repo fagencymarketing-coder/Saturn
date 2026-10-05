@@ -64,13 +64,22 @@
    Стало: ширина по сетке сайта, высота идёт от пропорции. Коробка
    совпадает с картинкой — ни полос, ни обрезанных краёв, object-fit
    не нужен. На 1920 карта 1240×671. */
-.sa-geo__map{margin:clamp(16px,2.4vh,24px) auto 0;
-  width:100%;max-width:min(1240px,90vw);padding:0}
-.sa-geo__map img{display:block;width:100%;height:auto;
-  aspect-ratio:1408/762;border-radius:var(--sa-r-card)}
+/* 05.10: «видно либо заголовок, либо карту». Карта шириной до 1240
+   давала высоту ~650, и блок (заголовок + подзаголовок + легенда +
+   карта) не влезал в экран ноутбука. Решение: коробка карты сама
+   пропорциональна (aspect-ratio 1408/762) и ограничена сразу и по
+   ширине, и по высоте окна. Что меньше, то и сработает: на низком
+   окне упрётся в высоту, на широком — в ширину. Коробка пропорцией
+   совпадает с картинкой, поэтому object-fit пустых полос не даёт.
+   300 — заголовок, подзаголовок, легенда и отступы секции. */
+.sa-geo__map{margin:clamp(14px,2vh,20px) auto 0;
+  width:100%;max-width:min(1240px,90vw);
+  max-height:calc(100dvh - 300px);aspect-ratio:1408/762;padding:0}
+.sa-geo__map img{display:block;width:100%;height:100%;
+  object-fit:contain;border-radius:var(--sa-r-card)}
 /* у телефонной карты своя пропорция — без этого её сплющивало
    в пропорцию настольной */
-.sa-geo__map img.sa-geo__m{aspect-ratio:1074/771}
+@media (max-width:767px){.sa-geo__map{aspect-ratio:1074/771;max-height:none}}
 .sa-geo__map img.sa-geo__m{display:none}
 .sa-geo__m{aspect-ratio:1074/771}
 @media (max-width:1023px){
