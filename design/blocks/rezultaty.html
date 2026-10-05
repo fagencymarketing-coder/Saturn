@@ -27,7 +27,7 @@
 .sa-res__nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sa-gap-m);align-items:start;margin-top:var(--sa-gap-m)}
 .sa-res__num b{display:block;font-size:28px;font-weight:800;line-height:1.1}
 .sa-res__num span{display:block;font-size:var(--sa-small);font-weight:400;color:var(--mut);margin-top:8px}
-.sa-res__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+.sa-res__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start;
   margin-top:clamp(24px,3.6vh,40px)}
 .sa-res__card{display:flex;flex-direction:column;background:#fff;
   border-radius:var(--sa-r-card);padding:32px;transition:transform var(--sa-t) var(--sa-ease),
@@ -38,10 +38,10 @@
   font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .sa-res__big{font-size:36px;font-weight:800;line-height:1;color:var(--acc);margin-top:12px}
 .sa-res__cap{font-size:var(--sa-small);font-weight:400;line-height:1.4;color:#6B6560;margin-top:8px}
-.sa-res__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  margin-top:auto;padding-top:16px}
+.sa-res__foot{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  margin-top:auto;padding-top:20px}
 .sa-res__reg{font-size:var(--sa-small);font-weight:600;white-space:nowrap}
-.sa-res__pdf{font-size:var(--sa-small);font-weight:600;color:var(--ink);text-decoration:none;
+.sa-res__pdf{font-size:var(--sa-body);font-weight:600;color:var(--ink);text-decoration:none;
   white-space:nowrap;border-bottom:1px solid var(--line);padding-bottom:2px}
 .sa-res__card_dark{background:var(--ink);color:#fff}
 .sa-res__ico{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.1);
@@ -63,6 +63,10 @@
    в планшетный режим, поэтому сетка переключается на своей ширине, а кегли
    и поля — на общей для всех блоков. Иначе на 1024 «Результаты» выглядели
    планшетом среди десктопных соседей. */
+@media (min-width:1200px){
+  .sa-res__nums{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+  .sa-res__num{padding-left:32px}
+}
 @media (max-width:1199px){
   .sa-res__grid{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:48px}
   .sa-res__card{padding:24px}
@@ -80,14 +84,21 @@
   .sa-res__in{padding:0 20px}
   .sa-res__nums{margin-top:32px;gap:8px}
   .sa-res__num b{font-size:20px;white-space:nowrap}
-  .sa-res__num span{font-size:11px;line-height:14px;margin-top:6px}
+  .sa-res__nums{grid-template-columns:auto auto auto;justify-content:space-between}
+  .sa-res__num b{font-size:19px}
+  .sa-res__num span{font-size:11px;line-height:14px;margin-top:6px;white-space:nowrap}
+
   .sa-res__grid{grid-template-columns:1fr;gap:12px;margin-top:48px}
   .sa-res__card{padding:20px}
   .sa-res__chip{font-size:11px;height:28px;padding:0 12px}
   .sa-res__big{font-size:40px}
   .sa-res__cap{font-size:14px}
-  .sa-res__foot{padding-top:16px;min-height:44px}
-  .sa-res__pdf{display:flex;align-items:center;min-height:44px}
+  .sa-res__foot{padding-top:16px}
+}
+@media (max-width:374px){
+  .sa-res__nums{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sa-res__num b{font-size:17px}
+  .sa-res__num span{white-space:normal}
 }
 </style>
 
@@ -109,7 +120,7 @@
         <div class="sa-res__cap">прибавка урожайности</div>
         <div class="sa-res__foot">
           <span class="sa-res__reg">Алтайский край</span>
-          <a class="sa-res__pdf" target="_blank" rel="noopener"
+          <a class="sa-res__pdf" data-dl="Протокол-испытаний-4.pdf" target="_blank" rel="noopener"
              href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-4.pdf">Протокол ↓</a>
         </div>
       </div>
@@ -120,7 +131,7 @@
         <div class="sa-res__cap">прибавка урожайности</div>
         <div class="sa-res__foot">
           <span class="sa-res__reg">Алтайский край</span>
-          <a class="sa-res__pdf" target="_blank" rel="noopener"
+          <a class="sa-res__pdf" data-dl="Протокол-испытаний-1.pdf" target="_blank" rel="noopener"
              href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-1.pdf">Протокол ↓</a>
         </div>
       </div>
@@ -131,7 +142,7 @@
         <div class="sa-res__cap">прибавка урожайности</div>
         <div class="sa-res__foot">
           <span class="sa-res__reg">Алтайский край</span>
-          <a class="sa-res__pdf" target="_blank" rel="noopener"
+          <a class="sa-res__pdf" data-dl="Протокол-испытаний-7.pdf" target="_blank" rel="noopener"
              href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-7.pdf">Протокол ↓</a>
         </div>
       </div>
@@ -159,3 +170,31 @@
 .sa-res__pdf::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;
   transform:translateY(-50%)}
 </style>
+<script>
+(function(){
+  if(window.__saPdf)return;window.__saPdf=1;
+  function blob(url,type,cb,fail){
+    fetch(url).then(function(r){if(!r.ok)throw 0;return r.blob()})
+      .then(function(b){cb(new Blob([b],{type:type}))}).catch(fail);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[data-pdf],a[data-dl]');
+    if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||!window.fetch||!window.Blob||!URL.createObjectURL)return;
+    var url=a.href,dl=a.getAttribute('data-dl');
+    e.preventDefault();
+    if(dl){
+      blob(url,'application/pdf',function(b){
+        var u=URL.createObjectURL(b),t=document.createElement('a');
+        t.href=u;t.download=dl;document.body.appendChild(t);t.click();t.remove();
+        setTimeout(function(){URL.revokeObjectURL(u)},4000);
+      },function(){window.open(url,'_blank','noopener')});
+      return;
+    }
+    var w=window.open('','_blank');
+    blob(url,'application/pdf',function(b){
+      var u=URL.createObjectURL(b);
+      if(w)w.location.href=u;else window.open(u,'_blank');
+    },function(){if(w)w.location.href=url;else window.open(url,'_blank')});
+  });
+})();
+</script>

@@ -271,11 +271,9 @@ img.js-product-img,
        Марочный остаётся узлу, значку и выделенному слову.
        Баннер cookie не трогаю — его цвет Дарья решает отдельно. */
 .t-catalog__card__btn,
-.t-catalog__load-more-btn,
 .t-catalog__prod-popup__btn{background-color:#D93800 !important}
 @media (hover:hover){
   .t-catalog__card__btn:hover,
-  .t-catalog__load-more-btn:hover,
   .t-catalog__prod-popup__btn:hover{background-color:#C23100 !important}
 }
 
@@ -304,6 +302,63 @@ img.js-product-img,
        HEAD будет пересобран без этого узла, правило станет лишним и
        его можно убрать. */
 #sa-tp-cta .sa-tp-cta__tel{display:none !important}
+
+/* 20. «Загрузить ещё» — вторичная кнопка: белая с рамкой (B4, 05.10).
+       Красная одна — «Получить предложение» в полосе под сеткой, чтобы
+       две красные кнопки подряд не спорили за главную роль. */
+.t-catalog__load-more-btn,
+.t-catalog__load-more-btn.t-btn{
+  background-color:#fff !important;color:#141210 !important;
+  border:1px solid #E7E3DE !important;box-shadow:none !important;
+  border-radius:12px !important;font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-weight:700;transition:border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease)}
+.t-catalog__load-more-btn .t-btnflex__text,
+.t-catalog__load-more-btn .js-catalog-load-more-btn-text{color:inherit !important}
+@media (hover:hover){
+  .t-catalog__load-more-btn:hover{background-color:#fff !important;
+    border-color:#FF4200 !important;color:#FF4200 !important}
+}
+
+/* 21. Сетка и панель фильтров на ПК — по той же колонке, что заголовок,
+       поиск и чипы сверху: min(1240px,90vw), поля 20 (A3, 05.10).
+       Раньше у блока стояли свои 40px по краям окна, и на 1920 панель
+       начиналась с 40, а заголовок — с 360. box-sizing border-box:
+       ширина 1240 считается вместе с полями 20, как у .sa-kv__in. */
+@media screen and (min-width:961px){
+  .t-catalog__cont-w-filter{
+    box-sizing:border-box !important;max-width:min(1240px,90vw) !important;
+    margin-left:auto !important;margin-right:auto !important;
+    padding-left:20px !important;padding-right:20px !important}
+  .t-catalog__filter-wrapper{padding-left:0 !important}
+}
+@media screen and (min-width:961px) and (max-width:1023px){
+  .t-catalog__cont-w-filter{padding-left:32px !important;padding-right:32px !important}
+}
+
+/* 22. Телефон и планшет ≤959: штатные дубли Тильды спрятаны (A2, 05.10).
+       Наверху уже стоят наш поиск и наша кнопка «Фильтры» (шторка из
+       katalog-verh.html). Прячем полосу разделов «Все · Семена ·
+       Гербициды…», стрелки её прокрутки, второй «Фильтры» и лупу.
+       Сортировка остаётся — полезна и дубля у неё нет. */
+@media screen and (max-width:959px){
+  .js-catalog-parts-select-container,
+  .t-catalog__parts-above-single-shell,
+  .t-catalog__parts-above-scroll-arrow,
+  .t-catalog__parts-switch-wrapper,
+  .js-catalog-filter-mob-btn,
+  .js-catalog-search-mob-btn{display:none !important}
+  .t-catalog__filter__controls-wrapper{justify-content:flex-end}
+}
+
+/* 23. Карточка товара: цена прижата к низу, высота без цены — по
+       содержимому (B3, 05.10). Плитки одного ряда тянутся по самой
+       высокой, внутри текст сверху, цена внизу — на одном уровне. */
+.t-catalog__card{display:flex;flex-direction:column}
+.t-catalog__card__wrap_txt-and-btns,
+.t-catalog__card__wrap_txt-and-opts,
+.t-catalog__card__wrap_txt-and-opts > a,
+.t-catalog__card__textwrapper{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+.t-catalog__card__price-wrapper{margin-top:auto !important;padding-top:12px}
 </style>
 
 <script>
@@ -331,6 +386,21 @@ img.js-product-img,
           el.style.setProperty('display','none','important');
         }
         el.dataset.saFixed = '1';
+      });
+
+    /* Цена в одном написании: «₽» и узкий пробел в тысячах
+          (B2, 05.10). Тильда рисует «р.» / «Р» и «1040». Функция
+          идемпотентна: ставит только если текст отличается. */
+    document.querySelectorAll('.js-product-price,.js-catalog-prod-price-val').forEach(function(v){
+      var t = v.textContent, d = t.replace(/[\s\u00A0\u202F]/g,'');
+      if(/^\d{4,}$/.test(d)){
+        var f = d.replace(/\B(?=(\d{3})+$)/g,'\u202F');
+        if(t !== f) v.textContent = f;
+      }
+    });
+    document.querySelectorAll('.t-catalog__card__price-currency,.t-catalog__prod-popup__price-currency,.js-product-price-currency')
+      .forEach(function(c){
+        if(!c.children.length && /^\s*(р\.?|руб\.?|Р)\s*$/i.test(c.textContent) && c.textContent !== '₽') c.textContent = '₽';
       });
 
     /* B. Двенадцать строк «Культура» → одна строка через запятую.

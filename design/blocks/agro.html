@@ -33,7 +33,7 @@
   background:#FF4200}
 /* Кегль — из общей шкалы сайта, см. :root в коде HEAD. */
 .sa-ag__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);margin-top:16px;letter-spacing:-.01em}
-.sa-ag__sub{font-size:var(--sa-body);font-weight:400;line-height:1.5;color:rgba(255,255,255,.72);
+.sa-ag__sub{text-wrap:balance;font-size:var(--sa-body);font-weight:400;line-height:1.5;color:rgba(255,255,255,.72);
   margin-top:12px;max-width:900px}
 .sa-ag__steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
   gap:var(--gap);margin-top:56px}
@@ -108,7 +108,8 @@
   .sa-ag__sub{font-size:16px;line-height:24px;color:#B5B0AA;margin-top:8px}
   .sa-ag__steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;margin-top:24px}
   .sa-ag__step{display:flex;align-items:flex-start;padding:24px 0}
-  .sa-ag__num{flex:0 0 64px;font-size:44px;font-weight:500;line-height:44px;
+  /* B8 05.10: верх цифры — по верхней линии заголовка шага (было ниже на ~10px) */
+  .sa-ag__num{flex:0 0 64px;font-size:44px;font-weight:500;line-height:.8;margin-top:4px;
     color:rgba(255,255,255,.28)}
   .sa-ag__ico,.sa-ag__rail{display:none}
   .sa-ag__txt{flex:1 1 auto;min-width:0}

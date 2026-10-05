@@ -123,7 +123,9 @@
   font-size:13px !important;font-weight:400 !important;line-height:19.5px !important;
   color:#6B655E !important}
 .uc-saturn-form .t-checkbox__control a,
-.uc-saturn-form .t-form__lock-text a{color:#141210 !important;text-decoration:underline}
+/* B12 05.10: подчёркивание — цветом текста, не красным (Тильда рисует его border-ом/тенью) */
+.uc-saturn-form .t-form__lock-text a{color:#141210 !important;text-decoration:underline !important;
+  text-decoration-color:currentColor !important;border-bottom:0 !important;box-shadow:none !important}
 /* Квадрат согласия. Было задано 18, а на живой странице меряется 13:
    правило Тильды сидит на более длинном селекторе и выигрывает.
    Поднимаю вес тегом поля и ставлю 20, а зону нажатия довожу до 44

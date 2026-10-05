@@ -171,7 +171,7 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
       <input class="sa-kv__input" type="search" autocomplete="off"
              aria-label="Поиск по каталогу"
-             placeholder="Название, действующее вещество или культура">
+             placeholder="Название, действующее вещество или культура" data-ph-long="Название, действующее вещество или культура" data-ph-short="Поиск по каталогу">
     </div>
 
     <div class="sa-kv__chips" role="group" aria-label="Фильтр по культуре">
@@ -296,6 +296,15 @@
   }
 
   var nashe = document.querySelector('.sa-kv__input');
+  /* A6 05.10: на телефоне плейсхолдер короткий — длинный обрезался
+     («…действующее веще»). Как на холсте. */
+  (function(){
+    if(!nashe || !window.matchMedia) return;
+    var mq = window.matchMedia('(max-width:767px)');
+    function ph(){ nashe.placeholder = nashe.getAttribute(mq.matches ? 'data-ph-short' : 'data-ph-long'); }
+    ph();
+    if(mq.addEventListener) mq.addEventListener('change', ph); else if(mq.addListener) mq.addListener(ph);
+  })();
   if (nashe){
     var t;
     /* Запрос уходит на сервер, поэтому ждём паузы в наборе, а не шлём

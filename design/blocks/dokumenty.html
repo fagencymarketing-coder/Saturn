@@ -34,12 +34,12 @@
      когда её нет: из окна вычитаются шапка, кикер, заголовок,
      подпись, подписи под карточкой и поля секции. */
   max-height:calc(100dvh - 500px);min-height:140px}
-.sa-docs__pic img{display:block;width:100%;height:100%;object-fit:cover}
+.sa-docs__pic img{display:block;width:100%;height:100%;object-fit:contain}
 .sa-docs__meta{display:block;font-size:13px;font-weight:400;line-height:18.2px;color:var(--mut);margin-top:6px}
 .sa-docs__name{font-size:var(--sa-body);font-weight:700;line-height:1.35;margin-top:14px}
 .sa-docs__btnwrap{display:flex;justify-content:center;margin-top:clamp(18px,2.4vh,28px)}
 .sa-docs__btn{display:inline-flex;align-items:center;justify-content:center;
-  height:var(--sa-btn-h);
+  height:var(--sa-btn-h);font-family:inherit;
   padding:0 var(--sa-btn-px);border:1px solid var(--line);border-radius:12px;background:transparent;
   font-size:var(--sa-body);font-weight:700;color:var(--ink);text-decoration:none;cursor:pointer;
   transition:border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease)}
@@ -60,18 +60,30 @@
 }
 @media (max-width:767px){
   .sa-docs__in{padding:0 20px}
-  .sa-docs__grid{grid-template-columns:minmax(0,1fr);gap:10px;margin-top:36px}
-  .sa-docs__card{flex-direction:row;align-items:center;gap:14px;padding:10px;
-    border-radius:16px;min-height:94px;min-width:0}
-  .sa-docs__card>div{min-width:0}
-  /* было overflow-wrap:anywhere — рвало по буквам: «Сертифика|т».
-   break-word переносит по словам и рвёт только то, что реально не
-   влезает целиком (длинные номера СГР). */
+  .sa-docs__grid{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:36px}
+  /* A1 05.10: карточка вертикальная — превью сверху на всю ширину 4:3,
+     под ним название и подпись. Раньше три потомка шли в строку и
+     название рвалось по буквам. */
+  .sa-docs__card{flex-direction:column;align-items:stretch;padding:10px 10px 18px;
+    border-radius:16px;min-width:0}
   .sa-docs__name,.sa-docs__meta{overflow-wrap:break-word;word-break:normal;hyphens:none}
-  .sa-docs__pic{flex:0 0 96px;width:96px;height:72px;border-radius:8px;aspect-ratio:auto}
-  .sa-docs__name{font-size:15px;line-height:19.5px;margin-top:0}
+  .sa-docs__pic{width:100%;border-radius:10px;aspect-ratio:4/3;max-height:none;min-height:0}
+  .sa-docs__name{font-size:15px;line-height:20px;margin-top:14px;padding:0 6px}
+  .sa-docs__meta{padding:0 6px}
   .sa-docs__btn{width:100%}
 }
+/* «Все документы»: панель раскрывается кнопкой */
+.sa-docs__more{display:none;margin-top:clamp(20px,2.8vh,32px)}
+.sa-docs__more.is-open{display:block}
+.sa-docs__moreh{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
+.sa-docs__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+.sa-docs__row{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;
+  padding:10px 20px;background:#fff;border-radius:12px;text-decoration:none;color:var(--ink);
+  font-size:var(--sa-body);font-weight:600;line-height:1.35;
+  transition:color var(--sa-t) var(--sa-ease),box-shadow var(--sa-t) var(--sa-ease)}
+.sa-docs__row i{font-style:normal;font-weight:400;font-size:13px;color:var(--mut);white-space:nowrap}
+@media (hover:hover){.sa-docs__row:hover{color:#D93800;box-shadow:0 8px 24px rgba(20,18,16,.08)}}
+@media (max-width:767px){.sa-docs__list{grid-template-columns:minmax(0,1fr)}}
 </style>
 
 <section class="sa-docs" id="docs">
@@ -81,7 +93,7 @@
     <p class="sa-docs__sub">Сертификат официального дилера и свидетельства о госрегистрации препаратов, которые мы поставляем</p>
 
     <div class="sa-docs__grid">
-      <a class="sa-docs__card" target="_blank" rel="noopener"
+      <a class="sa-docs__card" data-pdf target="_blank" rel="noopener"
          href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/01-sertifikat-dilera-fertika-do-2026.pdf">
         <span class="sa-docs__pic"><img loading="lazy" alt="Сертификат дилера АО «Фертика»"
           src="https://static.tildacdn.com/tild3164-3534-4330-b063-346663653636/preview-sertifikat-f.jpg"></span>
@@ -89,7 +101,7 @@
         <span class="sa-docs__meta">Выдан ООО «Сатурн» · до 31.12.2026</span>
       </a>
 
-      <a class="sa-docs__card" target="_blank" rel="noopener"
+      <a class="sa-docs__card" data-pdf target="_blank" rel="noopener"
          href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf">
         <span class="sa-docs__pic"><img loading="lazy" alt="СГР — Страда N, P, K"
           src="https://static.tildacdn.com/tild3334-6466-4133-b535-393436633139/preview-sgr-strada.jpg"></span>
@@ -97,7 +109,7 @@
         <span class="sa-docs__meta">№ 2855 · действует до 2030</span>
       </a>
 
-      <a class="sa-docs__card" target="_blank" rel="noopener"
+      <a class="sa-docs__card" data-pdf target="_blank" rel="noopener"
          href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/08-sgr-diforma-2899-do-2030.pdf">
         <span class="sa-docs__pic"><img loading="lazy" alt="СГР — Волски Диформа"
           src="https://static.tildacdn.com/tild3639-3561-4162-b766-633634663432/preview-sgr-diforma.jpg"></span>
@@ -107,7 +119,60 @@
     </div>
 
     <div class="sa-docs__btnwrap">
-      <a class="sa-docs__btn" href="/catalog">Все документы →</a>
+      <button type="button" class="sa-docs__btn" id="sa-docs-all" aria-expanded="false" aria-controls="sa-docs-more">Все документы →</button>
+    </div>
+
+    <div class="sa-docs__more" id="sa-docs-more" hidden>
+      <div class="sa-docs__moreh">Прочие документы</div>
+      <div class="sa-docs__list">
+        <a class="sa-docs__row" data-dl="Прайс-Сатурн-2026.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf"><span>Прайс-лист 2026</span><i>PDF ↓</i></a>
+        <a class="sa-docs__row" data-dl="Реквизиты-Сатурн.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-rekvizity.pdf"><span>Реквизиты ООО «Сатурн»</span><i>PDF ↓</i></a>
+        <a class="sa-docs__row" data-dl="Протокол-испытаний-1.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-1.pdf"><span>Протокол испытаний № 1</span><i>PDF ↓</i></a>
+        <a class="sa-docs__row" data-dl="Протокол-испытаний-2.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-2.pdf"><span>Протокол испытаний № 2</span><i>PDF ↓</i></a>
+        <a class="sa-docs__row" data-dl="Протокол-испытаний-3.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-3.pdf"><span>Протокол испытаний № 3</span><i>PDF ↓</i></a>
+        <a class="sa-docs__row" data-dl="Протокол-испытаний-4.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-4.pdf"><span>Протокол испытаний № 4</span><i>PDF ↓</i></a>
+        <a class="sa-docs__row" data-dl="Протокол-испытаний-5.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-5.pdf"><span>Протокол испытаний № 5</span><i>PDF ↓</i></a>
+        <a class="sa-docs__row" data-dl="Протокол-испытаний-6.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-6.pdf"><span>Протокол испытаний № 6</span><i>PDF ↓</i></a>
+        <a class="sa-docs__row" data-dl="Протокол-испытаний-7.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-7.pdf"><span>Протокол испытаний № 7</span><i>PDF ↓</i></a>
+        <a class="sa-docs__row" data-dl="Протокол-испытаний-8.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-8.pdf"><span>Протокол испытаний № 8</span><i>PDF ↓</i></a>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  var more=document.getElementById('sa-docs-more'),btn=document.getElementById('sa-docs-all');
+  if(btn&&more){
+    more.hidden=false;
+    btn.addEventListener('click',function(){
+      var o=more.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded',o?'true':'false');
+      btn.textContent=o?'Скрыть документы ↑':'Все документы →';
+    });
+  }
+  function blob(url,type,cb,fail){
+    fetch(url).then(function(r){if(!r.ok)throw 0;return r.blob()})
+      .then(function(b){cb(new Blob([b],{type:type}))}).catch(fail);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[data-pdf],a[data-dl]');
+    if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||!window.fetch||!window.Blob||!URL.createObjectURL)return;
+    var url=a.href,dl=a.getAttribute('data-dl');
+    e.preventDefault();
+    if(dl){
+      blob(url,'application/pdf',function(b){
+        var u=URL.createObjectURL(b),t=document.createElement('a');
+        t.href=u;t.download=dl;document.body.appendChild(t);t.click();t.remove();
+        setTimeout(function(){URL.revokeObjectURL(u)},4000);
+      },function(){window.open(url,'_blank','noopener')});
+      return;
+    }
+    var w=window.open('','_blank');
+    blob(url,'application/pdf',function(b){
+      var u=URL.createObjectURL(b);
+      if(w)w.location.href=u;else window.open(u,'_blank');
+    },function(){if(w)w.location.href=url;else window.open(url,'_blank')});
+  });
+})();
+</script>

@@ -71,7 +71,8 @@
   .sa-sd__top>div:first-child{order:1}
   .sa-sd__grid{order:2;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:28px}
   .sa-sd__all{order:3;display:flex;justify-content:center;width:100%;margin-top:28px}
-  .sa-sd__ph{aspect-ratio:auto;height:220px}
+  /* B9 05.10: фото 16:10 вместо почти квадрата — три сорта умещаются в полтора экрана */
+  .sa-sd__ph{aspect-ratio:16/10;height:auto}
   .sa-sd__name{font-size:17px;line-height:21px}
   .sa-sd__sig{font-size:13px;line-height:18px}
   .sa-sd__y b{font-size:24px}

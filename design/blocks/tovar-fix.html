@@ -161,11 +161,13 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
       откуда берётся текст, написано в скрипте ниже. */
 .sa-tp__cats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 .sa-tp__cat{display:inline-block;background:#F0EDE9;color:#6B655E;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.2;
   font-size:var(--sa-kick);font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;padding:7px 14px;border-radius:var(--sa-r-pill)}
 /* вторая плашка на холсте обведённая, а не залитая: так видно, что
    это не второй раздел, а уточнение к первому — «гибрид F1», «РС 1» */
-.sa-tp__cat--out{background:transparent;box-shadow:inset 0 0 0 1px #DDD7D0}
+/* A4 05.10: плашки одной заливкой — контурная выглядела как другой тип элемента */
+.sa-tp__cat--out{background:#F0EDE9;box-shadow:none}
 h1.t-catalog__prod-popup__name{
   font-size:var(--sa-h2) !important;font-weight:800 !important;
   line-height:var(--sa-h2-lh) !important;color:#141210 !important;
@@ -251,7 +253,9 @@ h1.t-catalog__prod-popup__name{
        снимок поля: его, наоборот, надо заполнить кадром, иначе
        внутри квадрата остаются поля и карточка выглядит пустой. */
 .sa-tp--semena .t-catalog__prod-popup__col-left .t-img,
-.sa-tp--semena .t-catalog__prod-popup__col-left img.js-product-img{
+.sa-tp--semena .t-catalog__prod-popup__col-left img.js-product-img,
+.sa-tp--photo .t-catalog__prod-popup__col-left .t-img,
+.sa-tp--photo .t-catalog__prod-popup__col-left img.js-product-img{
   width:100% !important;aspect-ratio:1/1;object-fit:cover;
   border-radius:var(--sa-r-card)}
 
@@ -502,7 +506,10 @@ h1.t-catalog__prod-popup__name{
     }
     var num = document.createElement('span');
     num.className = 'sa-tp__num';
-    num.textContent = m[2].trim();
+    var raw = m[2].trim();
+    /* B2: «1040» → «1 040» (узкий неразрывный пробел) */
+    if(/^\d{4,}$/.test(raw)) raw = raw.replace(/\B(?=(\d{3})+$)/g, '\u202F');
+    num.textContent = raw;
     var ed = document.createElement('span');
     ed.className = 'sa-tp__unit';
     ed.textContent = m[3].replace(/\s+/g, '');
@@ -553,6 +560,20 @@ h1.t-catalog__prod-popup__name{
        и цифры по сорту взяты из чужих реестров. Поэтому у карточки
        свой признак, от которого работают три правила ниже. */
     if(razdel() === 'Семена') root.classList.add('sa-tp--semena');
+
+    /* B1 05.10: снимок поля (jpg) заполняет кадр, упаковка (png) вписана
+       целиком. Признак — расширение файла: фото без упаковки у нас всегда
+       jpg, упаковки на прозрачном фоне — png. */
+    var im0 = root.querySelector('.t-catalog__prod-popup__col-left [data-original],.t-catalog__prod-popup__col-left img');
+    var u0 = im0 && (im0.getAttribute('data-original') || im0.getAttribute('src') || im0.getAttribute('data-lazy-rule') || '');
+    if(/\.jpe?g(\?|$)/i.test(u0)) root.classList.add('sa-tp--photo');
+    /* A5: числа вида 18-18-18 в названии не рвутся по дефису */
+    var h1 = root.querySelector('h1.t-catalog__prod-popup__name');
+    if(h1 && !h1.getAttribute('data-sa-nb') && !h1.children.length){
+      h1.innerHTML = h1.textContent.replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/\d+(?:-\d+)+/g, function(t){ return '<span style="white-space:nowrap">' + t + '</span>'; });
+      h1.setAttribute('data-sa-nb','1');
+    }
 
     /* Плашки над названием. На холсте у семян их две — «РАПС ЯРОВОЙ»
        и «ГИБРИД F1», у препарата одна — «УДОБРЕНИЯ». И то и другое
