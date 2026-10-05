@@ -76,7 +76,7 @@
 .uc-saturn-form .t-input,
 .uc-saturn-form input.t-input,
 .uc-saturn-form textarea.t-input{
-  height:52px !important;border-radius:12px !important;padding:0 18px !important;
+  height:var(--sa-fld-h,52px) !important;border-radius:12px !important;padding:0 18px !important;
   background:#fff !important;
   border:1px solid #E0DAD2 !important;
   color:#141210 !important;font-size:16px !important;font-weight:500 !important;
@@ -93,16 +93,16 @@
    без рамки, фона и скругления; фокус показывает обёртка. */
 .uc-saturn-form .t-input-phonemask__wrap{
   background:#fff !important;border:1px solid #E0DAD2 !important;
-  border-radius:12px !important;height:52px !important;color:#141210 !important;
+  border-radius:12px !important;height:var(--sa-fld-h,52px) !important;color:#141210 !important;
   padding:0 !important;box-sizing:border-box !important}
 .uc-saturn-form .t-input-phonemask__select{
-  background:transparent !important;border:0 !important;height:50px !important;
+  background:transparent !important;border:0 !important;height:calc(var(--sa-fld-h,52px) - 2px) !important;
   /* 05.10: флаг был прижат к левой рамке — внутренний отступ как у поля «Имя» */
   padding-left:18px !important;color:#141210 !important}
 .uc-saturn-form .t-input-phonemask__wrap .t-input-phonemask,
 .uc-saturn-form .t-input-phonemask__wrap input.t-input{
   border:0 !important;box-shadow:none !important;background:transparent !important;
-  border-radius:0 !important;height:50px !important;padding:0 18px 0 8px !important}
+  border-radius:0 !important;height:calc(var(--sa-fld-h,52px) - 2px) !important;padding:0 18px 0 8px !important}
 .uc-saturn-form .t-input-phonemask__wrap:focus-within{
   border-color:#D93800 !important;box-shadow:0 0 0 3px rgba(217,56,0,.18) !important}
 .uc-saturn-form .t-input-phonemask__options{background:#fff !important;color:#141210 !important;
@@ -222,7 +222,37 @@
   .uc-saturn-form .t-form{padding:24px}
   .uc-saturn-form .sa-fh{font-size:20px}
   /* на 390 кнопка меряется 46 — ниже, чем все остальные на сайте */
-  .uc-saturn-form .t-submit{height:52px !important}
+  .uc-saturn-form .t-submit{height:var(--sa-btn-h,52px) !important}
+}
+
+/* 05.10 вечер, ПК ≥1024: форма как на холсте, который показала заказчица —
+   тёмная карточка во всю колонку, Имя | Телефон | кнопка в один ряд, согласие
+   под ними на всю ширину. Это заменяет решение 04.10 «узкая светлая карточка»
+   только на ПК; планшет и телефон остаются как были. Структура Тильды:
+   .t-form__inputsbox содержит группы _nm, _ph, _cb, блок ошибок и сам
+   .t-form__submit — сетка ставится на inputsbox. */
+@media (min-width:1024px){
+  .uc-saturn-form .t-form{max-width:none;background:#1B1815;
+    border:1px solid rgba(255,255,255,.08);padding:36px 40px}
+  .uc-saturn-form .sa-fh{color:#fff;font-size:var(--sa-h3)}
+  .uc-saturn-form .sa-fx{color:#B5B0AA;margin-bottom:20px}
+  .uc-saturn-form .t-form__inputsbox{display:grid !important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:12px 16px;align-items:start}
+  .uc-saturn-form .t-form__inputsbox .t-input-group{margin:0 !important}
+  .uc-saturn-form .t-input-group_nm{grid-column:1;grid-row:1}
+  .uc-saturn-form .t-input-group_ph{grid-column:2;grid-row:1}
+  .uc-saturn-form .t-form__inputsbox .t-form__submit{grid-column:3;grid-row:1;
+    width:auto !important;margin:0 !important}
+  .uc-saturn-form .t-input-group_cb{grid-column:1 / -1;grid-row:2;margin-top:4px !important}
+  .uc-saturn-form .t-form__errorbox-middle{grid-column:1 / -1;grid-row:3}
+  .uc-saturn-form .t-submit{width:auto !important;min-width:240px;padding:0 32px !important}
+  .uc-saturn-form .t-checkbox__control,
+  .uc-saturn-form .t-checkbox__indicator+span,
+  .uc-saturn-form .t-form__lock-text,
+  .uc-saturn-form .t-form__screen-descr{color:#B5B0AA !important}
+  .uc-saturn-form .t-checkbox__control a,
+  .uc-saturn-form .t-form__lock-text a{color:#fff !important}
+  .uc-saturn-form .t-form__successbox{background:#1B1815 !important;color:#fff !important}
 }
 </style>
 

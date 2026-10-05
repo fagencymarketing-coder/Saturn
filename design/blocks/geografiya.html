@@ -2,7 +2,7 @@
 <style>
 .sa-geo{--acc:#FF4200;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff;
-  background:#141210;padding:clamp(32px,4vh,48px) 0}
+  background:#0C0A07;padding:clamp(32px,4vh,48px) 0}
 .sa-geo *{box-sizing:border-box;margin:0;padding:0}
 /* Ширина контента — не жёсткие 1240, а доля окна с потолком. На 1440
    и шире ничего не меняется: 90vw там больше 1240, работает потолок.
@@ -81,9 +81,15 @@
    Фон карточки — цвет фона растра (#0C0A07, снят с пикселя), поэтому
    внутренний отступ незаметен как рамка, но подписи по краям
    (Краснодарский, Ставропольский, Амурская) больше не касаются края. */
-.sa-geo__map{margin:var(--sa-gap-m) 0 0;width:100%;background:#0C0A07;
-  border-radius:var(--sa-r-card);overflow:hidden;padding:clamp(12px,2vw,28px)}
+.sa-geo__map{margin:var(--sa-gap-m) 0 0;width:100%;background:transparent;
+  padding:0 clamp(8px,1.4vw,20px)}
 .sa-geo__map img{display:block;width:100%;height:auto;border-radius:0}
+/* 05.10 вечер: «чёрный стык» между секцией и картой — у растра фон #0C0A07,
+   у секции был #141210. Секция теперь того же цвета, карта сливается с ней
+   без карточки. Пустой верх: растр 1408×762 с содержимым с 22 до 723 строки;
+   режем сверху 14 и снизу 27 px (aspect-ratio 1408/721, сдвиг 34%), поля
+   подписей по бокам оставляет padding. */
+.sa-geo__map img.sa-geo__d{aspect-ratio:1408/721;object-fit:cover;object-position:50% 34%}
 @media (max-width:767px){
   /* телефон: карта во весь экран — решение заказчицы 05.10; отступ 12
      внутри, чтобы подписи не упирались в край */
