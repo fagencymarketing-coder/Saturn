@@ -27,7 +27,13 @@
 .sa-res__nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sa-gap-m);align-items:start;margin-top:var(--sa-gap-m)}
 .sa-res__num b{display:block;font-size:28px;font-weight:800;line-height:1.1}
 .sa-res__num span{display:block;font-size:var(--sa-small);font-weight:400;color:var(--mut);margin-top:8px}
-.sa-res__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start;
+/* 05.10 (осн. чат): было repeat(4,1fr). 1fr = minmax(auto,1fr), а у трёх
+   карточек кейсов подвал («Алтайский край» + «Протокол ↓») стоит в nowrap,
+   поэтому их min-content шире, и они забирали ширину у 4-й тёмной карточки
+   «Ваше поле?» — та выходила узкой и прижатой к правому краю (видно на ПК
+   ~1240). minmax(0,1fr) снимает минимум по контенту, все 4 колонки равны.
+   У сетки цифр это уже стояло — здесь было пропущено. */
+.sa-res__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;align-items:start;
   margin-top:clamp(24px,3.6vh,40px)}
 .sa-res__card{display:flex;flex-direction:column;background:#fff;
   border-radius:var(--sa-r-card);padding:32px;transition:transform var(--sa-t) var(--sa-ease),
