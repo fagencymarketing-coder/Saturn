@@ -80,7 +80,14 @@
 .sa-hd__ovnav{display:flex;flex-direction:column;margin-top:24px}
 .sa-hd__ovnav a{font-size:24px;font-weight:700;color:#fff;text-decoration:none;
   padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12)}
-.sa-hd__ovc{margin-top:32px;display:flex;flex-direction:column;gap:4px}
+/* C3 05.10: под меню оставалось ~60% пустого экрана, а телефон и почта
+   читались как текст. Ведущую кнопку «Оставить заявку» и контакты
+   прижимаем к низу (margin-top:auto на кнопке), пустота уходит, появляется
+   ясное действие. Кнопка — тем же кнопочным #D93800, что и везде. */
+.sa-hd__ovbtn{margin-top:auto;display:flex;align-items:center;justify-content:center;
+  height:54px;border-radius:var(--sa-r-ctrl);background:#D93800;color:#fff;
+  font-size:16px;font-weight:700;text-decoration:none}
+.sa-hd__ovc{margin-top:24px;display:flex;flex-direction:column;gap:4px}
 .sa-hd__ovc a{color:#fff;text-decoration:none;min-height:44px;display:flex;
   align-items:center;font-size:var(--sa-h3);font-weight:700}
 .sa-hd__ovc a.sa-hd__ovm{font-size:var(--sa-body);font-weight:400;color:#B5B0AA}
@@ -88,10 +95,17 @@
   .sa-hd__nav a:hover{color:#fff}
   .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}
   .sa-hd__ovnav a:hover{color:#FF4200}
+  .sa-hd__ovbtn:hover{background:#C23100}
 }
 /* 960–1024: пальцем по двум строкам контактов не попасть.
-   Оставляем только телефон одной строкой высотой 44. */
-@media (max-width:1023px){
+   Оставляем только телефон одной строкой высотой 44.
+   C6 05.10: порог поднят с 1023 до 1024 — ровно на 1024 (iPad Pro 12.9"
+   в портрете, это тач-устройство) обе строки показывались с зонами
+   нажатия 26 и 30 px. Теперь на 1024 остаётся один телефон высотой 44.
+   C7 05.10: снимаем потолок контейнера — на планшете поля шапки были
+   ~58px вместо 20 из-за max-width:min(1240,90vw). */
+@media (max-width:1024px){
+  .sa-hd__in{max-width:none}
   .sa-hd__mail{display:none}
   .sa-hd__tel{font-size:15px;min-height:44px;align-items:center}
   .sa-hd__tel::after{top:0;bottom:0}
@@ -134,8 +148,13 @@ html{scroll-behavior:auto}
 .sa-hd__logo,.sa-hd__nav a,.sa-hd__tel,.sa-hd__mail{position:relative}
 .sa-hd__logo::after,.sa-hd__nav a::after{content:"";position:absolute;left:-8px;right:-8px;
   top:50%;height:44px;transform:translateY(-50%)}
-.sa-hd__tel::after{content:"";position:absolute;left:-8px;right:-8px;top:-6px;bottom:-4px}
-.sa-hd__mail::after{content:"";position:absolute;left:-8px;right:-8px;top:-4px;bottom:-8px}
+/* C6 05.10: на десктопе (>1024) телефон и почта стоят двумя строками,
+   весь блок ~44px, поэтому зону каждого тянем наружу (телефон — вверх в
+   отступ шапки, почта — вниз), не залезая на соседа: было 26/30, стало
+   ~37/34 без перекрытия. На тач-ширинах (≤1024) почта скрыта, а телефон
+   уже 44 — см. блок выше. */
+.sa-hd__tel::after{content:"";position:absolute;left:-8px;right:-8px;top:-13px;bottom:-2px}
+.sa-hd__mail::after{content:"";position:absolute;left:-8px;right:-8px;top:-2px;bottom:-13px}
 </style>
 
 <div class="sa-hd">
@@ -171,6 +190,7 @@ html{scroll-behavior:auto}
     <a href="/home#service">Агросопровождение</a>
     <a href="/home#contacts">Контакты</a>
   </nav>
+  <a class="sa-hd__ovbtn" href="#popup:zayavka" onclick="document.getElementById('sa-hd-ov').classList.remove('is-open');document.documentElement.style.overflow=''">Оставить заявку</a>
   <div class="sa-hd__ovc">
     <a href="tel:+79609534888">+7 (960) 953-48-88</a>
     <a class="sa-hd__ovm" href="mailto:nilov@sssaturn.ru">nilov@sssaturn.ru</a>

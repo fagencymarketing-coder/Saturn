@@ -44,9 +44,12 @@
   font-weight:700;color:var(--ink);text-decoration:none;margin-top:20px}
 .sa-ft__btn svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
+/* C5 05.10: нижняя строка (копирайт + «Политика…»/«Согласие…») была 13px,
+   на холсте 14. Поднимаю до 14 на десктопе; на телефоне ниже остаётся 12.
+   Зона нажатия ссылок — 44px псевдоэлементом (см. ниже), её C5 не трогает. */
 .sa-ft__bot{display:flex;align-items:center;justify-content:space-between;gap:16px;
   margin-top:24px;padding:24px 0 40px;border-top:1px solid var(--lin2);
-  font-size:13px;font-weight:400;color:var(--cap)}
+  font-size:14px;font-weight:400;color:var(--cap)}
 .sa-ft__bot a{color:var(--cap);text-decoration:underline;
   text-underline-offset:3px;text-decoration-thickness:1px;
   text-decoration-color:rgba(118,111,104,.5)}
@@ -60,7 +63,9 @@
 /* планшет 2×2 */
 @media (max-width:1023px){
   .sa-ft{padding-top:56px}
-  .sa-ft__in{padding:0 32px}
+  /* C7 05.10: снимаем потолок — на планшете/телефоне поля подвала были
+     40/70 вместо 32/20 из-за max-width:min(1240,90vw). */
+  .sa-ft__in{padding:0 32px;max-width:none}
   .sa-ft__cols{grid-template-columns:1fr 1fr;gap:40px 48px}
   .sa-ft__bot{display:block;padding-bottom:56px}
   .sa-ft__legal{margin-top:10px;white-space:nowrap}

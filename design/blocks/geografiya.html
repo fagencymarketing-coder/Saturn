@@ -97,7 +97,14 @@
 .sa-geo__m{aspect-ratio:1074/771}
 @media (max-width:1023px){
   .sa-geo{padding:64px 0}
-  .sa-geo__in{padding:0 32px}
+  /* C7 05.10: на планшете/телефоне max-width:min(1240,90vw) добавляло к
+     полям ещё по ~(100vw−90vw)/2, и у заголовка с легендой выходило 70/40
+     вместо 32/20 по холсту. Снимаем потолок — поля задаёт только padding.
+     Побочно чинится и карта: её margin-left:calc(50% − 47vw/50vw)
+     считается от ширины .sa-geo__in; при полной ширине 50% встаёт верно,
+     и карта центрируется на планшете и доходит до краёв на телефоне
+     (раньше была сдвинута и обрезана overflow-x:clip на ~20px). */
+  .sa-geo__in{padding:0 32px;max-width:none}
   .sa-geo__top{display:block}
   .sa-geo__h{line-height:var(--sa-h2-lh)}
   .sa-geo__legend{margin-top:20px;gap:16px;flex-wrap:wrap;font-size:13px}

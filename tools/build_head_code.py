@@ -197,14 +197,24 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 #sa-ck .sa-ck__b{{display:flex;flex-direction:column;gap:8px;margin-top:18px}}
 #sa-ck button{{min-height:44px;border-radius:10px;border:0;cursor:pointer;
   font-family:inherit;font-size:14px;font-weight:600;padding:10px 16px}}
-#sa-ck button[data-sa-ck=all]{{background:#D93800;color:#fff}}
+/* C2 05.10 (на усмотрение, тихая дороговизна): «Принять все» была #D93800 —
+   тот же оранжевый, что и главная кнопка героя, и баннер перекрикивал
+   страницу. Делаю её нейтральной: белая на тёмном баннере — ясно первичная,
+   но без спора с акцентом. «Отклонить» остаётся призрачной. */
+#sa-ck button[data-sa-ck=all]{{background:#fff;color:#141210}}
 #sa-ck button[data-sa-ck=none]{{background:transparent;color:#fff;border:1px solid #B5B0AA}}
 @media (hover:hover){{
-  #sa-ck button[data-sa-ck=all]:hover{{background:#C23100}}
+  #sa-ck button[data-sa-ck=all]:hover{{background:#ECE8E2}}
   #sa-ck button[data-sa-ck=none]:hover{{border-color:#FF4200;color:#FF4200}}
 }}
+/* C2 05.10: на телефоне баннер занимал ~45% экрана и закрывал кнопки
+   героя. Кнопки в один ряд (а не в столбик), плашка ниже и компактнее. */
 @media (max-width:640px){{
-  #sa-ck{{right:12px;left:12px;bottom:12px;width:auto;padding:18px}}
+  #sa-ck{{right:12px;left:12px;bottom:12px;width:auto;padding:16px}}
+  #sa-ck .sa-ck__t{{font-size:15px}}
+  #sa-ck .sa-ck__x{{margin-top:8px}}
+  #sa-ck .sa-ck__b{{flex-direction:row;gap:10px;margin-top:14px}}
+  #sa-ck .sa-ck__b button{{flex:1 1 0;min-width:0;padding:10px 12px;font-size:13px}}
 }}
 
 /* Попап заявки (блок Тильды rec4481961301 на кнопках «Получить
