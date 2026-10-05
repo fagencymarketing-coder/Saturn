@@ -274,6 +274,31 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 .t-popup .t-checkbox:checked+.t-checkbox__indicator,
 #rec4481961301 .t-checkbox__indicator_checked,
 .t-popup .t-checkbox__indicator_checked{{background:#FF4200 !important;border-color:#FF4200 !important}}
+/* A7 fix 05.10 (заказчица): в попапе Главной rec4481417201 после добавления
+   галочки колонка формы схлопнулась, а длинный текст согласия сыпался по
+   одной букве в столбик. Причины две — узкая колонка формы и то, что
+   control не был флекс-строкой с тянущимся текстом. Страхуем ширину формы
+   на 100% и делаем галочку строкой: квадрат слева, текст на всю оставшуюся
+   ширину с нормальным переносом по словам. Цепляем оба попапа — и Каталога,
+   и Главной (её id добавляем явно, .t-popup мог не покрыть её структуру). */
+.t-popup .t-form,.t-popup .t-form__inputsbox,.t-popup form,
+#rec4481417201 .t-form,#rec4481417201 .t-form__inputsbox,#rec4481417201 form,
+#rec4481417201 .t-input-group{{width:100% !important;max-width:none !important}}
+#rec4481417201 .t-input{{width:100% !important;height:54px !important;
+  font-size:16px !important;border-radius:12px !important}}
+#rec4481417201 .t-submit{{width:100% !important;height:54px !important;
+  background:#D93800 !important;border-radius:12px !important;
+  font-size:15px !important;font-weight:600 !important;font-family:Montserrat,sans-serif !important}}
+.t-popup .t-checkbox__control,
+#rec4481961301 .t-checkbox__control,
+#rec4481417201 .t-checkbox__control{{display:flex !important;flex-wrap:nowrap !important;
+  align-items:flex-start !important;gap:10px !important;width:100% !important;text-align:left !important}}
+.t-popup .t-checkbox__control>span,.t-popup .t-checkbox__indicator+span,
+#rec4481417201 .t-checkbox__control>span,#rec4481417201 .t-checkbox__indicator+span{{
+  flex:1 1 auto !important;min-width:0 !important;
+  white-space:normal !important;word-break:normal !important;overflow-wrap:break-word !important}}
+.t-popup .t-checkbox__indicator,
+#rec4481417201 .t-checkbox__indicator{{flex:0 0 20px !important}}
 </style>
 
 <script>
