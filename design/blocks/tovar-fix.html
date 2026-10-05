@@ -123,7 +123,13 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
      .t-container_fluid — другая обёртка Тильды. Без сетки здесь
      фото-колонка (sticky) схлопывалась в ноль, а текст и фотография
      наезжали друг на друга (фото уходило под текст фоном). Ловим
-     именно тот контейнер, где лежит колонка с фото. */
+     именно тот контейнер, где лежит колонка с фото.
+     06.10: та же обёртка .t-container_fluid оказалась и на ОТДЕЛЬНОЙ
+     странице товара (разметка у страницы и попапа одна). Сетка ловила
+     её только у попапа, поэтому на странице колонки шли дефолтными
+     флоатами Тильды: текст растягивался на всю карточку и вставал выше
+     фото. Добавлен тот же селектор для .t-catalog__product-snippet. */
+  .t-catalog__product-snippet .t-container_fluid:has(> .t-catalog__prod-popup__col-left),
   .t-catalog__product-popup .t-container_fluid:has(> .t-catalog__prod-popup__col-left){
     display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
     align-items:start;column-gap:clamp(28px,3vw,44px);row-gap:0}
@@ -146,7 +152,9 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
     margin:0 auto}
   .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-container > div,
   .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
-    .t-container > div{grid-template-columns:minmax(0,1fr)}
+    .t-container > div,
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-container_fluid:has(> .t-catalog__prod-popup__col-right),
+  .t-catalog__product-popup:has(meta[itemprop="image"][content=""]) .t-container_fluid:has(> .t-catalog__prod-popup__col-right){grid-template-columns:minmax(0,1fr)}
   .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-catalog__prod-popup__col-right,
   .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
     .t-catalog__prod-popup__col-right{grid-column:1}
@@ -173,9 +181,13 @@ h1.t-catalog__prod-popup__name{
   line-height:var(--sa-h2-lh) !important;color:#141210 !important;
   margin:0 !important;letter-spacing:-.01em}
 .t-catalog__prod-popup__brand{
-  font-size:var(--sa-body) !important;color:#6B655E !important;
+  font-size:var(--sa-body) !important;color:#4A453F !important;
   margin-top:8px !important}
 .t-catalog__prod-popup__brand:empty{display:none}
+/* 06.10 (заказчица): у семян бренд-подпись под названием не нужна —
+   на эталоне семян её нет (это и была обведённая строка «KWS» под
+   «КВС Аквилон»). У удобрений подпись («Фертика») остаётся. */
+.sa-tp--semena .t-catalog__prod-popup__brand{display:none !important}
 /* Артикул убран по решению заказчицы 04.10: покупателю он ничего не
    говорит, а строка «fertika-listovoe-18-18-18» под названием
    выглядит как служебная запись. В разметке он остаётся — поисковики
@@ -191,7 +203,7 @@ h1.t-catalog__prod-popup__name{
       колонка — это 700 px, и строка в 120 знаков читается плохо. */
 .js-catalog-prod-text{
   font-size:var(--sa-body) !important;line-height:1.55 !important;
-  color:#4A453F !important;margin-top:clamp(14px,2vh,18px) !important}
+  color:#2E2A26 !important;margin-top:clamp(14px,2vh,18px) !important}
 .js-catalog-prod-all-text{max-width:60ch}
 
 /* 8. Цена. Было: серая строка тем же кеглем, что и всё остальное, да
@@ -235,18 +247,20 @@ h1.t-catalog__prod-popup__name{
 .sa-tp__chars{margin-top:clamp(18px,2.8vh,26px);border-top:1px solid #E6E1DB}
 .sa-tp__row{display:grid;grid-template-columns:minmax(0,38%) minmax(0,1fr);
   gap:16px;padding:13px 0;border-bottom:1px solid #E6E1DB}
-.sa-tp__k{font-size:var(--sa-body);line-height:1.5;color:#6B655E}
-.sa-tp__v{font-size:var(--sa-body);line-height:1.5;color:#141210}
+/* 06.10 (заказчица): «цвет текста в карточке бледный». Насыщаем —
+   метки темнее (#4A453F вместо #6B655E), значения тёмные с !important,
+   чтобы дефолтный светлый цвет Тильды на отдельной странице товара их
+   не перебивал. */
+.sa-tp__k{font-size:var(--sa-body);line-height:1.5;color:#4A453F !important}
+.sa-tp__v{font-size:var(--sa-body);line-height:1.5;color:#141210 !important}
 @media screen and (max-width:599px){
   .sa-tp__row{grid-template-columns:minmax(0,1fr);gap:3px;padding:12px 0}
   .sa-tp__k{font-size:var(--sa-small)}
 }
 
-/* 9a. Подпись под таблицей. На холсте у семян под характеристиками
-       стоит строка «Данные оригинатора и Госсорткомиссии» — сортовые
-       цифры не наши, и подписать их источник обязательно. */
-.sa-tp__src{font-size:var(--sa-small);line-height:1.45;color:#8A837B;
-  margin-top:12px}
+/* 9a. 06.10: строку-источник под таблицей убрали (эталон — перечёркнута).
+       На всякий случай прячем, если где-то осталась в кеше. */
+.sa-tp__src{display:none !important}
 
 /* 9b. Фотография. У препарата это упаковка на светлой подложке —
        её нельзя обрезать, поэтому вписываем целиком. У семян это
@@ -622,18 +636,9 @@ h1.t-catalog__prod-popup__name{
 
     var info = root.querySelector('.t-catalog__prod-popup__info');
 
-    /* Откуда цифры по сорту. Спелость, вегетационный период,
-       урожайность и качество взяты из реестра оригинатора и отчётов
-       Госсорткомиссии — не наши измерения, и подписать источник надо
-       там же, где цифры. На холсте эта строка стоит между таблицей и
-       кнопками, у семян. */
-    if(info && root.classList.contains('sa-tp--semena') &&
-       !info.querySelector('.sa-tp__src') && info.querySelector('.sa-tp__chars')){
-      var src = document.createElement('div');
-      src.className = 'sa-tp__src';
-      src.textContent = 'Данные оригинатора и Госсорткомиссии';
-      info.appendChild(src);
-    }
+    /* 06.10 (заказчица): строку-источник «Данные оригинатора и
+       Госсорткомиссии» на эталоне перечеркнули — убрали. Больше не
+       рисуем её под таблицей. */
 
     if(dan && info && !info.querySelector('.sa-tp__btns')){
       /* У позиции с ценой зовём оставить заявку, у позиции без цены —

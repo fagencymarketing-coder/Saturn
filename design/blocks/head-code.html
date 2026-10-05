@@ -430,6 +430,7 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
   .t-catalog__product-snippet .t-container > div,
   .t-catalog__product-popup .t-container > div,
 
+  .t-catalog__product-snippet .t-container_fluid:has(> .t-catalog__prod-popup__col-left),
   .t-catalog__product-popup .t-container_fluid:has(> .t-catalog__prod-popup__col-left){
     display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
     align-items:start;column-gap:clamp(28px,3vw,44px);row-gap:0}
@@ -448,7 +449,9 @@ a.js-catalog-close-text::after{content:"";position:absolute;inset:-13px -10px}
     margin:0 auto}
   .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-container > div,
   .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
-    .t-container > div{grid-template-columns:minmax(0,1fr)}
+    .t-container > div,
+  .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-container_fluid:has(> .t-catalog__prod-popup__col-right),
+  .t-catalog__product-popup:has(meta[itemprop="image"][content=""]) .t-container_fluid:has(> .t-catalog__prod-popup__col-right){grid-template-columns:minmax(0,1fr)}
   .t-catalog__product-snippet:has(meta[itemprop="image"][content=""]) .t-catalog__prod-popup__col-right,
   .t-catalog__product-popup:has(meta[itemprop="image"][content=""])
     .t-catalog__prod-popup__col-right{grid-column:1}
@@ -471,15 +474,17 @@ h1.t-catalog__prod-popup__name{
   line-height:var(--sa-h2-lh) !important;color:#141210 !important;
   margin:0 !important;letter-spacing:-.01em}
 .t-catalog__prod-popup__brand{
-  font-size:var(--sa-body) !important;color:#6B655E !important;
+  font-size:var(--sa-body) !important;color:#4A453F !important;
   margin-top:8px !important}
 .t-catalog__prod-popup__brand:empty{display:none}
+
+.sa-tp--semena .t-catalog__prod-popup__brand{display:none !important}
 
 .t-catalog__prod-popup__sku{display:none !important}
 
 .js-catalog-prod-text{
   font-size:var(--sa-body) !important;line-height:1.55 !important;
-  color:#4A453F !important;margin-top:clamp(14px,2vh,18px) !important}
+  color:#2E2A26 !important;margin-top:clamp(14px,2vh,18px) !important}
 .js-catalog-prod-all-text{max-width:60ch}
 
 .t-catalog__product-snippet .js-catalog-price-wrapper,
@@ -507,15 +512,15 @@ h1.t-catalog__prod-popup__name{
 .sa-tp__chars{margin-top:clamp(18px,2.8vh,26px);border-top:1px solid #E6E1DB}
 .sa-tp__row{display:grid;grid-template-columns:minmax(0,38%) minmax(0,1fr);
   gap:16px;padding:13px 0;border-bottom:1px solid #E6E1DB}
-.sa-tp__k{font-size:var(--sa-body);line-height:1.5;color:#6B655E}
-.sa-tp__v{font-size:var(--sa-body);line-height:1.5;color:#141210}
+
+.sa-tp__k{font-size:var(--sa-body);line-height:1.5;color:#4A453F !important}
+.sa-tp__v{font-size:var(--sa-body);line-height:1.5;color:#141210 !important}
 @media screen and (max-width:599px){
   .sa-tp__row{grid-template-columns:minmax(0,1fr);gap:3px;padding:12px 0}
   .sa-tp__k{font-size:var(--sa-small)}
 }
 
-.sa-tp__src{font-size:var(--sa-small);line-height:1.45;color:#8A837B;
-  margin-top:12px}
+.sa-tp__src{display:none !important}
 
 .sa-tp--semena .t-catalog__prod-popup__col-left .t-img,
 .sa-tp--semena .t-catalog__prod-popup__col-left img.js-product-img,
@@ -777,14 +782,6 @@ h1.t-catalog__prod-popup__name{
     cena(root);
 
     var info = root.querySelector('.t-catalog__prod-popup__info');
-
-    if(info && root.classList.contains('sa-tp--semena') &&
-       !info.querySelector('.sa-tp__src') && info.querySelector('.sa-tp__chars')){
-      var src = document.createElement('div');
-      src.className = 'sa-tp__src';
-      src.textContent = 'Данные оригинатора и Госсорткомиссии';
-      info.appendChild(src);
-    }
 
     if(dan && info && !info.querySelector('.sa-tp__btns')){
 
@@ -1363,5 +1360,57 @@ html{scroll-behavior:auto}
       if(c){ c.remove(); }
     } else { draw(); }
   }, 600);
+})();
+</script>
+
+<!-- Кнопка «наверх» (все страницы) + «Назад в каталог» (страница товара) -->
+<style>
+#sa-up{position:fixed;right:24px;bottom:24px;z-index:9400;width:48px;height:48px;
+  border-radius:999px;background:#141210;border:0;cursor:pointer;display:none;
+  align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.25);
+  opacity:0;transition:opacity .2s,background .18s}
+#sa-up svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+#sa-up.on{display:flex;opacity:1}
+@media (hover:hover){#sa-up:hover{background:#D93800}}
+@media (max-width:640px){#sa-up{right:14px;bottom:14px;width:44px;height:44px}}
+#sa-tp-back{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;
+  font-family:Montserrat,sans-serif;font-size:var(--sa-small,13px);font-weight:600;
+  color:#6B655E;text-decoration:none}
+#sa-tp-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+@media (hover:hover){#sa-tp-back:hover{color:#D93800}}
+</style>
+<script>
+(function(){
+  if(window.__saNav)return;window.__saNav=1;
+
+  function up(){
+    if(!document.body||document.getElementById('sa-up'))return;
+    var b=document.createElement('button');b.id='sa-up';b.type='button';
+    b.setAttribute('aria-label','Наверх');
+    b.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    b.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+    document.body.appendChild(b);
+    function t(){ if(window.pageYOffset>600)b.classList.add('on');else b.classList.remove('on'); }
+    window.addEventListener('scroll',t,{passive:true});t();
+  }
+
+  function back(){
+    if(!/\/tproduct\//.test(location.pathname))return;
+    var tries=0,iv=setInterval(function(){
+      var root=document.querySelector('.t-catalog__product-snippet');
+      if(root){
+        clearInterval(iv);
+        if(document.getElementById('sa-tp-back'))return;
+        var a=document.createElement('a');a.id='sa-tp-back';a.href='/catalog';
+        a.innerHTML='<svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Назад в каталог';
+        root.insertBefore(a,root.firstChild);
+      }
+      if(++tries>50)clearInterval(iv);
+    },150);
+  }
+  function init(){ up(); back(); }
+  if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
 })();
 </script>
