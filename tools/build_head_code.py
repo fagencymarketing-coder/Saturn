@@ -296,6 +296,18 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 .t-popup .t-checkbox:checked+.t-checkbox__indicator,
 #rec4481961301 .t-checkbox__indicator_checked,
 .t-popup .t-checkbox__indicator_checked{{background:#FF4200 !important;border-color:#FF4200 !important}}
+/* 06.10 (заказчица): отмеченный чекбокс заливался оранжевым, но птички
+   внутри не было — выглядело «странной фигнёй». Рисуем белую галочку
+   через ::before (::after занят зоной нажатия 44px). */
+#rec4481961301 .t-checkbox:checked+.t-checkbox__indicator::before,
+.t-popup .t-checkbox:checked+.t-checkbox__indicator::before,
+#rec4481417201 .t-checkbox:checked+.t-checkbox__indicator::before,
+#rec4481961301 .t-checkbox__indicator_checked::before,
+.t-popup .t-checkbox__indicator_checked::before,
+#rec4481417201 .t-checkbox__indicator_checked::before{{
+  content:"" !important;position:absolute;left:50%;top:47%;
+  width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;
+  background:transparent !important;transform:translate(-50%,-55%) rotate(45deg)}}
 /* A7 fix 05.10 (заказчица): в попапе Главной rec4481417201 после добавления
    галочки колонка формы схлопнулась, а длинный текст согласия сыпался по
    одной букве в столбик. Причины две — узкая колонка формы и то, что
@@ -470,6 +482,58 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
       if(c){{ c.remove(); }}
     }} else {{ draw(); }}
   }}, 600);
+}})();
+</script>
+
+<!-- Кнопка «наверх» (все страницы) + «Назад в каталог» (страница товара) -->
+<style>
+#sa-up{{position:fixed;right:24px;bottom:24px;z-index:9400;width:48px;height:48px;
+  border-radius:999px;background:#141210;border:0;cursor:pointer;display:none;
+  align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.25);
+  opacity:0;transition:opacity .2s,background .18s}}
+#sa-up svg{{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}}
+#sa-up.on{{display:flex;opacity:1}}
+@media (hover:hover){{#sa-up:hover{{background:#D93800}}}}
+@media (max-width:640px){{#sa-up{{right:14px;bottom:14px;width:44px;height:44px}}}}
+#sa-tp-back{{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;
+  font-family:Montserrat,sans-serif;font-size:var(--sa-small,13px);font-weight:600;
+  color:#6B655E;text-decoration:none}}
+#sa-tp-back svg{{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}}
+@media (hover:hover){{#sa-tp-back:hover{{color:#D93800}}}}
+</style>
+<script>
+(function(){{
+  if(window.__saNav)return;window.__saNav=1;
+  /* кнопка «наверх» — на всех страницах */
+  function up(){{
+    if(!document.body||document.getElementById('sa-up'))return;
+    var b=document.createElement('button');b.id='sa-up';b.type='button';
+    b.setAttribute('aria-label','Наверх');
+    b.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    b.onclick=function(){{window.scrollTo({{top:0,behavior:'smooth'}});}};
+    document.body.appendChild(b);
+    function t(){{ if(window.pageYOffset>600)b.classList.add('on');else b.classList.remove('on'); }}
+    window.addEventListener('scroll',t,{{passive:true}});t();
+  }}
+  /* «Назад в каталог» — только на странице товара */
+  function back(){{
+    if(!/\\/tproduct\\//.test(location.pathname))return;
+    var tries=0,iv=setInterval(function(){{
+      var root=document.querySelector('.t-catalog__product-snippet');
+      if(root){{
+        clearInterval(iv);
+        if(document.getElementById('sa-tp-back'))return;
+        var a=document.createElement('a');a.id='sa-tp-back';a.href='/catalog';
+        a.innerHTML='<svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>Назад в каталог';
+        root.insertBefore(a,root.firstChild);
+      }}
+      if(++tries>50)clearInterval(iv);
+    }},150);
+  }}
+  function init(){{ up(); back(); }}
+  if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
 }})();
 </script>
 """

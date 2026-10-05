@@ -645,10 +645,16 @@ h1.t-catalog__prod-popup__name{
          запросить цену: на холсте у семян кнопка подписана именно так,
          и это честнее, чем общее «оставить заявку» там, где цены нет. */
       var zovut = (dan && dan.price) ? 'Оставить заявку' : 'Запросить цену';
+      /* 06.10 (заказчица): кнопка уводила на /home#contacts — «перекидывает
+         на контакты». Если на странице есть попап заявки (его надо сделать
+         глобальным в Tilda, чтобы он доезжал и до страниц товара) — открываем
+         его, не уходя со страницы. Пока попапа на странице товара нет —
+         остаётся переход на форму в контактах, чтобы кнопка не была мёртвой. */
+      var zayHref = document.querySelector('.t-popup') ? '#popup:zayavka' : '/home#contacts';
       var b = document.createElement('div');
       b.className = 'sa-tp__btns';
       b.innerHTML =
-        '<a class="sa-tp__btn" href="/home#contacts">' + zovut +
+        '<a class="sa-tp__btn" href="' + zayHref + '">' + zovut +
         '<span class="sa-tp__arr" aria-hidden="true">→</span></a>' +
         '<a class="sa-tp__dl" href="' + PRAYS + '" target="_blank" rel="noopener">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>' +

@@ -786,10 +786,12 @@ h1.t-catalog__prod-popup__name{
     if(dan && info && !info.querySelector('.sa-tp__btns')){
 
       var zovut = (dan && dan.price) ? 'Оставить заявку' : 'Запросить цену';
+
+      var zayHref = document.querySelector('.t-popup') ? '#popup:zayavka' : '/home#contacts';
       var b = document.createElement('div');
       b.className = 'sa-tp__btns';
       b.innerHTML =
-        '<a class="sa-tp__btn" href="/home#contacts">' + zovut +
+        '<a class="sa-tp__btn" href="' + zayHref + '">' + zovut +
         '<span class="sa-tp__arr" aria-hidden="true">→</span></a>' +
         '<a class="sa-tp__dl" href="' + PRAYS + '" target="_blank" rel="noopener">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>' +
@@ -962,8 +964,11 @@ h1.t-catalog__prod-popup__name{
   font-size:16px;font-weight:700;text-decoration:none}
 .sa-hd__ovc{margin-top:24px;display:flex;flex-direction:column;gap:4px}
 .sa-hd__ovc a{color:#fff;text-decoration:none;min-height:44px;display:flex;
-  align-items:center;font-size:var(--sa-h3);font-weight:700}
+  align-items:center;gap:12px;font-size:var(--sa-h3);font-weight:700}
 .sa-hd__ovc a.sa-hd__ovm{font-size:var(--sa-body);font-weight:400;color:#B5B0AA}
+
+.sa-hd__ovc a svg{width:18px;height:18px;flex:0 0 18px;fill:none;
+  stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 @media (hover:hover){
   .sa-hd__nav a:hover{color:#fff}
   .sa-hd__tel:hover,.sa-hd__mail:hover{color:var(--acc)}
@@ -1223,6 +1228,16 @@ html{scroll-behavior:auto}
 .t-popup .t-checkbox:checked+.t-checkbox__indicator,
 #rec4481961301 .t-checkbox__indicator_checked,
 .t-popup .t-checkbox__indicator_checked{background:#FF4200 !important;border-color:#FF4200 !important}
+
+#rec4481961301 .t-checkbox:checked+.t-checkbox__indicator::before,
+.t-popup .t-checkbox:checked+.t-checkbox__indicator::before,
+#rec4481417201 .t-checkbox:checked+.t-checkbox__indicator::before,
+#rec4481961301 .t-checkbox__indicator_checked::before,
+.t-popup .t-checkbox__indicator_checked::before,
+#rec4481417201 .t-checkbox__indicator_checked::before{
+  content:"" !important;position:absolute;left:50%;top:47%;
+  width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;
+  background:transparent !important;transform:translate(-50%,-55%) rotate(45deg)}
 
 .t-popup .t-form,.t-popup .t-form__inputsbox,.t-popup form,
 #rec4481417201 .t-form,#rec4481417201 .t-form__inputsbox,#rec4481417201 form,
