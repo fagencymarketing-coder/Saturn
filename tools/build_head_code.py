@@ -292,9 +292,15 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
   width:44px;height:44px;transform:translate(-50%,-50%)}}
 #rec4481961301 .t-checkbox__control,
 .t-popup .t-checkbox__control{{cursor:pointer}}
+/* 06.10: у отмеченного состояния обязателен ID КАЖДОГО попапа. Tilda
+   генерирует собственный CSS по id записи (#rec4481417201 …{{background:#fff}}),
+   и он по весу (ID) перебивал наш .t-popup-селектор — фон оставался белым,
+   белая галочка на белом не видна. Добавлен #rec4481417201 (Главная). */
 #rec4481961301 .t-checkbox:checked+.t-checkbox__indicator,
+#rec4481417201 .t-checkbox:checked+.t-checkbox__indicator,
 .t-popup .t-checkbox:checked+.t-checkbox__indicator,
 #rec4481961301 .t-checkbox__indicator_checked,
+#rec4481417201 .t-checkbox__indicator_checked,
 .t-popup .t-checkbox__indicator_checked{{background:#FF4200 !important;border-color:#FF4200 !important}}
 /* 06.10 (заказчица): отмеченный чекбокс заливался оранжевым, но птички
    внутри не было — выглядело «странной фигнёй». Рисуем белую галочку
