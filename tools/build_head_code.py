@@ -328,8 +328,14 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
    Tilda рендерит на /<страница>/tproduct/<id> только блок каталога,
    поэтому шапку и подвал там дорисовываем сами. */
 (function(){{
-  var HD = {json.dumps(hd_html, ensure_ascii=False)};
-  var FT = {json.dumps(ft_html, ensure_ascii=False)};
+  /* 05.10: HD/FT обнулены. Раньше тут вшивался полный HTML шапки и подвала
+     (~25KB), чтобы дорисовывать их на странице товара. Из-за этого HEAD
+     раздувался, и Tilda резала документ товара до <body> — страница товара
+     была пустой. Теперь Шапка и Подвал назначены в настройках каталога
+     магазина, Tilda рендерит их сама, а наш draw() и так отступает при
+     наличии .sa-hd. Пустые строки экономят ~25KB и чинят страницу товара. */
+  var HD = "";
+  var FT = "";
   function onProductPage(){{ return /\\/tproduct\\//.test(location.pathname); }}
   function draw(){{
     if(!document.body) return;            /* скрипт стоит в <head>: body ещё нет */
