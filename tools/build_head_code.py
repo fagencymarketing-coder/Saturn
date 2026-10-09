@@ -520,8 +520,16 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
     b.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
     b.onclick=function(){{window.scrollTo({{top:0,behavior:'smooth'}});}};
     document.body.appendChild(b);
-    function t(){{ if(window.pageYOffset>600)b.classList.add('on');else b.classList.remove('on'); }}
-    window.addEventListener('scroll',t,{{passive:true}});t();
+    /* Прячем кнопку, когда в экран входит подвал (.sa-ft): внизу она не
+       нужна и перекрывала правый край «Реквизитов». 06.10. */
+    function t(){{
+      var show = window.pageYOffset>600;
+      if(show){{ var ft=document.querySelector('.sa-ft');
+        if(ft && ft.getBoundingClientRect().top < window.innerHeight-40) show=false; }}
+      if(show)b.classList.add('on');else b.classList.remove('on');
+    }}
+    window.addEventListener('scroll',t,{{passive:true}});
+    window.addEventListener('resize',t,{{passive:true}});t();
   }}
   /* «Назад в каталог» — только на странице товара */
   function back(){{
