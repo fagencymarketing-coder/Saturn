@@ -416,23 +416,30 @@
      без id в разметке, поэтому прячем по тексту заголовка. Перерисовку
      магазина ловим наблюдателем. */
   (function(){
-    function spryatatSemena(){
-      /* Tilda рисует пункт раздела в нескольких вариантах разметки
-         (боковой список, строка «above», переключатель), заголовок —
-         то .t-catalog__parts-item-title, то .t-catalog__parts-text-title.
-         Ловим любой заголовок с текстом «Семена» и прячем его пункт. */
+    /* Боковой список разделов Tilda умеет только «верхний уровень» или
+       «подразделы», поштучно не настраивается. В каталоге препаратов он
+       показывает лишние пункты: семенные («Семена», «Гибриды», «Сорта»),
+       служебный «Препараты» и дубли-подразделы, которые повторяют верхний
+       раздел («Удобрения», «Листовые подкормки», «Обработка семян»,
+       «Протравители»). Прячем их по точному тексту заголовка. Точное
+       сравнение важно: «Удобрения» (прятать) ≠ «Удобрения и листовые
+       подкормки» (оставить), «Обработка семян» ≠ «Обработка семян и
+       протравители». Перерисовку магазина ловим наблюдателем. */
+    var LISHNIE = ['Семена','Гибриды','Сорта','Препараты',
+      'Удобрения','Листовые подкормки','Обработка семян','Протравители'];
+    function spryatatLishnie(){
       var ti = document.querySelectorAll(
         '.t-catalog__parts-item-title,.t-catalog__parts-text-title,.t-catalog__parts-sidebar-title');
       for (var i = 0; i < ti.length; i++){
-        if (ti[i].textContent.trim() === 'Семена'){
+        if (LISHNIE.indexOf(ti[i].textContent.trim()) !== -1){
           var item = ti[i].closest(
             '.t-catalog__parts-above-item,.t-catalog__parts-sidebar-item,.t-catalog__parts-switch-btn,.t-catalog__parts-item');
           (item || ti[i]).style.display = 'none';
         }
       }
     }
-    spryatatSemena();
-    new MutationObserver(function(){ spryatatSemena(); })
+    spryatatLishnie();
+    new MutationObserver(function(){ spryatatLishnie(); })
       .observe(document.documentElement, {childList:true, subtree:true});
   })();
 
