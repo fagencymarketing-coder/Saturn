@@ -135,6 +135,11 @@
   .sa-geo__map img.sa-geo__d{display:none}
   .sa-geo__map img.sa-geo__m{display:block}
 }
+
+/* 09.10: единый вертикальный ритм секций — clamp(28px,6vh,72px), как у соседних блоков */
+@media (min-width:1024px){
+  .sa-geo{padding:clamp(28px,6vh,72px) 0}
+}
 </style>
 
 <div class="sa-geo" id="geo">
