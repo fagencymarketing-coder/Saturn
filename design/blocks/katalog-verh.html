@@ -411,6 +411,25 @@
   })();
 })();
 
+  /* 09.10: пункт «Семена» в боковой навигации разделов магазина убираем —
+     семена вынесены на /semena. Tilda рисует разделы своим переключателем
+     без id в разметке, поэтому прячем по тексту заголовка. Перерисовку
+     магазина ловим наблюдателем. */
+  (function(){
+    function spryatatSemena(){
+      var ti = document.querySelectorAll('.t-catalog__parts-item-title');
+      for (var i = 0; i < ti.length; i++){
+        if (ti[i].textContent.trim() === 'Семена'){
+          var item = ti[i].closest('.t-catalog__parts-sidebar-item, .t-catalog__parts-switch-btn, .t-catalog__parts-item');
+          if (item) item.style.display = 'none';
+        }
+      }
+    }
+    spryatatSemena();
+    new MutationObserver(function(){ spryatatSemena(); })
+      .observe(document.documentElement, {childList:true, subtree:true});
+  })();
+
   /* Счётчик позиций. Берём не из разметки, а из самого каталога:
      у Тильды есть скрытое поле с общим числом найденного, а если его
      нет — считаем карточки. Обновляется после поиска и фильтра. */
@@ -428,7 +447,11 @@
        у него есть точное число найденного с учётом раздела, запроса
        и выбранной культуры. Адрес собираем из текущих параметров
        страницы, чтобы счётчик совпадал с тем, что человек видит. */
-    var REC = '4384406801', MAGAZIN = '527746460323';
+    /* 09.10: база счётчика — раздел «Препараты» (uid 571551155283, 86 шт.),
+       а не весь магазин (527746460323, 111 с семенами). Семена вынесены
+       на /semena, поэтому «Все» в каталоге = только препараты. При выборе
+       подраздела storepartuid подменяется на его id (строка ниже). */
+    var REC = '4384406801', MAGAZIN = '571551155283';
     function adresApi(){
       var p = new URLSearchParams(location.search);
       var u = 'https://store.tildaapi.com/api/getproductslist/?storepartuid=' +
