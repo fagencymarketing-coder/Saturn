@@ -163,7 +163,12 @@
      фотография забирала 420 px независимо от высоты окна. Теперь она
      отдаёт место: берёт 46% высоты окна, но не больше 420 и не
      меньше 260, и полоса остаётся видна. */
-  .sa-hero__in{display:block;padding:0;max-width:none;
+  /* 09.10: в невысоком окне (989×506) абсолютный текст не помещался в
+     260 px фотографии: заголовок, подпись и кнопки вылезали вверх и
+     налезали друг на друга. Колонка теперь в потоке и прижата к низу
+     фото: фото растёт вместе с текстом, а в высоком окне остаётся
+     прежней высоты. */
+  .sa-hero__in{display:flex;align-items:flex-end;padding:0;max-width:none;
     flex:1 1 auto;height:auto;min-height:clamp(260px,46dvh,420px)}
   .sa-hero__pic{position:absolute;inset:0;z-index:0}
   .sa-hero__pic img{width:100%;height:100%;object-position:38% center;border-radius:0}
@@ -179,7 +184,7 @@
   .sa-hero__em-ne-nuzhna{left:50%;right:auto;top:16%;width:64px;height:64px;
     transform:translateX(-50%);animation:sa-floatX 24s ease-in-out infinite}
   .sa-hero__em img{width:64px;height:64px}
-  .sa-hero__col{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 20px 28px}
+  .sa-hero__col{position:relative;z-index:2;width:100%;padding:clamp(24px,8dvh,72px) 20px 28px}
   /* самое длинное слово «сельхозпроизводителей» = 13,65em,
      поэтому кегль привязан к ширине экрана и слово никогда не рвётся */
   /* Своё правило героя убрано: оно давало на планшете 40, тогда как
@@ -211,7 +216,7 @@
 /* планшет: тот же тёмный герой, но воздуха больше, а кнопки по содержимому,
    а не во всю ширину — как на холсте */
 @media (max-width:1023px) and (min-width:768px){
-  .sa-hero__col{padding:0 32px 40px}
+  .sa-hero__col{padding:clamp(24px,8dvh,72px) 32px 40px}
   .sa-hero__sub{font-size:16px;line-height:24px;margin-top:18px;max-width:560px}
   .sa-hero__btns{margin-top:28px;gap:12px}
   .sa-hero__b1,.sa-hero__b2{flex:0 0 auto;padding:0 24px}

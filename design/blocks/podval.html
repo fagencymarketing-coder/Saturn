@@ -71,6 +71,19 @@
   .sa-ft__bot{display:block;padding-bottom:56px}
   .sa-ft__legal{margin-top:10px;white-space:nowrap}
 }
+/* 09.10: «подвал страшненький» на ширине 860–1023: два столбца 2×2 давали
+   гигантские пустоты справа и слева и растягивали подвал на два экрана.
+   Здесь работает та же четырёхколоночная сетка, что на ПК, только теснее;
+   2×2 остаётся на 768–859, где четырём колонкам не хватает ширины. */
+@media (min-width:860px) and (max-width:1023px){
+  .sa-ft{padding-top:48px}
+  .sa-ft__cols{grid-template-columns:300fr 196fr 274fr 290fr;gap:24px}
+  .sa-ft__bot{display:flex;padding-bottom:40px}
+  .sa-ft__legal{margin-top:0}
+}
+@media (min-width:768px) and (max-width:859px){
+  .sa-ft__cols{gap:32px 40px}
+}
 /* телефон — один столбец */
 @media (max-width:767px){
   /* 04.10, вечер: «подвал хороший, но может ещё чуть компактнее».
