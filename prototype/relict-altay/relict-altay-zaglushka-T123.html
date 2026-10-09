@@ -1,0 +1,97 @@
+<!-- Заглушка relict-altay.ru — официальное представительство Relict Organics.
+     Один блок T123. Фон и цвета держит собственная обёртка .ra, а не body:
+     в Тильде body закрыт белым #allrecords. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+.ra{--ink:#141414;--mut:#5E5E5E;--cap:#767676;--line:#E4E4E4;--g:#00A84D;--g-d:#008A3F;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:#fff;
+  min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+.ra *{box-sizing:border-box;margin:0;padding:0}
+.ra a{text-decoration:none;color:inherit}
+.ra__top{border-bottom:1px solid var(--line)}
+.ra__in{max-width:1120px;margin:0 auto;padding:0 24px;width:100%}
+.ra__bar{display:flex;align-items:center;justify-content:space-between;height:88px;gap:24px}
+.ra__logo img{display:block;height:64px;width:auto}
+.ra__tel{font-size:16px;font-weight:700;letter-spacing:.01em;white-space:nowrap}
+.ra__main{flex:1;display:flex;align-items:center;padding:72px 0}
+.ra__kick{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cap)}
+.ra__kick::before{content:"";width:40px;height:2px;background:var(--g)}
+.ra__h{font-size:clamp(30px,5.2vw,56px);line-height:1.08;font-weight:800;letter-spacing:-.01em;
+  text-transform:uppercase;margin-top:28px;max-width:16ch}
+.ra__h b{color:var(--g);font-weight:800}
+.ra__lead{font-size:clamp(15px,1.7vw,18px);line-height:1.65;color:var(--mut);margin-top:28px;max-width:58ch}
+.ra__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:56px;
+  border-top:1px solid var(--line)}
+.ra__c{padding:28px 32px 0 0}
+.ra__c+.ra__c{padding-left:32px;border-left:1px solid var(--line)}
+.ra__lbl{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cap)}
+.ra__v{display:flex;flex-direction:column;gap:2px;margin-top:14px}
+.ra__v a{font-size:18px;font-weight:700;line-height:1.5;width:max-content;max-width:100%;
+  overflow-wrap:anywhere;position:relative}
+.ra__v a::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
+.ra__btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:44px}
+.ra__b{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 32px;
+  border-radius:4px;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.ra a.ra__b1{background:var(--g);color:#fff}
+.ra a.ra__b2{border:1px solid var(--ink);color:var(--ink)}
+.ra__bot{border-top:1px solid var(--line);font-size:12px;line-height:1.6;color:var(--cap)}
+.ra__bot .ra__in{display:flex;justify-content:space-between;gap:12px 32px;padding-top:22px;padding-bottom:22px;flex-wrap:wrap}
+@media (hover:hover){
+  .ra a.ra__b1:hover{background:var(--g-d);color:#fff}
+  .ra a.ra__b2:hover{background:var(--ink);color:#fff}
+  .ra .ra__v a:hover{color:var(--g-d)}
+  .ra .ra__tel:hover{color:var(--g-d)}
+}
+@media (max-width:860px){
+  .ra__grid{grid-template-columns:1fr}
+  .ra__c,.ra__c+.ra__c{padding:24px 0;border-left:0}
+  .ra__c+.ra__c{border-top:1px solid var(--line)}
+  .ra__c:first-child{padding-top:24px}
+  .ra__main{padding:48px 0}
+}
+@media (max-width:560px){
+  .ra__in{padding:0 20px}
+  .ra__bar{height:72px}
+  .ra__logo img{height:52px}
+  .ra__tel{display:none}
+  .ra__grid{margin-top:40px}
+  .ra__btns{flex-direction:column;margin-top:36px}
+  .ra__b{width:100%}
+  .ra__v a{font-size:17px}
+}
+</style>
+
+<div class="ra">
+  <header class="ra__top"><div class="ra__in ra__bar">
+    <a class="ra__logo" href="/" aria-label="Relict Organics — на главную"><img src="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/relict-organics.png" alt="Relict Organics"></a>
+    <a class="ra__tel" href="tel:+79145534888">+7 (914) 553-48-88</a>
+  </div></header>
+
+  <main class="ra__main"><div class="ra__in">
+    <div class="ra__kick">Официальное представительство Relict Organics</div>
+    <h1 class="ra__h">Сайт <b>в разработке</b></h1>
+    <p class="ra__lead">Запуск сайта состоится в ближайшее время. До этого момента вы можете связаться с нами напрямую: подберём препараты, рассчитаем нормы и согласуем поставку.</p>
+
+    <div class="ra__grid">
+      <div class="ra__c"><div class="ra__lbl">Телефоны</div>
+        <div class="ra__v"><a href="tel:+79145534888">+7 (914) 553-48-88</a><a href="tel:+79609534888">+7 (960) 953-48-88</a></div></div>
+      <div class="ra__c"><div class="ra__lbl">Электронная почта</div>
+        <div class="ra__v"><a href="mailto:nilov@sssaturn.ru">nilov@sssaturn.ru</a></div></div>
+      <div class="ra__c"><div class="ra__lbl">Адрес</div>
+        <div class="ra__v" style="gap:0"><span style="font-size:18px;font-weight:700;line-height:1.5">г. Барнаул, пр. Ленина, 56</span><span style="font-size:14px;color:var(--mut);margin-top:4px">Алтайский край</span></div></div>
+    </div>
+
+    <div class="ra__btns">
+      <a class="ra__b ra__b1" href="tel:+79145534888">Позвонить</a>
+      <a class="ra__b ra__b2" href="mailto:nilov@sssaturn.ru">Написать нам</a>
+    </div>
+  </div></main>
+
+  <footer class="ra__bot"><div class="ra__in">
+    <span>ООО «РЕЛИКТ-ДВ» · Алтайский край, г. Барнаул, пр. Ленина, 56</span>
+    <span>Официальное представительство Relict Organics®</span>
+  </div></footer>
+</div>
