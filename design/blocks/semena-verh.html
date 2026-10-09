@@ -1,0 +1,246 @@
+<!-- Блок над списком семян для вставки в T123 на странице «Семена» (/semena),
+     ВЫШЕ блока магазина ST340F (магазин отфильтрован на раздел «Семена»).
+     Заголовок + поле поиска + чипы культур. Структура и стили взяты из
+     katalog-verh.html, но без разделов и без шторки: у семян один раздел,
+     фильтруем только по культуре.
+
+     Данные замерены по API магазина 09.10.2026:
+     раздел «Семена» uid 316570233513, 25 позиций; характеристика «Культура»
+     name=charact:12402503. Культуры с числом семян:
+     Пшеница 8, Соя 6, Ячмень 3, Горох 2, Гречиха 2, Подсолнечник 2,
+     Рапс 1, Картофель 1 — только они и вынесены в чипы, пустых нет. -->
+<style>
+.sa-kv{--ink:#141210;--acc:#FF4200;--mut:#6B6560;--line:#E7E3DE;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#fff;padding:40px 0 24px}
+.sa-kv *{box-sizing:border-box;margin:0;padding:0}
+.sa-kv__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+.sa-kv__crumbs{display:flex;align-items:center;gap:8px;font-size:var(--sa-small);
+  line-height:18px;color:#6B6560;margin-bottom:12px}
+.sa-kv__crumbs a{color:#6B6560;text-decoration:none;
+  display:inline-flex;align-items:center;min-height:44px}
+.sa-kv__crumbs b{font-weight:400;color:#141210}
+.sa-kv__crumbs span{color:#6B6560}
+@media (hover:hover){.sa-kv__crumbs a:hover{color:#141210}}
+@media (max-width:767px){.sa-kv__crumbs{font-size:12px;margin-bottom:10px}}
+.sa-kv__count{font-size:var(--sa-body);font-weight:400;color:#6B6560;margin-top:6px}
+.sa-kv__top{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.sa-kv__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);letter-spacing:-.01em}
+.sa-kv__price{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;
+  color:var(--ink);text-decoration:none;position:relative}
+.sa-kv__price svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.sa-kv__price::after{content:"";position:absolute;left:-10px;right:-10px;top:-13px;bottom:-13px}
+@media (hover:hover){.sa-kv__price:hover{color:var(--ink);box-shadow:inset 0 -1px 0 0 var(--ink)}}
+
+.sa-kv__search{position:relative;margin-top:24px}
+.sa-kv__search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;fill:none;stroke:#8A837C;stroke-width:1.8;pointer-events:none}
+.sa-kv__input{width:100%;height:var(--sa-fld-h);border-radius:var(--sa-r-ctrl);background:#fff;
+  border:1px solid var(--line);padding:0 18px 0 50px;font-size:16px;font-weight:400;
+  font-family:inherit;color:var(--ink);outline:none}
+.sa-kv__input::placeholder{color:#8A837C}
+.sa-kv__input:focus{border-color:var(--acc)}
+
+.sa-kv__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.sa-kv__chip{display:inline-flex;align-items:center;height:44px;padding:0 16px;
+  border-radius:999px;border:1px solid var(--line);background:transparent;
+  font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);
+  text-decoration:none;cursor:pointer;white-space:nowrap;
+  transition:background var(--sa-t) var(--sa-ease),
+    border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease)}
+@media (hover:hover){.sa-kv__chip:hover{border-color:var(--ink);color:var(--ink)}}
+.sa-kv__chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+
+@media (max-width:1023px){
+  .sa-kv{padding:32px 0 20px}
+  .sa-kv__in{padding:0 32px}
+  .sa-kv__h{font-size:30px;line-height:35px}
+}
+@media (max-width:767px){
+  .sa-kv{padding:24px 0 16px}
+  .sa-kv__in{padding:0 20px}
+  .sa-kv__top{display:block}
+  .sa-kv__h{line-height:var(--sa-h2-lh)}
+  .sa-kv__price{margin-top:10px}
+  .sa-kv__search{margin-top:16px}
+  .sa-kv__chips{margin-top:14px;flex-wrap:nowrap;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .sa-kv__chips::-webkit-scrollbar{display:none}
+  .sa-kv__chip{height:44px;flex:0 0 auto;font-size:14px}
+}
+</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Главная","item":"https://sssaturn.ru/home"},
+{"@type":"ListItem","position":2,"name":"Семена","item":"https://sssaturn.ru/semena"}]}
+</script>
+
+<div class="sa-kv">
+  <div class="sa-kv__in">
+
+    <nav class="sa-kv__crumbs" aria-label="Вы здесь">
+      <a href="/home">Главная</a><span aria-hidden="true">/</span><b>Семена</b>
+    </nav>
+
+    <div class="sa-kv__top">
+      <div>
+        <h1 class="sa-kv__h">Семена</h1>
+        <div class="sa-kv__count" id="sa-kv-count">25 позиций</div>
+      </div>
+      <a class="sa-kv__price"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>Скачать прайс</a>
+    </div>
+
+    <div class="sa-kv__search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+      <input class="sa-kv__input" type="search" autocomplete="off"
+             aria-label="Поиск по семенам"
+             placeholder="Название, сорт или культура" data-ph-long="Название, сорт или культура" data-ph-short="Поиск по семенам">
+    </div>
+
+    <div class="sa-kv__chips" role="group" aria-label="Фильтр по культуре">
+      <button class="sa-kv__chip" type="button" aria-pressed="true" data-crop="">Все культуры</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Пшеница">Пшеница</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Соя">Соя</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Ячмень">Ячмень</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Подсолнечник">Подсолнечник</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Рапс">Рапс</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Горох">Горох</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Гречиха">Гречиха</button>
+      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Картофель">Картофель</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* Как в каталоге: поиск и чипы управляют штатным магазином Tilda (пишут
+   в его поле поиска и щёлкают его чекбоксы культуры). На /semena магазин
+   отфильтрован на раздел «Семена», поэтому разделов тут нет — только
+   культура. Селекторы те же, что на каталоге. */
+(function(){
+  var POLE  = 'input.js-catalog-filter-search';
+  var LUPA  = '.js-catalog-filter-search-btn';
+  var KROPK = 'input.js-catalog-filter-opt-chb';
+
+  function sbrosPoiska(){
+    var u = new URL(location.href), byl = false;
+    Array.from(u.searchParams.keys()).forEach(function(k){
+      if (k.indexOf('tfc_query[') === 0){ u.searchParams.delete(k); byl = true; }
+    });
+    if (byl) location.replace(u.toString());
+  }
+  function iskat(znach){
+    if (znach === ''){ sbrosPoiska(); return; }
+    var pole = document.querySelector(POLE);
+    var lupa = document.querySelector(LUPA);
+    if (!pole || !lupa) return;
+    var proto = Object.getPrototypeOf(pole);
+    var d = Object.getOwnPropertyDescriptor(proto, 'value');
+    if (d && d.set) d.set.call(pole, znach); else pole.value = znach;
+    lupa.dispatchEvent(new MouseEvent('click', {bubbles:true}));
+  }
+
+  var nashe = document.querySelector('.sa-kv__input');
+  (function(){
+    if(!nashe || !window.matchMedia) return;
+    var mq = window.matchMedia('(max-width:767px)');
+    function ph(){ nashe.placeholder = nashe.getAttribute(mq.matches ? 'data-ph-short' : 'data-ph-long'); }
+    ph();
+    if(mq.addEventListener) mq.addEventListener('change', ph); else if(mq.addListener) mq.addListener(ph);
+  })();
+  if (nashe){
+    var t;
+    nashe.addEventListener('input', function(){
+      clearTimeout(t);
+      var v = nashe.value;
+      t = setTimeout(function(){ iskat(v); }, 450);
+    });
+    nashe.addEventListener('keydown', function(e){
+      if (e.key === 'Enter'){ e.preventDefault(); clearTimeout(t); iskat(nashe.value); }
+    });
+  }
+
+  function snyat(){
+    var all = document.querySelectorAll(KROPK);
+    for (var i = 0; i < all.length; i++) if (all[i].checked) all[i].click();
+  }
+
+  var chips = document.querySelectorAll('.sa-kv__chip');
+  for (var i = 0; i < chips.length; i++){
+    chips[i].addEventListener('click', function(){
+      for (var j = 0; j < chips.length; j++) chips[j].setAttribute('aria-pressed','false');
+      this.setAttribute('aria-pressed','true');
+      var crop = this.getAttribute('data-crop');
+      snyat();
+      if (!crop) return;
+      var b = document.querySelector(KROPK + '[name="' + crop + '"]');
+      if (b && !b.checked) b.click();
+    });
+  }
+
+  /* Состояние из адреса — чтобы после возврата или по прямой ссылке чип
+     совпадал с выдачей. Культура у Тильды: tfc_charact:<id>[<блок>]. */
+  (function(){
+    var u = new URLSearchParams(location.search), q = '', crop = '';
+    u.forEach(function(v, k){
+      if (k.indexOf('tfc_query[') === 0) q = v;
+      if (k.indexOf('tfc_charact:') === 0 && !crop) crop = v.split(':::')[0];
+    });
+    if (q && nashe) nashe.value = q;
+    if (crop){
+      for (var j = 0; j < chips.length; j++){
+        chips[j].setAttribute('aria-pressed',
+          chips[j].getAttribute('data-crop') === crop ? 'true' : 'false');
+      }
+    }
+  })();
+
+  /* Счётчик позиций. Раздел «Семена» фиксированный (магазин на этой
+     странице уже отфильтрован), поэтому storepartuid всегда 316570233513.
+     Добавляем запрос и выбранную культуру, если они есть в адресе. */
+  (function(){
+    var mesto = document.getElementById('sa-kv-count');
+    if(!mesto) return;
+    function sklonenie(n){
+      var o = n % 10, s = n % 100;
+      if (o === 1 && s !== 11) return 'позиция';
+      if (o >= 2 && o <= 4 && (s < 10 || s >= 20)) return 'позиции';
+      return 'позиций';
+    }
+    var REC = '4384406801', SEMENA = '316570233513';
+    function adresApi(){
+      var p = new URLSearchParams(location.search);
+      var u = 'https://store.tildaapi.com/api/getproductslist/?storepartuid=' +
+              SEMENA + '&recid=' + REC + '&c=' + Date.now() + '&size=1';
+      var zapros = p.get('tfc_query[' + REC + ']');
+      if (zapros) u += '&filters[query]=' + encodeURIComponent(zapros);
+      p.forEach(function(v, k){
+        var m = k.match(/^tfc_charact:(\d+)\[/);
+        if (m) u += '&filters[charact:' + m[1] + ']=' + encodeURIComponent(v);
+      });
+      return u;
+    }
+    var posledniy = '';
+    function schitat(){
+      var u = adresApi();
+      if (u.replace(/&c=\d+/, '') === posledniy) return;
+      posledniy = u.replace(/&c=\d+/, '');
+      fetch(u).then(function(r){ return r.json(); }).then(function(d){
+        var n = d && d.total;
+        if (!n && n !== 0) return;
+        mesto.textContent = n + ' ' + sklonenie(n);
+      }).catch(function(){});
+    }
+    schitat();
+    window.addEventListener('load', schitat);
+    new MutationObserver(function(){ clearTimeout(window.__saSmT);
+      window.__saSmT = setTimeout(schitat, 400); })
+      .observe(document.documentElement, {childList:true, subtree:true});
+  })();
+})();
+</script>

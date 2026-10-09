@@ -182,23 +182,13 @@
              placeholder="Название, действующее вещество или культура" data-ph-long="Название, действующее вещество или культура" data-ph-short="Поиск по каталогу">
     </div>
 
-    <div class="sa-kv__chips" role="group" aria-label="Фильтр по культуре">
+    <!-- 09.10 (заказчица): в каталоге препаратов фильтр по культуре не нужен —
+         культуры только у семян, на странице /semena. Здесь остаётся кнопка
+         «Разделы/Фильтры» (телефон) и боковая панель разделов (ПК). -->
+    <div class="sa-kv__chips" role="group" aria-label="Разделы каталога">
       <button class="sa-kv__parts" type="button" aria-expanded="false"
               aria-controls="sa-kv-dr">Фильтры
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
-      <button class="sa-kv__chip" type="button" aria-pressed="true" data-crop="">Все культуры</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Рапс">Рапс</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Подсолнечник">Подсолнечник</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Соя">Соя</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Пшеница">Пшеница</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Ячмень">Ячмень</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Кукуруза">Кукуруза</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Картофель">Картофель</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Свёкла">Свёкла</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Горох">Горох</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Гречиха">Гречиха</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Лён">Лён</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Овощи">Овощи</button>
     </div>
 
   </div>
@@ -233,22 +223,9 @@
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=175342672383&tfc_div=:::">Обработка семян и протравители</a>
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=337704283103&tfc_div=:::">Адъюванты</a>
     </nav>
-    <div class="sa-kv__drh sa-kv__drh--cult">Культура</div>
-    <div class="sa-kv__drchips">
-      <button class="sa-kv__chip" type="button" aria-pressed="true" data-crop="">Все культуры</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Рапс">Рапс</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Подсолнечник">Подсолнечник</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Соя">Соя</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Пшеница">Пшеница</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Ячмень">Ячмень</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Кукуруза">Кукуруза</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Картофель">Картофель</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Свёкла">Свёкла</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Горох">Горох</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Гречиха">Гречиха</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Лён">Лён</button>
-      <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Овощи">Овощи</button>
-    </div>
+    <!-- 09.10 (заказчица): фильтр «Культура» в каталоге препаратов убран —
+         культуры только у семян (страница /semena). В шторке остаются
+         только разделы препаратов. -->
   </div>
   <div class="sa-kv__drbot">
     <button class="sa-kv__drok" type="button">Показать товары</button>
