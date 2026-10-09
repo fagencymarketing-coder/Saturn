@@ -129,6 +129,14 @@
    из ящика «Фильтры» её убираем: иначе фильтр по культуре стоит дважды
    (замечание заказчицы 05.10). В ящике остаются только разделы. */
 .sa-kv__drh--cult,.sa-kv__drh--cult + .sa-kv__drchips{display:none !important}
+/* 09.10 (заказчица): фильтр по культуре — только в разделе «Семена».
+   В разделах с препаратами и в общем списке «Все» культурные чипы
+   скрываем (класс sa-kv--nocrops ставит скрипт по разделу из адреса).
+   На ПК прячем всю полосу чипов (кнопки «Фильтры» там нет — пустого
+   места не остаётся); на телефоне полосу оставляем ради кнопки
+   «Фильтры», прячем только сами чипы культур. */
+.sa-kv--nocrops .sa-kv__chip{display:none !important}
+@media (min-width:1024px){.sa-kv--nocrops .sa-kv__chips{display:none !important}}
 .sa-kv__drbot{padding:14px 20px calc(14px + env(safe-area-inset-bottom));
   border-top:1px solid var(--line)}
 .sa-kv__drok{width:100%;height:var(--sa-btn-h);border:0;border-radius:var(--sa-r-ctrl);
@@ -355,6 +363,32 @@
           chips[j].getAttribute('data-crop') === crop ? 'true' : 'false');
       }
     }
+  })();
+
+  /* Культурные чипы — только в разделе «Семена» (решение заказчицы
+     09.10). Раздел берём из адреса: tfc_storepartnav[4384406801]=<id>,
+     у «Семян» id 316570233513. В остальных разделах и в общем списке
+     ставим на корень класс sa-kv--nocrops — чипы скрывает CSS. */
+  (function(){
+    var SEMENA = '316570233513';
+    function primenit(){
+      var root = document.querySelector('.sa-kv');
+      if (!root) return;
+      var u = new URLSearchParams(location.search), razdel = '';
+      u.forEach(function(v, k){
+        if (k.indexOf('tfc_storepartnav[') === 0) razdel = v;
+      });
+      root.classList.toggle('sa-kv--nocrops', razdel !== SEMENA);
+    }
+    primenit();
+    /* Раздел меняется и перезагрузкой (ссылки в шторке), и AJAX-ом
+       (боковой фильтр каталога обновляет адрес без перезагрузки).
+       Ловим оба: popstate и опрос адреса. */
+    window.addEventListener('popstate', primenit);
+    var byl = location.href;
+    setInterval(function(){
+      if (location.href !== byl){ byl = location.href; primenit(); }
+    }, 500);
   })();
 
   /* Шторка фильтров. Открывается кнопкой «Фильтры», закрывается
