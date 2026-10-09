@@ -417,11 +417,17 @@
      магазина ловим наблюдателем. */
   (function(){
     function spryatatSemena(){
-      var ti = document.querySelectorAll('.t-catalog__parts-item-title');
+      /* Tilda рисует пункт раздела в нескольких вариантах разметки
+         (боковой список, строка «above», переключатель), заголовок —
+         то .t-catalog__parts-item-title, то .t-catalog__parts-text-title.
+         Ловим любой заголовок с текстом «Семена» и прячем его пункт. */
+      var ti = document.querySelectorAll(
+        '.t-catalog__parts-item-title,.t-catalog__parts-text-title,.t-catalog__parts-sidebar-title');
       for (var i = 0; i < ti.length; i++){
         if (ti[i].textContent.trim() === 'Семена'){
-          var item = ti[i].closest('.t-catalog__parts-sidebar-item, .t-catalog__parts-switch-btn, .t-catalog__parts-item');
-          if (item) item.style.display = 'none';
+          var item = ti[i].closest(
+            '.t-catalog__parts-above-item,.t-catalog__parts-sidebar-item,.t-catalog__parts-switch-btn,.t-catalog__parts-item');
+          (item || ti[i]).style.display = 'none';
         }
       }
     }
