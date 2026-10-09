@@ -69,6 +69,17 @@
   .sa-kv__chips::-webkit-scrollbar{display:none}
   .sa-kv__chip{height:44px;flex:0 0 auto;font-size:14px}
 }
+
+/* 09.10: на /semena список разделов в магазине скрыт (фильтруем чипами
+   культур выше), поэтому слева от карточек оставалась пустая колонка
+   фильтра. Прячем её совсем — товары занимают всю ширину. Штатное поле
+   поиска магазина остаётся в разметке (display:none не мешает скрипту)
+   и управляется нашим поиском. Эти классы есть только на странице
+   магазина, а блок — только на /semena, так что каталог не затронут. */
+.t-catalog__filter-wrapper{display:none !important}
+.t-catalog__cont-w-filter > .t-catalog__content-wrapper,
+.t-catalog__cont-w-filter > .js-store-grid-cont,
+.t-store__grid-cont{width:100% !important;max-width:100% !important;flex:1 1 100% !important}
 </style>
 
 <script type="application/ld+json">
@@ -212,7 +223,11 @@
       if (o >= 2 && o <= 4 && (s < 10 || s >= 20)) return 'позиции';
       return 'позиций';
     }
-    var REC = '4384406801', SEMENA = '316570233513';
+    /* 09.10: на /semena свой блок магазина (копия каталожного), его
+       номер записи 4628747301 — именно по нему Tilda кладёт в адрес
+       tfc_query[...] и tfc_charact:...[...]. По старому номеру счётчик
+       не находил параметры и застывал на 25. */
+    var REC = '4628747301', SEMENA = '316570233513';
     function adresApi(){
       var p = new URLSearchParams(location.search);
       var u = 'https://store.tildaapi.com/api/getproductslist/?storepartuid=' +
