@@ -145,14 +145,21 @@ img.js-product-img,
 #allrecords .t-catalog__parts-sidebar-item a:hover,
 #allrecords .t-catalog__parts-sidebar__list a:hover{
   color:#141210;box-shadow:none !important}
-/* Выбранный раздел и подраздел: тёмный и жирный, без цвета и линии.
-   Тильда помечает его классами с «active» и собственным красным. */
+/* Выбранный раздел: 09.10 (заказчица) «должно подсвечиваться, какой фильтр
+   выбран». Раньше было «тёмный жирный» — но все пункты и так тёмные, и выбор
+   не читался. Теперь активный раздел ОРАНЖЕВЫЙ жирный (акцент сайта) — видно
+   сразу. Tilda помечает активный пункт классами t-active / parts-current. */
 .t-catalog__parts-sidebar-item_active,
 .t-catalog__parts-sidebar-item_active a,
 .t-catalog__parts-sidebar__list a.t-active,
+.t-catalog__parts-current,
+.t-catalog__parts-current .t-catalog__parts-item-title,
+.t-catalog__parts-current .t-catalog__parts-text-title,
 [class*="parts-sidebar"] [class*="active"],
-[class*="parts-sidebar"] [class*="active"] a{
-  color:#141210 !important;font-weight:700 !important;
+[class*="parts-sidebar"] [class*="active"] a,
+[class*="parts-sidebar"] [class*="active"] .t-catalog__parts-item-title,
+[class*="parts-sidebar"] [class*="active"] .t-catalog__parts-text-title{
+  color:#FF4200 !important;font-weight:700 !important;
   box-shadow:none !important;text-decoration:none !important;
   border-bottom:0 !important}
 
