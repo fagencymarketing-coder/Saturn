@@ -366,6 +366,15 @@ img.js-product-img,
 .t-catalog__card__wrap_txt-and-opts > a,
 .t-catalog__card__textwrapper{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
 .t-catalog__card__price-wrapper{margin-top:auto !important;padding-top:12px}
+
+/* 24. Описания и названия товаров не переносятся по слогам. У страницы
+       lang=ru Тильда включает hyphens:auto, и в узкой колонке выходило
+       «Кремнийорга-нический», «зернобобовы-х» (аудит 11.10). Переносы по
+       слогам выключаем — длинное слово переносится целиком. */
+.t-catalog__card__descr,.t-catalog__card__title,
+.t-catalog__prod-popup__descr,.t-store__card__descr{
+  -webkit-hyphens:none !important;hyphens:none !important;
+  overflow-wrap:break-word}
 </style>
 
 <script>

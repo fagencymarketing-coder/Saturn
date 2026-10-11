@@ -72,6 +72,20 @@
 
 .sa-kv__parts{display:none}
 
+/* Пустой результат поиска/фильтра. Штатный каталог при нуле товаров
+   оставлял белую область без сообщения (аудит 11.10). Показываем свой
+   блок с подсказкой и кнопкой заявки; переключает его скрипт счётчика
+   по total=0 из API магазина. */
+.sa-kv__empty{display:none;margin-top:20px;padding:28px 24px;border:1px solid var(--line);
+  border-radius:16px;background:#F7F5F2}
+.sa-kv__empty.is-on{display:block}
+.sa-kv__empty b{display:block;font-size:var(--sa-h3);font-weight:700;margin-bottom:6px}
+.sa-kv__empty p{font-size:var(--sa-body);color:#6B6560;margin:0 0 16px}
+.sa-kv__empty a{display:inline-flex;align-items:center;height:48px;padding:0 22px;
+  border-radius:var(--sa-r-ctrl);background:#D93800;color:#fff;text-decoration:none;
+  font-weight:700;font-size:var(--sa-body)}
+@media (hover:hover){.sa-kv__empty a:hover{background:#C23100}}
+
 @media (max-width:1023px){
   .sa-kv{padding:32px 0 20px}
   .sa-kv__in{padding:0 32px}
@@ -167,7 +181,7 @@
     <div class="sa-kv__top">
       <div>
         <h1 class="sa-kv__h">Каталог</h1>
-        <div class="sa-kv__count" id="sa-kv-count">111 позиций</div>
+        <div class="sa-kv__count" id="sa-kv-count">87 позиций</div>
       </div>
       <a class="sa-kv__price"
          href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf"
@@ -189,6 +203,12 @@
       <button class="sa-kv__parts" type="button" aria-expanded="false"
               aria-controls="sa-kv-dr">Фильтры
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+    </div>
+
+    <div class="sa-kv__empty" id="sa-kv-empty" role="status">
+      <b>Ничего не найдено</b>
+      <p>Попробуйте изменить запрос или оставьте заявку — подберём под вашу культуру и задачу.</p>
+      <a href="#popup:zayavka">Оставить заявку</a>
     </div>
 
   </div>
@@ -448,6 +468,7 @@
      нет — считаем карточки. Обновляется после поиска и фильтра. */
   (function(){
     var mesto = document.getElementById('sa-kv-count');
+    var pusto = document.getElementById('sa-kv-empty');
     if(!mesto) return;
     function sklonenie(n){
       var o = n % 10, s = n % 100;
@@ -460,7 +481,7 @@
        у него есть точное число найденного с учётом раздела, запроса
        и выбранной культуры. Адрес собираем из текущих параметров
        страницы, чтобы счётчик совпадал с тем, что человек видит. */
-    /* 09.10: база счётчика — раздел «Препараты» (uid 571551155283, 86 шт.),
+    /* 09.10: база счётчика — раздел «Препараты» (uid 571551155283, 87 шт.),
        а не весь магазин (527746460323, 111 с семенами). Семена вынесены
        на /semena, поэтому «Все» в каталоге = только препараты. При выборе
        подраздела storepartuid подменяется на его id (строка ниже). */
@@ -486,8 +507,10 @@
       posledniy = u.replace(/&c=\d+/, '');
       fetch(u).then(function(r){ return r.json(); }).then(function(d){
         var n = d && d.total;
-        if (!n) return;
+        if (n == null) return;
         mesto.textContent = n + ' ' + sklonenie(n);
+        /* total=0 — показываем блок «Ничего не найдено» вместо пустоты */
+        if (pusto) pusto.classList.toggle('is-on', n === 0);
       }).catch(function(){});
     }
     schitat();
