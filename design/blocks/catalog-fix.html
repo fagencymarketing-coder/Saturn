@@ -425,6 +425,15 @@ img.js-product-img,
         if(m) c.textContent = '₽' + m[1].replace(/\s/g,'');
       });
 
+    /* 11.10: числа вида 18-18-18 в названии карточки не рвутся по дефису */
+    document.querySelectorAll('.t-catalog__card__title').forEach(function(t){
+      if(t.getAttribute('data-sa-nb')||t.children.length) return;
+      t.setAttribute('data-sa-nb','1');
+      if(!/\d+-\d+/.test(t.textContent)) return;
+      t.innerHTML = t.textContent.replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/\d+(?:-\d+)+/g, function(x){ return '<span style="white-space:nowrap">' + x + '</span>'; });
+    });
+
     /* B. Двенадцать строк «Культура» → одна строка через запятую.
           Фильтр это не ломает: он читает данные товара, а не видимый текст. */
     document.querySelectorAll('.js-catalog-prod-all-charcs').forEach(function(box){

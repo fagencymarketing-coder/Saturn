@@ -101,6 +101,9 @@
   .sa-kv__chips{margin-top:14px;flex-wrap:nowrap;overflow-x:auto;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
   .sa-kv__chips::-webkit-scrollbar{display:none}
+  /* 11.10: затухание правого края, пока ряд можно листать */
+  .sa-kv__chips.sa-fade{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);
+    mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
   .sa-kv__chip{height:44px;flex:0 0 auto;font-size:14px}
   /* кнопка «Разделы» — только на телефоне: боковой панели там нет */
   /* Кнопка «Фильтры» — цель нажатия, значит 44, как и чипы рядом. */
@@ -301,6 +304,11 @@
     lupa.dispatchEvent(new MouseEvent('click', {bubbles:true}));
   }
 
+  (function(){
+    var c=document.querySelector('.sa-kv__chips');if(!c)return;
+    function f(){c.classList.toggle('sa-fade',c.scrollWidth-c.clientWidth-c.scrollLeft>4)}
+    c.addEventListener('scroll',f,{passive:true});window.addEventListener('resize',f);f();setTimeout(f,600);
+  })();
   var nashe = document.querySelector('.sa-kv__input');
   /* A6 05.10: на телефоне плейсхолдер короткий — длинный обрезался
      («…действующее веще»). Как на холсте. */
