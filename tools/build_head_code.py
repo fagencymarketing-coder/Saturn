@@ -166,7 +166,12 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 .t-catalog__sort-select:focus-visible,
 .t-catalog__filter__btn:focus-visible,
 .t-catalog__filter__input:focus-visible,
-.js-catalog-filter-search:focus-visible{{
+.js-catalog-filter-search:focus-visible,
+/* 09.10 аудит: у карточек каталога и нашего поля поиска Tilda ставит
+   outline:none — с клавиатуры не видно фокуса. Возвращаем обводку. */
+.t-catalog__card__link:focus-visible,
+.t-catalog__card a:focus-visible,
+.sa-kv__input:focus-visible{{
   outline:2px solid #FF4200 !important;outline-offset:2px !important}}
 
 /* 09.10: CSS шапки и подвала из HEAD УБРАН (~18 КБ).
@@ -234,6 +239,21 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
   #sa-ck .sa-ck__x{{margin-top:8px}}
   #sa-ck .sa-ck__b{{flex-direction:row;gap:10px;margin-top:14px}}
   #sa-ck .sa-ck__b button{{flex:1 1 0;min-width:0;padding:10px 12px;font-size:13px}}
+}}
+
+/* 09.10 аудит: штатный cookie-баннер Тильды T972. «Принять все»
+   (.t972__accept-btn / .t972__confirm-btn) окрашена акцентом #FF4200 —
+   контраст с белым 3,48, не проходит AA. Ставим кнопочный #D93800 (4,65),
+   наведение #C23100. Инлайн-ссылка «политике…» была 10px — поднимаем до
+   12 (наш минимум подписи). На телефоне кнопки były 40 — делаем 44. */
+.t972__accept-btn,.t972__confirm-btn{{background:#D93800 !important}}
+@media (hover:hover){{
+  .t972__accept-btn:hover,.t972__confirm-btn:hover{{background:#C23100 !important}}
+}}
+.t972 a{{font-size:12px !important}}
+@media (max-width:640px){{
+  .t972 .t-btn{{min-height:44px !important}}
+  .t972 .t-btnflex__text{{line-height:1.2}}
 }}
 
 /* Попап заявки (блок Тильды rec4481961301 на кнопках «Получить
