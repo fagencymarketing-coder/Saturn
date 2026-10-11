@@ -361,6 +361,14 @@ img.js-product-img,
         if(m) c.textContent = '₽' + m[1].replace(/\s/g,'');
       });
 
+    document.querySelectorAll('.t-catalog__card__title').forEach(function(t){
+      if(t.getAttribute('data-sa-nb')||t.children.length) return;
+      t.setAttribute('data-sa-nb','1');
+      if(!/\d+-\d+/.test(t.textContent)) return;
+      t.innerHTML = t.textContent.replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/\d+(?:-\d+)+/g, function(x){ return '<span style="white-space:nowrap">' + x + '</span>'; });
+    });
+
     document.querySelectorAll('.js-catalog-prod-all-charcs').forEach(function(box){
       if(box.dataset.saCrops) return;
       var rows = [].slice.call(box.querySelectorAll('p.t-typography__characteristics'))
@@ -518,11 +526,11 @@ h1.t-catalog__prod-popup__name{
 
 .sa-tp__price{display:flex;align-items:baseline;gap:7px;
   margin-top:clamp(16px,2.4vh,22px)}
-.sa-tp__ot{font-size:var(--sa-small);color:#8A837B}
+.sa-tp__ot{font-size:var(--sa-small);color:#766F68}
 .sa-tp__num{font-size:var(--sa-h2);font-weight:800;line-height:1;
   color:#141210;letter-spacing:-.015em}
 .sa-tp__unit{font-size:var(--sa-body);font-weight:500;color:#6B655E}
-.sa-tp__note{font-size:var(--sa-small);line-height:1.45;color:#8A837B;
+.sa-tp__note{font-size:var(--sa-small);line-height:1.45;color:#766F68;
   margin-top:9px;max-width:46ch}
 
 .sa-tp__chars{margin-top:clamp(18px,2.8vh,26px);border-top:1px solid #E6E1DB}
