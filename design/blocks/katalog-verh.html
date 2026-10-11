@@ -455,14 +455,31 @@
        протравители». Перерисовку магазина ловим наблюдателем. */
     var LISHNIE = ['Семена','Гибриды','Сорта','Препараты',
       'Удобрения','Листовые подкормки','Обработка семян','Протравители'];
+    var ITEM = '.t-catalog__parts-above-item,.t-catalog__parts-sidebar-item,' +
+               '.t-catalog__parts-switch-btn,.t-catalog__parts-item,.t-catalog__parts-row';
     function spryatatLishnie(){
+      /* 1) заголовки разделов (ПК-структура: в заголовке есть класс *-title) */
       var ti = document.querySelectorAll(
         '.t-catalog__parts-item-title,.t-catalog__parts-text-title,.t-catalog__parts-sidebar-title');
       for (var i = 0; i < ti.length; i++){
         if (LISHNIE.indexOf(ti[i].textContent.trim()) !== -1){
-          var item = ti[i].closest(
-            '.t-catalog__parts-above-item,.t-catalog__parts-sidebar-item,.t-catalog__parts-switch-btn,.t-catalog__parts-item');
+          var item = ti[i].closest(ITEM);
           (item || ti[i]).style.display = 'none';
+        }
+      }
+      /* 2) мобильная структура: раздел — простая ссылка <a>Семена</a> без
+         класса-заголовка. Прячем ссылки с точным текстом из списка в любом
+         контейнере разделов (parts-above / parts-sidebar). 11.10: на телефоне
+         «Семена» оставался именно так. */
+      var links = document.querySelectorAll(
+        '[id^="parts-above-id-"] a,[class*="parts-above"] a,' +
+        '[class*="parts-sidebar"] a,.t-catalog__parts-sidebar__list a,' +
+        '.t-catalog__parts-switcher a,.js-catalog-parts-switcher a');
+      for (var k = 0; k < links.length; k++){
+        if (links[k].children.length) continue;
+        if (LISHNIE.indexOf(links[k].textContent.trim()) !== -1){
+          var box = links[k].closest(ITEM);
+          (box || links[k]).style.display = 'none';
         }
       }
     }
