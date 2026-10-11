@@ -286,8 +286,8 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
   .t-popup .t-submit:hover{{background:#C23100 !important}}
 }}
 #rec4481961301 .t-input:focus,
-.t-popup .t-input:focus{{border-color:#D93800 !important;
-  box-shadow:0 0 0 3px rgba(217,56,0,.18) !important}}
+.t-popup .t-input:focus{{border-color:#141210 !important;
+  box-shadow:0 0 0 3px rgba(20,18,16,.08) !important}}
 /* Заголовок попапа Тильда ставит 36px — для окна заявки это H1-кегль,
    карточка выглядит громоздко. Уменьшаем до размера подзаголовка. */
 #rec4481961301 .t1014__title,
@@ -373,12 +373,16 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 .t-popup .t-input-phonemask_error,
 #rec4481961301 .t-input_error,#rec4481417201 .t-input_error{{
   border-color:#E7A99A !important;box-shadow:none !important}}
+/* Фокус поля в форме — СПОКОЙНЫЙ: тёмная тонкая рамка без красного свечения.
+   Красно-оранжевое кольцо (#D93800) на поле ввода читалось как «ошибка», даже
+   когда номер введён верно (замечание заказчицы 11.10). Бренд-акцент остаётся
+   на кнопках, а активное поле теперь просто «выбрано», а не «не так». */
 .t-popup .t-input-group:focus-within .t-input,
 .t-popup .t-input:focus,
 #rec4481961301 .t-input-group:focus-within .t-input,
 #rec4481417201 .t-input-group:focus-within .t-input{{
-  border-color:#D93800 !important;
-  box-shadow:0 0 0 3px rgba(217,56,0,.18) !important}}
+  border-color:#141210 !important;
+  box-shadow:0 0 0 3px rgba(20,18,16,.08) !important}}
 </style>
 
 <script>
