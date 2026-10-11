@@ -416,7 +416,13 @@ img.js-product-img,
     });
     document.querySelectorAll('.t-catalog__card__price-currency,.t-catalog__prod-popup__price-currency,.js-product-price-currency')
       .forEach(function(c){
-        if(!c.children.length && /^\s*(р\.?|руб\.?|Р)\s*$/i.test(c.textContent) && c.textContent !== '₽') c.textContent = '₽';
+        if(c.children.length) return;
+        var t = c.textContent;
+        /* просто «р.»/«руб»/«Р» → «₽» */
+        if(/^\s*(р\.?|руб\.?|Р)\s*$/i.test(t)){ if(t !== '₽') c.textContent = '₽'; return; }
+        /* «Р/л», «р/кг», «руб/т» → «₽/л» и т.п. (единица в одном узле) */
+        var m = t.match(/^\s*(?:р\.?|руб\.?|Р)\s*(\/\s*[^\s\/]+)\s*$/i);
+        if(m) c.textContent = '₽' + m[1].replace(/\s/g,'');
       });
 
     /* B. Двенадцать строк «Культура» → одна строка через запятую.
