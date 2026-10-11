@@ -363,6 +363,22 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
   white-space:normal !important;word-break:normal !important;overflow-wrap:break-word !important}}
 .t-popup .t-checkbox__indicator,
 #rec4481417201 .t-checkbox__indicator{{flex:0 0 20px !important}}
+/* Валидация поля не должна пугать красным кольцом во время набора.
+   Пока поле в фокусе (человек ещё печатает номер) — гасим ошибку и
+   показываем обычную рамку фокуса. Когда поле теряет фокус с незаполненным
+   значением, Tilda снова пометит его, но мягко: тонкая рамка без толстой
+   красной тени. Телефон у Tilda — .t-input с флагом внутри, ошибку она
+   вешает классом *_error / inline-бордером, перебиваем !important. */
+.t-popup .t-input_error,.t-popup .t-input.t-input_error,
+.t-popup .t-input-phonemask_error,
+#rec4481961301 .t-input_error,#rec4481417201 .t-input_error{{
+  border-color:#E7A99A !important;box-shadow:none !important}}
+.t-popup .t-input-group:focus-within .t-input,
+.t-popup .t-input:focus,
+#rec4481961301 .t-input-group:focus-within .t-input,
+#rec4481417201 .t-input-group:focus-within .t-input{{
+  border-color:#D93800 !important;
+  box-shadow:0 0 0 3px rgba(217,56,0,.18) !important}}
 </style>
 
 <script>
