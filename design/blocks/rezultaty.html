@@ -169,6 +169,22 @@
         <a class="sa-res__btn" href="#popup:zayavka">Оставить заявку →</a>
       </div>
     </div>
+
+    <!-- Все протоколы испытаний: разворачивается ссылкой, открываются в просмотре
+         (data-pdf → blob, обработчик ниже). Названия хозяйств и адреса в PDF затёрты. -->
+    <div class="sa-res__more">
+      <button class="sa-res__morebtn" type="button" aria-expanded="false" aria-controls="sa-res-list">Все протоколы испытаний (8) →</button>
+      <div class="sa-res__list" id="sa-res-list" hidden>
+        <a class="sa-res__pl" data-pdf target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-1.pdf">Протокол №1 · пшеница</a>
+        <a class="sa-res__pl" data-pdf target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-2.pdf">Протокол №2 · пшеница</a>
+        <a class="sa-res__pl" data-pdf target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-3.pdf">Протокол №3 · пшеница</a>
+        <a class="sa-res__pl" data-pdf target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-4.pdf">Протокол №4 · ячмень</a>
+        <a class="sa-res__pl" data-pdf target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-5.pdf">Протокол №5 · соя</a>
+        <a class="sa-res__pl" data-pdf target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-6.pdf">Протокол №6 · пшеница</a>
+        <a class="sa-res__pl" data-pdf target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-7.pdf">Протокол №7 · рапс</a>
+        <a class="sa-res__pl" data-pdf target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-8.pdf">Протокол №8 · пшеница</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -184,6 +200,19 @@
 .sa-res__pdf{position:relative}
 .sa-res__pdf::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;
   transform:translateY(-50%)}
+
+/* Все протоколы: ссылка-раскрытие + список (ПК 2 колонки, телефон 1) */
+.sa-res__more{margin-top:24px}
+.sa-res__morebtn{background:none;border:0;cursor:pointer;font-family:inherit;
+  font-size:var(--sa-body);font-weight:700;color:var(--ink);padding:8px 0;
+  border-bottom:1px solid var(--line)}
+@media (hover:hover){.sa-res__morebtn:hover{color:var(--acc);border-color:var(--acc)}}
+.sa-res__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 32px;margin-top:16px}
+.sa-res__list[hidden]{display:none}
+.sa-res__pl{font-size:var(--sa-body);color:var(--ink);text-decoration:none;
+  padding:10px 0;border-bottom:1px solid var(--line)}
+@media (hover:hover){.sa-res__pl:hover{color:var(--acc);border-color:var(--acc)}}
+@media (max-width:767px){.sa-res__list{grid-template-columns:1fr}}
 </style>
 <script>
 (function(){
@@ -210,6 +239,13 @@
       var u=URL.createObjectURL(b);
       if(w)w.location.href=u;else window.open(u,'_blank');
     },function(){if(w)w.location.href=url;else window.open(url,'_blank')});
+  });
+  /* раскрытие списка «Все протоколы» */
+  var mb=document.querySelector('.sa-res__morebtn'),ml=document.getElementById('sa-res-list');
+  if(mb&&ml)mb.addEventListener('click',function(){
+    var hid=ml.hasAttribute('hidden');
+    if(hid){ml.removeAttribute('hidden');mb.setAttribute('aria-expanded','true');}
+    else{ml.setAttribute('hidden','');mb.setAttribute('aria-expanded','false');}
   });
 })();
 </script>
