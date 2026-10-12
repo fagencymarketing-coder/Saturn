@@ -56,3 +56,4 @@ def build(src, dst):
 if __name__ == '__main__':
     build('politika-obrabotki-pd.md', 'privacy.html')
     build('soglasie-na-obrabotku-pd.md', 'consent.html')
+    build('soglasie-cookie.md', 'cookie-consent.html')
