@@ -386,6 +386,40 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 </style>
 
 <script>
+/* «Настройки cookie»: ссылка в подвале (href="#cookie-settings" либо текст
+   «Настройки cookie») заново открывает cookie-баннер T972 — на неё ссылаются
+   документы /consent и /cookie-consent (отзыв согласия на аналитику). T972
+   помнит выбор в cookie tildastatcookiegdpr; чистим его и перезагружаем —
+   баннер показывается снова, выбор можно изменить. */
+(function(){{
+  function clearCk(name){{
+    var host=location.hostname, bare=host.replace(/^www\\./,'');
+    var ds=[host,'.'+host,bare,'.'+bare,''];
+    ds.forEach(function(d){{
+      var dom=d?';domain='+d:'';
+      document.cookie=name+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+dom;
+    }});
+  }}
+  function reopen(e){{
+    if(e) e.preventDefault();
+    clearCk('tildastatcookiegdpr'); clearCk('tildastatcookie');
+    try{{ localStorage.removeItem('tildastatcookiegdpr'); }}catch(_){{}}
+    location.reload();
+  }}
+  function bind(){{
+    if(!document.body) return;
+    document.querySelectorAll('a[href="#cookie-settings"],a[href="#cookie"],a[href$="#cookie-settings"]')
+      .forEach(function(a){{ if(!a.__saCk){{ a.__saCk=1; a.addEventListener('click',reopen); }} }});
+    document.querySelectorAll('a').forEach(function(a){{
+      if(a.__saCk) return;
+      if(/^\\s*настройки\\s+cookie\\s*$/i.test(a.textContent||'')){{ a.__saCk=1; a.addEventListener('click',reopen); }}
+    }});
+  }}
+  bind();
+  document.addEventListener('DOMContentLoaded', bind);
+  new MutationObserver(bind).observe(document.documentElement,{{childList:true,subtree:true}});
+}})();
+
 /* Шапка и подвал на страницах товаров.
    Tilda рендерит на /<страница>/tproduct/<id> только блок каталога,
    поэтому шапку и подвал там дорисовываем сами. */

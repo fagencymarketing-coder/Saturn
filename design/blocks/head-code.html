@@ -1095,6 +1095,35 @@ h1.t-catalog__prod-popup__name{
 <script>
 
 (function(){
+  function clearCk(name){
+    var host=location.hostname, bare=host.replace(/^www\./,'');
+    var ds=[host,'.'+host,bare,'.'+bare,''];
+    ds.forEach(function(d){
+      var dom=d?';domain='+d:'';
+      document.cookie=name+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+dom;
+    });
+  }
+  function reopen(e){
+    if(e) e.preventDefault();
+    clearCk('tildastatcookiegdpr'); clearCk('tildastatcookie');
+    try{ localStorage.removeItem('tildastatcookiegdpr'); }catch(_){}
+    location.reload();
+  }
+  function bind(){
+    if(!document.body) return;
+    document.querySelectorAll('a[href="#cookie-settings"],a[href="#cookie"],a[href$="#cookie-settings"]')
+      .forEach(function(a){ if(!a.__saCk){ a.__saCk=1; a.addEventListener('click',reopen); } });
+    document.querySelectorAll('a').forEach(function(a){
+      if(a.__saCk) return;
+      if(/^\s*настройки\s+cookie\s*$/i.test(a.textContent||'')){ a.__saCk=1; a.addEventListener('click',reopen); }
+    });
+  }
+  bind();
+  document.addEventListener('DOMContentLoaded', bind);
+  new MutationObserver(bind).observe(document.documentElement,{childList:true,subtree:true});
+})();
+
+(function(){
 
   var HD = "";
   var FT = "";
