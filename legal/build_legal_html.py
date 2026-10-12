@@ -12,7 +12,7 @@ CSS = """<style>
 .saturn-legal ul{margin:0 0 14px 0;padding-left:20px}
 .saturn-legal li{margin:0 0 6px}
 .saturn-legal strong{font-weight:600}
-.saturn-legal a{color:#FF4200;text-decoration:underline;text-decoration-thickness:1px;word-break:break-word}
+.saturn-legal a{color:#D93800;text-decoration:underline;text-decoration-thickness:1px;word-break:break-word}
 .saturn-legal a:hover{color:#D93800}
 .saturn-legal .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 20px;border:1px solid #EDE9E4;border-radius:8px}
 .saturn-legal table{width:100%;border-collapse:collapse;margin:0;font-size:14px;min-width:560px}
