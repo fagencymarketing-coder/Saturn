@@ -386,6 +386,23 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 .t-popup .t-input-phonemask_error,
 #rec4481961301 .t-input_error,#rec4481417201 .t-input_error{{
   border-color:#E7A99A !important;box-shadow:none !important}}
+/* 13.10 (приёмка №8): рамка ошибки у строки согласия рисовалась красной и
+   «уголком» (не на всю строку), да ещё не гасла после установки галочки.
+   У строки согласия рамки быть не должно вовсе — снимаем в любом состоянии
+   (если согласие не стоит, Тильда всё равно не отправит и покажет подсказку). */
+.t-popup .t-checkbox__control,
+#rec4481961301 .t-checkbox__control,
+#rec4481417201 .t-checkbox__control{{border:0 !important;box-shadow:none !important;outline:0 !important}}
+/* 13.10 (приёмка №9): у телефона было ДВЕ рамки — группа-поле с флагом «+7»
+   и внутреннее поле ввода со своей рамкой/фоном. Делаем внутреннее поле
+   прозрачным без рамки — остаётся одна рамка-поле, как у «Имя». Классы
+   телефонные, других полей не затрагивают. */
+.t-popup .t-input-group_phone .t-input,
+.t-popup .t-input-phonemask,
+.t-popup .t-inputphonemask,
+#rec4481961301 .t-input-group_phone .t-input,
+#rec4481417201 .t-input-group_phone .t-input{{
+  border:0 !important;background:transparent !important;box-shadow:none !important}}
 /* Фокус поля в форме — СПОКОЙНЫЙ: тёмная тонкая рамка без красного свечения.
    Красно-оранжевое кольцо (#D93800) на поле ввода читалось как «ошибка», даже
    когда номер введён верно (замечание заказчицы 11.10). Бренд-акцент остаётся

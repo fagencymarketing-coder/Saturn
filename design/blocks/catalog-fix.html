@@ -76,8 +76,13 @@ img.js-product-img,
       у 112 товаров из 112 цены в магазине нет, и одинаковая серая строка
       под каждой карточкой читалась как брак, а не как условие продажи.
       Пустая обёртка схлопывается, карточка становится короче. */
-.t-catalog__card__price-wrapper[data-sa-ask],
-.js-catalog-price-wrapper[data-sa-ask]{display:none !important}
+/* 13.10 (заказчица): раньше цены не было НИ У КОГО, пустую строку прятали.
+   Теперь у большинства цена есть — пустые карточки ломают ряд. Показываем
+   подпись «Цена по запросу» (строка прижата к низу → карточки единообразны).
+   Прячем только пустые значки валюты Тильды, свою подпись оставляем. */
+.t-catalog__card__price-wrapper[data-sa-ask] > *:not(.sa-price-ask),
+.js-catalog-price-wrapper[data-sa-ask] > *:not(.sa-price-ask){display:none !important}
+.sa-price-ask{font-size:15px;font-weight:600;color:#6B655E;white-space:nowrap}
 
 /* 8. Вертикальный ритм страницы каталога.
       У блока ST340F собственные 135px сверху и снизу плюс 90px под
@@ -426,7 +431,12 @@ body.sa-pg-semena .t-catalog__filter__item_checkbox{display:block !important}
         var hasPrice = val && /\d/.test(val.textContent);
         if(!hasPrice){
           el.setAttribute('data-sa-ask','1');
-          el.style.setProperty('display','none','important');
+          if(!el.querySelector('.sa-price-ask')){
+            var s=document.createElement('span');
+            s.className='sa-price-ask';
+            s.textContent='Цена по запросу';
+            el.appendChild(s);
+          }
         }
         el.dataset.saFixed = '1';
       });

@@ -173,8 +173,9 @@ img.js-product-img,
 
 .t-catalog__prod-popup__col-right{margin-left:0 !important;margin-right:0 !important}
 
-.t-catalog__card__price-wrapper[data-sa-ask],
-.js-catalog-price-wrapper[data-sa-ask]{display:none !important}
+.t-catalog__card__price-wrapper[data-sa-ask] > *:not(.sa-price-ask),
+.js-catalog-price-wrapper[data-sa-ask] > *:not(.sa-price-ask){display:none !important}
+.sa-price-ask{font-size:15px;font-weight:600;color:#6B655E;white-space:nowrap}
 
 .t-rec[data-record-type="2861"]{padding-top:40px !important;padding-bottom:72px !important}
 .t-catalog__grid-cont .t-section__title{margin-bottom:20px !important}
@@ -356,7 +357,12 @@ body.sa-pg-semena .t-catalog__filter__item_checkbox{display:block !important}
         var hasPrice = val && /\d/.test(val.textContent);
         if(!hasPrice){
           el.setAttribute('data-sa-ask','1');
-          el.style.setProperty('display','none','important');
+          if(!el.querySelector('.sa-price-ask')){
+            var s=document.createElement('span');
+            s.className='sa-price-ask';
+            s.textContent='Цена по запросу';
+            el.appendChild(s);
+          }
         }
         el.dataset.saFixed = '1';
       });
@@ -1109,6 +1115,17 @@ h1.t-catalog__prod-popup__name{
 .t-popup .t-input-phonemask_error,
 #rec4481961301 .t-input_error,#rec4481417201 .t-input_error{
   border-color:#E7A99A !important;box-shadow:none !important}
+
+.t-popup .t-checkbox__control,
+#rec4481961301 .t-checkbox__control,
+#rec4481417201 .t-checkbox__control{border:0 !important;box-shadow:none !important;outline:0 !important}
+
+.t-popup .t-input-group_phone .t-input,
+.t-popup .t-input-phonemask,
+.t-popup .t-inputphonemask,
+#rec4481961301 .t-input-group_phone .t-input,
+#rec4481417201 .t-input-group_phone .t-input{
+  border:0 !important;background:transparent !important;box-shadow:none !important}
 
 .t-popup .t-input-group:focus-within .t-input,
 .t-popup .t-input:focus,
