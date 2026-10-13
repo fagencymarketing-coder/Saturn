@@ -319,6 +319,10 @@ img.js-product-img,
        модификатором _checkbox. Сортировку (модификатор _sort-mobile) и
        разделы (parts-sidebar) не трогаем. */
 .t-catalog__filter__item_checkbox{display:none !important}
+/* 18a. 13.10 (заказчица): фильтр «Культура» нужен ТОЛЬКО в семенах.
+   На /catalog он скрыт (чипы главной используют его как скрытый механизм),
+   на /semena показываем. Класс sa-pg-semena вешает скрипт ниже по адресу. */
+body.sa-pg-semena .t-catalog__filter__item_checkbox{display:block !important}
 
 /* 19. Полоса «Нужна цена или подбор под вашу культуру?» на странице
        товара: номер телефона рядом с кнопкой не нужен — заказчица
@@ -408,6 +412,9 @@ img.js-product-img,
       .forEach(function(el){
         if (/^\s*Load more\s*$/.test(el.textContent)) el.textContent = 'Загрузить ещё';
       });
+
+    /* 18a: на /semena показываем фильтр «Культура» (класс включает CSS-исключение). */
+    if(/^\/semena\/?$/.test(location.pathname)) document.body.classList.add('sa-pg-semena');
 
     /* A. Карточка без цены не показывает строку цены вовсе.
           Обёртка НЕ пустая: Тильда всегда рисует два значка валюты «р.»,
