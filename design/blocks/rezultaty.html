@@ -216,6 +216,16 @@
 </style>
 <script>
 (function(){
+  /* 13.10 (приёмка №5): раскрытие списка «Все протоколы» — СВОЁ, выше общего
+     флага __saPdf. Тот флаг ставит блок «Популярные» (он выше на странице), и
+     прежний общий guard гасил навешивание обработчика кнопки. Теперь раскрытие
+     вешается всегда, со своим dataset-guard от повторов. */
+  var mb=document.querySelector('.sa-res__morebtn'),ml=document.getElementById('sa-res-list');
+  if(mb&&ml&&!mb.dataset.saResBound){mb.dataset.saResBound='1';mb.addEventListener('click',function(){
+    var hid=ml.hasAttribute('hidden');
+    if(hid){ml.removeAttribute('hidden');mb.setAttribute('aria-expanded','true');}
+    else{ml.setAttribute('hidden','');mb.setAttribute('aria-expanded','false');}
+  });}
   if(window.__saPdf)return;window.__saPdf=1;
   function blob(url,type,cb,fail){
     fetch(url).then(function(r){if(!r.ok)throw 0;return r.blob()})
@@ -239,13 +249,6 @@
       var u=URL.createObjectURL(b);
       if(w)w.location.href=u;else window.open(u,'_blank');
     },function(){if(w)w.location.href=url;else window.open(url,'_blank')});
-  });
-  /* раскрытие списка «Все протоколы» */
-  var mb=document.querySelector('.sa-res__morebtn'),ml=document.getElementById('sa-res-list');
-  if(mb&&ml)mb.addEventListener('click',function(){
-    var hid=ml.hasAttribute('hidden');
-    if(hid){ml.removeAttribute('hidden');mb.setAttribute('aria-expanded','true');}
-    else{ml.setAttribute('hidden','');mb.setAttribute('aria-expanded','false');}
   });
 })();
 </script>
