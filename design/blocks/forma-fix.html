@@ -138,8 +138,13 @@
   max-height:20px !important;flex:0 0 20px !important;box-sizing:border-box !important;
   border:1px solid #C9C3BB !important;background:#fff !important}
 .uc-saturn-form .t-checkbox__indicator::after{content:"";position:absolute;
-  left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
+  left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%);
+  border:0 !important}
 .uc-saturn-form .t-checkbox__control{cursor:pointer}
+/* Телефон: кольцо фокуса не дублируем на внутреннем input — одна рамка на
+   обёртке (классы подтверждены живой проверкой). */
+.uc-saturn-form .t-input-group .t-input-phonemask__wrap input.t-input-phonemask{
+  box-shadow:none !important;border-color:transparent !important}
 .uc-saturn-form .t-checkbox:checked+.t-checkbox__indicator,
 .uc-saturn-form .t-checkbox__indicator_checked{background:#FF4200 !important;
   border-color:#FF4200 !important}

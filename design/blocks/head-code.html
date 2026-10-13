@@ -175,7 +175,11 @@ img.js-product-img,
 
 .t-catalog__card__price-wrapper[data-sa-ask] > *:not(.sa-price-ask),
 .js-catalog-price-wrapper[data-sa-ask] > *:not(.sa-price-ask){display:none !important}
-.sa-price-ask{font-size:15px;font-weight:600;color:#6B655E;white-space:nowrap}
+
+.t-catalog__card__price-wrapper[data-sa-ask],
+.js-catalog-price-wrapper[data-sa-ask]{visibility:visible !important;align-items:center}
+.sa-price-ask{font-size:15px;font-weight:600;color:#6B655E;white-space:nowrap;
+  font-family:Montserrat,Arial,sans-serif !important;line-height:1.35}
 
 .t-rec[data-record-type="2861"]{padding-top:40px !important;padding-bottom:72px !important}
 .t-catalog__grid-cont .t-section__title{margin-bottom:20px !important}
@@ -332,6 +336,12 @@ body.sa-pg-semena .t-catalog__filter__item_checkbox{display:block !important}
 .t-catalog__card__wrap_txt-and-opts > a,
 .t-catalog__card__textwrapper{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
 .t-catalog__card__price-wrapper{margin-top:auto !important;padding-top:12px}
+
+.t-catalog__card__contentwrapper,.t-catalog__card__wrap_txt-and-btns,
+.t-catalog__card__wrap_txt-and-opts{flex:1 1 auto}
+.t-catalog__card__textwrapper > .t-catalog__card__link{display:flex !important;
+  flex-direction:column;flex:1 1 auto}
+.t-catalog__card__price-wrapper{align-self:flex-start}
 
 .t-catalog__card__descr,.t-catalog__card__title,
 .t-catalog__prod-popup__descr,.t-store__card__descr{
@@ -1120,12 +1130,12 @@ h1.t-catalog__prod-popup__name{
 #rec4481961301 .t-checkbox__control,
 #rec4481417201 .t-checkbox__control{border:0 !important;box-shadow:none !important;outline:0 !important}
 
-.t-popup .t-input-group_phone .t-input,
-.t-popup .t-input-phonemask,
-.t-popup .t-inputphonemask,
-#rec4481961301 .t-input-group_phone .t-input,
-#rec4481417201 .t-input-group_phone .t-input{
-  border:0 !important;background:transparent !important;box-shadow:none !important}
+.t-popup .t-checkbox__indicator::after{border:0 !important}
+
+.t-popup .t-input-group .t-input-phonemask__wrap input.t-input-phonemask,
+#rec4481961301 .t-input-group .t-input-phonemask__wrap input.t-input-phonemask,
+#rec4481417201 .t-input-group .t-input-phonemask__wrap input.t-input-phonemask{
+  box-shadow:none !important;border-color:transparent !important}
 
 .t-popup .t-input-group:focus-within .t-input,
 .t-popup .t-input:focus,

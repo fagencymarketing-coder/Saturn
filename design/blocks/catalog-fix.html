@@ -82,7 +82,13 @@ img.js-product-img,
    Прячем только пустые значки валюты Тильды, свою подпись оставляем. */
 .t-catalog__card__price-wrapper[data-sa-ask] > *:not(.sa-price-ask),
 .js-catalog-price-wrapper[data-sa-ask] > *:not(.sa-price-ask){display:none !important}
-.sa-price-ask{font-size:15px;font-weight:600;color:#6B655E;white-space:nowrap}
+/* 13.10: Тильда держит у обёртки цены inline visibility:hidden — «Цена по
+   запросу» создаётся, но не видна. Возвращаем видимость (классы подтверждены
+   живой проверкой). */
+.t-catalog__card__price-wrapper[data-sa-ask],
+.js-catalog-price-wrapper[data-sa-ask]{visibility:visible !important;align-items:center}
+.sa-price-ask{font-size:15px;font-weight:600;color:#6B655E;white-space:nowrap;
+  font-family:Montserrat,Arial,sans-serif !important;line-height:1.35}
 
 /* 8. Вертикальный ритм страницы каталога.
       У блока ST340F собственные 135px сверху и снизу плюс 90px под
@@ -395,6 +401,14 @@ body.sa-pg-semena .t-catalog__filter__item_checkbox{display:block !important}
 .t-catalog__card__wrap_txt-and-opts > a,
 .t-catalog__card__textwrapper{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
 .t-catalog__card__price-wrapper{margin-top:auto !important;padding-top:12px}
+/* 13.10: цена лежит ВНУТРИ ссылки карточки (display:block) и шла сразу за
+   текстом — на разной высоте. Делаем ссылку колонкой, цену прижимаем вниз
+   (классы подтверждены живой проверкой). */
+.t-catalog__card__contentwrapper,.t-catalog__card__wrap_txt-and-btns,
+.t-catalog__card__wrap_txt-and-opts{flex:1 1 auto}
+.t-catalog__card__textwrapper > .t-catalog__card__link{display:flex !important;
+  flex-direction:column;flex:1 1 auto}
+.t-catalog__card__price-wrapper{align-self:flex-start}
 
 /* 24. Описания и названия товаров не переносятся по слогам. У страницы
        lang=ru Тильда включает hyphens:auto, и в узкой колонке выходило

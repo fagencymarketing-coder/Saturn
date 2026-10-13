@@ -393,16 +393,19 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 .t-popup .t-checkbox__control,
 #rec4481961301 .t-checkbox__control,
 #rec4481417201 .t-checkbox__control{{border:0 !important;box-shadow:none !important;outline:0 !important}}
-/* 13.10 (приёмка №9): у телефона было ДВЕ рамки — группа-поле с флагом «+7»
-   и внутреннее поле ввода со своей рамкой/фоном. Делаем внутреннее поле
-   прозрачным без рамки — остаётся одна рамка-поле, как у «Имя». Классы
-   телефонные, других полей не затрагивают. */
-.t-popup .t-input-group_phone .t-input,
-.t-popup .t-input-phonemask,
-.t-popup .t-inputphonemask,
-#rec4481961301 .t-input-group_phone .t-input,
-#rec4481417201 .t-input-group_phone .t-input{{
-  border:0 !important;background:transparent !important;box-shadow:none !important}}
+/* Красный «уголок»: родная «птичка» Tilda рисуется на .t-checkbox__indicator::after
+   через border-bottom/right, а мы этот ::after превратили в зону клика 44×44 и
+   границы не сбросили — оставалась Г-образная линия. Снимаем border (классы
+   подтверждены живой проверкой; белую птичку рисует ::before). */
+.t-popup .t-checkbox__indicator::after{{border:0 !important}}
+/* 13.10 (приёмка №9): телефон — два вложенных поля: обёртка
+   .t-input-phonemask__wrap и сам input.t-input-phonemask. Кольцо фокуса рисуется
+   на обоих → двойная рамка. Снимаем его с внутреннего input, оставляем на
+   обёртке (классы подтверждены живой проверкой). */
+.t-popup .t-input-group .t-input-phonemask__wrap input.t-input-phonemask,
+#rec4481961301 .t-input-group .t-input-phonemask__wrap input.t-input-phonemask,
+#rec4481417201 .t-input-group .t-input-phonemask__wrap input.t-input-phonemask{{
+  box-shadow:none !important;border-color:transparent !important}}
 /* Фокус поля в форме — СПОКОЙНЫЙ: тёмная тонкая рамка без красного свечения.
    Красно-оранжевое кольцо (#D93800) на поле ввода читалось как «ошибка», даже
    когда номер введён верно (замечание заказчицы 11.10). Бренд-акцент остаётся
