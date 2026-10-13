@@ -126,6 +126,14 @@
   .sa-hd__nav{gap:24px;margin-left:32px}
   .sa-hd__nav a{font-size:14px}
 }
+/* 13.10 (заказчица, приёмка №23): на планшете 768–1023 в шапке не было ни
+   «Контактов», ни бургера — из шапки до контактов не добраться. Включаем
+   бургер и на планшете: в его меню все пункты, включая «Контакты». Инлайн-меню
+   остаётся на десктопе (≥1024). */
+@media (max-width:1023px){
+  .sa-hd__nav,.sa-hd__right{display:none !important}
+  .sa-hd__icons{display:flex}
+}
 @media (max-width:767px){
   .sa-hd__in{height:64px;padding:10px 20px}
   .sa-hd__logo img{width:80px;height:28px}
