@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from typography import polish, price as price_fmt
 from rules import excluded
 
-XLS  = 'source-files/Saturn-katalog-i-prays-podtverzhdyon-2026-09-28.xlsx'
+XLS  = 'source-files/Saturn-katalog-i-prays-2026-10-13.xlsx'
 HTML = 'catalogs/_price.html'
 PDF  = 'catalogs/Прайс-лист-Сатурн-2026.pdf'
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Пересборка catalog_tech.json / .csv из подтверждённой таблицы заказчика.
 
-Первоисточник — source-files/Saturn-katalog-i-prays-podtverzhdyon-2026-09-28.xlsx.
+Первоисточник — source-files/Saturn-katalog-i-prays-2026-10-13.xlsx (прислан заказчицей 13.10.2026, заменил версию 28.09).
 Данные переносятся дословно, с единственным правилом: числовая ячейка выводится
 так, как её показывает Excel в русской локали (десятичный разделитель — запятая).
 Без этого правила норма «Волски Аминатор» 0,5 превращалась в «0.5» с точкой.
@@ -16,7 +16,7 @@ from rules import excluded
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 XLSX = os.path.join(ROOT, 'source-files',
-                    'Saturn-katalog-i-prays-podtverzhdyon-2026-09-28.xlsx')
+                    'Saturn-katalog-i-prays-2026-10-13.xlsx')
 JSON = os.path.join(ROOT, 'catalogs', 'catalog_tech.json')
 CSV  = os.path.join(ROOT, 'catalogs', 'catalog_tech.csv')
 
