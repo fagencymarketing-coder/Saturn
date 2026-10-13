@@ -40,7 +40,18 @@ img.js-product-img,
 
 /* 4. Название товара — не длиннее двух строк, чтобы карточки не прыгали */
 .t-catalog__card__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
-  overflow:hidden}
+  overflow:hidden;transition:color .2s ease}
+
+/* 4a. Ховер: название товара загорается фирменным оранжевым — как в блоке
+   «Популярные позиции» на главной. Единообразно и в каталоге, и в семенах
+   (оба — ST340F, одни классы). 13.10 (заказчица). */
+@media (hover:hover){
+  .t-catalog__card:hover .t-catalog__card__title,
+  .t-catalog__card:hover .t-catalog__card__title a,
+  .t-catalog__card__link:hover .t-catalog__card__title,
+  a.t-catalog__card__title:hover,
+  .t-catalog__card__title a:hover{color:#D93800 !important}
+}
 
 /* 5. Три карточки в ряд на планшете.
       Ширину задаёт .t-catalog__stretch-col, медиазапрос Тильды перебивает _25,
