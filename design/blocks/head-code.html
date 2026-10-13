@@ -238,6 +238,12 @@ img.js-product-img,
     background:#D8D3CE;border-radius:999px}
 }
 
+.t-catalog__filter-wrapper,
+.t-catalog__filter,
+.js-sidebar-filters,
+[class*="catalog__filter-wrapper"]{
+  border:0 !important;box-shadow:none !important;background:transparent !important}
+
 [class*="catalog__grid-cont-preloader"],
 [class*="catalog-grid-cont-preloader"],
 [class*="catalog__grid-cont-preloader"] > *,
@@ -934,9 +940,10 @@ h1.t-catalog__prod-popup__name{
 .js-catalog-filter-search:focus-visible,
 
 .t-catalog__card__link:focus-visible,
-.t-catalog__card a:focus-visible,
-.sa-kv__input:focus-visible{
+.t-catalog__card a:focus-visible{
   outline:2px solid #FF4200 !important;outline-offset:2px !important}
+
+.sa-kv__input:focus-visible{outline:none !important}
 
 #sa-tp-cta,#sa-tp-cta *{box-sizing:border-box}
 #sa-tp-cta{background:#141210;color:#fff;
@@ -1026,6 +1033,13 @@ h1.t-catalog__prod-popup__name{
 #rec4481961301 .t-input:focus,
 .t-popup .t-input:focus{border-color:#141210 !important;
   box-shadow:0 0 0 3px rgba(20,18,16,.08) !important}
+
+#rec4481961301 .t-input:focus-visible,
+#rec4481961301 input:focus-visible,
+.t-popup .t-input:focus-visible,
+.t-popup input:focus-visible,
+.uc-saturn-form .t-input:focus-visible,
+.uc-saturn-form input:focus-visible{outline:none !important}
 
 #rec4481961301 .t1014__title,
 .t-popup [class*="__title"]{font-size:26px !important;line-height:1.2 !important}

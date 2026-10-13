@@ -170,9 +170,12 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 /* 09.10 аудит: у карточек каталога и нашего поля поиска Tilda ставит
    outline:none — с клавиатуры не видно фокуса. Возвращаем обводку. */
 .t-catalog__card__link:focus-visible,
-.t-catalog__card a:focus-visible,
-.sa-kv__input:focus-visible{{
+.t-catalog__card a:focus-visible{{
   outline:2px solid #FF4200 !important;outline-offset:2px !important}}
+/* 13.10 (заказчица): у поля поиска это кольцо давало ВТОРУЮ красную обводку
+   поверх акцентного бордюра. Для него одного кольцо снимаем — фокус рисует
+   бордюр в самом блоке (одна линия). */
+.sa-kv__input:focus-visible{{outline:none !important}}
 
 /* 09.10: CSS шапки и подвала из HEAD УБРАН (~18 КБ).
    Это был дубль: блоки шапки и подвала рендерятся Tilda на каждой странице,
@@ -288,6 +291,16 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
 #rec4481961301 .t-input:focus,
 .t-popup .t-input:focus{{border-color:#141210 !important;
   box-shadow:0 0 0 3px rgba(20,18,16,.08) !important}}
+/* 13.10 (заказчица): поле ввода в попапе при фокусе краснело — это было
+   глобальное кольцо :focus-visible (#FF4200) поверх нашего нейтрального
+   бордюра. У полей формы (попап, запись формы и инлайн-форма) кольцо снимаем:
+   фокус уже виден тёмным бордюром с тенью. Красного больше нет. */
+#rec4481961301 .t-input:focus-visible,
+#rec4481961301 input:focus-visible,
+.t-popup .t-input:focus-visible,
+.t-popup input:focus-visible,
+.uc-saturn-form .t-input:focus-visible,
+.uc-saturn-form input:focus-visible{{outline:none !important}}
 /* Заголовок попапа Тильда ставит 36px — для окна заявки это H1-кегль,
    карточка выглядит громоздко. Уменьшаем до размера подзаголовка. */
 #rec4481961301 .t1014__title,

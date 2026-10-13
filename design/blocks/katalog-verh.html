@@ -56,7 +56,11 @@
   border:1px solid var(--line);padding:0 18px 0 50px;font-size:16px;font-weight:400;
   font-family:inherit;color:var(--ink);outline:none}
 .sa-kv__input::placeholder{color:#8A837C}
-.sa-kv__input:focus{border-color:var(--acc)}
+/* 13.10 (заказчица): при фокусе было ДВЕ красные обводки — бордюр поля
+   (var(--acc)) и отдельное кольцо outline из HEAD. Оставляем ОДНУ: бордюр
+   акцентом + тонкая тень того же цвета вплотную (кольцо outline для этого
+   поля снято в HEAD). Получается одна аккуратная линия без зазора. */
+.sa-kv__input:focus{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc)}
 
 .sa-kv__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 /* 44 — цель нажатия на планшете и телефоне; на ПК столько же,
