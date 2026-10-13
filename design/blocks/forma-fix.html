@@ -143,6 +143,16 @@
 .uc-saturn-form .t-checkbox:checked+.t-checkbox__indicator,
 .uc-saturn-form .t-checkbox__indicator_checked{background:#FF4200 !important;
   border-color:#FF4200 !important}
+/* Белая галочка на залитом квадрате. Без неё Тильда рисует свою метку
+   уголком — заказчица прислала скрин. Рисую «птичку» бордером, как в
+   попапе, и глушу родную svg/img-метку. */
+.uc-saturn-form .t-checkbox:checked+.t-checkbox__indicator::before,
+.uc-saturn-form .t-checkbox__indicator_checked::before{
+  content:"" !important;position:absolute;left:50%;top:47%;z-index:2;
+  width:5px;height:9px;border:solid #fff !important;border-width:0 2px 2px 0 !important;
+  background:transparent !important;transform:translate(-50%,-55%) rotate(45deg)}
+.uc-saturn-form .t-checkbox__indicator svg,
+.uc-saturn-form .t-checkbox__indicator img{display:none !important}
 
 /* кнопка */
 .uc-saturn-form .t-submit{
