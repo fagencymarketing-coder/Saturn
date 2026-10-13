@@ -486,6 +486,24 @@
           (box || links[k]).style.display = 'none';
         }
       }
+      /* 3) 13.10 (заказчица): на телефоне «Семена» оставались ещё и в
+         нативном меню Tilda, которое бывает <select> (раздел = <option>) или
+         кнопками. Для СЕМЯН (и их подпунктов) чистим и эти варианты. option
+         прячем удалением узла — display:none у него ненадёжен. Трогаем только
+         семенные пункты, чтобы не сломать выбор препаратов. */
+      var SEM = ['Семена','Гибриды','Сорта'];
+      var opts = document.querySelectorAll('.t-catalog select option,[class*="parts"] select option');
+      for (var o = 0; o < opts.length; o++){
+        if (SEM.indexOf(opts[o].textContent.trim()) !== -1) opts[o].remove();
+      }
+      var btns = document.querySelectorAll('.t-catalog__parts-switch-btn,[class*="parts-switch"] button,[class*="parts"] [class*="switch"] a');
+      for (var b2 = 0; b2 < btns.length; b2++){
+        if (btns[b2].children.length) continue;
+        if (SEM.indexOf(btns[b2].textContent.trim()) !== -1){
+          var bx = btns[b2].closest(ITEM);
+          (bx || btns[b2]).style.display = 'none';
+        }
+      }
     }
     spryatatLishnie();
     new MutationObserver(function(){ spryatatLishnie(); })
