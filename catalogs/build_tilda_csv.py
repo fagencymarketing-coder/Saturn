@@ -142,7 +142,9 @@ for r in site:
     # Tilda хранит цену числом и теряет «от», «рассрочку», вторую фасовку.
     # Точная формулировка из таблицы — в тексте карточки, чтобы смысл не менялся.
     exact = r['Цена'] if price_num(r['Цена']) else ''
-    out.append({'SKU': sku, 'External ID': sku, 'Brand': r['Бренд'],
+    # Tilda режет артикул на 50 символах: в магазине у «FERTIKA Хвойное…»
+    # лежит обрезанный SKU, и полный в файле создал бы дубль товара.
+    out.append({'SKU': sku[:50], 'External ID': sku, 'Brand': r['Бренд'],
                 'Category': f'{sec};{sub}' if sec != sub else sec,
                 'Title': name, 'Description': r['Подпись в карточке'],
                 'Text': '<br><br>'.join(x for x in (text, f'Цена: {exact}. При 100% предоплате, доставка и хранение включены.' if exact else '') if x),
