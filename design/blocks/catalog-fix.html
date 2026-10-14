@@ -422,6 +422,25 @@ body.sa-pg-semena .t-catalog__filter__item_checkbox{display:block !important}
    белом, ниже нормы доступности и выглядит «мутно». Делаем #6B6560: чётче и
    дороже, контраст проходит. */
 .t-catalog__card__descr,.t-store__card__descr{color:#6B6560 !important}
+
+/* 25. Ритм карточки на телефоне (замер второго чата на 390, плитка 170px,
+       14.10). На 170px штатный padding 16 великоват, а между описанием и
+       ценой набегало ~29px (маржина Тильды 17,5 + паддинг) — «рыхло» и
+       плавало. Поджимаем поля и верхний отступ описания; цену прижимает
+       margin-top:auto (правило 23, действует и здесь). */
+@media screen and (max-width:767px){
+  .t-catalog__card__contentwrapper{padding:12px !important}
+  .t-catalog__card__descr{margin-top:6px !important}
+  .t-catalog__card__price-wrapper{margin-top:auto !important;padding-top:12px !important}
+  /* Плитка квадратом вместо 3:4 — упаковка крупнее на ~34%. Правка рискованная:
+     размер плитки у Тильды задаётся настройкой карточки магазина, CSS может
+     с ней бодаться. Если после публикации на 390 плитка не стала квадратной —
+     значит Тильда перебивает, и квадрат ставится галкой размера карточки в
+     настройках магазина (руками), а не кодом. */
+  .t-catalog__card__mediawrapper,
+  .t-catalog__card__imgwrapper{
+    aspect-ratio:1/1 !important;height:auto !important;padding-bottom:0 !important}
+}
 </style>
 
 <script>
