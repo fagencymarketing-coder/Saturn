@@ -55,6 +55,14 @@ def full_descr(p):
     return t or (p.get("descr") or "")
 
 
+def ch_get(p, title):
+    """Первое значение характеристики с данным заголовком."""
+    for c in (p.get("characteristics") or []):
+        if c.get("title") == title:
+            return (c.get("value") or "").strip()
+    return ""
+
+
 def cultures(p):
     vals = [c["value"] for c in (p.get("characteristics") or [])
             if c.get("title") == "Культура"]
@@ -82,22 +90,55 @@ def main():
             "sku": p.get("sku") or "",
         })
 
+    # --- Семена (отдельный лист) ---
+    sem = [p for p in data["products"] if "/semena/" in (p.get("url") or "")]
+    sem.sort(key=lambda p: p.get("sort", 0))
+    srows = []
+    for i, p in enumerate(sem, 1):
+        srows.append({
+            "n": i,
+            "name": (p.get("title") or "").strip(),
+            "sub": (p.get("descr") or "").strip(),       # Культура · Тип
+            "yield": ch_get(p, "Урожайность"),
+            "ripe": ch_get(p, "Спелость"),
+            "veg": ch_get(p, "Вегетационный период"),
+            "qual": ch_get(p, "Качество"),
+            "orig": ch_get(p, "Оригинатор"),
+            "descr": full_descr(p),
+            "sku": p.get("sku") or "",
+        })
+
     today = datetime.date.today().isoformat()
     docs = ROOT / "docs"
     docs.mkdir(exist_ok=True)
 
     # --- Markdown ---
-    md = [f"# Карточки сайта — справочник (препараты)",
+    md = [f"# Карточки сайта — справочник",
           "",
-          f"Единый источник: цена и описание, как на живом сайте. Собрано {today}, "
-          f"позиций: **{len(rows)}**. Только препараты (семена — в /semena, в этой "
-          "таблице их нет). Пересобирается из магазина: `python3 tools/build_site_cards_table.py`.",
+          f"Единый источник: что реально на живом сайте. Собрано {today}. "
+          f"Препаратов: **{len(rows)}**, семян: **{len(srows)}**. "
+          "Пересобирается из магазина: `python3 tools/build_site_cards_table.py`. "
+          "Руками не править — перезатрётся.",
+          "",
+          "## Препараты",
           "",
           "| № | Название | Цена | Подзаголовок | Описание | Культуры |",
           "|--:|---|---|---|---|---|"]
     for r in rows:
         cells = [str(r["n"]), r["name"], r["price"], r["sub"],
                  r["descr"].replace("|", "\\|"), r["cult"]]
+        md.append("| " + " | ".join(c.replace("\n", " ") for c in cells) + " |")
+    md += ["",
+           "## Семена",
+           "",
+           "Цена договорная (по запросу). Ключевое — урожайность и характеристики.",
+           "",
+           "| № | Название | Культура · Тип | Урожайность | Спелость | Вег. период | Качество | Описание |",
+           "|--:|---|---|---|---|---|---|---|"]
+    for r in srows:
+        cells = [str(r["n"]), r["name"], r["sub"], r["yield"], r["ripe"],
+                 r["veg"], r["qual"].replace("|", "\\|"),
+                 r["descr"].replace("|", "\\|")]
         md.append("| " + " | ".join(c.replace("\n", " ") for c in cells) + " |")
     (docs / "KARTOCHKI-SAYTA.md").write_text("\n".join(md) + "\n", "utf-8")
 
@@ -123,6 +164,27 @@ def main():
             for c in row:
                 c.alignment = Alignment(vertical="top", wrap_text=True)
         ws.freeze_panes = "A2"
+
+        # Лист «Семена»
+        ws2 = wb.create_sheet("Семена")
+        heads2 = ["№", "Название", "Культура · Тип", "Урожайность", "Спелость",
+                  "Вег. период", "Качество", "Оригинатор", "Описание", "sku"]
+        ws2.append(heads2)
+        for c in ws2[1]:
+            c.font = Font(bold=True, color="FFFFFF")
+            c.fill = PatternFill("solid", fgColor="141210")
+            c.alignment = Alignment(vertical="center")
+        for r in srows:
+            ws2.append([r["n"], r["name"], r["sub"], r["yield"], r["ripe"],
+                        r["veg"], r["qual"], r["orig"], r["descr"], r["sku"]])
+        widths2 = [5, 26, 26, 34, 16, 16, 44, 40, 60, 22]
+        for i, w in enumerate(widths2, 1):
+            ws2.column_dimensions[chr(64 + i)].width = w
+        for row in ws2.iter_rows(min_row=2):
+            for c in row:
+                c.alignment = Alignment(vertical="top", wrap_text=True)
+        ws2.freeze_panes = "A2"
+
         wb.save(docs / "KARTOCHKI-SAYTA.xlsx")
         xlsx_ok = True
     except ImportError:
