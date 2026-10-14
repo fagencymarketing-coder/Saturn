@@ -496,7 +496,13 @@
       for (var o = 0; o < opts.length; o++){
         if (SEM.indexOf(opts[o].textContent.trim()) !== -1) opts[o].remove();
       }
-      var btns = document.querySelectorAll('.t-catalog__parts-switch-btn,[class*="parts-switch"] button,[class*="parts"] [class*="switch"] a');
+      /* любые «чипы»/кнопки/ссылки разделов магазина с текстом семян —
+         в контейнерах parts / switch / chip, в т.ч. нативные чипы Tilda. */
+      var btns = document.querySelectorAll(
+        '.t-catalog__parts-switch-btn,[class*="parts-switch"] button,'+
+        '[class*="parts-switch"] a,[class*="parts"] button,[class*="parts"] a,'+
+        '[class*="store__parts"] button,[class*="store__parts"] a,'+
+        '[class*="switch"] button,[class*="switch"] a,[class*="chip"] button,[class*="chip"] a');
       for (var b2 = 0; b2 < btns.length; b2++){
         if (btns[b2].children.length) continue;
         if (SEM.indexOf(btns[b2].textContent.trim()) !== -1){
