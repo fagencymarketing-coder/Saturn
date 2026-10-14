@@ -14,6 +14,27 @@
 
 ---
 
+## Фото карточек: 3 готовых добавить, 3 ждут поставщика (14.10)
+В `tilda-import.csv` без Photo остаётся 6 позиций. По 3 из них фото ГОТОВЫ (обтравлены,
+лежат в этом репозитории `design/handoff/foto/`):
+- `zazofen-vr` — файл `zazofen-vr.png`
+- `mikroel-pivovarennyy-yachmen` — файл `volski-mikroel-yachmen.png`
+- `atlant-super` — файл `atlant-super.png`
+
+Что сделать (зона данных — Saturnphoto + CSV):
+1. Положить эти 3 файла в `Saturnphoto/tilda-photos/` под именами ровно по SKU:
+   `zazofen-vr.png`, `mikroel-pivovarennyy-yachmen.png`, `atlant-super.png`.
+2. В CSV в колонку Photo для этих SKU прописать (расширение .png, не .jpg):
+   - `https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/zazofen-vr.png`
+   - `https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/mikroel-pivovarennyy-yachmen.png`
+   - `https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/tilda-photos/atlant-super.png`
+3. Импорт CSV — только ПОСЛЕ того, как файлы легли в Saturnphoto (иначе 404).
+
+Остаются без фото (ждут поставщика): `relict-makro-n-mg`, `relict-makro-pk`, `vega-kley`.
+Как пришлют — вёрстка (этот чат) обтравит и передаст файлы тем же порядком.
+
+---
+
 # Дубль «Состав» и «Действие» в карточках
 
 Найдено 14.10 (карточка «Волски Оптим»): в характеристиках товара «Состав» и
