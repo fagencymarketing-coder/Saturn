@@ -20,7 +20,7 @@ XLSX = os.path.join(ROOT, 'source-files',
 JSON = os.path.join(ROOT, 'catalogs', 'catalog_tech.json')
 CSV  = os.path.join(ROOT, 'catalogs', 'catalog_tech.csv')
 
-SERVICE = ['Файл_фото', 'Есть_фото', 'На_главной', 'В_каталоге', 'Файл_вырезанный']
+SERVICE = ['Файл_фото', 'Есть_фото', 'На_главной', 'В_каталоге', 'Файл_вырезанный', 'Действие']
 
 # Категория, которой в таблице нет, но заказчик её подтвердил отдельно.
 FIX_CATEGORY = {'Волски Аминатор': 'Листовые подкормки'}
