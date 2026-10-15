@@ -89,6 +89,8 @@ img.js-product-img,
 .js-catalog-price-wrapper[data-sa-ask]{visibility:visible !important;align-items:center}
 .sa-price-ask{font-size:15px;font-weight:600;color:#6B655E;white-space:normal;
   font-family:Montserrat,Arial,sans-serif !important;line-height:1.35}
+/* 15.10: метка «Цена по запросу» на карточках /semena — отдельной строкой под подписью */
+.sa-price-ask_sem{display:block;margin-top:10px}
 
 /* 8. Вертикальный ритм страницы каталога.
       У блока ST340F собственные 135px сверху и снизу плюс 90px под
@@ -477,6 +479,29 @@ body.sa-pg-semena .t-catalog__filter__item_checkbox{display:block !important}
         }
         el.dataset.saFixed = '1';
       });
+
+    /* A2. 15.10 (приёмка): на /semena у карточек списка цена не выводится вовсе
+          (в блоке семян вывод цены отключён, обёртки цены нет). Для ясности
+          добавляем «Цена по запросу» — как на странице товара-семени. */
+    if(/^\/semena\/?$/.test(location.pathname)){
+      document.querySelectorAll('.t-catalog__card').forEach(function(card){
+        if(card.dataset.saSemPrice) return;
+        var hasWrap = card.querySelector('.t-catalog__card__price-wrapper,.js-catalog-price-wrapper');
+        if(!hasWrap){
+          var host = card.querySelector('.t-catalog__card__textwrapper')
+                  || card.querySelector('.t-catalog__card__wrap_txt-and-btns')
+                  || card.querySelector('.t-catalog__card__text')
+                  || card;
+          if(host && !host.querySelector('.sa-price-ask')){
+            var s=document.createElement('span');
+            s.className='sa-price-ask sa-price-ask_sem';
+            s.textContent='Цена по запросу';
+            host.appendChild(s);
+          }
+        }
+        card.dataset.saSemPrice='1';
+      });
+    }
 
     /* 14.10 (заказчица): рассрочку из карточек убрать. Чистим текст цены от
        клаузы «(рассрочка …)»; прочие уточнения (МКР и т.п.) остаются. */

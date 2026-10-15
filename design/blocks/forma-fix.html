@@ -294,6 +294,17 @@
       var btn = f.querySelector('.t-submit');
       if(!cb || !btn) return;
       f.dataset.saWired = '1';
+      /* 15.10 (приёмка): строгое правило «Имя» в Tilda отклоняет запятую и
+         спецсимволы — реальные имена с запятой/точкой получали отказ. Снимаем
+         строгое правило с поля имени, обязательность (data-tilda-req) остаётся.
+         Защитно: если атрибута нет — ничего не делаем. ВАЖНО: если Tilda валидирует
+         по name="Name" помимо атрибута, гарантированный фикс — в настройках поля
+         формы (тип «Текст» вместо «Имя», обязательным оставить). Проверить вживую. */
+      var nm = f.querySelector('.t-input-group_nm input, input[name="Name"], input[name="name"], input[name="Имя" i]');
+      if(nm){
+        if(/\bname\b/i.test(nm.getAttribute('data-tilda-rule')||'')) nm.removeAttribute('data-tilda-rule');
+        nm.classList.remove('js-tilda-rule-name');
+      }
       function sync(){ btn.classList.toggle('sa-off', !cb.checked); }
       cb.addEventListener('change', sync);
       sync();

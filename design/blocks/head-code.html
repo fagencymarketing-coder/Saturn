@@ -181,6 +181,8 @@ img.js-product-img,
 .sa-price-ask{font-size:15px;font-weight:600;color:#6B655E;white-space:normal;
   font-family:Montserrat,Arial,sans-serif !important;line-height:1.35}
 
+.sa-price-ask_sem{display:block;margin-top:10px}
+
 .t-rec[data-record-type="2861"]{padding-top:40px !important;padding-bottom:72px !important}
 .t-catalog__grid-cont .t-section__title{margin-bottom:20px !important}
 .t-catalog__grid-cont .t-section__descr{margin-bottom:36px !important}
@@ -388,6 +390,26 @@ body.sa-pg-semena .t-catalog__filter__item_checkbox{display:block !important}
         }
         el.dataset.saFixed = '1';
       });
+
+    if(/^\/semena\/?$/.test(location.pathname)){
+      document.querySelectorAll('.t-catalog__card').forEach(function(card){
+        if(card.dataset.saSemPrice) return;
+        var hasWrap = card.querySelector('.t-catalog__card__price-wrapper,.js-catalog-price-wrapper');
+        if(!hasWrap){
+          var host = card.querySelector('.t-catalog__card__textwrapper')
+                  || card.querySelector('.t-catalog__card__wrap_txt-and-btns')
+                  || card.querySelector('.t-catalog__card__text')
+                  || card;
+          if(host && !host.querySelector('.sa-price-ask')){
+            var s=document.createElement('span');
+            s.className='sa-price-ask sa-price-ask_sem';
+            s.textContent='Цена по запросу';
+            host.appendChild(s);
+          }
+        }
+        card.dataset.saSemPrice='1';
+      });
+    }
 
     document.querySelectorAll('.t-catalog__card__price-wrapper,.js-catalog-price-wrapper,.t-catalog__card__price')
       .forEach(function(w){
