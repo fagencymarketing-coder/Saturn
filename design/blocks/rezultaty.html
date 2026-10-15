@@ -203,12 +203,17 @@
 
 /* Все протоколы: ссылка-раскрытие + список (ПК 2 колонки, телефон 1) */
 .sa-res__more{margin-top:24px}
-.sa-res__morebtn{background:none;border:0;cursor:pointer;font-family:inherit;
-  font-size:var(--sa-body);font-weight:700;color:var(--ink);padding:8px 0;
-  border-bottom:1px solid var(--line)}
-@media (hover:hover){.sa-res__morebtn:hover{color:var(--acc);border-color:var(--acc)}}
+/* 15.10 (заказчица): кнопка раскрытия единообразна с «Все документы» —
+   рамка-таблетка по центру (та же, что .sa-docs__btn), а не текстовая ссылка. */
+.sa-res__morebtn{display:flex;width:fit-content;margin:0 auto;
+  align-items:center;justify-content:center;height:var(--sa-btn-h);font-family:inherit;
+  padding:0 var(--sa-btn-px);border:1px solid var(--line);border-radius:12px;background:transparent;
+  font-size:var(--sa-body);font-weight:700;color:var(--ink);cursor:pointer;
+  transition:border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease)}
+@media (hover:hover){.sa-res__morebtn:hover{border-color:var(--acc);color:var(--acc)}}
 .sa-res__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 32px;margin-top:16px}
 .sa-res__list[hidden]{display:none}
+@media (max-width:1023px){.sa-res__morebtn{width:100%}}
 .sa-res__pl{font-size:var(--sa-body);color:var(--ink);text-decoration:none;
   padding:10px 0;border-bottom:1px solid var(--line)}
 @media (hover:hover){.sa-res__pl:hover{color:var(--acc);border-color:var(--acc)}}

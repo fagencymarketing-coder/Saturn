@@ -48,7 +48,8 @@ https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/design/bloc
 
 ## Задача 5. Блок «Результаты производственных испытаний» (главная)
 https://raw.githubusercontent.com/fagencymarketing-coder/Saturn/main/design/blocks/rezultaty.html
-Что внутри: «Все протоколы (8)» раскрываются списком.
+Что внутри: «Все протоколы (8)» раскрываются списком; кнопка раскрытия —
+единообразна с «Все документы» (рамка-таблетка по центру).
 → Заменить блок, сверить длину, **опубликовать /home**.
 
 ## Задача 6. Блок «Документы» (главная)
