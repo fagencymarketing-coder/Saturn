@@ -18,7 +18,7 @@ https://raw.githubusercontent.com/fagencymarketing-coder/saturn/main/design/bloc
 | 4 | Агросопровождение | `agro.html` | T123 |
 | 5 | Результаты испытаний | `rezultaty.html` | T123 |
 | 6 | География | `geografiya.html` | T123 |
-| 7 | Документы | `dokumenty.html` | T123 |
+| 7 | О компании + Документы | `o-kompanii.html` | T123 |  <!-- 27.10: объединённая секция, заменила dokumenty.html -->
 | 8 | Контакты (люди) | `kontakty.html` | T123 |
 | 9 | Форма заявки | — | **штатный блок формы Tilda** |
 | 9а | Оформление формы | `forma-fix.html` | T123 **под** блоком формы |

@@ -1,0 +1,236 @@
+<!-- Блок «О компании + Документы и сертификаты» для вставки в T123 на Tilda.
+     Заменяет прежний отдельный блок «Документы» (dokumenty.html).
+     Часть 2 (карточки, «Все документы», просмотр/скачивание PDF) перенесена
+     из dokumenty.html без изменений. ТЗ заказчицы 27.10.2026. -->
+<style>
+.sa-co{--acc:#FF4200;--ink:#141210;--mut:#766F68;--mut2:#6B6560;--tile:#F0EDE9;--line:#E7E3DE;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#F6F5F3;padding:clamp(28px,6vh,72px) 0;margin:0}
+.sa-co *{box-sizing:border-box;margin:0;padding:0}
+.sa-co__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+
+/* надзаголовок с оранжевой риской — как у всех секций */
+.sa-co__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--mut);line-height:1}
+.sa-co__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;background:#FF4200}
+.sa-co__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);margin-top:clamp(12px,2vh,20px);
+  letter-spacing:-.01em;max-width:860px}
+.sa-co__lead{font-size:var(--sa-lead);font-weight:400;line-height:1.55;color:var(--mut2);
+  margin-top:16px;max-width:720px;text-wrap:balance}
+
+/* часть 1: слева преимущества, справа фото */
+.sa-co__top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3vw,48px);
+  align-items:start;margin-top:clamp(24px,3.4vh,40px)}
+.sa-co__adv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,24px)}
+.sa-co__item{display:flex;flex-direction:column;gap:10px}
+.sa-co__ico{width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center}
+.sa-co__ico svg{width:22px;height:22px;fill:none;stroke:var(--acc);stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.sa-co__it-h{font-size:var(--sa-body);font-weight:700;line-height:1.3}
+.sa-co__it-t{font-size:var(--sa-small);font-weight:400;line-height:1.5;color:var(--mut2)}
+/* фото: место под реальный снимок. Пока — плашка с эмблемой «Сатурна». */
+.sa-co__photo{position:relative;min-width:0;border-radius:22px;overflow:hidden;background:var(--tile)
+  url("https://static.tildacdn.com/tild3762-3461-4635-b161-643835316538/saturn-emblem.png")
+  center / 96px auto no-repeat;aspect-ratio:4/3;min-height:220px}
+.sa-co__photo img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* разделитель между частями */
+.sa-co__hr{height:1px;background:var(--line);margin:clamp(28px,3.6vh,44px) 0 0}
+
+/* часть 2: документы (перенесено из dokumenty.html) */
+.sa-co__subh{font-size:var(--sa-h3);font-weight:800;line-height:1.3;margin-top:clamp(24px,3vh,36px)}
+.sa-co__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;
+  margin-top:clamp(18px,2.4vh,28px);align-items:start}
+.sa-co__card{display:flex;flex-direction:column;background:#fff;border-radius:22px;
+  padding:16px 16px 24px;text-decoration:none;color:inherit;
+  transition:transform var(--sa-t) var(--sa-ease),box-shadow var(--sa-t) var(--sa-ease),
+    color var(--sa-t) var(--sa-ease)}
+.sa-co__pic{background:var(--tile);border-radius:12px;overflow:hidden;aspect-ratio:355/278;
+  max-height:calc(100dvh - 520px);min-height:120px}
+.sa-co__pic img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.sa-co__name{font-size:var(--sa-body);font-weight:700;line-height:1.35;margin-top:14px}
+.sa-co__meta{display:block;font-size:13px;font-weight:400;line-height:18.2px;color:var(--mut);margin-top:6px}
+.sa-co__morewrap{display:flex;justify-content:center;margin-top:clamp(16px,2.2vh,24px)}
+.sa-co__more{display:none;margin-top:clamp(18px,2.4vh,28px)}
+.sa-co__more.is-open{display:block}
+.sa-co__moreh{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
+.sa-co__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+.sa-co__row{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;
+  padding:10px 20px;background:#fff;border-radius:12px;text-decoration:none;color:var(--ink);
+  font-size:var(--sa-body);font-weight:600;line-height:1.35;
+  transition:color var(--sa-t) var(--sa-ease),box-shadow var(--sa-t) var(--sa-ease)}
+.sa-co__row i{font-style:normal;font-weight:400;font-size:13px;color:var(--mut);white-space:nowrap}
+
+/* кнопки секции: вторичная (реквизиты) + главная (заявка) */
+.sa-co__cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;
+  margin-top:clamp(24px,3.4vh,40px)}
+.sa-co__btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:var(--sa-btn-h);
+  padding:0 var(--sa-btn-px);border-radius:12px;font-family:inherit;font-size:var(--sa-body);font-weight:700;
+  text-decoration:none;cursor:pointer;white-space:nowrap;
+  transition:border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease),background var(--sa-t) var(--sa-ease)}
+.sa-co__btn--sec{border:1px solid var(--line);background:transparent;color:var(--ink)}
+.sa-co__btn--sec svg{width:16px;height:16px;fill:none;stroke:var(--ink);stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;transition:stroke var(--sa-t) var(--sa-ease)}
+.sa-co__btn--main{background:#D93800;color:#fff;border:0}
+
+@media (hover:hover){
+  .sa-co__card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,18,16,.08)}
+  .sa-co__row:hover{color:#D93800;box-shadow:0 8px 24px rgba(20,18,16,.08)}
+  .sa-co__btn--sec:hover{border-color:var(--acc);color:var(--acc)}
+  .sa-co__btn--sec:hover svg{stroke:var(--acc)}
+  .sa-co__btn--main:hover{background:#C23100}
+}
+
+@media (max-width:1023px){
+  .sa-co__in{padding:0 32px}
+  .sa-co__grid{gap:12px}
+  .sa-co__card{border-radius:16px;padding:10px 10px 14px}
+  .sa-co__pic{border-radius:10px;aspect-ratio:164/128;max-height:none}
+  .sa-co__name{font-size:14px;line-height:19px;margin-top:10px}
+}
+@media (max-width:767px){
+  .sa-co__in{padding:0 20px}
+  .sa-co__top{grid-template-columns:minmax(0,1fr);gap:24px}
+  .sa-co__adv{grid-template-columns:minmax(0,1fr);gap:16px}
+  .sa-co__photo{order:-1;width:100%;aspect-ratio:16/10;min-height:0}
+  .sa-co__grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .sa-co__card{flex-direction:column;align-items:stretch;padding:10px 10px 18px;border-radius:16px;min-width:0}
+  .sa-co__pic{width:100%;border-radius:10px;aspect-ratio:4/3;max-height:none;min-height:0}
+  .sa-co__name,.sa-co__meta{overflow-wrap:break-word;word-break:normal;hyphens:none}
+  .sa-co__name{font-size:15px;line-height:20px;margin-top:14px;padding:0 6px}
+  .sa-co__meta{padding:0 6px}
+  .sa-co__list{grid-template-columns:minmax(0,1fr)}
+  .sa-co__cta{flex-direction:column;align-items:stretch}
+  .sa-co__btn{width:100%}
+}
+</style>
+
+<section class="sa-co" id="about">
+  <div class="sa-co__in">
+
+    <!-- Часть 1 — О компании -->
+    <span class="sa-co__kicker">О компании</span>
+    <h2 class="sa-co__h">«Сатурн» — поставщик решений для растениеводства</h2>
+    <p class="sa-co__lead">Обеспечиваем сельхозпроизводителей семенами, удобрениями и средствами защиты растений. Подбираем продукцию под культуру и регион, организуем поставку и сопровождаем применение в течение сезона.</p>
+
+    <div class="sa-co__top">
+      <div class="sa-co__adv">
+        <div class="sa-co__item">
+          <span class="sa-co__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v16"/></svg></span>
+          <div class="sa-co__it-h">Полный ассортимент</div>
+          <div class="sa-co__it-t">Семена, удобрения, СЗР и листовое питание в одном месте.</div>
+        </div>
+        <div class="sa-co__item">
+          <span class="sa-co__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 21v-2M5 12H3M21 12h-2"/><circle cx="12" cy="12" r="4"/></svg></span>
+          <div class="sa-co__it-h">Подбор под задачу</div>
+          <div class="sa-co__it-t">Агрономы подбирают продукцию под культуру и регион.</div>
+        </div>
+        <div class="sa-co__item">
+          <span class="sa-co__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l2-5h11l3 4h2v4h-2M3 13v4h2"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg></span>
+          <div class="sa-co__it-h">Поставка со склада</div>
+          <div class="sa-co__it-t">Отгрузка со склада в Барнауле и доставка в хозяйство.</div>
+        </div>
+        <div class="sa-co__item">
+          <span class="sa-co__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div class="sa-co__it-h">Сопровождение в сезоне</div>
+          <div class="sa-co__it-t">Диагностика поля и корректировка в течение сезона.</div>
+        </div>
+      </div>
+
+      <div class="sa-co__photo" role="img" aria-label="Фотография компании «Сатурн»">
+        <!-- место под реальный снимок (поле / склад / команда), заказчица загрузит в Tilda -->
+      </div>
+    </div>
+
+    <div class="sa-co__hr"></div>
+
+    <!-- Часть 2 — Документы и сертификаты -->
+    <h3 class="sa-co__subh">Документы и сертификаты</h3>
+
+    <div class="sa-co__grid">
+      <a class="sa-co__card" data-pdf target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/01-sertifikat-dilera-fertika-do-2026.pdf">
+        <span class="sa-co__pic"><img loading="lazy" alt="Сертификат дилера АО «Фертика»"
+          src="https://static.tildacdn.com/tild3164-3534-4330-b063-346663653636/-/resize/480x/preview-sertifikat-f.jpg"></span>
+        <span class="sa-co__name">Сертификат дилера АО «Фертика»</span>
+        <span class="sa-co__meta">Выдан ООО «Сатурн» · до 31.12.2026</span>
+      </a>
+
+      <a class="sa-co__card" data-pdf target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf">
+        <span class="sa-co__pic"><img loading="lazy" alt="СГР — Страда N, P, K"
+          src="https://static.tildacdn.com/tild3334-6466-4133-b535-393436633139/-/resize/480x/preview-sgr-strada.jpg"></span>
+        <span class="sa-co__name">СГР — Страда N, P, K</span>
+        <span class="sa-co__meta">№ 2855 · действует до 2030</span>
+      </a>
+
+      <a class="sa-co__card" data-pdf target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/08-sgr-diforma-2899-do-2030.pdf">
+        <span class="sa-co__pic"><img loading="lazy" alt="СГР — Волски Диформа"
+          src="https://static.tildacdn.com/tild3639-3561-4162-b766-633634663432/-/resize/480x/preview-sgr-diforma.jpg"></span>
+        <span class="sa-co__name">СГР — Волски Диформа</span>
+        <span class="sa-co__meta">№ 2899 · действует до 2030</span>
+      </a>
+    </div>
+
+    <div class="sa-co__morewrap">
+      <button type="button" class="sa-co__btn sa-co__btn--sec" id="sa-co-all" aria-expanded="false" aria-controls="sa-co-more">Все документы →</button>
+    </div>
+
+    <div class="sa-co__more" id="sa-co-more" hidden>
+      <div class="sa-co__moreh">Прочие документы</div>
+      <div class="sa-co__list">
+        <a class="sa-co__row" data-dl="Sertifikat-dilera-Fertika.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/01-sertifikat-dilera-fertika-do-2026.pdf"><span>Сертификат дилера АО «Фертика»</span><i>PDF ↓</i></a>
+        <a class="sa-co__row" data-dl="SGR-Strada-N-P-K.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf"><span>СГР — Страда N, P, K · № 2855</span><i>PDF ↓</i></a>
+        <a class="sa-co__row" data-dl="SGR-Volski-Diforma.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/08-sgr-diforma-2899-do-2030.pdf"><span>СГР — Волски Диформа · № 2899</span><i>PDF ↓</i></a>
+      </div>
+    </div>
+
+    <!-- Кнопки секции -->
+    <div class="sa-co__cta">
+      <a class="sa-co__btn sa-co__btn--sec" data-dl="Rekvizity-Saturn.pdf" target="_blank" rel="noopener"
+         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-rekvizity.pdf">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>Скачать реквизиты</a>
+      <a class="sa-co__btn sa-co__btn--main" href="#popup:zayavka">Получить предложение →</a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var more=document.getElementById('sa-co-more'),btn=document.getElementById('sa-co-all');
+  if(btn&&more){
+    more.hidden=false;
+    btn.addEventListener('click',function(){
+      var o=more.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded',o?'true':'false');
+      btn.textContent=o?'Скрыть документы ↑':'Все документы →';
+    });
+  }
+  function blob(url,type,cb,fail){
+    fetch(url).then(function(r){if(!r.ok)throw 0;return r.blob()})
+      .then(function(b){cb(new Blob([b],{type:type}))}).catch(fail);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('.sa-co a[data-pdf],.sa-co a[data-dl]');
+    if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||!window.fetch||!window.Blob||!URL.createObjectURL)return;
+    var url=a.href,dl=a.getAttribute('data-dl');
+    e.preventDefault();
+    if(dl){
+      blob(url,'application/pdf',function(b){
+        var u=URL.createObjectURL(b),t=document.createElement('a');
+        t.href=u;t.download=dl;document.body.appendChild(t);t.click();t.remove();
+        setTimeout(function(){URL.revokeObjectURL(u)},4000);
+      },function(){window.open(url,'_blank','noopener')});
+      return;
+    }
+    var w=window.open('','_blank');
+    blob(url,'application/pdf',function(b){
+      var u=URL.createObjectURL(b);
+      if(w)w.location.href=u;else window.open(u,'_blank');
+    },function(){if(w)w.location.href=url;else window.open(url,'_blank')});
+  });
+})();
+</script>
