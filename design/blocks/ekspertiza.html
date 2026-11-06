@@ -1,0 +1,173 @@
+<!-- Блок «Экспертиза и протоколы испытаний» для вставки в T123 на главной.
+     Решение встречи 27.10: утверждение и доказательство стоят рядом, поэтому
+     карточки экспертизы и акты — одна секция, а не две. Блок идёт выше
+     продукции. Карточки раскрываются по клику: на главной видны заголовок
+     и одна строка, подробности — по требованию.
+     Перед отдачей агенту прогнать tools/check_block.py: Tilda не сохраняет
+     блок с непарными тегами и отвечает «присутствует незакрытый тег». -->
+<style>
+.sa-ex{--ink:#141210;--acc:#FF4200;--mut:#6B6560;--line:#E6E2DC;--soft:#F6F5F3;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#fff;padding:var(--sa-sec-y,80px) 0}
+.sa-ex *{box-sizing:border-box;margin:0;padding:0}
+.sa-ex__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+.sa-ex__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick,12px);
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);line-height:1}
+.sa-ex__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;background:var(--acc)}
+.sa-ex__h{font-size:var(--sa-h2,30px);font-weight:800;line-height:var(--sa-h2-lh,1.15);
+  margin-top:16px;letter-spacing:-.01em;text-wrap:balance;max-width:20ch}
+.sa-ex__sub{font-size:var(--sa-lead,16px);line-height:1.55;color:var(--mut);
+  margin-top:12px;max-width:62ch;text-wrap:balance}
+
+.sa-ex__cards{display:flex;flex-direction:column;gap:var(--sa-gap-s,12px);
+  margin-top:var(--sa-gap-l,40px)}
+.sa-ex__c{border:1px solid var(--line);border-radius:var(--sa-r-ctrl,12px);
+  background:#fff;overflow:hidden}
+.sa-ex__sum{display:flex;align-items:flex-start;gap:16px;padding:18px 20px;cursor:pointer;
+  list-style:none}
+.sa-ex__sum::-webkit-details-marker{display:none}
+.sa-ex__n{flex:0 0 auto;font-size:var(--sa-small,13px);font-weight:800;color:var(--acc);
+  line-height:1.5;font-variant-numeric:tabular-nums}
+.sa-ex__t{flex:1 1 auto;min-width:0;font-size:var(--sa-h3,18px);font-weight:700;line-height:1.35}
+.sa-ex__t i{display:block;font-style:normal;font-size:var(--sa-body,15px);font-weight:400;
+  color:var(--mut);margin-top:4px;line-height:1.5}
+.sa-ex__arr{flex:0 0 auto;width:18px;height:18px;margin-top:5px;
+  transition:transform var(--sa-t,.18s) var(--sa-ease,ease)}
+.sa-ex__arr path{fill:none;stroke:var(--mut);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sa-ex__c[open] .sa-ex__arr{transform:rotate(180deg)}
+.sa-ex__body{padding:0 20px 20px 54px;font-size:var(--sa-body,15px);line-height:1.65;color:#3F3A35}
+.sa-ex__body p{margin-top:10px}
+@media (max-width:767px){.sa-ex__body{padding-left:20px}}
+@media (hover:hover){.sa-ex__c:hover{border-color:#D8D2C9}}
+
+.sa-ex__acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--sa-gap-m,24px);margin-top:var(--sa-gap-l,40px)}
+@media (max-width:1023px){.sa-ex__acts{grid-template-columns:1fr}}
+.sa-ex__a{border:1px solid var(--line);border-radius:var(--sa-r-card,22px);
+  padding:24px;background:var(--soft)}
+.sa-ex__a b{display:block;font-size:30px;font-weight:800;line-height:1.1;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.sa-ex__a b i{font-style:normal;font-size:16px;font-weight:700;margin-left:4px}
+.sa-ex__a span{display:block;font-size:var(--sa-body,15px);font-weight:600;margin-top:8px}
+.sa-ex__a em{display:block;font-style:normal;font-size:var(--sa-small,13px);
+  color:var(--mut);margin-top:4px}
+.sa-ex__a a{display:inline-block;margin-top:14px;font-size:var(--sa-small,13px);
+  font-weight:700;color:var(--acc);text-decoration:none}
+@media (hover:hover){.sa-ex__a a:hover{text-decoration:underline}}
+
+.sa-ex__cta{margin-top:var(--sa-gap-m,24px);background:var(--ink);color:#fff;
+  border-radius:var(--sa-r-card,22px);padding:28px;display:flex;flex-wrap:wrap;
+  align-items:center;justify-content:space-between;gap:20px}
+.sa-ex__ctat b{display:block;font-size:var(--sa-h3,18px);font-weight:800}
+.sa-ex__ctat span{display:block;font-size:var(--sa-body,15px);color:rgba(255,255,255,.72);
+  margin-top:6px;max-width:520px}
+.sa-ex__btn{display:inline-flex;align-items:center;justify-content:center;
+  height:var(--sa-btn-h,52px);padding:0 var(--sa-btn-px,26px);border-radius:var(--sa-r-ctrl,12px);
+  background:var(--acc);color:#fff;font-size:var(--sa-body,15px);font-weight:700;
+  text-decoration:none;white-space:nowrap}
+@media (hover:hover){.sa-ex__btn:hover{background:#E03A00}}
+@media (max-width:767px){.sa-ex__btn{width:100%}}
+.sa-ex__all{display:inline-flex;align-items:center;gap:10px;margin-top:22px;
+  font-size:var(--sa-body,15px);font-weight:700;color:var(--acc);text-decoration:none;
+  transition:gap var(--sa-t,.18s) var(--sa-ease,ease)}
+.sa-ex__all i{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+  width:34px;height:34px;border-radius:999px;border:1px solid rgba(255,66,0,.5);font-style:normal}
+@media (hover:hover){.sa-ex__all:hover{gap:14px}}
+</style>
+
+<div class="sa-ex" id="protokoly">
+  <div class="sa-ex__in">
+
+    <p class="sa-ex__kicker">Экспертиза</p>
+    <h2 class="sa-ex__h">Все препараты прошли полевые испытания и доказали свою пользу</h2>
+    <p class="sa-ex__sub">Мы не предлагаем продукцию, в которой не уверены. Случайных в каталоге нет.</p>
+
+    <div class="sa-ex__cards">
+
+      <details class="sa-ex__c" open>
+        <summary class="sa-ex__sum">
+          <span class="sa-ex__n">01</span>
+          <span class="sa-ex__t">Отбираем через собственные испытания
+            <i>Препарат попал в каталог — значит, прошёл наши опыты.</i></span>
+          <svg class="sa-ex__arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 6.5l5 5 5-5"></path></svg>
+        </summary>
+        <div class="sa-ex__body">
+          <p>Каждый препарат и каждый гибрид проверяем в производственных испытаниях в реальных хозяйствах — на поле с обычной техникой и обычными сроками, а не на делянке.</p>
+          <p>В каталог попадает то, что дало прибавку. Остальное отсеивается до того, как вы о нём узнаете.</p>
+        </div>
+      </details>
+
+      <details class="sa-ex__c">
+        <summary class="sa-ex__sum">
+          <span class="sa-ex__n">02</span>
+          <span class="sa-ex__t">Проверяем каждую партию в лаборатории
+            <i>Третья проверка после двух заводских — наша.</i></span>
+          <svg class="sa-ex__arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 6.5l5 5 5-5"></path></svg>
+        </summary>
+        <div class="sa-ex__body">
+          <p>Машина приходит на склад — берём из партии случайную канистру и отправляем на анализ действующих веществ. Партия без подтверждения в хозяйство не едет.</p>
+          <p>Везём её мы, поэтому и проверяем мы. Сопроводительным документам верим после анализа, а не вместо него.</p>
+        </div>
+      </details>
+
+      <details class="sa-ex__c">
+        <summary class="sa-ex__sum">
+          <span class="sa-ex__n">03</span>
+          <span class="sa-ex__t">Диагностируем поле по участкам
+            <i>Определяем потребность культуры, а не вносим по шаблону.</i></span>
+          <svg class="sa-ex__arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 6.5l5 5 5-5"></path></svg>
+        </summary>
+        <div class="sa-ex__body">
+          <p>Диагностика показывает, чего растению не хватает в этой фазе. По её результату видно и то, чего вносить не нужно.</p>
+          <p>Отменить лишнюю подкормку бывает выгоднее, чем получить прибавку: препараты на одну обработку в наших опытах стоили от 590 до 2 573 ₽/га.</p>
+        </div>
+      </details>
+
+      <details class="sa-ex__c">
+        <summary class="sa-ex__sum">
+          <span class="sa-ex__n">04</span>
+          <span class="sa-ex__t">Публикуем акты целиком
+            <i>Включая опыты, где прибавка оказалась минимальной.</i></span>
+          <svg class="sa-ex__arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 6.5l5 5 5-5"></path></svg>
+        </summary>
+        <div class="sa-ex__body">
+          <p>Акты подписаны обеими сторонами и открываются целиком. Закрыты только данные хозяйства: название, адрес, подписи и печать с его стороны.</p>
+          <p>Два опыта препарат не окупил: по сое прибыль 179 ₽/га при затратах 2 005 ₽/га, а на одном поле прибавки не было вовсе. Мы оставили их в счёте и публикуем вместе с остальными.</p>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="sa-ex__acts">
+      <div class="sa-ex__a">
+        <b>+8,3<i>ц/га</i></b>
+        <span>Пшеница, прибавка 27%</span>
+        <em>Алтайский край, 2025 · 9 439 ₽/га</em>
+        <a href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-1.pdf" target="_blank" rel="noopener">Акт № 1</a>
+      </div>
+      <div class="sa-ex__a">
+        <b>+7,1<i>ц/га</i></b>
+        <span>Ячмень «Танай», прибавка 28%</span>
+        <em>Алтайский край, 2025 · 5 854 ₽/га</em>
+        <a href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-4.pdf" target="_blank" rel="noopener">Акт № 4</a>
+      </div>
+      <div class="sa-ex__a">
+        <b>+3,0<i>ц/га</i></b>
+        <span>Рапс, прибавка 14%</span>
+        <em>Алтайский край, 2025 · 8 410 ₽/га</em>
+        <a href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/protocols/protokol-7.pdf" target="_blank" rel="noopener">Акт № 7</a>
+      </div>
+    </div>
+
+    <a class="sa-ex__all" href="#protokoly-vse">Все восемь протоколов испытаний <i aria-hidden="true">→</i></a>
+
+    <div class="sa-ex__cta">
+      <div class="sa-ex__ctat">
+        <b>Ваше поле?</b>
+        <span>Приедем, проведём диагностику, покажем прибавку в вашем хозяйстве.</span>
+      </div>
+      <a class="sa-ex__btn" href="#popup:zayavka">Оставить заявку</a>
+    </div>
+
+  </div>
+</div>
