@@ -39,6 +39,11 @@
   text-decoration:none;font-size:var(--sa-lead)}
 .sa-hero__b1{background:#D93800;color:#fff;font-weight:700}
 .sa-hero__b2{border:1px solid var(--line);color:var(--ink);font-weight:600}
+.sa-hero__link{margin-top:14px;font-size:var(--sa-body,15px)}
+.sa-hero__link a{color:#D93800;font-weight:600;text-decoration:none;
+  border-bottom:1px solid rgba(217,56,0,.35)}
+@media (hover:hover){.sa-hero__link a:hover{border-bottom-color:#D93800}}
+@media (max-width:1023px){.sa-hero__link a{color:#fff;border-bottom-color:rgba(255,255,255,.45)}}
 .sa-hero__nums{display:flex;max-width:541px;margin-top:var(--sa-gap-l)}
 .sa-hero__n{flex:1;padding-right:32px}
 .sa-hero__n+.sa-hero__n{padding-left:32px;border-left:1px solid var(--lin2)}
@@ -237,6 +242,7 @@
         <a class="sa-hero__b1" href="#popup:zayavka">Связаться</a>
         <a class="sa-hero__b2" href="#produkciya">Продукция</a>
       </div>
+      <p class="sa-hero__link"><a href="#protokoly">Смотреть протоколы →</a></p>
       <div class="sa-hero__nums">
         <div class="sa-hero__n"><b>5 000+<i>га</i></b><span>испытаний, сезон 2025</span></div>
         <div class="sa-hero__n"><b>до 9 439<i>₽/га</i></b><span>по официальным документам</span></div>
