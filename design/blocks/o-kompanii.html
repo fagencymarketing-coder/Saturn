@@ -6,7 +6,11 @@
      div.sa-ok__ph на обычный тег картинки с alt. Порядок плиток:
      поле, лаборатория, склад, автопарк, команда, обучение.
      Комментарии внутри разметки не ставим: редактор Tilda на них
-     спотыкается и не сохраняет блок (проверено 06.11). -->
+     спотыкается и не сохраняет блок (проверено 06.11).
+     И ещё: в CSS нельзя писать дочерний селектор со знаком «больше».
+     Валидатор Tilda читает его внутри style как начало тега и отвечает
+     «присутствует незакрытый тег» (проверено 06.11). Вместо него —
+     отдельный класс, здесь это .sa-ok__pic_big. -->
 <style>
 .sa-ok{--ink:#141210;--acc:#FF4200;--mut:#6B6560;--line:#E6E2DC;--soft:#F6F5F3;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
@@ -31,28 +35,28 @@
    На телефоне — горизонтальная лента, чтобы блок не растянулся на экран. */
 .sa-ok__gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
   grid-auto-rows:1fr;gap:var(--sa-gap-s,12px);margin-top:var(--sa-gap-l,40px)}
-.sa-ok__gal > *:first-child{grid-column:span 2;grid-row:span 2}
+.sa-ok__pic_big{grid-column:span 2;grid-row:span 2}
 @media (max-width:1023px){
   .sa-ok__gal{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .sa-ok__gal > *:first-child{grid-column:span 2;grid-row:span 1}
+  .sa-ok__pic_big{grid-column:span 2;grid-row:span 1}
 }
 @media (max-width:767px){
   .sa-ok__gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
   .sa-ok__gal::-webkit-scrollbar{display:none}
-  .sa-ok__gal > *{flex:0 0 78%;scroll-snap-align:start}
+  .sa-ok__pic{flex:0 0 78%;scroll-snap-align:start}
 }
 .sa-ok__pic{position:relative;border-radius:var(--sa-r-ctrl,12px);overflow:hidden;
   background:var(--soft);aspect-ratio:4/3;max-width:100%;
   display:flex;align-items:center;justify-content:center}
-.sa-ok__gal > .sa-ok__pic:first-child{aspect-ratio:1/1}
-@media (max-width:1023px){.sa-ok__gal > .sa-ok__pic:first-child{aspect-ratio:16/9}}
-@media (max-width:767px){.sa-ok__gal > .sa-ok__pic:first-child{aspect-ratio:4/3}}
+.sa-ok__pic_big{aspect-ratio:1/1}
+@media (max-width:1023px){.sa-ok__pic_big{aspect-ratio:16/9}}
+@media (max-width:767px){.sa-ok__pic_big{aspect-ratio:4/3}}
 .sa-ok__pic img{width:100%;height:100%;object-fit:cover;display:block}
 .sa-ok__ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:#A8A29B;
   font-size:var(--sa-small,13px);text-align:center;padding:16px}
 .sa-ok__ph svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.4}
-.sa-ok__gal > .sa-ok__pic:first-child .sa-ok__ph svg{width:40px;height:40px}
+.sa-ok__pic_big .sa-ok__ph svg{width:40px;height:40px}
 
 /* партнёры: подпись и логотипы */
 .sa-ok__part{margin-top:var(--sa-gap-l,40px);padding-top:28px;border-top:1px solid var(--line)}
@@ -83,8 +87,10 @@
         </div>
       </div>
 
+    </div>
+
     <div class="sa-ok__gal">
-      <div class="sa-ok__pic">
+      <div class="sa-ok__pic sa-ok__pic_big">
         <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Поле</span></div>
       </div>
       <div class="sa-ok__pic">
