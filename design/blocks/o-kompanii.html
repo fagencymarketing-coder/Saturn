@@ -2,7 +2,11 @@
      Текст утверждён заказчицей 06.11, менять его нельзя. Ничего сверх текста
      и партнёрской строки в блоке нет: ни цифр, ни кнопок — решение 06.11.
      Фото пока нет: стоит заглушка, пропорции под реальный снимок.
-     Когда фото придёт, .sa-ok__ph заменяется на <img>. -->
+     Когда фото придут: в каждой плитке .sa-ok__pic заменить вложенный
+     div.sa-ok__ph на обычный тег картинки с alt. Порядок плиток:
+     поле, лаборатория, склад, автопарк, команда, обучение.
+     Комментарии внутри разметки не ставим: редактор Tilda на них
+     спотыкается и не сохраняет блок (проверено 06.11). -->
 <style>
 .sa-ok{--ink:#141210;--acc:#FF4200;--mut:#6B6560;--line:#E6E2DC;--soft:#F6F5F3;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
@@ -81,27 +85,21 @@
 
     <div class="sa-ok__gal">
       <div class="sa-ok__pic">
-        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Поле"> -->
         <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Поле</span></div>
       </div>
       <div class="sa-ok__pic">
-        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Лаборатория"> -->
         <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Лаборатория</span></div>
       </div>
       <div class="sa-ok__pic">
-        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Склад"> -->
         <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Склад</span></div>
       </div>
       <div class="sa-ok__pic">
-        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Автопарк"> -->
         <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Автопарк</span></div>
       </div>
       <div class="sa-ok__pic">
-        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Команда"> -->
         <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Команда</span></div>
       </div>
       <div class="sa-ok__pic">
-        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Обучение"> -->
         <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Обучение</span></div>
       </div>
     </div>
