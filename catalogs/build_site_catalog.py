@@ -62,7 +62,18 @@ def section_of(sub):
 # фото, найденные позже (30.09.2026, сайты производителей) — в таблице заказчика их нет;
 # берём вырезку из _cutout по имени «<бренд> — <название>.png»
 _CUT = os.path.join(os.path.dirname(HERE), 'assets', 'product-photos', '_cutout')
+# обтравки, сделанные вёрсткой 13–14.10: они названы по артикулу, а не
+# «<бренд> — <название>», и без этой карты пересборка каждый раз теряла фото
+PO_ARTIKULU = {
+    'Зазофен, ВР': 'zazofen-vr.png',
+    'Микроэл Пивоваренный ячмень': 'mikroel-pivovarennyy-yachmen.png',
+    'Атлант Супер': 'atlant-super.png',
+}
+
+
 def extra_photo(name):
+    if name in PO_ARTIKULU:
+        return PO_ARTIKULU[name]
     short = name.replace('FERTIKA ', '')
     for f in sorted(os.listdir(_CUT)):
         base = f.rsplit('.', 1)[0]
@@ -89,7 +100,7 @@ for r in json.load(io.open(os.path.join(HERE, 'catalog_tech.json'), encoding='ut
         'Фото': os.path.basename(r.get('Файл_вырезанный') or '') or extra_photo(r['Название']), '_sub': cat,
     })
 
-SEED_PHOTO = {'Новосёл CL': 'seed-novosel-cl.jpg', 'Ampir 10 Express': 'seed-ampir-10.jpg',
+SEED_PHOTO = {'Новосёл': 'seed-novosel-cl.jpg', 'Ampir 10 Express': 'seed-ampir-10.jpg',
               'Ampir 25 Express': 'seed-ampir-25.jpg'}
 # у каждой культуры несколько кадров — соседние карточки сортов не повторяют друг друга
 CROP_PHOTOS = {'Пшеница озимая': 'pshenitsa', 'Пшеница яровая': 'pshenitsa', 'Ячмень яровой': 'yachmen',
