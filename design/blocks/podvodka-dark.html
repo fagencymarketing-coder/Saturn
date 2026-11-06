@@ -1,0 +1,29 @@
+<!-- Подводка перед блоком продукции — тёмный вариант, текст слева, кнопка справа. -->
+<style>
+.sa-pvd{--acc:#FF4200;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff;
+  background:#141210;padding:56px 0}
+.sa-pvd *{box-sizing:border-box;margin:0;padding:0}
+.sa-pvd__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.sa-pvd__txt{flex:1 1 560px;min-width:0}
+.sa-pvd__h{font-size:clamp(18px,2.1vw,23px);font-weight:800;line-height:1.35;text-wrap:balance;max-width:760px}
+.sa-pvd__p{font-size:var(--sa-body,15px);line-height:1.55;color:rgba(255,255,255,.7);margin-top:10px;max-width:700px}
+.sa-pvd__btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:10px;
+  font-size:var(--sa-body,15px);font-weight:700;color:var(--acc);text-decoration:none;white-space:nowrap;
+  transition:gap var(--sa-t,.18s) var(--sa-ease,ease)}
+.sa-pvd__btn i{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+  border-radius:999px;border:1px solid rgba(255,66,0,.5);font-style:normal}
+@media (hover:hover){.sa-pvd__btn:hover{gap:14px}}
+@media (max-width:767px){.sa-pvd{padding:40px 0}.sa-pvd__in{gap:22px}}
+</style>
+
+<div class="sa-pvd">
+  <div class="sa-pvd__in">
+    <div class="sa-pvd__txt">
+      <p class="sa-pvd__h">Все препараты, которые попали в наш каталог, прошли многократные полевые испытания и доказали свою пользу</p>
+      <p class="sa-pvd__p">Мы никогда не предлагаем продукцию, в которой не уверены на 100%.</p>
+    </div>
+    <a class="sa-pvd__btn" href="#protokoly">Смотреть протоколы испытаний <i aria-hidden="true">→</i></a>
+  </div>
+</div>

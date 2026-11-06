@@ -1,238 +1,119 @@
-<!-- Блок «О компании + Документы и сертификаты» для вставки в T123 на Tilda.
-     Заменяет прежний отдельный блок «Документы» (dokumenty.html).
-     Часть 2 (карточки, «Все документы», просмотр/скачивание PDF) перенесена
-     из dokumenty.html без изменений. ТЗ заказчицы 27.10.2026. -->
+<!-- Блок «О компании» для вставки в T123 на главной.
+     Текст утверждён заказчицей 06.11, менять его нельзя. Ничего сверх текста
+     и партнёрской строки в блоке нет: ни цифр, ни кнопок — решение 06.11.
+     Фото пока нет: стоит заглушка, пропорции под реальный снимок.
+     Когда фото придёт, .sa-ok__ph заменяется на <img>. -->
 <style>
-.sa-co{--acc:#FF4200;--ink:#141210;--mut:#766F68;--mut2:#6B6560;--tile:#F0EDE9;--line:#E7E3DE;
+.sa-ok{--ink:#141210;--acc:#FF4200;--mut:#6B6560;--line:#E6E2DC;--soft:#F6F5F3;
   font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
-  background:#F6F5F3;padding:clamp(28px,6vh,72px) 0;margin:0}
-.sa-co *{box-sizing:border-box;margin:0;padding:0}
-.sa-co__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+  background:#fff;padding:var(--sa-sec-y,80px) 0}
+.sa-ok *{box-sizing:border-box;margin:0;padding:0}
+.sa-ok__in{max-width:min(1240px,90vw);margin:0 auto;padding:0 20px}
+.sa-ok__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick,12px);
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);line-height:1}
+.sa-ok__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;background:var(--acc)}
 
-/* надзаголовок с оранжевой риской — как у всех секций */
-.sa-co__kicker{display:inline-flex;align-items:center;gap:12px;font-size:var(--sa-kick);font-weight:600;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--mut);line-height:1}
-.sa-co__kicker::before{content:"";flex:0 0 auto;width:24px;height:2px;background:#FF4200}
-.sa-co__h{font-size:var(--sa-h2);font-weight:800;line-height:var(--sa-h2-lh);margin-top:clamp(10px,1.6vh,16px);
-  letter-spacing:-.01em;max-width:780px}
-.sa-co__lead{font-size:var(--sa-lead);font-weight:400;line-height:1.55;color:var(--mut2);
-  margin-top:12px;max-width:720px;text-wrap:balance}
+.sa-ok__grid{margin-top:20px}
 
-/* часть 1: слева преимущества списком, справа фото ростом со списком */
-.sa-co__top{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,3vw,44px);
-  align-items:stretch;margin-top:clamp(20px,2.8vh,32px)}
-.sa-co__adv{display:flex;flex-direction:column;gap:clamp(14px,1.8vh,20px)}
-.sa-co__item{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:14px;row-gap:2px;align-items:start}
-.sa-co__ico{grid-row:1 / span 2;width:24px;height:24px;margin-top:1px}
-.sa-co__ico svg{width:24px;height:24px;fill:none;stroke:var(--acc);stroke-width:1.7;
-  stroke-linecap:round;stroke-linejoin:round}
-.sa-co__it-h{font-size:var(--sa-body);font-weight:700;line-height:1.3}
-.sa-co__it-t{font-size:var(--sa-small);font-weight:400;line-height:1.45;color:var(--mut2)}
-/* фото: место под реальный снимок. Пока — плашка с эмблемой «Сатурна».
-   Высота — по левой колонке (align-items:stretch), не фиксированный большой квадрат. */
-.sa-co__photo{position:relative;min-width:0;border-radius:16px;overflow:hidden;background:var(--tile)
-  url("https://static.tildacdn.com/tild3762-3461-4635-b161-643835316538/saturn-emblem.png")
-  center / 72px auto no-repeat;min-height:200px}
-.sa-co__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sa-ok__h{font-size:var(--sa-h2,30px);font-weight:800;line-height:var(--sa-h2-lh,1.15);
+  letter-spacing:-.01em;text-wrap:balance;max-width:18ch}
+.sa-ok__txt{margin-top:20px;display:flex;flex-direction:column;gap:14px;max-width:62ch}
+.sa-ok__txt p{font-size:var(--sa-body,15px);line-height:1.65}
+.sa-ok__key{font-size:var(--sa-h3,18px);font-weight:700;line-height:1.4;
+  padding-left:16px;border-left:2px solid var(--acc)}
 
-/* разделитель между частями */
-.sa-co__hr{height:1px;background:var(--line);margin:clamp(24px,3vh,36px) 0 0}
-
-/* часть 2: документы (перенесено из dokumenty.html) */
-.sa-co__subh{font-size:var(--sa-h3);font-weight:800;line-height:1.3;margin-top:clamp(24px,3vh,36px)}
-.sa-co__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;
-  margin-top:clamp(18px,2.4vh,28px);align-items:start}
-.sa-co__card{display:flex;flex-direction:column;background:#fff;border-radius:22px;
-  padding:16px 16px 24px;text-decoration:none;color:inherit;
-  transition:transform var(--sa-t) var(--sa-ease),box-shadow var(--sa-t) var(--sa-ease),
-    color var(--sa-t) var(--sa-ease)}
-/* превью документа — короткая landscape-рамка (показывает шапку скана),
-   чтобы часть «Документы» не перетягивала секцию. Полный документ по клику. */
-.sa-co__pic{background:var(--tile);border-radius:12px;overflow:hidden;aspect-ratio:3/2;
-  max-height:240px;min-height:120px}
-.sa-co__pic img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0}
-.sa-co__name{font-size:var(--sa-body);font-weight:700;line-height:1.35;margin-top:14px}
-.sa-co__meta{display:block;font-size:13px;font-weight:400;line-height:18.2px;color:var(--mut);margin-top:6px}
-.sa-co__morewrap{display:flex;justify-content:center;margin-top:clamp(16px,2.2vh,24px)}
-.sa-co__more{display:none;margin-top:clamp(18px,2.4vh,28px)}
-.sa-co__more.is-open{display:block}
-.sa-co__moreh{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
-.sa-co__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
-.sa-co__row{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;
-  padding:10px 20px;background:#fff;border-radius:12px;text-decoration:none;color:var(--ink);
-  font-size:var(--sa-body);font-weight:600;line-height:1.35;
-  transition:color var(--sa-t) var(--sa-ease),box-shadow var(--sa-t) var(--sa-ease)}
-.sa-co__row i{font-style:normal;font-weight:400;font-size:13px;color:var(--mut);white-space:nowrap}
-
-/* кнопки секции: вторичная (реквизиты) + главная (заявка) */
-.sa-co__cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;
-  margin-top:clamp(24px,3.4vh,40px)}
-.sa-co__btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:var(--sa-btn-h);
-  padding:0 var(--sa-btn-px);border-radius:12px;font-family:inherit;font-size:var(--sa-body);font-weight:700;
-  text-decoration:none;cursor:pointer;white-space:nowrap;
-  transition:border-color var(--sa-t) var(--sa-ease),color var(--sa-t) var(--sa-ease),background var(--sa-t) var(--sa-ease)}
-.sa-co__btn--sec{border:1px solid var(--line);background:transparent;color:var(--ink)}
-.sa-co__btn--sec svg{width:16px;height:16px;fill:none;stroke:var(--ink);stroke-width:1.8;
-  stroke-linecap:round;stroke-linejoin:round;transition:stroke var(--sa-t) var(--sa-ease)}
-.sa-co__btn--main{background:#D93800;color:#fff;border:0}
-
-@media (hover:hover){
-  .sa-co__card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,18,16,.08)}
-  .sa-co__row:hover{color:#D93800;box-shadow:0 8px 24px rgba(20,18,16,.08)}
-  .sa-co__btn--sec:hover{border-color:var(--acc);color:var(--acc)}
-  .sa-co__btn--sec:hover svg{stroke:var(--acc)}
-  .sa-co__btn--main:hover{background:#C23100}
-}
-
+/* Галерея: шесть снимков. Первый крупный, на две колонки и две строки —
+   иначе ряд одинаковых плиток читается как сетка иконок, а не как фото.
+   На телефоне — горизонтальная лента, чтобы блок не растянулся на экран. */
+.sa-ok__gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-auto-rows:1fr;gap:var(--sa-gap-s,12px);margin-top:var(--sa-gap-l,40px)}
+.sa-ok__gal > *:first-child{grid-column:span 2;grid-row:span 2}
 @media (max-width:1023px){
-  .sa-co__in{padding:0 32px}
-  .sa-co__grid{gap:12px}
-  .sa-co__card{border-radius:16px;padding:10px 10px 14px}
-  .sa-co__pic{border-radius:10px;aspect-ratio:164/128;max-height:none}
-  .sa-co__name{font-size:14px;line-height:19px;margin-top:10px}
+  .sa-ok__gal{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sa-ok__gal > *:first-child{grid-column:span 2;grid-row:span 1}
 }
 @media (max-width:767px){
-  .sa-co__in{padding:0 20px}
-  .sa-co__top{grid-template-columns:minmax(0,1fr);gap:24px}
-  .sa-co__adv{grid-template-columns:minmax(0,1fr);gap:16px}
-  .sa-co__photo{order:-1;width:100%;aspect-ratio:16/10;min-height:0}
-  .sa-co__grid{grid-template-columns:minmax(0,1fr);gap:12px}
-  .sa-co__card{flex-direction:column;align-items:stretch;padding:10px 10px 18px;border-radius:16px;min-width:0}
-  .sa-co__pic{width:100%;border-radius:10px;aspect-ratio:4/3;max-height:none;min-height:0}
-  .sa-co__name,.sa-co__meta{overflow-wrap:break-word;word-break:normal;hyphens:none}
-  .sa-co__name{font-size:15px;line-height:20px;margin-top:14px;padding:0 6px}
-  .sa-co__meta{padding:0 6px}
-  .sa-co__list{grid-template-columns:minmax(0,1fr)}
-  .sa-co__cta{flex-direction:column;align-items:stretch}
-  .sa-co__btn{width:100%}
+  .sa-ok__gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .sa-ok__gal::-webkit-scrollbar{display:none}
+  .sa-ok__gal > *{flex:0 0 78%;scroll-snap-align:start}
 }
+.sa-ok__pic{position:relative;border-radius:var(--sa-r-ctrl,12px);overflow:hidden;
+  background:var(--soft);aspect-ratio:4/3;max-width:100%;
+  display:flex;align-items:center;justify-content:center}
+.sa-ok__gal > .sa-ok__pic:first-child{aspect-ratio:1/1}
+@media (max-width:1023px){.sa-ok__gal > .sa-ok__pic:first-child{aspect-ratio:16/9}}
+@media (max-width:767px){.sa-ok__gal > .sa-ok__pic:first-child{aspect-ratio:4/3}}
+.sa-ok__pic img{width:100%;height:100%;object-fit:cover;display:block}
+.sa-ok__ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:#A8A29B;
+  font-size:var(--sa-small,13px);text-align:center;padding:16px}
+.sa-ok__ph svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.4}
+.sa-ok__gal > .sa-ok__pic:first-child .sa-ok__ph svg{width:40px;height:40px}
+
+/* партнёры: подпись и логотипы */
+.sa-ok__part{margin-top:var(--sa-gap-l,40px);padding-top:28px;border-top:1px solid var(--line)}
+.sa-ok__partt{font-size:var(--sa-body,15px);line-height:1.6;max-width:72ch}
+.sa-ok__partt b{font-weight:700}
+.sa-ok__logos{display:flex;align-items:center;gap:40px;flex-wrap:wrap;margin-top:20px}
+.sa-ok__logos img{display:block;height:36px;width:auto;object-fit:contain}
+@media (max-width:767px){.sa-ok__logos{gap:26px}.sa-ok__logos img{height:28px}}
 </style>
 
-<section class="sa-co" id="about">
-  <div class="sa-co__in">
+<div class="sa-ok" id="o-kompanii">
+  <div class="sa-ok__in">
 
-    <!-- Часть 1 — О компании -->
-    <span class="sa-co__kicker">О компании</span>
-    <h2 class="sa-co__h">«Сатурн» — поставщик решений для растениеводства</h2>
-    <p class="sa-co__lead">Обеспечиваем сельхозпроизводителей семенами, удобрениями и средствами защиты растений. Подбираем продукцию под культуру и регион, организуем поставку и сопровождаем применение в течение сезона.</p>
+    <p class="sa-ok__kicker">О компании</p>
 
-    <div class="sa-co__top">
-      <div class="sa-co__adv">
-        <div class="sa-co__item">
-          <span class="sa-co__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v16"/></svg></span>
-          <div class="sa-co__it-h">Полный ассортимент</div>
-          <div class="sa-co__it-t">Семена, удобрения, СЗР и листовое питание в одном месте.</div>
-        </div>
-        <div class="sa-co__item">
-          <span class="sa-co__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 21v-2M5 12H3M21 12h-2"/><circle cx="12" cy="12" r="4"/></svg></span>
-          <div class="sa-co__it-h">Подбор под задачу</div>
-          <div class="sa-co__it-t">Агрономы подбирают продукцию под культуру и регион.</div>
-        </div>
-        <div class="sa-co__item">
-          <span class="sa-co__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l2-5h11l3 4h2v4h-2M3 13v4h2"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg></span>
-          <div class="sa-co__it-h">Поставка со склада</div>
-          <div class="sa-co__it-t">Отгрузка со склада в Барнауле и доставка в хозяйство.</div>
-        </div>
-        <div class="sa-co__item">
-          <span class="sa-co__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-          <div class="sa-co__it-h">Сопровождение в сезоне</div>
-          <div class="sa-co__it-t">Диагностика поля и корректировка в течение сезона.</div>
+    <div class="sa-ok__grid">
+      <div>
+        <h2 class="sa-ok__h">Сегодня мы продаём прибавку урожая</h2>
+
+        <div class="sa-ok__txt">
+          <p>Мы начали в 2015 году с продажи минеральных удобрений.</p>
+          <p>Это значит: диагностируем поле по участкам, определяем, в чём нуждается культура, подбираем препараты, норму и фазу. В течение сезона норму корректируем. Храним и возим сами.</p>
+          <p class="sa-ok__key">Опыт и экспертиза важнее ассортимента.</p>
+          <p>Производители доверяют нам, мы доверяем им. В каталоге только препараты, прошедшие многократные полевые испытания. Случайных нет.</p>
+          <p>За прайсом стоит доступ к лабораториям, научным сотрудникам и опытным агрономам. В неясной ситуации подключаем научного сотрудника, а не продавца. Учим работать с препаратами — агрономов хозяйства и фермеров.</p>
+          <p>Мы делаем так, чтобы препарат применили когда нужно, как нужно и где нужно.</p>
+          <p class="sa-ok__key">Остальное — работа поля.</p>
         </div>
       </div>
 
-      <div class="sa-co__photo" role="img" aria-label="Фотография компании «Сатурн»">
-        <!-- место под реальный снимок (поле / склад / команда), заказчица загрузит в Tilda -->
+    <div class="sa-ok__gal">
+      <div class="sa-ok__pic">
+        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Поле"> -->
+        <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Поле</span></div>
+      </div>
+      <div class="sa-ok__pic">
+        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Лаборатория"> -->
+        <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Лаборатория</span></div>
+      </div>
+      <div class="sa-ok__pic">
+        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Склад"> -->
+        <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Склад</span></div>
+      </div>
+      <div class="sa-ok__pic">
+        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Автопарк"> -->
+        <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Автопарк</span></div>
+      </div>
+      <div class="sa-ok__pic">
+        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Команда"> -->
+        <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Команда</span></div>
+      </div>
+      <div class="sa-ok__pic">
+        <!-- ЗАГЛУШКА. Заменить на <img src="…" alt="Обучение"> -->
+        <div class="sa-ok__ph"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4"/><circle cx="17" cy="20" r="4"/><path d="M8 35l11-11 8 8 6-5 9 8"/></svg><span>Обучение</span></div>
       </div>
     </div>
 
-    <div class="sa-co__hr"></div>
-
-    <!-- Часть 2 — Документы и сертификаты -->
-    <h3 class="sa-co__subh">Документы и сертификаты</h3>
-
-    <div class="sa-co__grid">
-      <a class="sa-co__card" data-pdf target="_blank" rel="noopener"
-         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/01-sertifikat-dilera-fertika-do-2026.pdf">
-        <span class="sa-co__pic"><img loading="lazy" alt="Сертификат дилера АО «Фертика»"
-          src="https://static.tildacdn.com/tild3164-3534-4330-b063-346663653636/-/resize/480x/preview-sertifikat-f.jpg"></span>
-        <span class="sa-co__name">Сертификат дилера АО «Фертика»</span>
-        <span class="sa-co__meta">Выдан ООО «Сатурн» · до 31.12.2026</span>
-      </a>
-
-      <a class="sa-co__card" data-pdf target="_blank" rel="noopener"
-         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf">
-        <span class="sa-co__pic"><img loading="lazy" alt="СГР — Страда N, P, K"
-          src="https://static.tildacdn.com/tild3334-6466-4133-b535-393436633139/-/resize/480x/preview-sgr-strada.jpg"></span>
-        <span class="sa-co__name">СГР — Страда N, P, K</span>
-        <span class="sa-co__meta">№ 2855 · действует до 2030</span>
-      </a>
-
-      <a class="sa-co__card" data-pdf target="_blank" rel="noopener"
-         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/08-sgr-diforma-2899-do-2030.pdf">
-        <span class="sa-co__pic"><img loading="lazy" alt="СГР — Волски Диформа"
-          src="https://static.tildacdn.com/tild3639-3561-4162-b766-633634663432/-/resize/480x/preview-sgr-diforma.jpg"></span>
-        <span class="sa-co__name">СГР — Волски Диформа</span>
-        <span class="sa-co__meta">№ 2899 · действует до 2030</span>
-      </a>
-    </div>
-
-    <div class="sa-co__morewrap">
-      <button type="button" class="sa-co__btn sa-co__btn--sec" id="sa-co-all" aria-expanded="false" aria-controls="sa-co-more">Все документы →</button>
-    </div>
-
-    <div class="sa-co__more" id="sa-co-more" hidden>
-      <div class="sa-co__moreh">Прочие документы</div>
-      <div class="sa-co__list">
-        <a class="sa-co__row" data-dl="Sertifikat-dilera-Fertika.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/01-sertifikat-dilera-fertika-do-2026.pdf"><span>Сертификат дилера АО «Фертика»</span><i>PDF ↓</i></a>
-        <a class="sa-co__row" data-dl="SGR-Strada-N-P-K.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf"><span>СГР — Страда N, P, K · № 2855</span><i>PDF ↓</i></a>
-        <a class="sa-co__row" data-dl="SGR-Volski-Diforma.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/08-sgr-diforma-2899-do-2030.pdf"><span>СГР — Волски Диформа · № 2899</span><i>PDF ↓</i></a>
+    <div class="sa-ok__part">
+      <p class="sa-ok__partt">Официальные поставщики продукции <b>АО «Фертика»</b>, <b>ООО «Волски Биохим»</b> и <b>ООО НПП «Генезис»</b>. Продукцию «Генезиса» в Сибирском федеральном округе поставляем только мы.</p>
+      <div class="sa-ok__logos">
+        <img src="https://static.tildacdn.com/tild6435-3734-4264-b261-343932303839/fertika.png" alt="Фертика" loading="lazy" decoding="async">
+        <img src="https://static.tildacdn.com/tild6664-3164-4135-a233-363133643137/volsky.png" alt="Волски Биохим" loading="lazy" decoding="async">
+        <img src="https://static.tildacdn.com/tild3662-3134-4239-b239-343138343831/relict-organics.png" alt="Relict Organics" loading="lazy" decoding="async">
       </div>
-    </div>
-
-    <!-- Кнопки секции -->
-    <div class="sa-co__cta">
-      <a class="sa-co__btn sa-co__btn--sec" data-dl="Rekvizity-Saturn.pdf" target="_blank" rel="noopener"
-         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/saturn-rekvizity.pdf">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>Скачать реквизиты</a>
-      <a class="sa-co__btn sa-co__btn--main" href="#popup:zayavka">Получить предложение →</a>
     </div>
 
   </div>
-</section>
-
-<script>
-(function(){
-  var more=document.getElementById('sa-co-more'),btn=document.getElementById('sa-co-all');
-  if(btn&&more){
-    more.hidden=false;
-    btn.addEventListener('click',function(){
-      var o=more.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded',o?'true':'false');
-      btn.textContent=o?'Скрыть документы ↑':'Все документы →';
-    });
-  }
-  function blob(url,type,cb,fail){
-    fetch(url).then(function(r){if(!r.ok)throw 0;return r.blob()})
-      .then(function(b){cb(new Blob([b],{type:type}))}).catch(fail);
-  }
-  document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('.sa-co a[data-pdf],.sa-co a[data-dl]');
-    if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||!window.fetch||!window.Blob||!URL.createObjectURL)return;
-    var url=a.href,dl=a.getAttribute('data-dl');
-    e.preventDefault();
-    if(dl){
-      blob(url,'application/pdf',function(b){
-        var u=URL.createObjectURL(b),t=document.createElement('a');
-        t.href=u;t.download=dl;document.body.appendChild(t);t.click();t.remove();
-        setTimeout(function(){URL.revokeObjectURL(u)},4000);
-      },function(){window.open(url,'_blank','noopener')});
-      return;
-    }
-    var w=window.open('','_blank');
-    blob(url,'application/pdf',function(b){
-      var u=URL.createObjectURL(b);
-      if(w)w.location.href=u;else window.open(u,'_blank');
-    },function(){if(w)w.location.href=url;else window.open(url,'_blank')});
-  });
-})();
-</script>
+</div>

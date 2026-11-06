@@ -1,0 +1,29 @@
+<!-- Подводка перед блоком продукции на главной. Вариант «крупная цитата».
+     Текст заказчицы 06.11. Секция узкая: это связка между блоками,
+     а не самостоятельный блок. -->
+<style>
+.sa-pv{--ink:#141210;--acc:#FF4200;--mut:#6B6560;--line:#E6E2DC;
+  font-family:Montserrat,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+  background:#F6F5F3;padding:64px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sa-pv *{box-sizing:border-box;margin:0;padding:0}
+.sa-pv__in{max-width:min(880px,90vw);margin:0 auto;padding:0 20px;text-align:center}
+.sa-pv__mark{width:28px;height:2px;background:var(--acc);margin:0 auto 20px}
+.sa-pv__h{font-size:clamp(19px,2.4vw,26px);font-weight:800;line-height:1.35;letter-spacing:-.01em;text-wrap:balance}
+.sa-pv__p{font-size:var(--sa-lead,16px);line-height:1.55;color:var(--mut);margin-top:14px;text-wrap:balance}
+.sa-pv__btn{display:inline-flex;align-items:center;gap:10px;margin-top:24px;
+  font-size:var(--sa-body,15px);font-weight:700;color:var(--acc);text-decoration:none;
+  transition:gap var(--sa-t,.18s) var(--sa-ease,ease)}
+.sa-pv__btn i{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+  border-radius:999px;border:1px solid rgba(255,66,0,.5);font-style:normal}
+@media (hover:hover){.sa-pv__btn:hover{gap:14px}}
+@media (max-width:767px){.sa-pv{padding:44px 0}.sa-pv__in{text-align:left}.sa-pv__mark{margin-left:0}}
+</style>
+
+<div class="sa-pv">
+  <div class="sa-pv__in">
+    <div class="sa-pv__mark" aria-hidden="true"></div>
+    <p class="sa-pv__h">Все препараты, которые попали в наш каталог, прошли многократные полевые испытания и доказали свою пользу</p>
+    <p class="sa-pv__p">Мы никогда не предлагаем продукцию, в которой не уверены на 100%.</p>
+    <a class="sa-pv__btn" href="#protokoly">Смотреть протоколы испытаний <i aria-hidden="true">→</i></a>
+  </div>
+</div>
