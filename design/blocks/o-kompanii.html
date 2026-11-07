@@ -27,6 +27,20 @@
   letter-spacing:-.01em;text-wrap:balance;max-width:18ch}
 .sa-ok__txt{margin-top:20px;display:flex;flex-direction:column;gap:14px;max-width:62ch}
 .sa-ok__txt p{font-size:var(--sa-body,15px);line-height:1.65}
+/* 07.11 (заказчица): на главной виден только первый абзац, остальное
+   раскрывается кнопкой. Текст не вырезаем из разметки — он в DOM всегда,
+   поэтому его видят поиск и читалки, а не только тот, кто нажал. */
+.sa-ok__more{display:flex;flex-direction:column;gap:14px}
+.sa-ok__more[hidden]{display:none}
+.sa-ok__readmore{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
+  margin-top:2px;padding:0;border:0;background:none;cursor:pointer;
+  font-family:inherit;font-size:var(--sa-body,15px);font-weight:600;
+  color:var(--acc,#FF4200);line-height:1.4}
+.sa-ok__readmore svg{width:16px;height:16px;fill:none;stroke:currentColor;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .2s ease}
+.sa-ok__readmore[aria-expanded="true"] svg{transform:rotate(180deg)}
+@media (hover:hover){.sa-ok__readmore:hover span{text-decoration:underline}}
 .sa-ok__key{font-size:var(--sa-h3,18px);font-weight:700;line-height:1.4;
   padding-left:16px;border-left:2px solid var(--acc)}
 
@@ -78,8 +92,14 @@
 
         <div class="sa-ok__txt">
           <p>Компания «Сатурн» начала свою деятельность в 2015 году с продажи минеральных удобрений. Сейчас мы понимаем: экспертиза важнее ассортимента. Все эти годы вместе с нами росла научно-техническая база — лаборатории, научные сотрудники и опытные агрономы.</p>
-          <p>Мы точно определяем потребность культуры на разных участках поля и лишь затем подбираем препараты и схему их применения. В течение сезона корректируем нормы и фазы, в конце замеряем результат. В каталоге только препараты, неоднократно подтвердившие результат на опытных испытаниях.</p>
-          <p>Продажа для нас — лишь отправная точка сотрудничества. Мы ведём поле до уборки и сами предлагаем, что изменить ради прибавки. Хранение, логистику и другие потребности хозяйства берём на себя. Итог работы с нами — прибавка урожая на полях наших клиентов.</p>
+          <div class="sa-ok__more" id="sa-ok-more" hidden>
+            <p>Мы точно определяем потребность культуры на разных участках поля и лишь затем подбираем препараты и схему их применения. В течение сезона корректируем нормы и фазы, в конце замеряем результат. В каталоге только препараты, неоднократно подтвердившие результат на опытных испытаниях.</p>
+            <p>Продажа для нас — лишь отправная точка сотрудничества. Мы ведём поле до уборки и сами предлагаем, что изменить ради прибавки. Хранение, логистику и другие потребности хозяйства берём на себя. Итог работы с нами — прибавка урожая на полях наших клиентов.</p>
+          </div>
+          <button class="sa-ok__readmore" type="button" aria-expanded="false" aria-controls="sa-ok-more">
+            <span>Читать далее</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
         </div>
       </div>
 
@@ -117,3 +137,18 @@
 
   </div>
 </div>
+
+<script>
+/* Кнопка «Читать далее» под первым абзацем «О компании». */
+(function(){
+  var b = document.querySelector('.sa-ok__readmore');
+  var m = document.getElementById('sa-ok-more');
+  if (!b || !m) return;
+  b.addEventListener('click', function(){
+    var otkryto = m.hidden;
+    m.hidden = !otkryto;
+    b.setAttribute('aria-expanded', otkryto ? 'true' : 'false');
+    b.querySelector('span').textContent = otkryto ? 'Свернуть' : 'Читать далее';
+  });
+})();
+</script>
