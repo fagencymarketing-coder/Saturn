@@ -43,6 +43,13 @@
   transition:transform .2s ease}
 .sa-ok__readmore[aria-expanded="true"] svg{transform:rotate(180deg)}
 @media (hover:hover){.sa-ok__readmore:hover span{text-decoration:underline}}
+/* 07.11: на телефоне ссылка была высотой 21 px — палец в неё попадает
+   через раз. Доводим цель нажатия до 44 px, не меняя вид: добавляем
+   отступы сверху и снизу, а отрицательный отступ слева держит текст
+   на прежней линии. */
+@media (max-width:767px){
+  .sa-ok__readmore{min-height:44px;padding:0 8px;margin-left:-8px}
+}
 .sa-ok__key{font-size:var(--sa-h3,18px);font-weight:700;line-height:1.4;
   padding-left:16px;border-left:2px solid var(--acc)}
 
