@@ -150,14 +150,22 @@
    из ящика «Фильтры» её убираем: иначе фильтр по культуре стоит дважды
    (замечание заказчицы 05.10). В ящике остаются только разделы. */
 .sa-kv__drh--cult,.sa-kv__drh--cult + .sa-kv__drchips{display:none !important}
-/* 09.10 (заказчица): фильтр по культуре — только в разделе «Семена».
-   В разделах с препаратами и в общем списке «Все» культурные чипы
-   скрываем (класс sa-kv--nocrops ставит скрипт по разделу из адреса).
-   На ПК прячем всю полосу чипов (кнопки «Фильтры» там нет — пустого
-   места не остаётся); на телефоне полосу оставляем ради кнопки
-   «Фильтры», прячем только сами чипы культур. */
-.sa-kv--nocrops .sa-kv__chip{display:none !important}
-@media (min-width:1024px){.sa-kv--nocrops .sa-kv__chips{display:none !important}}
+/* 07.11: каталог стал единым, разделов четыре. Первая полоса — разделы,
+   вторая — контекстный фильтр: культуры только в «Семенах», бренды только
+   в «Минеральных удобрениях». Панель держим скрытой, пока скрипт не
+   убедился, что штатный фильтр Tilda отдал нужные чекбоксы. */
+.sa-kv__sub{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.sa-kv__sub[hidden]{display:none}
+.sa-kv__subh{font-size:13px;font-weight:600;color:var(--mut,#6B6B6B);
+  text-transform:uppercase;letter-spacing:.04em}
+.sa-kv__subrow{display:flex;gap:8px;flex-wrap:wrap}
+.sa-kv__sub .sa-kv__chip{height:38px;font-size:13px;padding:0 14px}
+@media (max-width:767px){
+  .sa-kv__subrow{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;padding-bottom:2px}
+  .sa-kv__subrow::-webkit-scrollbar{display:none}
+  .sa-kv__sub .sa-kv__chip{flex:0 0 auto}
+}
 .sa-kv__drbot{padding:14px 20px calc(14px + env(safe-area-inset-bottom));
   border-top:1px solid var(--line)}
 .sa-kv__drok{width:100%;height:var(--sa-btn-h);border:0;border-radius:var(--sa-r-ctrl);
@@ -202,13 +210,47 @@
              placeholder="Название или действующее вещество" data-ph-long="Название или действующее вещество" data-ph-short="Поиск по каталогу">
     </div>
 
-    <!-- 09.10 (заказчица): в каталоге препаратов фильтр по культуре не нужен —
-         культуры только у семян, на странице /semena. Здесь остаётся кнопка
-         «Разделы/Фильтры» (телефон) и боковая панель разделов (ПК). -->
+    <!-- 07.11 (заказчица): единый каталог, четыре раздела. Семена больше не
+         отдельная страница. uid разделов в магазине: СЗР 216609640123,
+         Минеральные удобрения 152871781783 (создан импортом 07.11),
+         Семена 316570233513. -->
     <div class="sa-kv__chips" role="group" aria-label="Разделы каталога">
+      <a class="sa-kv__chip" data-part="" aria-pressed="true" href="https://sssaturn.ru/catalog">Все</a>
+      <a class="sa-kv__chip" data-part="216609640123" aria-pressed="false" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::">СЗР</a>
+      <a class="sa-kv__chip" data-part="152871781783" aria-pressed="false" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=152871781783&tfc_div=:::">Минеральные удобрения</a>
+      <a class="sa-kv__chip" data-part="316570233513" aria-pressed="false" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=316570233513&tfc_div=:::">Семена</a>
       <button class="sa-kv__parts" type="button" aria-expanded="false"
               aria-controls="sa-kv-dr">Фильтры
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+    </div>
+
+    <!-- Вторая полоса. Показывается скриптом: культуры — в «Семенах»,
+         бренды — в «Минеральных удобрениях». Чипы кликают штатные
+         чекбоксы фильтра Tilda, поэтому пока фильтр в блоке магазина
+         не включён, полоса остаётся скрытой и ничего не ломает. -->
+    <div class="sa-kv__sub" id="sa-kv-crops" hidden>
+      <span class="sa-kv__subh">Культура</span>
+      <div class="sa-kv__subrow">
+        <button class="sa-kv__chip" type="button" aria-pressed="true" data-crop="">Все</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Пшеница">Пшеница</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Соя">Соя</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Ячмень">Ячмень</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Подсолнечник">Подсолнечник</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Рапс">Рапс</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Горох">Горох</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Гречиха">Гречиха</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-crop="Картофель">Картофель</button>
+      </div>
+    </div>
+
+    <div class="sa-kv__sub" id="sa-kv-brands" hidden>
+      <span class="sa-kv__subh">Бренд</span>
+      <div class="sa-kv__subrow">
+        <button class="sa-kv__chip" type="button" aria-pressed="true" data-brand="">Все</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-brand="Фертика">Фертика</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-brand="Волски Биохим">Волски Биохим</button>
+        <button class="sa-kv__chip" type="button" aria-pressed="false" data-brand="Реликт">Реликт</button>
+      </div>
     </div>
 
     <div class="sa-kv__empty" id="sa-kv-empty" role="status">
@@ -238,10 +280,10 @@
     <div class="sa-kv__drh">Разделы</div>
     <nav class="sa-kv__drlist">
       <a href="/catalog">Все</a>
-      <!-- 09.10 (заказчица): семена вынесены на отдельную страницу /semena,
-           в каталоге препаратов их больше нет — раздел «Семена» убран. -->
-      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=466293242973&tfc_div=:::">Удобрения и листовые подкормки</a>
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::">СЗР</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=152871781783&tfc_div=:::">Минеральные удобрения</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=316570233513&tfc_div=:::">Семена</a>
+      <div class="sa-kv__drh">Внутри СЗР</div>
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=791646860813&tfc_div=:::">Гербициды</a>
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=192022702253&tfc_div=:::">Фунгициды</a>
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=151937579433&tfc_div=:::">Инсектициды</a>
@@ -341,15 +383,21 @@
     for (var i = 0; i < all.length; i++) if (all[i].checked) all[i].click();
   }
 
-  var chips = document.querySelectorAll('.sa-kv__chip');
+  /* Чипы второй полосы кликают штатные чекбоксы Tilda — и культура,
+     и бренд приходят из одного набора .js-catalog-filter-opt-chb,
+     у чекбокса name равен подписи значения. Разделы (первая полоса) —
+     обычные ссылки, их обработчик не трогает. */
+  var chips = document.querySelectorAll('.sa-kv__sub .sa-kv__chip');
   for (var i = 0; i < chips.length; i++){
     chips[i].addEventListener('click', function(){
-      for (var j = 0; j < chips.length; j++) chips[j].setAttribute('aria-pressed','false');
+      var polosa = this.closest('.sa-kv__sub');
+      var svoi = polosa.querySelectorAll('.sa-kv__chip');
+      for (var j = 0; j < svoi.length; j++) svoi[j].setAttribute('aria-pressed','false');
       this.setAttribute('aria-pressed','true');
-      var crop = this.getAttribute('data-crop');
+      var znach = this.getAttribute('data-crop') || this.getAttribute('data-brand') || '';
       snyat();
-      if (!crop) return;
-      var b = document.querySelector(KROPK + '[name="' + crop + '"]');
+      if (!znach) return;
+      var b = document.querySelector(KROPK + '[name="' + znach + '"]');
       if (b && !b.checked) b.click();
     });
   }
@@ -374,22 +422,41 @@
     }
   })();
 
-  /* Культурные чипы — только в разделе «Семена» (решение заказчицы
-     09.10). Раздел берём из адреса: tfc_storepartnav[4384406801]=<id>,
-     у «Семян» id 316570233513. В остальных разделах и в общем списке
-     ставим на корень класс sa-kv--nocrops — чипы скрывает CSS. */
+  /* Контекстные фильтры (07.11). Культуры показываем только в «Семенах»,
+     бренды только в «Минеральных удобрениях» — решение заказчицы. Раздел
+     берём из адреса: tfc_storepartnav[4384406801]=<id>. Полосу открываем
+     лишь тогда, когда штатный фильтр Tilda действительно отдал чекбоксы:
+     пока фильтр в настройках блока магазина не включён, кликать нечего,
+     и пустая полоса только путала бы. */
   (function(){
-    var SEMENA = '316570233513';
-    function primenit(){
-      var root = document.querySelector('.sa-kv');
-      if (!root) return;
-      var u = new URLSearchParams(location.search), razdel = '';
+    var SEMENA = '316570233513', MINUD = '152871781783';
+    function razdelIzAdresa(){
+      var u = new URLSearchParams(location.search), r = '';
       u.forEach(function(v, k){
-        if (k.indexOf('tfc_storepartnav[') === 0) razdel = v;
+        if (k.indexOf('tfc_storepartnav[') === 0) r = v.split(':::')[0];
       });
-      root.classList.toggle('sa-kv--nocrops', razdel !== SEMENA);
+      return r;
+    }
+    function estChekbox(imya){
+      return !!document.querySelector(KROPK + '[name="' + imya + '"]');
+    }
+    function primenit(){
+      var razdel = razdelIzAdresa();
+      var cr = document.getElementById('sa-kv-crops');
+      var br = document.getElementById('sa-kv-brands');
+      if (cr) cr.hidden = !(razdel === SEMENA && estChekbox('Пшеница'));
+      if (br) br.hidden = !(razdel === MINUD && estChekbox('Фертика'));
+      var ch = document.querySelectorAll('.sa-kv__chips .sa-kv__chip');
+      for (var i = 0; i < ch.length; i++){
+        ch[i].setAttribute('aria-pressed',
+          ch[i].getAttribute('data-part') === razdel ? 'true' : 'false');
+      }
     }
     primenit();
+    /* Фильтр Tilda дорисовывается после загрузки магазина — ждём его. */
+    new MutationObserver(function(){ clearTimeout(window.__saFiltrT);
+      window.__saFiltrT = setTimeout(primenit, 300); })
+      .observe(document.documentElement, {childList:true, subtree:true});
     /* Раздел меняется и перезагрузкой (ссылки в шторке), и AJAX-ом
        (боковой фильтр каталога обновляет адрес без перезагрузки).
        Ловим оба: popstate и опрос адреса. */
@@ -442,26 +509,23 @@
   })();
 })();
 
-  /* 09.10: пункт «Семена» в боковой навигации разделов магазина убираем —
-     семена вынесены на /semena. Tilda рисует разделы своим переключателем
-     без id в разметке, поэтому прячем по тексту заголовка. Перерисовку
+  /* 07.11: боковой список разделов Tilda показывает все разделы магазина
+     подряд, поштучно не настраивается. Оставляем четыре рабочих —
+     «СЗР», «Минеральные удобрения», «Семена» и подразделы СЗР, — а прячем
+     служебные и дубли: старый общий «Препараты», старые «Удобрения
+     и листовые подкормки», «Удобрения», «Листовые подкормки», а также
+     семенные подразделы «Гибриды» и «Сорта» и дубли «Обработка семян»,
+     «Протравители». Сравнение точное: «Удобрения» (прятать) ≠ «Удобрения
+     и листовые подкормки» (тоже прятать, но это другой пункт), «Обработка
+     семян» ≠ «Обработка семян и протравители» (оставить). Перерисовку
      магазина ловим наблюдателем. */
   (function(){
-    /* Боковой список разделов Tilda умеет только «верхний уровень» или
-       «подразделы», поштучно не настраивается. В каталоге препаратов он
-       показывает лишние пункты: семенные («Семена», «Гибриды», «Сорта»),
-       служебный «Препараты» и дубли-подразделы, которые повторяют верхний
-       раздел («Удобрения», «Листовые подкормки», «Обработка семян»,
-       «Протравители»). Прячем их по точному тексту заголовка. Точное
-       сравнение важно: «Удобрения» (прятать) ≠ «Удобрения и листовые
-       подкормки» (оставить), «Обработка семян» ≠ «Обработка семян и
-       протравители». Перерисовку магазина ловим наблюдателем. */
-    var LISHNIE = ['Семена','Гибриды','Сорта','Препараты',
-      'Удобрения','Листовые подкормки','Обработка семян','Протравители'];
+    var LISHNIE = ['Препараты','Удобрения и листовые подкормки','Удобрения',
+      'Листовые подкормки','Гибриды','Сорта','Обработка семян','Протравители'];
     var ITEM = '.t-catalog__parts-above-item,.t-catalog__parts-sidebar-item,' +
                '.t-catalog__parts-switch-btn,.t-catalog__parts-item,.t-catalog__parts-row';
     function spryatatLishnie(){
-      /* 1) заголовки разделов (ПК-структура: в заголовке есть класс *-title) */
+      /* заголовки разделов (ПК-структура: в заголовке есть класс *-title) */
       var ti = document.querySelectorAll(
         '.t-catalog__parts-item-title,.t-catalog__parts-text-title,.t-catalog__parts-sidebar-title');
       for (var i = 0; i < ti.length; i++){
@@ -470,10 +534,7 @@
           (item || ti[i]).style.display = 'none';
         }
       }
-      /* 2) мобильная структура: раздел — простая ссылка <a>Семена</a> без
-         класса-заголовка. Прячем ссылки с точным текстом из списка в любом
-         контейнере разделов (parts-above / parts-sidebar). 11.10: на телефоне
-         «Семена» оставался именно так. */
+      /* мобильная структура: раздел — простая ссылка <a> без класса-заголовка */
       var links = document.querySelectorAll(
         '[id^="parts-above-id-"] a,[class*="parts-above"] a,' +
         '[class*="parts-sidebar"] a,.t-catalog__parts-sidebar__list a,' +
@@ -485,29 +546,11 @@
           (box || links[k]).style.display = 'none';
         }
       }
-      /* 3) 13.10 (заказчица): на телефоне «Семена» оставались ещё и в
-         нативном меню Tilda, которое бывает <select> (раздел = <option>) или
-         кнопками. Для СЕМЯН (и их подпунктов) чистим и эти варианты. option
-         прячем удалением узла — display:none у него ненадёжен. Трогаем только
-         семенные пункты, чтобы не сломать выбор препаратов. */
-      var SEM = ['Семена','Гибриды','Сорта'];
+      /* нативное меню Tilda бывает <select>: лишние пункты удаляем узлом,
+         display:none у option ненадёжен */
       var opts = document.querySelectorAll('.t-catalog select option,[class*="parts"] select option');
       for (var o = 0; o < opts.length; o++){
-        if (SEM.indexOf(opts[o].textContent.trim()) !== -1) opts[o].remove();
-      }
-      /* любые «чипы»/кнопки/ссылки разделов магазина с текстом семян —
-         в контейнерах parts / switch / chip, в т.ч. нативные чипы Tilda. */
-      var btns = document.querySelectorAll(
-        '.t-catalog__parts-switch-btn,[class*="parts-switch"] button,'+
-        '[class*="parts-switch"] a,[class*="parts"] button,[class*="parts"] a,'+
-        '[class*="store__parts"] button,[class*="store__parts"] a,'+
-        '[class*="switch"] button,[class*="switch"] a,[class*="chip"] button,[class*="chip"] a');
-      for (var b2 = 0; b2 < btns.length; b2++){
-        if (btns[b2].children.length) continue;
-        if (SEM.indexOf(btns[b2].textContent.trim()) !== -1){
-          var bx = btns[b2].closest(ITEM);
-          (bx || btns[b2]).style.display = 'none';
-        }
+        if (LISHNIE.indexOf(opts[o].textContent.trim()) !== -1) opts[o].remove();
       }
     }
     spryatatLishnie();
@@ -533,11 +576,11 @@
        у него есть точное число найденного с учётом раздела, запроса
        и выбранной культуры. Адрес собираем из текущих параметров
        страницы, чтобы счётчик совпадал с тем, что человек видит. */
-    /* 09.10: база счётчика — раздел «Препараты» (uid 571551155283, 87 шт.),
-       а не весь магазин (527746460323, 111 с семенами). Семена вынесены
-       на /semena, поэтому «Все» в каталоге = только препараты. При выборе
-       подраздела storepartuid подменяется на его id (строка ниже). */
-    var REC = '4384406801', MAGAZIN = '571551155283';
+    /* 07.11: каталог снова единый — база счётчика весь магазин
+       (527746460323, 111 позиций). Раздел «Препараты» (571551155283)
+       как база больше не годится: в нём нет семян. При выборе раздела
+       storepartuid подменяется на его id (строка ниже). */
+    var REC = '4384406801', MAGAZIN = '527746460323';
     function adresApi(){
       var p = new URLSearchParams(location.search);
       var u = 'https://store.tildaapi.com/api/getproductslist/?storepartuid=' +
