@@ -63,6 +63,7 @@
 .sa-kv__input:focus{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc)}
 
 .sa-kv__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.sa-kv__chipsrow{display:flex;flex-wrap:wrap;gap:8px}
 /* 44 — цель нажатия на планшете и телефоне; на ПК столько же,
    чтобы чип не менял рост при смене ширины. */
 .sa-kv__chip{display:inline-flex;align-items:center;height:44px;padding:0 16px;
@@ -102,11 +103,12 @@
   .sa-kv__h{line-height:var(--sa-h2-lh)}
   .sa-kv__price{margin-top:10px}
   .sa-kv__search{margin-top:16px}
-  .sa-kv__chips{margin-top:14px;flex-wrap:nowrap;overflow-x:auto;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
-  .sa-kv__chips::-webkit-scrollbar{display:none}
+  .sa-kv__chips{margin-top:14px;flex-wrap:nowrap;align-items:center;gap:8px}
+  .sa-kv__chipsrow{min-width:0;flex:1 1 auto;display:flex;gap:8px;flex-wrap:nowrap;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .sa-kv__chipsrow::-webkit-scrollbar{display:none}
   /* 11.10: затухание правого края, пока ряд можно листать */
-  .sa-kv__chips.sa-fade{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);
+  .sa-kv__chipsrow.sa-fade{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);
     mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
   .sa-kv__chip{height:44px;flex:0 0 auto;font-size:14px}
   /* кнопка «Разделы» — только на телефоне: боковой панели там нет */
@@ -215,10 +217,21 @@
          Минеральные удобрения 152871781783 (создан импортом 07.11),
          Семена 316570233513. -->
     <div class="sa-kv__chips" role="group" aria-label="Разделы каталога">
-      <a class="sa-kv__chip" data-part="" aria-pressed="true" href="https://sssaturn.ru/catalog">Все</a>
-      <a class="sa-kv__chip" data-part="216609640123" aria-pressed="false" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::">СЗР</a>
+      <div class="sa-kv__chipsrow">
+      <!-- 07.11: «Все» ведёт на корневой раздел магазина (527746460323), а не
+           на голый /catalog. С голым адресом Tilda отдавала страницу из своего
+           кэша: старый блок без чипов и 86 карточек без семян (проверка 07.11).
+           С параметром раздела адрес такой же по форме, как у остальных чипов,
+           и страница собирается заново. -->
+      <a class="sa-kv__chip" data-part="527746460323" aria-pressed="true" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=527746460323&tfc_div=:::">Все</a>
       <a class="sa-kv__chip" data-part="152871781783" aria-pressed="false" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=152871781783&tfc_div=:::">Минеральные удобрения</a>
+      <a class="sa-kv__chip" data-part="216609640123" aria-pressed="false" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::">Средства защиты растений</a>
       <a class="sa-kv__chip" data-part="316570233513" aria-pressed="false" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=316570233513&tfc_div=:::">Семена</a>
+      </div>
+      <!-- 07.11: кнопка «Фильтры» вынесена из прокручиваемой дорожки.
+           Раньше она стояла последней среди чипов, и на экране 390 px
+           её просто не было видно: до неё приходилось сначала долистать
+           ряд вбок (проверка 07.11). -->
       <button class="sa-kv__parts" type="button" aria-expanded="false"
               aria-controls="sa-kv-dr">Фильтры
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
@@ -279,9 +292,9 @@
   <div class="sa-kv__drbody">
     <div class="sa-kv__drh">Разделы</div>
     <nav class="sa-kv__drlist">
-      <a href="/catalog">Все</a>
-      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::">СЗР</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=527746460323&tfc_div=:::">Все</a>
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=152871781783&tfc_div=:::">Минеральные удобрения</a>
+      <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::">Средства защиты растений</a>
       <a href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=316570233513&tfc_div=:::">Семена</a>
     </nav>
     <!-- 09.10 (заказчица): фильтр «Культура» в каталоге препаратов убран —
@@ -343,7 +356,7 @@
   }
 
   (function(){
-    var c=document.querySelector('.sa-kv__chips');if(!c)return;
+    var c=document.querySelector('.sa-kv__chipsrow');if(!c)return;
     function f(){c.classList.toggle('sa-fade',c.scrollWidth-c.clientWidth-c.scrollLeft>4)}
     c.addEventListener('scroll',f,{passive:true});window.addEventListener('resize',f);f();setTimeout(f,600);
   })();
@@ -439,10 +452,13 @@
       var br = document.getElementById('sa-kv-brands');
       if (cr) cr.hidden = !(razdel === SEMENA && estChekbox('Пшеница'));
       if (br) br.hidden = !(razdel === MINUD && estChekbox('Фертика'));
+      /* без раздела в адресе горит «Все» — у него data-part корневой */
+      var KOREN = '527746460323';
+      var tek = razdel || KOREN;
       var ch = document.querySelectorAll('.sa-kv__chips .sa-kv__chip');
       for (var i = 0; i < ch.length; i++){
         ch[i].setAttribute('aria-pressed',
-          ch[i].getAttribute('data-part') === razdel ? 'true' : 'false');
+          ch[i].getAttribute('data-part') === tek ? 'true' : 'false');
       }
     }
     primenit();
@@ -502,51 +518,31 @@
   })();
 })();
 
-  /* 07.11 (заказчица): в боковом списке разделов магазина оставляем только
-     рабочие разделы — «Все», «СЗР», «Минеральные удобрения», «Семена».
-     Подразделы (гербициды, фунгициды, инсектициды, десиканты, адъюванты,
-     протравители, гибриды, сорта) и старые служебные разделы («Препараты»,
-     «Удобрения и листовые подкормки») прячем: они дублируют чипы сверху
-     и превращают список в свалку.
-
-     Список белый, а не чёрный: прячем всё, чего нет в RAZRESH. Так новый
-     раздел, заведённый в магазине, не вылезет на страницу сам по себе.
-     Имя пункта берём из его заголовка, а не из текста целиком: у строки
-     с вложенными пунктами текст включает и детей. Перерисовку магазина
-     ловим наблюдателем. */
+  /* 07.11 (заказчица): боковой список разделов Tilda убран целиком — он
+     дублировал чипы над каталогом, причём в другом порядке и с другими
+     названиями. Прячем контейнер штатного фильтра: карточки занимают всю
+     ширину (проверено на живой странице — 1112 px вместо 862). Чекбоксы
+     фильтра остаются в разметке и продолжают работать: наши чипы нажимают
+     их программно, скрытому полю это не мешает. На телефоне контейнер и так
+     не показывался — там кнопка «Фильтры» и своя шторка. */
   (function(){
-    var RAZRESH = ['Все','СЗР','Минеральные удобрения','Семена'];
-    var ITEM = '.t-catalog__parts-sidebar-item,.t-catalog__parts-item,.t-catalog__parts-row';
-    var ZAG  = '.t-catalog__parts-item-title,.t-catalog__parts-sidebar-title,' +
-               '.t-catalog__parts-text-title';
-    var STRELKI = '.t-catalog__parts-item-arrow,.t-catalog__parts-subpart-arrow-container,' +
-                  '.t-catalog__parts-expand-arrow';
-    function chistit(){
-      var box = document.querySelector('[id^="parts-sidebar-id-"]');
-      if (!box) return;
-      var items = box.querySelectorAll(ITEM);
-      for (var i = 0; i < items.length; i++){
-        var t = items[i].querySelector(ZAG);
-        var imya = ((t ? t.textContent : items[i].textContent) || '')
-                     .trim().replace(/\s+/g, ' ');
-        items[i].style.display = RAZRESH.indexOf(imya) !== -1 ? '' : 'none';
-      }
-      /* стрелки раскрытия подразделов больше ни к чему не ведут */
-      var str = box.querySelectorAll(STRELKI);
-      for (var k = 0; k < str.length; k++) str[k].style.display = 'none';
-    }
-    chistit();
-    new MutationObserver(function(){ chistit(); })
-      .observe(document.documentElement, {childList:true, subtree:true});
+    var st = document.createElement('style');
+    st.textContent = '@media (min-width:961px){.t-catalog__filter-wrapper,' +
+                     '[id^="parts-sidebar-id-"]{display:none !important}}';
+    document.head.appendChild(st);
   })();
 
   /* Счётчик позиций. Берём не из разметки, а из самого каталога:
      у Тильды есть скрытое поле с общим числом найденного, а если его
      нет — считаем карточки. Обновляется после поиска и фильтра. */
   (function(){
+    /* 07.11: счётчика позиций на странице нет (решение заказчицы — количество
+       убрали). Раньше скрипт на этом выходил, и вместе со счётчиком переставало
+       работать сообщение «Ничего не найдено»: при пустом результате человек
+       видел белое место. Теперь выходим, только если нет и того и другого. */
     var mesto = document.getElementById('sa-kv-count');
     var pusto = document.getElementById('sa-kv-empty');
-    if(!mesto) return;
+    if(!mesto && !pusto) return;
     function sklonenie(n){
       var o = n % 10, s = n % 100;
       if (o === 1 && s !== 11) return 'позиция';
@@ -585,7 +581,7 @@
       fetch(u).then(function(r){ return r.json(); }).then(function(d){
         var n = d && d.total;
         if (n == null) return;
-        mesto.textContent = n + ' ' + sklonenie(n);
+        if (mesto) mesto.textContent = n + ' ' + sklonenie(n);
         /* total=0 — показываем блок «Ничего не найдено» вместо пустоты */
         if (pusto) pusto.classList.toggle('is-on', n === 0);
       }).catch(function(){});

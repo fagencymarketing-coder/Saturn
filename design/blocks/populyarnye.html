@@ -224,13 +224,12 @@
     </div>
 
     <div class="sa-pop__chips">
-      <a data-go class="sa-pop__chip sa-pop__chip_on" href="/catalog">Все</a>
-      <!-- 07.11: каталог единый, четыре раздела. Старый чип «Удобрения»
-           (466293242973) заменён на «Минеральные удобрения» — раздел создан
-           импортом 07.11, uid 152871781783, 42 позиции. Семена вернулись
-           в каталог: отдельной страницы /semena больше нет. -->
-      <a data-go class="sa-pop__chip" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::" data-section="СЗР">СЗР</a>
+      <!-- 07.11 (заказчица): порядок и названия как в каталоге.
+           «Все» ведёт на корневой раздел магазина, а не на голый /catalog:
+           с голым адресом Tilda отдавала страницу из кэша без семян. -->
+      <a data-go class="sa-pop__chip sa-pop__chip_on" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=527746460323&tfc_div=:::">Все</a>
       <a data-go class="sa-pop__chip" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=152871781783&tfc_div=:::" data-section="Минеральные удобрения">Минеральные удобрения</a>
+      <a data-go class="sa-pop__chip" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=216609640123&tfc_div=:::" data-section="СЗР">Средства защиты растений</a>
       <a data-go class="sa-pop__chip" href="https://sssaturn.ru/catalog?tfc_storepartnav[4384406801]=316570233513&tfc_div=:::" data-section="Семена">Семена</a>
     </div>
 
