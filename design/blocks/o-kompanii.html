@@ -24,8 +24,10 @@
 .sa-ok__grid{margin-top:20px}
 
 .sa-ok__h{font-size:var(--sa-h2,30px);font-weight:800;line-height:var(--sa-h2-lh,1.15);
-  letter-spacing:-.01em;text-wrap:balance;max-width:18ch}
-.sa-ok__txt{margin-top:20px;display:flex;flex-direction:column;gap:14px;max-width:62ch}
+  letter-spacing:-.01em;text-wrap:balance;max-width:28ch}
+/* 07.11 (заказчица): текст на всю ширину блока. Ограничение в 62ch снято
+   вместе с галереей — колонка больше ни с чем не делит ширину. */
+.sa-ok__txt{margin-top:20px;display:flex;flex-direction:column;gap:14px;max-width:none}
 .sa-ok__txt p{font-size:var(--sa-body,15px);line-height:1.65}
 /* 07.11 (заказчица): на главной виден только первый абзац, остальное
    раскрывается кнопкой. Текст не вырезаем из разметки — он в DOM всегда,
