@@ -162,10 +162,14 @@
 .sa-kv__subrow{display:flex;gap:8px;flex-wrap:wrap}
 .sa-kv__sub .sa-kv__chip{height:38px;font-size:13px;padding:0 14px}
 @media (max-width:767px){
-  .sa-kv__subrow{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;padding-bottom:2px}
-  .sa-kv__subrow::-webkit-scrollbar{display:none}
+  /* 07.11 (вечер): культуры и бренды тоже переносятся, а не листаются вбок.
+     На экране 390 px из восьми культур было видно четыре, из трёх брендов —
+     два с половиной: «Реликт» обрезало правым краем, и человек не знал,
+     что фильтр вообще есть. */
+  .sa-kv__sub{align-items:flex-start}
+  .sa-kv__subrow{flex-wrap:wrap}
   .sa-kv__sub .sa-kv__chip{flex:0 0 auto}
+  .sa-kv__subh{width:100%}
 }
 .sa-kv__drbot{padding:14px 20px calc(14px + env(safe-area-inset-bottom));
   border-top:1px solid var(--line)}
