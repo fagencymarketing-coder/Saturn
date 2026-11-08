@@ -63,11 +63,16 @@
    На холсте нить читается как сплошная оранжевая, у нас она была в
    треть силы и терялась на фотографии заката. Подняли до .6 и усилили
    свечение; обводка значков с 1,6 до 1,8. */
-.sa-ag__step:not(:last-child) .sa-ag__rail::after{content:"";position:absolute;
+/* 08.11 (заказчица): нить обрывалась на последнем узле — линия шла
+   от 01 до 04 и кончалась посреди блока, будто её не дорисовали.
+   Теперь последний отрезок доходит до правого края колонки. */
+.sa-ag__step .sa-ag__rail::after{content:"";position:absolute;
   left:4px;right:calc(-1 * (var(--gap) + 4px));top:50%;height:1px;
   background:rgba(255,66,0,.6);box-shadow:0 0 10px rgba(255,66,0,.45);
   transition:background var(--sa-t) var(--sa-ease),
              box-shadow var(--sa-t) var(--sa-ease)}
+
+.sa-ag__step:last-child .sa-ag__rail::after{right:0}
 
 .sa-ag__sh{font-size:var(--sa-h3);font-weight:700;line-height:1.25;margin-top:16px}
 .sa-ag__st{font-size:13px;font-weight:500;line-height:18.2px;color:rgba(255,255,255,.55);
