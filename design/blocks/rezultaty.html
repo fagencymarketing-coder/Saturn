@@ -33,7 +33,11 @@
    «Ваше поле?» — та выходила узкой и прижатой к правому краю (видно на ПК
    ~1240). minmax(0,1fr) снимает минимум по контенту, все 4 колонки равны.
    У сетки цифр это уже стояло — здесь было пропущено. */
-.sa-res__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;align-items:start;
+/* 08.11 (заказчица): карточки были выровнены по верху и каждая брала
+   высоту по своему тексту — тёмная «Ваше поле?» выходила на 60 px выше
+   остальных и торчала из ряда. Теперь все тянутся до высоты самой
+   высокой: ширина у них и так была одинаковая, 285 px. */
+.sa-res__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;align-items:stretch;
   margin-top:clamp(24px,3.6vh,40px)}
 .sa-res__card{display:flex;flex-direction:column;background:#fff;
   border-radius:var(--sa-r-card);padding:32px;transition:transform var(--sa-t) var(--sa-ease),
