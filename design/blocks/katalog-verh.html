@@ -161,6 +161,10 @@
    в «Минеральных удобрениях». Панель держим скрытой, пока скрипт не
    убедился, что штатный фильтр Tilda отдал нужные чекбоксы. */
 .sa-kv__sel{display:none}
+/* 09.11: без этого правила атрибут hidden на подписи не работал —
+   display:flex ниже перебивал его, и в разделе «Все» оставалось
+   пустое поле «Фильтр». */
+.sa-kv__sel label[hidden]{display:none !important}
 .sa-kv__sel label{display:flex;flex-direction:column;gap:6px;
   font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
   color:var(--mut,#6B6B6B)}
