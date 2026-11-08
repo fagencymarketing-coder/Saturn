@@ -211,7 +211,7 @@
       </div>
       <div class="sa-pop__acts">
         <a class="sa-pop__a1" href="/catalog" data-go>Вся продукция →</a>
-        <a class="sa-pop__a2" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/price-saturn-2026.pdf" data-dl="Прайс-Сатурн-2026.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>Скачать прайс</a>
+        <a class="sa-pop__a2" href="https://cdn.jsdelivr.net/gh/fagencymarketing-coder/Saturnphoto@main/files/price-saturn-2026.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>Прайс-лист PDF ↗</a>
       </div>
     </div>
 
@@ -307,7 +307,7 @@
       .then(function(b){cb(new Blob([b],{type:type}))}).catch(fail);
   }
   document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('a[data-pdf],a[data-dl]');
+    var a=e.target.closest&&e.target.closest('a[],a[data-dl]');
     if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||!window.fetch||!window.Blob||!URL.createObjectURL)return;
     var url=a.href,dl=a.getAttribute('data-dl');
     e.preventDefault();

@@ -105,24 +105,24 @@
     <p class="sa-docs__sub">Сертификат официального дилера и свидетельства о госрегистрации препаратов, которые мы поставляем</p>
 
     <div class="sa-docs__grid">
-      <a class="sa-docs__card" data-pdf target="_blank" rel="noopener"
-         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/01-sertifikat-dilera-fertika-do-2026.pdf">
+      <a class="sa-docs__card" target="_blank" rel="noopener"
+         href="https://cdn.jsdelivr.net/gh/fagencymarketing-coder/Saturnphoto@main/files/01-sertifikat-dilera-fertika-do-2026.pdf">
         <span class="sa-docs__pic"><img loading="lazy" alt="Сертификат дилера АО «Фертика»"
           src="https://static.tildacdn.com/tild3164-3534-4330-b063-346663653636/-/resize/480x/preview-sertifikat-f.jpg"></span>
         <span class="sa-docs__name">Сертификат дилера АО «Фертика»</span>
         <span class="sa-docs__meta">Выдан ООО «Сатурн» · до 31.12.2026</span>
       </a>
 
-      <a class="sa-docs__card" data-pdf target="_blank" rel="noopener"
-         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf">
+      <a class="sa-docs__card" target="_blank" rel="noopener"
+         href="https://cdn.jsdelivr.net/gh/fagencymarketing-coder/Saturnphoto@main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf">
         <span class="sa-docs__pic"><img loading="lazy" alt="СГР — Страда N, P, K"
           src="https://static.tildacdn.com/tild3334-6466-4133-b535-393436633139/-/resize/480x/preview-sgr-strada.jpg"></span>
         <span class="sa-docs__name">СГР — Страда N, P, K</span>
         <span class="sa-docs__meta">№ 2855 · действует до 2030</span>
       </a>
 
-      <a class="sa-docs__card" data-pdf target="_blank" rel="noopener"
-         href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/08-sgr-diforma-2899-do-2030.pdf">
+      <a class="sa-docs__card" target="_blank" rel="noopener"
+         href="https://cdn.jsdelivr.net/gh/fagencymarketing-coder/Saturnphoto@main/files/08-sgr-diforma-2899-do-2030.pdf">
         <span class="sa-docs__pic"><img loading="lazy" alt="СГР — Волски Диформа"
           src="https://static.tildacdn.com/tild3639-3561-4162-b766-633634663432/-/resize/480x/preview-sgr-diforma.jpg"></span>
         <span class="sa-docs__name">СГР — Волски Диформа</span>
@@ -141,9 +141,9 @@
              список), протоколы испытаний переехали в блок «Результаты
              производственных испытаний». Прайс/реквизиты — отдельными кнопками. -->
 
-        <a class="sa-docs__row" data-dl="Sertifikat-dilera-Fertika.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/01-sertifikat-dilera-fertika-do-2026.pdf"><span>Сертификат дилера АО «Фертика»</span><i>PDF ↗</i></a>
-        <a class="sa-docs__row" data-dl="SGR-Strada-N-P-K.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf"><span>СГР — Страда N, P, K · № 2855</span><i>PDF ↗</i></a>
-        <a class="sa-docs__row" data-dl="SGR-Volski-Diforma.pdf" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/fagencymarketing-coder/Saturnphoto/main/files/08-sgr-diforma-2899-do-2030.pdf"><span>СГР — Волски Диформа · № 2899</span><i>PDF ↗</i></a>
+        <a class="sa-docs__row" target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/fagencymarketing-coder/Saturnphoto@main/files/01-sertifikat-dilera-fertika-do-2026.pdf"><span>Сертификат дилера АО «Фертика»</span><i>PDF ↗</i></a>
+        <a class="sa-docs__row" target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/fagencymarketing-coder/Saturnphoto@main/files/07-sgr-strada-n-p-k-2855-do-2030.pdf"><span>СГР — Страда N, P, K · № 2855</span><i>PDF ↗</i></a>
+        <a class="sa-docs__row" target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/fagencymarketing-coder/Saturnphoto@main/files/08-sgr-diforma-2899-do-2030.pdf"><span>СГР — Волски Диформа · № 2899</span><i>PDF ↗</i></a>
       </div>
     </div>
   </div>
@@ -165,7 +165,7 @@
       .then(function(b){cb(new Blob([b],{type:type}))}).catch(fail);
   }
   document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('a[data-pdf],a[data-dl]');
+    var a=e.target.closest&&e.target.closest('a[],a[data-dl]');
     if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||!window.fetch||!window.Blob||!URL.createObjectURL)return;
     var url=a.href,dl=a.getAttribute('data-dl');
     e.preventDefault();
