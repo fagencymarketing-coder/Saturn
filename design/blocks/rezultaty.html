@@ -93,7 +93,12 @@
   .sa-res__in{padding:0 20px}
   .sa-res__nums{margin-top:32px;gap:8px}
   .sa-res__num b{font-size:20px;white-space:nowrap}
-  .sa-res__nums{grid-template-columns:auto auto auto;justify-content:space-between}
+  /* 08.11 (заказчица): три цифры в одну строку на телефоне не влезали —
+     «89 опытных полей» обрезалось правым краем. Ставим в две колонки
+     и даём подписям переноситься. */
+  .sa-res__nums{grid-template-columns:repeat(2,minmax(0,1fr));
+    justify-content:stretch;gap:20px 16px}
+  .sa-res__num span{white-space:normal}
   .sa-res__num b{font-size:19px}
   .sa-res__num span{font-size:11px;line-height:14px;margin-top:6px;white-space:nowrap}
 
