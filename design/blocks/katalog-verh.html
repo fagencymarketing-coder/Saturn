@@ -115,7 +115,9 @@
      разделов плюс два ряда брендов. Меняем их на два выпадающих списка:
      «Раздел» и контекстный «Культура»/«Бренд». На ПК остаются чипы. */
   .sa-kv__chips,.sa-kv__sub{display:none !important}
-  .sa-kv__sel{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+  /* !important здесь обязателен: общее правило .sa-kv__sel{display:none}
+     стоит в файле ниже и при равной силе перебивало бы это (проверка 09.11). */
+  .sa-kv__sel{display:flex !important;flex-direction:column;gap:8px;margin-top:14px}
   .sa-kv__chip{height:44px;flex:0 0 auto;font-size:14px}
   /* кнопка «Разделы» — только на телефоне: боковой панели там нет */
   /* Кнопка «Фильтры» — цель нажатия, значит 44, как и чипы рядом. */
