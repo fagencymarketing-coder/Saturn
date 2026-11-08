@@ -484,7 +484,7 @@ out = f"""<!-- Сатурн: весь код для «Настройки сай�
       '<div class="sa-tp-cta__t">Нужна цена или подбор под вашу культуру?</div>' +
       '<div class="sa-tp-cta__x">Ответим в течение рабочего дня, подберём решение под хозяйство</div>' +
       '<div class="sa-tp-cta__b">' +
-      '<a class="sa-tp-cta__btn" href="/home#contacts">Получить предложение</a>' +
+      '<a class="sa-tp-cta__btn" href="/#contacts">Получить предложение</a>' +
       '</div></div>';
     document.body.appendChild(cta);
 
